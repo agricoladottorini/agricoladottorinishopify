@@ -1,12 +1,27 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "dottorini-hero",
       "settings": {
+        "image": "shopify://shop_images/green-plants-grow-in-lines-on-rolling-hills.jpg",
+        "show_line": true,
+        "line_color": "#8a9a4b",
+        "line_thickness": 10,
         "heading": "Olio extravergine, <em>nato in Umbria</em>.",
         "text": "Un solo ingrediente: le olive delle nostre colline. Nient'altro in bottiglia.",
-        "primary_label": "Scopri gli oli",
-        "secondary_label": "La nostra terra"
+        "primary_label": "Scopri",
+        "primary_link": "",
+        "secondary_label": "La nostra terra",
+        "secondary_link": ""
       }
     },
     "products": {
@@ -14,9 +29,16 @@
       "settings": {
         "heading": "I nostri oli",
         "text": "Scegli il tuo olio e ricevilo a casa.",
-        "products": ["olio-bono", "olio-test", "test"],
+        "products": [
+          "olio-bono",
+          "olio-test",
+          "test"
+        ],
         "image_fit": "contain",
         "show_quick_add": true,
+        "add_label": "Aggiungi",
+        "choose_label": "Scegli",
+        "sold_out_label": "Esaurito",
         "anchor": "oli"
       }
     },
@@ -29,44 +51,89 @@
     },
     "journey": {
       "type": "dottorini-journey",
-      "settings": {
-        "heading": "Dall'oliva alla bottiglia"
-      },
       "blocks": {
         "step-harvest": {
           "type": "step",
-          "settings": { "title": "La raccolta", "text": "Le olive si raccolgono in autunno, quando sono al punto giusto." }
+          "settings": {
+            "title": "La raccolta",
+            "text": "Le olive si raccolgono in autunno, quando sono al punto giusto."
+          }
         },
         "step-mill": {
           "type": "step",
-          "settings": { "title": "Il frantoio", "text": "Spremitura a freddo, poche ore dopo la raccolta." }
+          "settings": {
+            "title": "Il frantoio",
+            "text": "Spremitura a freddo, poche ore dopo la raccolta."
+          }
         },
         "step-bottle": {
           "type": "step",
-          "settings": { "title": "La bottiglia", "text": "Vetro scuro, per proteggere profumo e colore." }
+          "settings": {
+            "title": "La bottiglia",
+            "text": "Vetro scuro, per proteggere profumo e colore."
+          }
         },
         "step-table": {
           "type": "step",
-          "settings": { "title": "In tavola", "text": "A crudo, sul pane caldo o su una zuppa di legumi." }
+          "settings": {
+            "title": "In tavola",
+            "text": "A crudo, sul pane caldo o su una zuppa di legumi."
+          }
         }
       },
-      "block_order": ["step-harvest", "step-mill", "step-bottle", "step-table"]
+      "block_order": [
+        "step-harvest",
+        "step-mill",
+        "step-bottle",
+        "step-table"
+      ],
+      "settings": {
+        "heading": "Dall'oliva alla bottiglia"
+      }
     },
     "origin": {
       "type": "dottorini-origin",
+      "blocks": {
+        "fact-origin": {
+          "type": "fact",
+          "settings": {
+            "label": "Origine",
+            "value": "Umbria"
+          }
+        },
+        "fact-category": {
+          "type": "fact",
+          "settings": {
+            "label": "Categoria",
+            "value": "Extravergine"
+          }
+        },
+        "fact-harvest": {
+          "type": "fact",
+          "settings": {
+            "label": "Raccolta",
+            "value": "Ottobre, novembre"
+          }
+        }
+      },
+      "block_order": [
+        "fact-origin",
+        "fact-category",
+        "fact-harvest"
+      ],
       "settings": {
         "eyebrow": "Azienda Agricola Dottorini",
         "heading": "Dalle colline dell'Umbria.",
         "text": "<p>Un'azienda agricola di famiglia. Curiamo i nostri olivi a mano e seguiamo ogni bottiglia, dalla pianta alla tavola.</p>",
         "anchor": "terra"
-      },
-      "blocks": {
-        "fact-origin": { "type": "fact", "settings": { "label": "Origine", "value": "Umbria" } },
-        "fact-category": { "type": "fact", "settings": { "label": "Categoria", "value": "Extravergine" } },
-        "fact-harvest": { "type": "fact", "settings": { "label": "Raccolta", "value": "Ottobre, novembre" } }
-      },
-      "block_order": ["fact-origin", "fact-category", "fact-harvest"]
+      }
     }
   },
-  "order": ["hero", "products", "statement", "journey", "origin"]
+  "order": [
+    "hero",
+    "products",
+    "statement",
+    "journey",
+    "origin"
+  ]
 }
