@@ -1,0 +1,178 @@
+{% comment %}
+  Asymmetric 1 + 2 product grid: the first product is the large card, the
+  next two stack beside it. Falls back to the first products of the store
+  when no products are picked.
+{% endcomment %}
+
+{% liquid
+  assign products = section.settings.products
+  if products == blank
+    assign products = collections.all.products
+  endif
+%}
+
+<div class="d-products section-space" id="{{ section.settings.anchor | default: 'oli' | handleize }}">
+  <div class="d-products__head reveal">
+    {% if section.settings.heading != blank %}
+      <h2 class="d-products__heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    {% if section.settings.text != blank %}
+      <p class="d-products__text">{{ section.settings.text }}</p>
+    {% endif %}
+  </div>
+
+  <ul class="d-products__grid" role="list">
+    {% for product in products limit: 3 %}
+      <li class="d-products__item{% if forloop.first %} d-products__item--featured{% endif %} reveal">
+        {% render 'product-card',
+          product: product,
+          featured: forloop.first,
+          image_fit: section.settings.image_fit,
+          show_quick_add: section.settings.show_quick_add,
+          add_label: section.settings.add_label,
+          choose_label: section.settings.choose_label,
+          sold_out_label: section.settings.sold_out_label
+        %}
+      </li>
+    {% else %}
+      <li class="d-products__empty">
+        <p>Nessun prodotto da mostrare.</p>
+        <p>Scegli fino a tre prodotti nelle impostazioni di questa sezione.</p>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% stylesheet %}
+  .d-products__head {
+    margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .d-products__heading {
+    font-size: clamp(2.25rem, 5vw, 4.25rem);
+    letter-spacing: -0.04em;
+  }
+
+  .d-products__text {
+    max-width: 44ch;
+    margin-top: 0.75rem;
+    font-size: 1.0625rem;
+    color: var(--color-muted);
+  }
+
+  .d-products__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .d-products__empty {
+    padding: 3rem 2rem;
+    border-radius: var(--radius-media);
+    background-color: var(--color-surface);
+    color: var(--color-muted);
+  }
+
+  .d-products__empty p:first-child {
+    color: var(--color-foreground);
+    font-size: 1.25rem;
+  }
+
+  /* Under 900px: one column, every card stacked image over text */
+  @media (min-width: 900px) {
+    .d-products__grid {
+      grid-template-columns: 1.2fr 1fr;
+      grid-auto-rows: minmax(19rem, 1fr);
+      gap: 1.25rem;
+      min-height: min(54rem, 88dvh);
+    }
+
+    .d-products__item--featured {
+      grid-row: span 2;
+    }
+
+    .d-products__item--featured:last-child {
+      grid-column: 1 / -1;
+    }
+
+    .d-products__item:not(.d-products__item--featured) {
+      animation-range: entry 10% cover 34%;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Dottorini products",
+  "tag": "section",
+  "class": "d-products-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "I nostri oli"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "Scegli il tuo olio e ricevilo a casa."
+    },
+    {
+      "type": "product_list",
+      "id": "products",
+      "label": "Products",
+      "limit": 3,
+      "info": "The first product gets the large card."
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image fit",
+      "default": "contain",
+      "options": [
+        { "value": "contain", "label": "Contain (bottle packshots)" },
+        { "value": "cover", "label": "Cover (photos)" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quick_add",
+      "label": "Show add to cart button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "add_label",
+      "label": "Add to cart label",
+      "default": "Aggiungi"
+    },
+    {
+      "type": "text",
+      "id": "choose_label",
+      "label": "Choose options label",
+      "default": "Scegli"
+    },
+    {
+      "type": "text",
+      "id": "sold_out_label",
+      "label": "Sold out label",
+      "default": "Esaurito"
+    },
+    {
+      "type": "text",
+      "id": "anchor",
+      "label": "Anchor id",
+      "default": "oli"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dottorini products"
+    }
+  ]
+}
+{% endschema %}

@@ -8,5 +8,16 @@
  * ------------------------------------------------------------
  */
 {
-  "current": {}
+  "current": {
+    "type_primary_font": "outfit_n4",
+    "max_page_width": "90rem",
+    "min_page_margin": 24,
+    "background_color": "#F5F6F2",
+    "foreground_color": "#1E221D",
+    "input_corner_radius": 10,
+    "accent_color": "#56622F",
+    "muted_color": "#5B6056",
+    "surface_color": "#ECEEE7",
+    "surface_strong_color": "#E1E6D5"
+  }
 }

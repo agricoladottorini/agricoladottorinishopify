@@ -1,0 +1,289 @@
+{% comment %}
+  Horizontal scroll-snap gallery. Native overflow scrolling with snap points;
+  the arrow buttons are a progressive enhancement.
+{% endcomment %}
+
+<scroll-gallery class="d-journey section-space full-width">
+  <div class="d-journey__head">
+    {% if section.settings.heading != blank %}
+      <h2 class="d-journey__heading reveal">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    {% if section.blocks.size > 1 %}
+      <div class="d-journey__controls">
+        <button type="button" class="d-journey__arrow" data-direction="-1" aria-label="Precedente" disabled>
+          <span aria-hidden="true">&larr;</span>
+        </button>
+        <button type="button" class="d-journey__arrow" data-direction="1" aria-label="Successivo">
+          <span aria-hidden="true">&rarr;</span>
+        </button>
+      </div>
+    {% endif %}
+  </div>
+
+  <ol class="d-journey__track" role="list" tabindex="0" aria-label="{{ section.settings.heading | escape }}">
+    {% for block in section.blocks %}
+      <li class="d-journey__step" {{ block.shopify_attributes }}>
+        <div class="d-journey__media">
+          {% if block.settings.image %}
+            {% assign image_position = 'object-position: ' | append: block.settings.image.presentation.focal_point %}
+            {{
+              block.settings.image
+              | image_url: width: 1200
+              | image_tag:
+                widths: '400, 600, 900, 1200',
+                sizes: '(min-width: 900px) 30vw, 78vw',
+                loading: 'lazy',
+                alt: block.settings.image.alt,
+                style: image_position
+            }}
+          {% else %}
+            {{ 'image' | placeholder_svg_tag: 'd-journey__placeholder' }}
+          {% endif %}
+        </div>
+        <h3 class="d-journey__title">{{ block.settings.title }}</h3>
+        {% if block.settings.text != blank %}
+          <p class="d-journey__text">{{ block.settings.text }}</p>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ol>
+</scroll-gallery>
+
+{% stylesheet %}
+  .d-journey {
+    --gutter: max(var(--page-margin), calc((100vw - var(--page-width)) / 2 + var(--page-margin)));
+    display: block;
+    overflow: hidden;
+  }
+
+  .d-journey__head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-inline: var(--gutter);
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+
+  .d-journey__heading {
+    max-width: 16ch;
+    font-size: clamp(2rem, 4.2vw, 3.5rem);
+    letter-spacing: -0.035em;
+  }
+
+  .d-journey__controls {
+    display: none;
+    gap: 0.5rem;
+  }
+
+  .d-journey__arrow {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    border: 1px solid var(--color-foreground);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--color-foreground);
+    font: inherit;
+    font-size: 1.125rem;
+    cursor: pointer;
+    transition: background-color 0.3s var(--ease-out), color 0.3s var(--ease-out), transform 0.2s var(--ease-out),
+      opacity 0.3s var(--ease-out);
+  }
+
+  .d-journey__arrow:hover:not([disabled]) {
+    background-color: var(--color-foreground);
+    color: var(--color-background);
+  }
+
+  .d-journey__arrow:active:not([disabled]) {
+    transform: scale(0.96);
+  }
+
+  .d-journey__arrow[disabled] {
+    opacity: 0.3;
+    cursor: default;
+  }
+
+  .d-journey__track {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 78vw;
+    gap: 1rem;
+    margin: 0;
+    padding: 0 var(--gutter) 0.5rem;
+    list-style: none;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+  }
+
+  .d-journey__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .d-journey__step {
+    scroll-snap-align: start;
+  }
+
+  .d-journey__media {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: var(--radius-media);
+    background-color: var(--color-surface-strong);
+  }
+
+  .d-journey__media img,
+  .d-journey__placeholder {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .d-journey__placeholder {
+    fill: rgb(30 34 29 / 0.14);
+  }
+
+  .d-journey__title {
+    margin-top: 1.25rem;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+  }
+
+  .d-journey__text {
+    max-width: 32ch;
+    margin-top: 0.4rem;
+    color: var(--color-muted);
+  }
+
+  /* From 900px: arrows appear and every second card drops for rhythm */
+  @media (min-width: 900px) {
+    .d-journey__controls {
+      display: flex;
+    }
+
+    .d-journey__track {
+      grid-auto-columns: clamp(18rem, 29vw, 27rem);
+      gap: 1.5rem;
+      padding-bottom: 4rem;
+    }
+
+    .d-journey__step:nth-child(even) {
+      margin-top: 4rem;
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  class ScrollGallery extends HTMLElement {
+    connectedCallback() {
+      this.track = this.querySelector('.d-journey__track');
+      this.buttons = this.querySelectorAll('.d-journey__arrow');
+      const steps = this.track?.children;
+      if (!this.track || !steps?.length || !this.buttons.length) return;
+
+      this.onClick = (event) => {
+        const direction = Number(event.currentTarget.dataset.direction);
+        const step = steps[0].getBoundingClientRect().width + parseFloat(getComputedStyle(this.track).columnGap || 0);
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        this.track.scrollBy({ left: direction * step, behavior: reduce ? 'auto' : 'smooth' });
+      };
+      this.buttons.forEach((button) => button.addEventListener('click', this.onClick));
+
+      // Disable the arrows at the edges by observing the first and last step.
+      const [prev, next] = this.buttons;
+      this.observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.target === steps[0]) prev.disabled = entry.isIntersecting;
+            if (entry.target === steps[steps.length - 1]) next.disabled = entry.isIntersecting;
+          });
+        },
+        { root: this.track, threshold: 0.95 }
+      );
+      this.observer.observe(steps[0]);
+      this.observer.observe(steps[steps.length - 1]);
+    }
+
+    disconnectedCallback() {
+      this.buttons?.forEach((button) => button.removeEventListener('click', this.onClick));
+      this.observer?.disconnect();
+    }
+  }
+
+  if (!customElements.get('scroll-gallery')) customElements.define('scroll-gallery', ScrollGallery);
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Dottorini journey",
+  "tag": "section",
+  "class": "d-journey-section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Dall'oliva alla bottiglia"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Portrait photo, 4:5."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Titolo"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "info": "One short sentence."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dottorini journey",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": { "title": "La raccolta", "text": "Le olive si raccolgono in autunno, quando sono al punto giusto." }
+        },
+        {
+          "type": "step",
+          "settings": { "title": "Il frantoio", "text": "Spremitura a freddo, poche ore dopo la raccolta." }
+        },
+        {
+          "type": "step",
+          "settings": { "title": "La bottiglia", "text": "Vetro scuro, per proteggere profumo e colore." }
+        },
+        {
+          "type": "step",
+          "settings": { "title": "In tavola", "text": "A crudo, sul pane caldo o su una zuppa di legumi." }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
