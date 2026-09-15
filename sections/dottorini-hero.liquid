@@ -1,0 +1,366 @@
+{% comment %}
+  Full-bleed framed media hero. Copy sits at the bottom of the frame over a
+  soft scrim so it stays readable on any photograph.
+{% endcomment %}
+
+<div class="d-hero full-width">
+  <div class="d-hero__frame">
+    <div class="d-hero__media">
+      {% if section.settings.image %}
+        {% assign image_position = 'object-position: ' | append: section.settings.image.presentation.focal_point %}
+        {{
+          section.settings.image
+          | image_url: width: 3000
+          | image_tag:
+            widths: '750, 1100, 1500, 2000, 2600, 3000',
+            sizes: '100vw',
+            loading: 'eager',
+            fetchpriority: 'high',
+            preload: true,
+            alt: section.settings.image.alt,
+            style: image_position
+        }}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'd-hero__placeholder' }}
+      {% endif %}
+    </div>
+
+    {% if section.settings.show_line %}
+      {% comment %}
+        Decorative line, requested by the brand: one continuous path. Every
+        segment uses the smooth "S" command so tangents match and there are no
+        corners. Both ends run past the frame edges, so no caps are visible.
+        The stroke keeps its pixel width at any aspect ratio.
+      {% endcomment %}
+      <svg
+        class="d-hero__line"
+        viewBox="0 0 1600 400"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+        focusable="false"
+        style="--line-color: {{ section.settings.line_color }}; --line-width: {{ section.settings.line_thickness }}px;"
+      >
+        <path
+          d="M -60 300 C 160 296 250 214 420 222 S 600 318 760 300 S 930 150 1110 128 S 1290 178 1400 196 S 1560 132 1680 118"
+          vector-effect="non-scaling-stroke"
+        />
+      </svg>
+    {% endif %}
+
+    <div class="d-hero__content">
+      {% if section.settings.heading != blank %}
+        <h1 class="d-hero__heading">{{ section.settings.heading }}</h1>
+      {% endif %}
+
+      <div class="d-hero__row">
+        {% if section.settings.text != blank %}
+          <p class="d-hero__text">{{ section.settings.text }}</p>
+        {% endif %}
+
+        <div class="d-hero__actions">
+          {% if section.settings.primary_label != blank %}
+            <a class="button button--light" href="{{ section.settings.primary_link | default: '#oli' }}">
+              {{- section.settings.primary_label -}}
+            </a>
+          {% endif %}
+          {% if section.settings.secondary_label != blank %}
+            <a class="button button--outline-light" href="{{ section.settings.secondary_link | default: '#terra' }}">
+              {{- section.settings.secondary_label -}}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .d-hero {
+    padding: 0.5rem var(--page-margin) 0;
+  }
+
+  .d-hero__frame {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: flex-end;
+    height: clamp(34rem, calc(100dvh - var(--header-height) - 0.5rem), 62rem);
+    max-width: calc(var(--page-width) + 8rem);
+    margin-inline: auto;
+    overflow: hidden;
+    border-radius: var(--radius-media);
+    background-color: #2f3526;
+    color: var(--color-background);
+  }
+
+  .d-hero__media {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+  }
+
+  .d-hero__media img,
+  .d-hero__placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .d-hero__placeholder {
+    fill: rgb(245 246 242 / 0.14);
+  }
+
+  /* Scrim: guarantees AA contrast for the copy on light photographs */
+  .d-hero__frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(to top, rgb(20 24 18 / 0.72) 0%, rgb(20 24 18 / 0.28) 42%, rgb(20 24 18 / 0) 70%);
+    pointer-events: none;
+  }
+
+  .d-hero__content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding: clamp(1.5rem, 4vw, 3.5rem);
+  }
+
+  /*
+    Sits above the photo and scrim, below the copy. The box keeps the 4:1
+    viewBox ratio and never gets narrower than 64rem, so on small screens the
+    frame crops to the middle of the curve instead of squashing it into a
+    tight wave.
+  */
+  .d-hero__line {
+    position: absolute;
+    z-index: 0;
+    left: 50%;
+    top: 16%;
+    width: max(100%, 64rem);
+    max-width: none;
+    height: auto;
+    aspect-ratio: 4 / 1;
+    transform: translateX(-50%);
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .d-hero__line path {
+    fill: none;
+    stroke: var(--line-color);
+    stroke-width: var(--line-width);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* Draw-in: a soft-edged mask sweeps left to right, once */
+  @media (prefers-reduced-motion: no-preference) {
+    .d-hero__line {
+      -webkit-mask-image: linear-gradient(90deg, #000 45%, transparent 55%);
+      mask-image: linear-gradient(90deg, #000 45%, transparent 55%);
+      -webkit-mask-size: 250% 100%;
+      mask-size: 250% 100%;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      animation: d-hero-line-draw 2.4s var(--ease-out) 0.35s both;
+    }
+  }
+
+  @keyframes d-hero-line-draw {
+    from {
+      -webkit-mask-position: 100% 0;
+      mask-position: 100% 0;
+    }
+    to {
+      -webkit-mask-position: 0 0;
+      mask-position: 0 0;
+    }
+  }
+
+  .d-hero__heading {
+    max-width: 13ch;
+    padding-bottom: 0.08em;
+    font-size: clamp(2.4rem, 8vw, 6.75rem);
+    line-height: 1;
+    letter-spacing: -0.045em;
+  }
+
+  .d-hero__heading em {
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .d-hero__row {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: clamp(1.25rem, 2.5vw, 2rem);
+  }
+
+  .d-hero__text {
+    max-width: 34ch;
+    font-size: clamp(1rem, 1.3vw, 1.1875rem);
+    line-height: 1.45;
+    color: rgb(245 246 242 / 0.9);
+  }
+
+  .d-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  /* Under 900px: buttons share one row and the frame stops short of the fold */
+  @media (max-width: 899px) {
+    .d-hero__frame {
+      height: clamp(32rem, calc(100svh - var(--header-height) - 1.5rem), 50rem);
+    }
+
+    .d-hero__content {
+      padding: 1.25rem;
+    }
+
+    .d-hero__actions .button {
+      flex: 1 1 auto;
+      min-height: 2.75rem;
+      padding: 0 1rem;
+      font-size: 0.875rem;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .d-hero__actions {
+      gap: 0.75rem;
+    }
+
+    .d-hero__row {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .d-hero__media {
+      animation: d-hero-settle 1.6s var(--ease-out) both;
+    }
+
+    .d-hero__heading,
+    .d-hero__text,
+    .d-hero__actions {
+      animation: d-hero-rise 1s var(--ease-out) both;
+    }
+
+    .d-hero__text {
+      animation-delay: 0.12s;
+    }
+
+    .d-hero__actions {
+      animation-delay: 0.22s;
+    }
+  }
+
+  @keyframes d-hero-settle {
+    from {
+      transform: scale(1.06);
+    }
+    to {
+      transform: none;
+    }
+  }
+
+  @keyframes d-hero-rise {
+    from {
+      opacity: 0;
+      transform: translateY(1.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Dottorini hero",
+  "tag": "section",
+  "class": "d-hero-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "Landscape photo, at least 2400px wide. Product or harvest detail works best."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_line",
+      "label": "Show decorative line",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "line_color",
+      "label": "Line color",
+      "default": "#8A9A4B",
+      "visible_if": "{{ section.settings.show_line }}"
+    },
+    {
+      "type": "range",
+      "id": "line_thickness",
+      "label": "Line thickness",
+      "min": 4,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 10,
+      "visible_if": "{{ section.settings.show_line }}"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Olio extravergine, <em>nato in Umbria</em>."
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "info": "Keep it under 20 words.",
+      "default": "Un solo ingrediente: le olive delle nostre colline. Nient'altro in bottiglia."
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Primary button label",
+      "default": "Scopri gli oli"
+    },
+    {
+      "type": "url",
+      "id": "primary_link",
+      "label": "Primary button link",
+      "info": "Leave empty to scroll to the products section."
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary button label",
+      "default": "La nostra terra"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Secondary button link",
+      "info": "Leave empty to scroll to the origin section."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dottorini hero"
+    }
+  ]
+}
+{% endschema %}

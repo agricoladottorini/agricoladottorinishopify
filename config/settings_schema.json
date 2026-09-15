@@ -77,6 +77,30 @@
         "unit": "px",
         "label": "t:labels.input_corner_radius",
         "default": 4
+      },
+      {
+        "type": "color",
+        "id": "accent_color",
+        "default": "#56622F",
+        "label": "Accent"
+      },
+      {
+        "type": "color",
+        "id": "muted_color",
+        "default": "#5B6056",
+        "label": "Muted text"
+      },
+      {
+        "type": "color",
+        "id": "surface_color",
+        "default": "#ECEEE7",
+        "label": "Surface"
+      },
+      {
+        "type": "color",
+        "id": "surface_strong_color",
+        "default": "#E1E6D5",
+        "label": "Surface strong"
       }
     ]
   }

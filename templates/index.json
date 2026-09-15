@@ -1,20 +1,72 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "main": {
-      "type": "hello-world",
-      "settings": {}
+    "hero": {
+      "type": "dottorini-hero",
+      "settings": {
+        "heading": "Olio extravergine, <em>nato in Umbria</em>.",
+        "text": "Un solo ingrediente: le olive delle nostre colline. Nient'altro in bottiglia.",
+        "primary_label": "Scopri gli oli",
+        "secondary_label": "La nostra terra"
+      }
+    },
+    "products": {
+      "type": "dottorini-featured-products",
+      "settings": {
+        "heading": "I nostri oli",
+        "text": "Scegli il tuo olio e ricevilo a casa.",
+        "products": ["olio-bono", "olio-test", "test"],
+        "image_fit": "contain",
+        "show_quick_add": true,
+        "anchor": "oli"
+      }
+    },
+    "statement": {
+      "type": "dottorini-manifesto",
+      "settings": {
+        "statement": "<p>Poche piante curate, una raccolta attenta, <em>nessuna scorciatoia</em>. Così nasce il nostro olio.</p>",
+        "signature": "Famiglia Dottorini"
+      }
+    },
+    "journey": {
+      "type": "dottorini-journey",
+      "settings": {
+        "heading": "Dall'oliva alla bottiglia"
+      },
+      "blocks": {
+        "step-harvest": {
+          "type": "step",
+          "settings": { "title": "La raccolta", "text": "Le olive si raccolgono in autunno, quando sono al punto giusto." }
+        },
+        "step-mill": {
+          "type": "step",
+          "settings": { "title": "Il frantoio", "text": "Spremitura a freddo, poche ore dopo la raccolta." }
+        },
+        "step-bottle": {
+          "type": "step",
+          "settings": { "title": "La bottiglia", "text": "Vetro scuro, per proteggere profumo e colore." }
+        },
+        "step-table": {
+          "type": "step",
+          "settings": { "title": "In tavola", "text": "A crudo, sul pane caldo o su una zuppa di legumi." }
+        }
+      },
+      "block_order": ["step-harvest", "step-mill", "step-bottle", "step-table"]
+    },
+    "origin": {
+      "type": "dottorini-origin",
+      "settings": {
+        "eyebrow": "Azienda Agricola Dottorini",
+        "heading": "Dalle colline dell'Umbria.",
+        "text": "<p>Un'azienda agricola di famiglia. Curiamo i nostri olivi a mano e seguiamo ogni bottiglia, dalla pianta alla tavola.</p>",
+        "anchor": "terra"
+      },
+      "blocks": {
+        "fact-origin": { "type": "fact", "settings": { "label": "Origine", "value": "Umbria" } },
+        "fact-category": { "type": "fact", "settings": { "label": "Categoria", "value": "Extravergine" } },
+        "fact-harvest": { "type": "fact", "settings": { "label": "Raccolta", "value": "Ottobre, novembre" } }
+      },
+      "block_order": ["fact-origin", "fact-category", "fact-harvest"]
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["hero", "products", "statement", "journey", "origin"]
 }

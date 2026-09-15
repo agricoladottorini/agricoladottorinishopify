@@ -1,59 +1,219 @@
-<header>
-  <h2 class="header__title">
-    {{ shop.name | link_to: routes.root_url }}
-  </h2>
+<header class="site-header">
+  <details class="site-header__drawer">
+    <summary class="site-header__drawer-toggle">
+      <span class="site-header__drawer-open">{{ section.settings.menu_label }}</span>
+      <span class="site-header__drawer-close">{{ section.settings.close_label }}</span>
+    </summary>
 
-  <div class="header__menu">
+    <nav class="site-header__drawer-panel" aria-label="{{ section.settings.menu_label | escape }}">
+      {% for link in section.settings.menu.links %}
+        <a
+          href="{{ link.url }}"
+          {% if link.current %}
+            aria-current="page"
+          {% endif %}
+        >
+          {{- link.title -}}
+        </a>
+      {% endfor %}
+    </nav>
+  </details>
+
+  <nav class="site-header__nav" aria-label="{{ section.settings.menu_label | escape }}">
     {% for link in section.settings.menu.links %}
-      {{ link.title | link_to: link.url }}
+      <a
+        href="{{ link.url }}"
+        {% if link.current %}
+          aria-current="page"
+        {% endif %}
+      >
+        {{- link.title -}}
+      </a>
     {% endfor %}
-  </div>
+  </nav>
 
-  <div class="header__icons">
+  <a class="site-header__brand" href="{{ routes.root_url }}">
+    {% if section.settings.logo %}
+      {% assign logo_style = '--logo-width: ' | append: section.settings.logo_width | append: 'px' %}
+      {{
+        section.settings.logo
+        | image_url: width: 400
+        | image_tag:
+          class: 'site-header__logo',
+          alt: shop.name,
+          style: logo_style
+      }}
+    {% else %}
+      {{ section.settings.wordmark | default: shop.name }}
+    {% endif %}
+  </a>
+
+  <div class="site-header__icons">
     {% if shop.customer_accounts_enabled %}
       <shopify-account menu="{{ section.settings.customer_account_menu }}">
         {{ 'icon-account.svg' | inline_asset_content }}
       </shopify-account>
     {% endif %}
 
-    <a href="{{ routes.cart_url }}">
-      {% if cart.item_count > 0 %}
-        <sup>{{ cart.item_count }}</sup>
-      {% endif %}
-
+    <a class="site-header__cart" href="{{ routes.cart_url }}">
       {{ 'icon-cart.svg' | inline_asset_content }}
+      <span class="visually-hidden">{{ section.settings.cart_label }}</span>
+      {% if cart.item_count > 0 %}
+        <span class="site-header__cart-count">{{ cart.item_count }}</span>
+      {% endif %}
     </a>
   </div>
 </header>
 
 {% stylesheet %}
-  header {
-    height: 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  .shopify-section-group-header-group {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: rgb(245 246 242 / 0.86);
+    -webkit-backdrop-filter: saturate(160%) blur(14px);
+    backdrop-filter: saturate(160%) blur(14px);
   }
-  header a {
-    position: relative;
-    text-decoration: none;
+
+  .site-header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    height: var(--header-height);
+  }
+
+  .site-header a {
     color: var(--color-foreground);
+    text-decoration: none;
+  }
+
+  .site-header__nav {
+    display: none;
+    gap: 2rem;
+    font-size: 0.9375rem;
+    white-space: nowrap;
+  }
+
+  .site-header__nav a,
+  .site-header__drawer-panel a {
+    position: relative;
+  }
+
+  .site-header__nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.3rem;
+    height: 1px;
+    background-color: currentcolor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s var(--ease-out);
+  }
+
+  .site-header__nav a:hover::after,
+  .site-header__nav a[aria-current='page']::after {
+    transform: scaleX(1);
+  }
+
+  .site-header__brand {
+    grid-column: 2;
+    font-size: 1.375rem;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+  }
+
+  .site-header__logo {
+    width: var(--logo-width);
+    height: auto;
+  }
+
+  .site-header__icons {
+    grid-column: 3;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
+    gap: 1.25rem;
   }
-  header a sup {
-    position: absolute;
-    left: 100%;
-    overflow: hidden;
-    max-width: var(--page-margin);
+
+  .site-header__icons svg {
+    width: 1.5rem;
   }
-  header svg {
-    width: 2rem;
-  }
-  header .header__menu,
-  header .header__icons {
+
+  .site-header__cart {
+    position: relative;
     display: flex;
-    gap: 1rem;
+  }
+
+  .site-header__cart-count {
+    position: absolute;
+    top: -0.35rem;
+    right: -0.55rem;
+    display: grid;
+    place-items: center;
+    min-width: 1.1rem;
+    height: 1.1rem;
+    padding: 0 0.25rem;
+    border-radius: var(--radius-pill);
+    background-color: var(--color-accent);
+    color: var(--color-background);
+    font-size: 0.6875rem;
+    line-height: 1;
+  }
+
+  /* Mobile menu: native <details>, no JavaScript */
+  .site-header__drawer {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .site-header__drawer-toggle {
+    list-style: none;
+    cursor: pointer;
+    font-size: 0.9375rem;
+  }
+
+  .site-header__drawer-toggle::-webkit-details-marker {
+    display: none;
+  }
+
+  .site-header__drawer-close,
+  .site-header__drawer[open] .site-header__drawer-open {
+    display: none;
+  }
+
+  .site-header__drawer[open] .site-header__drawer-close {
+    display: inline;
+  }
+
+  .site-header__drawer-panel {
+    position: absolute;
+    z-index: 20;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.5rem var(--page-margin) 2.5rem;
+    background-color: var(--color-background);
+    border-bottom: 1px solid var(--color-surface-strong);
+    font-size: 1.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  @media (min-width: 900px) {
+    .site-header__nav {
+      display: flex;
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .site-header__drawer {
+      display: none;
+    }
   }
 {% endstylesheet %}
 
@@ -62,15 +222,59 @@
   "name": "t:general.header",
   "settings": [
     {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "Logo width",
+      "min": 60,
+      "max": 240,
+      "step": 4,
+      "unit": "px",
+      "default": 120
+    },
+    {
+      "type": "text",
+      "id": "wordmark",
+      "label": "Wordmark (used when no logo)",
+      "default": "Dottorini"
+    },
+    {
       "type": "link_list",
       "id": "menu",
-      "label": "t:labels.menu"
+      "label": "t:labels.menu",
+      "default": "main-menu"
     },
     {
       "type": "link_list",
       "id": "customer_account_menu",
       "label": "t:labels.customer_account_menu",
       "default": "customer-account-main-menu"
+    },
+    {
+      "type": "header",
+      "content": "Labels"
+    },
+    {
+      "type": "text",
+      "id": "menu_label",
+      "label": "Menu",
+      "default": "Menu"
+    },
+    {
+      "type": "text",
+      "id": "close_label",
+      "label": "Close",
+      "default": "Chiudi"
+    },
+    {
+      "type": "text",
+      "id": "cart_label",
+      "label": "Cart",
+      "default": "Carrello"
     }
   ]
 }
