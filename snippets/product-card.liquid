@@ -1,31 +1,49 @@
 {% doc %}
   Renders a product card with image, title, price and an optional quick add
-  button. Products with more than one variant link to the product page
+  control. Products with more than one variant link to the product page
   instead of adding the first variant.
 
+  Quick add posts to the cart with fetch, so the shopper stays on the page.
+  Without JavaScript the form submits normally and lands on the cart.
+
   @param {product} product - The product to render
-  @param {boolean} [featured] - Renders the large card variant
+  @param {boolean} [featured] - Large card variant, image above the text
+  @param {boolean} [split] - Compact variant with the image beside the text from 900px
   @param {string} [image_fit] - 'contain' or 'cover', defaults to 'contain'
-  @param {boolean} [show_quick_add] - Shows the add to cart button
-  @param {string} [add_label] - Label of the add to cart button
+  @param {boolean} [show_quick_add] - Shows the add to cart control
+  @param {string} [add_style] - 'label' for a text button, 'plus' for the round + button
+  @param {string} [add_label] - Accessible label of the add control
+  @param {string} [added_label] - Message announced after a successful add
+  @param {string} [error_label] - Message announced when the add fails
   @param {string} [choose_label] - Label of the link for multi-variant products
   @param {string} [sold_out_label] - Label shown when the product is sold out
 
   @example
-  {% render 'product-card', product: product, featured: true, show_quick_add: true %}
+  {% render 'product-card', product: product, show_quick_add: true, add_style: 'plus' %}
 {% enddoc %}
 
 {% liquid
   assign fit = image_fit | default: 'contain'
+  assign style = add_style | default: 'label'
   assign variant = product.selected_or_first_available_variant
+  assign add = add_label | default: 'Aggiungi'
+  assign added = added_label | default: 'Aggiunto al carrello'
+  assign error = error_label | default: 'Non ha funzionato, riprova'
+
   if featured
     assign image_sizes = '(min-width: 900px) 55vw, 100vw'
-  else
+  elsif split
     assign image_sizes = '(min-width: 900px) 20vw, 40vw'
+  else
+    assign image_sizes = '(min-width: 1000px) 30vw, (min-width: 700px) 45vw, 100vw'
   endif
 %}
 
-<article class="product-card product-card--{{ fit }}{% if featured %} product-card--featured{% endif %}">
+<article
+  class="product-card product-card--{{ fit }}
+    {%- if featured %} product-card--featured{% endif -%}
+    {%- if split %} product-card--split{% endif -%}"
+>
   <a class="product-card__media" href="{{ product.url }}" tabindex="-1" aria-hidden="true">
     {% if product.featured_image %}
       {{
@@ -70,12 +88,24 @@
             {{- sold_out_label | default: 'Esaurito' -}}
           </span>
         {% elsif product.has_only_default_variant %}
-          {% form 'product', product, class: 'product-card__form' %}
-            <input type="hidden" name="id" value="{{ variant.id }}">
-            <button type="submit" class="button button--small">
-              {{- add_label | default: 'Aggiungi' -}}
-            </button>
-          {% endform %}
+          <quick-add
+            class="quick-add quick-add--{{ style }}"
+            data-add-url="{{ routes.cart_add_url }}"
+            data-added="{{ added | escape }}"
+            data-error="{{ error | escape }}"
+          >
+            {% form 'product', product, class: 'quick-add__form' %}
+              <input type="hidden" name="id" value="{{ variant.id }}">
+              {% if style == 'plus' %}
+                <button type="submit" class="quick-add__button" aria-label="{{ add | escape }}">
+                  <span class="quick-add__icon" aria-hidden="true"></span>
+                </button>
+              {% else %}
+                <button type="submit" class="button button--small">{{ add }}</button>
+              {% endif %}
+            {% endform %}
+            <span class="visually-hidden" role="status" data-quick-add-status></span>
+          </quick-add>
         {% else %}
           <a class="button button--small" href="{{ product.url }}">
             {{- choose_label | default: 'Scegli' -}}
@@ -85,6 +115,8 @@
     </div>
   </div>
 </article>
+
+{% render 'quick-add' %}
 
 {% stylesheet %}
   .product-card {
@@ -188,26 +220,21 @@
     border-color: var(--color-muted);
   }
 
-  /* Compact cards sit side by side with their image from 900px up */
+  /* Compact cards on the landing page sit beside their image from 900px up */
   @media (min-width: 900px) {
-    .product-card:not(.product-card--featured) {
+    .product-card--split {
       flex-direction: row;
     }
 
-    .product-card:not(.product-card--featured) .product-card__media {
+    .product-card--split .product-card__media {
       flex: 0 0 46%;
       aspect-ratio: auto;
     }
 
-    .product-card:not(.product-card--featured) .product-card__body {
+    .product-card--split .product-card__body {
       flex: 1 1 auto;
       justify-content: space-between;
       padding: 1.75rem;
-    }
-
-    .product-card:not(.product-card--featured) .product-card__buy {
-      flex-direction: column;
-      align-items: flex-start;
     }
 
     .product-card--featured .product-card__media {
