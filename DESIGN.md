@@ -108,12 +108,14 @@ buttons, spacing, reveal keyframes), `templates/index.json` (page order).
   raccolta", "Ottobre, novembre", "vetro scuro" and "curiamo i nostri olivi a
   mano" are placeholders written to fit the brand, not facts confirmed by the
   owner. Confirm before launch.
-- **Sample company details.** `sections/footer-group.json` carries SAMPLE values
-  for the Italian company block (P. IVA `01234567890`, REA `PG 123456`, the
-  Torgiano address, the phone number). These are placeholders for checking the
-  layout and must be replaced with the real details before the theme is
-  published. The schema defaults are empty on purpose, so the block hides
-  itself when no values are set.
+- **Sample company details.** The Italian company block ships SAMPLE schema
+  defaults in `sections/footer.liquid` (P. IVA `01234567890`, REA `PG 123456`,
+  the Torgiano address, the phone number, the info email). Replace them with the
+  real details before publishing. They live as schema defaults, not in
+  `sections/footer-group.json`, because Shopify's GitHub sync lets the theme
+  editor's stored JSON win: pushes to section-group JSON are ignored when the
+  editor already holds a copy, while .liquid schema defaults always apply to
+  settings that have no stored value.
 - **Search is switched off.** The header search button is commented out in
   `sections/header.liquid`; the modal markup and its script stay in place and
   are inert until the button is uncommented.
