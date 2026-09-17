@@ -101,6 +101,12 @@
         "id": "surface_strong_color",
         "default": "#E1E6D5",
         "label": "Surface strong"
+      },
+      {
+        "type": "color",
+        "id": "tint_color",
+        "default": "#E8ECDD",
+        "label": "Section tint"
       }
     ]
   }

@@ -279,3 +279,25 @@ a {
     transform: none;
   }
 }
+
+/** Section bands
+ * Full-bleed background colour behind a section, with the content kept in the
+ * normal centred column. Sections alternate between base and tint.
+ */
+.section-band {
+  display: block;
+  width: 100%;
+}
+
+.section-band__inner {
+  width: var(--content-width);
+  margin-inline: auto;
+}
+
+.d-bg--base {
+  background-color: var(--color-background);
+}
+
+.d-bg--tint {
+  background-color: var(--color-tint);
+}

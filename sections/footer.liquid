@@ -1,4 +1,4 @@
-<footer class="site-footer full-width">
+<footer class="site-footer full-width {{ section.settings.background }}">
   <div class="site-footer__inner">
     <div class="site-footer__top">
       <div class="site-footer__newsletter">
@@ -76,8 +76,11 @@
     display: grid;
     grid-template-columns: var(--content-grid);
     margin-top: var(--section-space);
-    background-color: var(--color-surface);
     color: var(--color-foreground);
+  }
+
+  .site-footer.d-bg--base {
+    border-top: 1px solid var(--color-surface-strong);
   }
 
   .site-footer__inner {
@@ -278,6 +281,16 @@
       "id": "wordmark",
       "label": "Large wordmark",
       "default": "Dottorini"
+    },
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Background",
+      "default": "d-bg--base",
+      "options": [
+        { "value": "d-bg--base", "label": "Default" },
+        { "value": "d-bg--tint", "label": "Tinted" }
+      ]
     },
     {
       "type": "checkbox",

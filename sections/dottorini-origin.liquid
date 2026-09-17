@@ -3,7 +3,8 @@
   story and a compact list of facts on the other.
 {% endcomment %}
 
-<div class="d-origin section-space" id="{{ section.settings.anchor | default: 'terra' | handleize }}">
+<div class="section-band full-width {{ section.settings.background }}">
+<div class="d-origin section-band__inner section-space" id="{{ section.settings.anchor | default: 'terra' | handleize }}">
   <div class="d-origin__collage">
     <div class="d-origin__image d-origin__image--main reveal">
       {% if section.settings.image_main %}
@@ -64,6 +65,7 @@
       </dl>
     {% endif %}
   </div>
+</div>
 </div>
 
 {% stylesheet %}
@@ -219,6 +221,16 @@
       "id": "anchor",
       "label": "Anchor id",
       "default": "terra"
+    },
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Background",
+      "default": "d-bg--tint",
+      "options": [
+        { "value": "d-bg--base", "label": "Default" },
+        { "value": "d-bg--tint", "label": "Tinted" }
+      ]
     }
   ],
   "blocks": [

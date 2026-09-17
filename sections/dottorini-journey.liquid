@@ -3,7 +3,8 @@
   the arrow buttons are a progressive enhancement.
 {% endcomment %}
 
-<scroll-gallery class="d-journey section-space full-width">
+<div class="section-band full-width {{ section.settings.background }}">
+<scroll-gallery class="d-journey section-space">
   <div class="d-journey__head">
     {% if section.settings.heading != blank %}
       <h2 class="d-journey__heading reveal">{{ section.settings.heading }}</h2>
@@ -49,6 +50,7 @@
     {% endfor %}
   </ol>
 </scroll-gallery>
+</div>
 
 {% stylesheet %}
   .d-journey {
@@ -234,6 +236,16 @@
       "id": "heading",
       "label": "Heading",
       "default": "Dall'oliva alla bottiglia"
+    },
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Background",
+      "default": "d-bg--base",
+      "options": [
+        { "value": "d-bg--base", "label": "Default" },
+        { "value": "d-bg--tint", "label": "Tinted" }
+      ]
     }
   ],
   "blocks": [

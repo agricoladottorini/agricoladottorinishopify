@@ -3,7 +3,8 @@
   offset portrait image.
 {% endcomment %}
 
-<div class="d-manifesto section-space">
+<div class="section-band full-width {{ section.settings.background }}">
+<div class="d-manifesto section-band__inner section-space">
   <div class="d-manifesto__statement reveal">
     {{ section.settings.statement }}
   </div>
@@ -31,6 +32,7 @@
       {% endif %}
     </div>
   </div>
+</div>
 </div>
 
 {% stylesheet %}
@@ -138,6 +140,16 @@
       "id": "image",
       "label": "Image",
       "info": "Portrait photo, 4:5. Hands, olives or a bottle detail."
+    },
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Background",
+      "default": "d-bg--tint",
+      "options": [
+        { "value": "d-bg--base", "label": "Default" },
+        { "value": "d-bg--tint", "label": "Tinted" }
+      ]
     }
   ],
   "presets": [
