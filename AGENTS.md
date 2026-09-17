@@ -4,6 +4,28 @@
 
 Use the [Shopify AI Toolkit](https://shopify.dev/docs/apps/build/ai-toolkit) for all Shopify API and platform work. If missing, install it in the agent host per that page (or `npx skills add Shopify/shopify-ai-toolkit --list` for skill-compatible hosts).
 
+## Running this project
+
+Start the local dev server (serves http://127.0.0.1:9292 and hot-reloads on save):
+
+```
+shopify theme dev --store=fijxgy-0c.myshopify.com
+```
+
+Add `--theme-editor-sync` when the store owner is editing content in the Shopify
+theme editor, so their changes are written back into the local JSON files
+(`templates/*.json`, `sections/*-group.json`, `config/settings_data.json`)
+instead of being overwritten on the next push.
+
+Lint the theme before handing work over:
+
+```
+shopify theme check
+```
+
+See [DESIGN.md](DESIGN.md) for the homepage design decisions: color tokens,
+type, motion rules, per-section layouts, copy rules and known gotchas.
+
 ## Theme Architecture
 
 **Key principles: focus on generating snippets, blocks, and sections; users may create templates using the theme editor**
