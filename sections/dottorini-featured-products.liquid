@@ -24,13 +24,25 @@
 
   <ul class="d-products__grid" role="list">
     {% for product in products limit: 3 %}
+      {%- liquid
+        assign is_featured = false
+        assign is_split = true
+        if forloop.first
+          assign is_featured = true
+          assign is_split = false
+        endif
+      -%}
       <li class="d-products__item{% if forloop.first %} d-products__item--featured{% endif %} reveal">
         {% render 'product-card',
           product: product,
-          featured: forloop.first,
+          featured: is_featured,
+          split: is_split,
           image_fit: section.settings.image_fit,
           show_quick_add: section.settings.show_quick_add,
+          add_style: 'plus',
           add_label: section.settings.add_label,
+          added_label: section.settings.added_label,
+          error_label: section.settings.error_label,
           choose_label: section.settings.choose_label,
           sold_out_label: section.settings.sold_out_label
         %}
@@ -149,8 +161,20 @@
     {
       "type": "text",
       "id": "add_label",
-      "label": "Add to cart label",
-      "default": "Aggiungi"
+      "label": "Add button label (for screen readers)",
+      "default": "Aggiungi al carrello"
+    },
+    {
+      "type": "text",
+      "id": "added_label",
+      "label": "Added message",
+      "default": "Aggiunto al carrello"
+    },
+    {
+      "type": "text",
+      "id": "error_label",
+      "label": "Error message",
+      "default": "Non ha funzionato, riprova"
     },
     {
       "type": "text",

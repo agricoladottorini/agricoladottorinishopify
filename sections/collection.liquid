@@ -1,47 +1,171 @@
 {% comment %}
-  This section is used in the collection template to render collection page
-  listing all products within a collection.
+  Collection listing: three products per row on desktop, two on tablets and
+  one on phones. Cards match the landing page, with a round + quick add.
 
   https://shopify.dev/docs/storefronts/themes/architecture/templates/collection
 {% endcomment %}
 
-<h1>{{ collection.title }}</h1>
+<div class="collection section-space">
+  <header class="collection__head">
+    <h1 class="collection__title">{{ collection.title }}</h1>
+    {% if collection.description != blank %}
+      <div class="collection__text">{{ collection.description }}</div>
+    {% endif %}
+  </header>
 
-<div class="collection-products">
-  {% paginate collection.products by 20 %}
-    {% for product in collection.products %}
-      <div class="collection-product">
-        {% if product.featured_image %}
-          {% render 'image',
-            class: 'collection-product__image',
-            image: product.featured_image,
-            url: product.url,
-            width: 400,
-            height: 400,
-            crop: 'center'
-          %}
-        {% endif %}
-        <div class="collection-product__content">
-          <p>{{ product.title | escape | link_to: product.url }}</p>
-          <p>{{ product.price | money }}</p>
-        </div>
-      </div>
-    {% endfor %}
+  {% paginate collection.products by section.settings.products_per_page %}
+    {% if collection.products.size > 0 %}
+      <ul class="collection__grid" role="list">
+        {% for product in collection.products %}
+          <li class="collection__item reveal">
+            {% render 'product-card',
+              product: product,
+              image_fit: section.settings.image_fit,
+              show_quick_add: section.settings.show_quick_add,
+              add_style: 'plus',
+              add_label: section.settings.add_label,
+              added_label: section.settings.added_label,
+              error_label: section.settings.error_label,
+              choose_label: section.settings.choose_label,
+              sold_out_label: section.settings.sold_out_label
+            %}
+          </li>
+        {% endfor %}
+      </ul>
 
-    {{ paginate | default_pagination }}
+      {% if paginate.pages > 1 %}
+        <nav class="collection__pagination">{{ paginate | default_pagination }}</nav>
+      {% endif %}
+    {% else %}
+      <p class="collection__empty">{{ section.settings.empty_text }}</p>
+    {% endif %}
   {% endpaginate %}
 </div>
 
 {% stylesheet %}
-  .collection-products {
+  .collection__head {
+    margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .collection__title {
+    font-size: clamp(2.25rem, 5vw, 4.25rem);
+    letter-spacing: -0.04em;
+  }
+
+  .collection__text {
+    max-width: 52ch;
+    margin-top: 0.75rem;
+    color: var(--color-muted);
+  }
+
+  /* One column on phones, two from 700px, three from 1000px */
+  .collection__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .collection__empty {
+    padding: 3rem 2rem;
+    border-radius: var(--radius-media);
+    background-color: var(--color-surface);
+    color: var(--color-muted);
+  }
+
+  .collection__pagination {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .collection__pagination a,
+  .collection__pagination span {
+    color: var(--color-foreground);
+  }
+
+  @media (min-width: 700px) {
+    .collection__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .collection__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 {% endstylesheet %}
 
 {% schema %}
 {
   "name": "t:general.collection",
-  "settings": []
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "min": 3,
+      "max": 24,
+      "step": 3,
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image fit",
+      "default": "contain",
+      "options": [
+        { "value": "contain", "label": "Contain (bottle packshots)" },
+        { "value": "cover", "label": "Cover (photos)" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quick_add",
+      "label": "Show quick add button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "add_label",
+      "label": "Add button label (for screen readers)",
+      "default": "Aggiungi al carrello"
+    },
+    {
+      "type": "text",
+      "id": "added_label",
+      "label": "Added message",
+      "default": "Aggiunto al carrello"
+    },
+    {
+      "type": "text",
+      "id": "error_label",
+      "label": "Error message",
+      "default": "Non ha funzionato, riprova"
+    },
+    {
+      "type": "text",
+      "id": "choose_label",
+      "label": "Choose options label",
+      "default": "Scegli"
+    },
+    {
+      "type": "text",
+      "id": "sold_out_label",
+      "label": "Sold out label",
+      "default": "Esaurito"
+    },
+    {
+      "type": "text",
+      "id": "empty_text",
+      "label": "Empty collection text",
+      "default": "Non ci sono prodotti in questa collezione."
+    }
+  ]
 }
 {% endschema %}

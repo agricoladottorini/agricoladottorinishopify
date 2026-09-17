@@ -11,6 +11,30 @@
   "sections": {
     "main": {
       "type": "product",
+      "blocks": {
+        "shipping": {
+          "type": "detail",
+          "settings": {
+            "title": "Spedizioni",
+            "text": "<p>Spedizione in tutta Italia in 2 o 3 giorni lavorativi.</p>"
+          }
+        },
+        "returns": {
+          "type": "detail",
+          "settings": {
+            "title": "Resi",
+            "text": "<p>Hai 14 giorni per cambiare idea. Scrivici e ti diciamo come fare.</p>"
+          }
+        },
+        "storage": {
+          "type": "detail",
+          "settings": {
+            "title": "Conservazione",
+            "text": "<p>Tieni la bottiglia al riparo dalla luce e lontano da fonti di calore.</p>"
+          }
+        }
+      },
+      "block_order": ["shipping", "returns", "storage"],
       "settings": {}
     }
   },
