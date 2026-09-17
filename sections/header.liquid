@@ -44,14 +44,15 @@
     <div class="site-header__end">
       <details class="site-header__drawer">
         <summary class="site-header__drawer-toggle">
-          <span class="site-header__drawer-open">{{ section.settings.menu_label }}</span>
-          <span class="site-header__drawer-close">{{ section.settings.close_label }}</span>
+          <span class="site-header__burger" aria-hidden="true"></span>
+          <span class="visually-hidden">{{ section.settings.menu_label }}</span>
         </summary>
 
         <nav class="site-header__drawer-panel" aria-label="{{ section.settings.menu_label | escape }}">
           {% for link in section.settings.menu.links %}
             <a
               href="{{ link.url }}"
+              style="--i: {{ forloop.index0 }}"
               {% if link.current %}
                 aria-current="page"
               {% endif %}
@@ -63,6 +64,17 @@
       </details>
 
       <div class="site-header__icons">
+        {% comment %}
+          Search button disabled for now. Uncomment to switch it back on: the
+          modal below and its script are still in place and do nothing while
+          this button is absent.
+
+          <button type="button" class="site-header__search-toggle">
+            {{ 'icon-search.svg' | inline_asset_content }}
+            <span class="visually-hidden">{{ section.settings.search_label }}</span>
+          </button>
+        {% endcomment %}
+
         {% if shop.customer_accounts_enabled %}
           <shopify-account menu="{{ section.settings.customer_account_menu }}">
             {{ 'icon-account.svg' | inline_asset_content }}
@@ -79,6 +91,33 @@
       </div>
     </div>
   </header>
+
+  {% comment %} scroll-lock is picked up by the reset in critical.css {% endcomment %}
+  <dialog class="site-search" scroll-lock aria-label="{{ section.settings.search_label | escape }}">
+    <form class="site-search__form" action="{{ routes.search_url }}" method="get" role="search">
+      <input type="hidden" name="type" value="product">
+      <input type="hidden" name="options[prefix]" value="last">
+
+      <label class="visually-hidden" for="SiteSearchInput">{{ section.settings.search_label }}</label>
+      <div class="site-search__field">
+        <input
+          id="SiteSearchInput"
+          class="site-search__input"
+          type="search"
+          name="q"
+          autocomplete="off"
+          placeholder="{{ section.settings.search_placeholder | escape }}"
+          required
+        >
+        <button type="submit" class="button">{{ section.settings.search_label }}</button>
+      </div>
+    </form>
+
+    <button type="button" class="site-search__close">
+      <span class="site-search__close-mark" aria-hidden="true"></span>
+      <span class="visually-hidden">{{ section.settings.search_close_label }}</span>
+    </button>
+  </dialog>
 </site-header>
 
 {% stylesheet %}
@@ -103,11 +142,15 @@
     pointer-events: none;
   }
 
+  /*
+    Three fixed tracks. The middle one is flexible, so when the wordmark
+    collapses that space is absorbed there and the icons on the right do not
+    move at all.
+  */
   .site-header {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto minmax(1rem, 1fr) auto;
     align-items: center;
-    column-gap: 1rem;
     height: var(--header-height);
   }
 
@@ -118,11 +161,11 @@
 
   /* Brand, left */
   .site-header__brand {
+    grid-column: 1;
     display: inline-flex;
     align-items: baseline;
     min-width: 0;
     white-space: nowrap;
-    /* Scales down so the full two-word name fits next to the menu on phones */
     font-size: clamp(1rem, 4.4vw, 1.375rem);
     font-weight: 500;
     letter-spacing: -0.03em;
@@ -140,7 +183,7 @@
     before that runs.
   */
   .site-header__word--lead {
-    /* One knob for the whole collapse. The fade runs at half of it.
+    /* One knob for the whole collapse. The fade runs at 60% of it.
        The easing is deliberately even, not the front-loaded page easing,
        so the slide reads as unhurried the whole way through. */
     --brand-collapse: 1.1s;
@@ -164,8 +207,9 @@
     transform: translateX(-0.25em);
   }
 
-  /* Nav, right of the brand and left of the icons */
+  /* Nav, desktop only */
   .site-header__nav {
+    grid-column: 2;
     display: none;
     justify-self: end;
     gap: 2rem;
@@ -196,22 +240,19 @@
     transform: scaleX(1);
   }
 
+  /* Right cluster: pinned to the right edge, never moves */
   .site-header__end {
+    grid-column: 3;
+    justify-self: end;
     display: flex;
     align-items: center;
-    gap: 0.9rem;
-  }
-
-  @media (min-width: 900px) {
-    .site-header__end {
-      gap: 1.25rem;
-    }
+    gap: 1rem;
   }
 
   .site-header__icons {
     display: flex;
     align-items: center;
-    gap: 1.25rem;
+    gap: 1rem;
   }
 
   .site-header__icons svg {
@@ -239,24 +280,192 @@
     line-height: 1;
   }
 
-  /* Mobile menu: native <details>, no JavaScript */
+  .site-header__search-toggle {
+    display: flex;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--color-foreground);
+    cursor: pointer;
+  }
+
+  /* Search modal */
+  .site-search {
+    width: min(42rem, calc(100vw - 2 * var(--page-margin)));
+    margin: min(16vh, 7rem) auto auto;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border: 0;
+    border-radius: var(--radius-media);
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    box-shadow: 0 1.5rem 4rem rgb(30 34 29 / 0.18);
+  }
+
+  .site-search::backdrop {
+    background-color: rgb(20 24 18 / 0.45);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+  }
+
+  .site-search__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .site-search__field .button {
+    justify-content: center;
+  }
+
+  /* Side by side once there is room for both */
+  @media (min-width: 560px) {
+    .site-search__field {
+      flex-direction: row;
+    }
+  }
+
+  .site-search__input {
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 3rem;
+    padding: 0 1.25rem;
+    border: 1px solid #8a8f84;
+    border-radius: var(--radius-pill);
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-size: 1.0625rem;
+  }
+
+  .site-search__input:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-color: var(--color-accent);
+  }
+
+  .site-search__close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: none;
+    color: var(--color-muted);
+    cursor: pointer;
+  }
+
+  .site-search__close:hover {
+    color: var(--color-foreground);
+  }
+
+  .site-search__close-mark,
+  .site-search__close-mark::before {
+    display: block;
+    width: 0.9rem;
+    height: 2px;
+    border-radius: 2px;
+    background-color: currentcolor;
+  }
+
+  .site-search__close-mark {
+    transform: rotate(45deg);
+  }
+
+  .site-search__close-mark::before {
+    content: '';
+    transform: rotate(90deg);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .site-search[open] {
+      animation: search-in 0.28s var(--ease-out) both;
+    }
+
+    .site-search[open]::backdrop {
+      animation: search-fade 0.28s var(--ease-out) both;
+    }
+  }
+
+  @keyframes search-in {
+    from {
+      opacity: 0;
+      transform: translateY(-0.75rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes search-fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Mobile menu: native <details>, so it still works without JavaScript */
   .site-header__drawer-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
     list-style: none;
     cursor: pointer;
-    font-size: 0.9375rem;
   }
 
   .site-header__drawer-toggle::-webkit-details-marker {
     display: none;
   }
 
-  .site-header__drawer-close,
-  .site-header__drawer[open] .site-header__drawer-open {
-    display: none;
+  /* Hamburger: three bars built from one element, crossing into an X */
+  .site-header__burger,
+  .site-header__burger::before,
+  .site-header__burger::after {
+    display: block;
+    width: 1.3125rem;
+    height: 2px;
+    border-radius: 2px;
+    background-color: currentcolor;
+    transition: transform 0.35s var(--ease-out), opacity 0.2s var(--ease-out);
   }
 
-  .site-header__drawer[open] .site-header__drawer-close {
-    display: inline;
+  .site-header__burger {
+    position: relative;
+  }
+
+  .site-header__burger::before,
+  .site-header__burger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+  }
+
+  .site-header__burger::before {
+    top: -0.375rem;
+  }
+
+  .site-header__burger::after {
+    top: 0.375rem;
+  }
+
+  .site-header__drawer[open] .site-header__burger {
+    background-color: transparent;
+  }
+
+  .site-header__drawer[open] .site-header__burger::before {
+    transform: translateY(0.375rem) rotate(45deg);
+  }
+
+  .site-header__drawer[open] .site-header__burger::after {
+    transform: translateY(-0.375rem) rotate(-45deg);
   }
 
   .site-header__drawer-panel {
@@ -268,11 +477,56 @@
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
-    padding: 1.5rem var(--page-margin) 2.5rem;
+    padding: 1.75rem var(--page-margin) 2.5rem;
     background-color: var(--color-background);
     border-bottom: 1px solid var(--color-surface-strong);
     font-size: 1.75rem;
     letter-spacing: -0.02em;
+    transform-origin: top center;
+    transition: opacity 0.26s var(--ease-out), transform 0.3s var(--ease-out);
+  }
+
+  /* Opening: panel drops down, links follow one after another */
+  .site-header__drawer[open] .site-header__drawer-panel {
+    animation: drawer-drop 0.34s var(--ease-out) both;
+  }
+
+  .site-header__drawer[open] .site-header__drawer-panel a {
+    animation: drawer-item 0.42s var(--ease-out) both;
+    animation-delay: calc(0.1s + var(--i, 0) * 0.06s);
+  }
+
+  /* Closing: JavaScript keeps the panel open long enough to transition out */
+  .site-header__drawer.is-closing .site-header__drawer-panel {
+    animation: none;
+    opacity: 0;
+    transform: translateY(-0.75rem);
+  }
+
+  .site-header__drawer.is-closing .site-header__drawer-panel a {
+    animation: none;
+  }
+
+  @keyframes drawer-drop {
+    from {
+      opacity: 0;
+      transform: translateY(-0.85rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes drawer-item {
+    from {
+      opacity: 0;
+      transform: translateY(-0.6rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
   }
 
   @media (min-width: 900px) {
@@ -286,8 +540,17 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .site-header__word--lead {
+    .site-header__word--lead,
+    .site-header__burger,
+    .site-header__burger::before,
+    .site-header__burger::after,
+    .site-header__drawer-panel {
       transition: none;
+    }
+
+    .site-header__drawer[open] .site-header__drawer-panel,
+    .site-header__drawer[open] .site-header__drawer-panel a {
+      animation: none;
     }
   }
 {% endstylesheet %}
@@ -312,6 +575,9 @@
         this.resizeObserver.observe(this);
       }
 
+      this.setUpDrawer();
+      this.setUpSearch();
+
       // The sentinel has to sit outside the sticky wrapper, in normal flow.
       const sticky = this.closest('.shopify-section-group-header-group') || this.closest('.shopify-section');
       if (!sticky) return;
@@ -326,10 +592,70 @@
       this.observer.observe(this.sentinel);
     }
 
+    // <details> animates open on its own; closing needs the panel to stay
+    // in the DOM until its transition has finished.
+    setUpDrawer() {
+      const details = this.querySelector('.site-header__drawer');
+      const summary = this.querySelector('.site-header__drawer-toggle');
+      const panel = this.querySelector('.site-header__drawer-panel');
+      if (!details || !summary || !panel) return;
+
+      this.closeDrawer = (event) => {
+        if (!details.open || this.closing) return;
+        event.preventDefault();
+        this.closing = true;
+        details.classList.add('is-closing');
+
+        const finish = () => {
+          clearTimeout(timer);
+          panel.removeEventListener('transitionend', finish);
+          details.open = false;
+          details.classList.remove('is-closing');
+          this.closing = false;
+        };
+        const timer = setTimeout(finish, 420);
+        panel.addEventListener('transitionend', finish);
+      };
+
+      summary.addEventListener('click', this.closeDrawer);
+      this.drawer = { details, summary, panel };
+    }
+
+    setUpSearch() {
+      const dialog = this.querySelector('.site-search');
+      const toggle = this.querySelector('.site-header__search-toggle');
+      const close = this.querySelector('.site-search__close');
+      const input = this.querySelector('.site-search__input');
+      if (!dialog || !toggle) return;
+
+      this.openSearch = () => {
+        dialog.showModal();
+        input?.focus();
+      };
+      // Clicking the backdrop lands on the dialog itself, never on its content
+      this.backdropClose = (event) => {
+        if (event.target === dialog) dialog.close();
+      };
+      this.closeSearch = () => dialog.close();
+
+      toggle.addEventListener('click', this.openSearch);
+      dialog.addEventListener('click', this.backdropClose);
+      close?.addEventListener('click', this.closeSearch);
+      this.search = { dialog, toggle, close };
+    }
+
     disconnectedCallback() {
       this.observer?.disconnect();
       this.resizeObserver?.disconnect();
       this.sentinel?.remove();
+      if (this.drawer && this.closeDrawer) {
+        this.drawer.summary.removeEventListener('click', this.closeDrawer);
+      }
+      if (this.search) {
+        this.search.toggle.removeEventListener('click', this.openSearch);
+        this.search.dialog.removeEventListener('click', this.backdropClose);
+        this.search.close?.removeEventListener('click', this.closeSearch);
+      }
     }
   }
 
@@ -381,20 +707,32 @@
     {
       "type": "text",
       "id": "menu_label",
-      "label": "Menu",
+      "label": "Menu (for screen readers)",
       "default": "Menu"
-    },
-    {
-      "type": "text",
-      "id": "close_label",
-      "label": "Close",
-      "default": "Chiudi"
     },
     {
       "type": "text",
       "id": "cart_label",
       "label": "Cart",
       "default": "Carrello"
+    },
+    {
+      "type": "text",
+      "id": "search_label",
+      "label": "Search",
+      "default": "Cerca"
+    },
+    {
+      "type": "text",
+      "id": "search_placeholder",
+      "label": "Search placeholder",
+      "default": "Cerca un prodotto"
+    },
+    {
+      "type": "text",
+      "id": "search_close_label",
+      "label": "Close search",
+      "default": "Chiudi la ricerca"
     }
   ]
 }
