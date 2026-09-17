@@ -129,30 +129,50 @@
 
   /*
     Sits above the photo and scrim, below the copy. The box keeps the 4:1
-    viewBox ratio and never gets narrower than 64rem, so on small screens the
-    frame crops to the middle of the curve instead of squashing it into a
-    tight wave.
+    ratio of the viewBox, so the whole curve scales down with the frame
+    instead of being squashed or cropped.
   */
   .d-hero__line {
     position: absolute;
     z-index: 0;
-    left: 50%;
-    top: 16%;
-    width: max(100%, 64rem);
-    max-width: none;
+    left: 0;
+    top: 17%;
+    width: 100%;
     height: auto;
     aspect-ratio: 4 / 1;
-    transform: translateX(-50%);
     overflow: visible;
     pointer-events: none;
   }
 
   .d-hero__line path {
     fill: none;
-    stroke: var(--line-color);
+    /* The theme setting applies as-is on desktop */
     stroke-width: var(--line-width);
+    stroke: var(--line-color);
     stroke-linecap: round;
     stroke-linejoin: round;
+  }
+
+  /*
+    Under 900px the scaled curve gets shallow, so stretch it vertically and
+    thin the stroke to match the smaller curve. The stroke width does not
+    follow the transform (non-scaling-stroke), and the path stays smooth.
+  */
+  @media (max-width: 899px) {
+    .d-hero__line {
+      top: 20%;
+      transform: scaleY(1.7);
+    }
+
+    .d-hero__line path {
+      stroke-width: max(3px, calc(var(--line-width) * 0.5));
+    }
+  }
+
+  @media (max-width: 520px) {
+    .d-hero__line path {
+      stroke-width: max(3px, calc(var(--line-width) * 0.38));
+    }
   }
 
   /* Draw-in: a soft-edged mask sweeps left to right, once */
