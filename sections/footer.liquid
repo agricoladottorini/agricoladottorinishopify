@@ -1,4 +1,44 @@
-<footer class="site-footer full-width">
+{%- liquid
+  assign has_legal = false
+  if section.settings.company_name != blank
+    assign has_legal = true
+  endif
+  if section.settings.vat != blank
+    assign has_legal = true
+  endif
+  if section.settings.fiscal_code != blank
+    assign has_legal = true
+  endif
+  if section.settings.rea != blank
+    assign has_legal = true
+  endif
+  if section.settings.share_capital != blank
+    assign has_legal = true
+  endif
+  if section.settings.address != blank
+    assign has_legal = true
+  endif
+
+  assign menu_count = 0
+  for link in section.settings.menu.links
+    unless link.url contains routes.search_url
+      assign menu_count = menu_count | plus: 1
+    endunless
+  endfor
+
+  assign has_contact = false
+  if section.settings.email != blank
+    assign has_contact = true
+  endif
+  if section.settings.phone != blank
+    assign has_contact = true
+  endif
+  if section.settings.pec != blank
+    assign has_contact = true
+  endif
+-%}
+
+<footer class="site-footer full-width {{ section.settings.background }}">
   <div class="site-footer__inner">
     <div class="site-footer__top">
       <div class="site-footer__newsletter">
@@ -42,23 +82,97 @@
         {% endform %}
       </div>
 
-      {% if section.settings.menu.links.size > 0 %}
-        <nav class="site-footer__links" aria-label="{{ section.settings.menu.title | escape }}">
+      {% comment %}
+        Search links are skipped here: search now lives in the header. Remove
+        the entry from the footer menu in Shopify navigation to drop it for good.
+      {% endcomment %}
+      {% if menu_count > 0 %}
+        <nav class="site-footer__column" aria-label="{{ section.settings.menu.title | escape }}">
+          {% if section.settings.menu_title != blank %}
+            <h3 class="site-footer__column-title">{{ section.settings.menu_title }}</h3>
+          {% endif %}
           {% for link in section.settings.menu.links %}
-            <a href="{{ link.url }}">{{ link.title }}</a>
+            {% unless link.url contains routes.search_url %}
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            {% endunless %}
           {% endfor %}
         </nav>
       {% endif %}
 
-      {% if section.settings.contact != blank %}
-        <div class="site-footer__contact">{{ section.settings.contact }}</div>
+      {% if has_contact %}
+        <div class="site-footer__column">
+          {% if section.settings.contact_title != blank %}
+            <h3 class="site-footer__column-title">{{ section.settings.contact_title }}</h3>
+          {% endif %}
+          {% if section.settings.email != blank %}
+            <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+          {% endif %}
+          {% if section.settings.phone != blank %}
+            {% assign phone_href = section.settings.phone | remove: ' ' %}
+            <a href="tel:{{ phone_href }}">{{ section.settings.phone }}</a>
+          {% endif %}
+          {% if section.settings.pec != blank %}
+            <a href="mailto:{{ section.settings.pec }}">PEC {{ section.settings.pec }}</a>
+          {% endif %}
+        </div>
       {% endif %}
     </div>
+
+    {% if has_legal %}
+      <dl class="site-footer__legal">
+        {% if section.settings.company_name != blank %}
+          <div class="site-footer__legal-item">
+            <dt>{{ section.settings.company_label }}</dt>
+            <dd>{{ section.settings.company_name }}</dd>
+          </div>
+        {% endif %}
+        {% if section.settings.address != blank %}
+          <div class="site-footer__legal-item">
+            <dt>{{ section.settings.address_label }}</dt>
+            <dd>{{ section.settings.address }}</dd>
+          </div>
+        {% endif %}
+        {% if section.settings.vat != blank %}
+          <div class="site-footer__legal-item">
+            <dt>P. IVA</dt>
+            <dd>{{ section.settings.vat }}</dd>
+          </div>
+        {% endif %}
+        {% if section.settings.fiscal_code != blank %}
+          <div class="site-footer__legal-item">
+            <dt>Codice fiscale</dt>
+            <dd>{{ section.settings.fiscal_code }}</dd>
+          </div>
+        {% endif %}
+        {% if section.settings.rea != blank %}
+          <div class="site-footer__legal-item">
+            <dt>{{ section.settings.rea_label }}</dt>
+            <dd>{{ section.settings.rea }}</dd>
+          </div>
+        {% endif %}
+        {% if section.settings.share_capital != blank %}
+          <div class="site-footer__legal-item">
+            <dt>Capitale sociale</dt>
+            <dd>{{ section.settings.share_capital }}</dd>
+          </div>
+        {% endif %}
+      </dl>
+    {% endif %}
 
     <p class="site-footer__wordmark" aria-hidden="true">{{ section.settings.wordmark | default: shop.name }}</p>
 
     <div class="site-footer__bottom">
-      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name | link_to: routes.root_url }}</p>
+      <p class="site-footer__copyright">
+        &copy; {{ 'now' | date: '%Y' }} {{ shop.name | link_to: routes.root_url }}
+      </p>
+
+      {% if shop.policies.size > 0 %}
+        <nav class="site-footer__policies" aria-label="{{ section.settings.policies_label | escape }}">
+          {% for policy in shop.policies %}
+            <a href="{{ policy.url }}">{{ policy.title }}</a>
+          {% endfor %}
+        </nav>
+      {% endif %}
 
       {% if section.settings.show_payment_icons %}
         <ul class="site-footer__payment" role="list">
@@ -76,8 +190,11 @@
     display: grid;
     grid-template-columns: var(--content-grid);
     margin-top: var(--section-space);
-    background-color: var(--color-surface);
     color: var(--color-foreground);
+  }
+
+  .site-footer.d-bg--base {
+    border-top: 1px solid var(--color-surface-strong);
   }
 
   .site-footer__inner {
@@ -161,22 +278,47 @@
     background-color: var(--color-surface-strong);
   }
 
-  .site-footer__links {
+  .site-footer__column {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 0.75rem;
   }
 
-  .site-footer__contact {
+  .site-footer__column-title {
+    margin-bottom: 0.25rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: var(--color-muted);
   }
 
-  .site-footer__contact p + p {
-    margin-top: 0.5rem;
+  /* Company details required for selling in Italy */
+  .site-footer__legal {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    gap: 1.5rem 1.25rem;
+    margin: clamp(2.5rem, 5vw, 4rem) 0 0;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--color-surface-strong);
+  }
+
+  .site-footer__legal-item dt {
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .site-footer__legal-item dd {
+    margin: 0.35rem 0 0;
+    font-size: 0.9375rem;
+    line-height: 1.45;
   }
 
   .site-footer__wordmark {
-    margin: clamp(3rem, 8vw, 6rem) 0 0;
+    margin: clamp(2.5rem, 6vw, 4.5rem) 0 0;
     font-size: clamp(4rem, 17.5vw, 17rem);
     font-weight: 500;
     line-height: 0.8;
@@ -192,10 +334,16 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 1rem 1.5rem;
     padding: 1.5rem 0 2rem;
     font-size: 0.875rem;
     color: var(--color-muted);
+  }
+
+  .site-footer__policies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
   }
 
   .site-footer__payment {
@@ -212,7 +360,7 @@
     height: auto;
   }
 
-  /* Under 900px: newsletter, links and contact stack in one column */
+  /* Under 900px: newsletter, menu and contact stack in one column */
   @media (min-width: 900px) {
     .site-footer__top {
       grid-template-columns: 6fr 3fr 3fr;
@@ -225,6 +373,10 @@
 {
   "name": "t:general.footer",
   "settings": [
+    {
+      "type": "header",
+      "content": "Newsletter"
+    },
     {
       "type": "text",
       "id": "newsletter_heading",
@@ -262,22 +414,127 @@
       "default": "Controlla l'indirizzo email e riprova."
     },
     {
+      "type": "header",
+      "content": "Links and contact"
+    },
+    {
       "type": "link_list",
       "id": "menu",
       "label": "t:labels.menu",
       "default": "footer"
     },
     {
-      "type": "richtext",
-      "id": "contact",
-      "label": "Contact",
-      "info": "Address, email or phone."
+      "type": "text",
+      "id": "menu_title",
+      "label": "Menu column title",
+      "default": "Negozio"
+    },
+    {
+      "type": "text",
+      "id": "contact_title",
+      "label": "Contact column title",
+      "default": "Contatti"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email",
+      "info": "Shown as a mailto link."
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone",
+      "info": "Shown as a tel link, for example +39 075 1234567."
+    },
+    {
+      "type": "text",
+      "id": "pec",
+      "label": "PEC",
+      "info": "Optional."
+    },
+    {
+      "type": "header",
+      "content": "Company details (required in Italy)"
+    },
+    {
+      "type": "text",
+      "id": "company_label",
+      "label": "Company name label",
+      "default": "Ragione sociale"
+    },
+    {
+      "type": "text",
+      "id": "company_name",
+      "label": "Company name",
+      "info": "Full registered name, as it appears on invoices."
+    },
+    {
+      "type": "text",
+      "id": "address_label",
+      "label": "Address label",
+      "default": "Sede legale"
+    },
+    {
+      "type": "text",
+      "id": "address",
+      "label": "Registered address",
+      "info": "Street, postcode, town, province."
+    },
+    {
+      "type": "text",
+      "id": "vat",
+      "label": "Partita IVA"
+    },
+    {
+      "type": "text",
+      "id": "fiscal_code",
+      "label": "Codice fiscale",
+      "info": "Leave empty if it matches the Partita IVA."
+    },
+    {
+      "type": "text",
+      "id": "rea_label",
+      "label": "REA label",
+      "default": "REA"
+    },
+    {
+      "type": "text",
+      "id": "rea",
+      "label": "REA or Registro Imprese number",
+      "info": "For example PG 123456."
+    },
+    {
+      "type": "text",
+      "id": "share_capital",
+      "label": "Capitale sociale",
+      "info": "Only for companies with share capital."
+    },
+    {
+      "type": "header",
+      "content": "Bottom bar"
+    },
+    {
+      "type": "text",
+      "id": "policies_label",
+      "label": "Policy links label (for screen readers)",
+      "default": "Note legali"
     },
     {
       "type": "text",
       "id": "wordmark",
       "label": "Large wordmark",
       "default": "Dottorini"
+    },
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Background",
+      "default": "d-bg--base",
+      "options": [
+        { "value": "d-bg--base", "label": "Default" },
+        { "value": "d-bg--tint", "label": "Tinted" }
+      ]
     },
     {
       "type": "checkbox",

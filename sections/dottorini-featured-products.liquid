@@ -11,7 +11,8 @@
   endif
 %}
 
-<div class="d-products section-space" id="{{ section.settings.anchor | default: 'oli' | handleize }}">
+<div class="section-band full-width {{ section.settings.background }}">
+<div class="d-products section-band__inner section-space" id="{{ section.settings.anchor | default: 'oli' | handleize }}">
   <div class="d-products__head reveal">
     {% if section.settings.heading != blank %}
       <h2 class="d-products__heading">{{ section.settings.heading }}</h2>
@@ -41,6 +42,7 @@
       </li>
     {% endfor %}
   </ul>
+</div>
 </div>
 
 {% stylesheet %}
@@ -167,6 +169,16 @@
       "id": "anchor",
       "label": "Anchor id",
       "default": "oli"
+    },
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Background",
+      "default": "d-bg--base",
+      "options": [
+        { "value": "d-bg--base", "label": "Default" },
+        { "value": "d-bg--tint", "label": "Tinted" }
+      ]
     }
   ],
   "presets": [

@@ -5,6 +5,10 @@
  * This file may be updated by the Shopify admin theme editor
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
+ *
+ * NOTE: the company details below are SAMPLE values used to
+ * check the layout. Replace them with the real ones before
+ * publishing this theme.
  * ------------------------------------------------------------
  */
 {
@@ -15,6 +19,23 @@
       "type": "footer",
       "settings": {
         "menu": "footer",
+        "menu_title": "Negozio",
+        "contact_title": "Contatti",
+        "email": "info@agricoladottorini.it",
+        "phone": "+39 075 1234567",
+        "pec": "",
+        "company_label": "Ragione sociale",
+        "company_name": "Azienda Agricola Dottorini",
+        "address_label": "Sede legale",
+        "address": "Via del Frantoio 12, 06089 Torgiano (PG)",
+        "vat": "01234567890",
+        "fiscal_code": "",
+        "rea_label": "REA",
+        "rea": "PG 123456",
+        "share_capital": "",
+        "policies_label": "Note legali",
+        "wordmark": "Dottorini",
+        "background": "d-bg--base",
         "show_payment_icons": true
       }
     }

@@ -108,6 +108,18 @@ buttons, spacing, reveal keyframes), `templates/index.json` (page order).
   raccolta", "Ottobre, novembre", "vetro scuro" and "curiamo i nostri olivi a
   mano" are placeholders written to fit the brand, not facts confirmed by the
   owner. Confirm before launch.
+- **Sample company details.** `sections/footer-group.json` carries SAMPLE values
+  for the Italian company block (P. IVA `01234567890`, REA `PG 123456`, the
+  Torgiano address, the phone number). These are placeholders for checking the
+  layout and must be replaced with the real details before the theme is
+  published. The schema defaults are empty on purpose, so the block hides
+  itself when no values are set.
+- **Search is switched off.** The header search button is commented out in
+  `sections/header.liquid`; the modal markup and its script stay in place and
+  are inert until the button is uncommented.
+- **Missing policies.** Shopify has privacy and cookies set up. Termini di
+  servizio, Politica di rimborso (14 day withdrawal) and Spedizioni still need
+  creating in Settings > Policies; the footer links them automatically.
 - **Journey arrows** were verified to render and to start disabled on the left,
   but were not click-tested.
 
