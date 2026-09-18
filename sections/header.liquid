@@ -28,11 +28,21 @@
       {% endif %}
     </a>
 
+    {% comment %}
+      Contact entries scroll to the footer, where the details already live.
+      Remove the item from the menu in Shopify navigation to drop it entirely.
+    {% endcomment %}
     <nav class="site-header__nav" aria-label="{{ section.settings.menu_label | escape }}">
       {% for link in section.settings.menu.links %}
+        {%- liquid
+          assign href = link.url
+          if link.url contains '/pages/contact'
+            assign href = '#contatti'
+          endif
+        -%}
         <a
-          href="{{ link.url }}"
-          {% if link.current %}
+          href="{{ href }}"
+          {% if link.current and href != '#contatti' %}
             aria-current="page"
           {% endif %}
         >
@@ -50,10 +60,16 @@
 
         <nav class="site-header__drawer-panel" aria-label="{{ section.settings.menu_label | escape }}">
           {% for link in section.settings.menu.links %}
+            {%- liquid
+              assign href = link.url
+              if link.url contains '/pages/contact'
+                assign href = '#contatti'
+              endif
+            -%}
             <a
-              href="{{ link.url }}"
+              href="{{ href }}"
               style="--i: {{ forloop.index0 }}"
-              {% if link.current %}
+              {% if link.current and href != '#contatti' %}
                 aria-current="page"
               {% endif %}
             >

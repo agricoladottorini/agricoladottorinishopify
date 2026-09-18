@@ -301,3 +301,23 @@ a {
 .d-bg--tint {
   background-color: var(--color-tint);
 }
+
+/** Shopify consent banner
+ *
+ * Shopify injects and styles this banner itself: it pins it with bottom: 0
+ * and caps it at 90% of the large viewport, so on phones the bottom of it
+ * (Accetta, Declina, Gestisci le preferenze) can end up behind the browser
+ * toolbar. Tie it to the visible viewport instead and lift it above the
+ * home indicator. Shopify's own rules are equally specific and load later,
+ * hence !important. If Shopify changes these ids the override simply stops
+ * applying, it does not break the banner.
+ */
+html #shopify-pc__banner {
+  bottom: max(0.5rem, env(safe-area-inset-bottom, 0px)) !important;
+  max-height: min(85dvh, calc(100dvh - 1rem)) !important;
+  overscroll-behavior: contain;
+}
+
+html #shopify-pc__prefs {
+  max-height: min(90dvh, calc(100dvh - 1rem)) !important;
+}

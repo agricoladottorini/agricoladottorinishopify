@@ -66,6 +66,14 @@ later if it is ever wanted.
   the content, which is an acceptable fallback.
 - Journey gallery: arrow buttons scroll by one card; a small custom element
   disables them at the ends using an IntersectionObserver.
+- Header wordmark: on scroll the first word collapses its own width and fades
+  while the last word slides into its place; scrolling back reverses it. Driven
+  by a 1px marker below the sticky header plus an IntersectionObserver, so it
+  works in every browser. One knob tunes it: `--brand-collapse` (1.1s) with an
+  even easing, deliberately not the page's front-loaded one.
+- Quick add: the + morphs into a check (two bars becoming an L, rotated) with a
+  small pop, then returns after 1.8s.
+- Cart drawer: slides in from the right, backdrop fades.
 - Everything collapses to static under `prefers-reduced-motion: reduce`.
 
 ## Section layouts
@@ -82,9 +90,44 @@ Each section uses a different layout family on purpose. Nothing repeats.
 | `sections/dottorini-origin.liquid` | Offset photo collage next to copy and a short facts list |
 | `sections/footer.liquid` | Newsletter and columns above a large decorative wordmark |
 
+## Other pages
+
+| File | What it is |
+| --- | --- |
+| `sections/collection.liquid` | Catalogo: 3 cards per row desktop, 2 from 700px, 1 on phones, paginated (12 per page) |
+| `sections/product.liquid` | Product page: thumbnail rail plus large image left, details right and sticky; quantity stepper beside the add button showing the price; expandable info rows as blocks. On phones the stepper becomes a full width bar above a full width button |
+| `sections/cart-drawer.liquid` | Cart as a floating rounded panel inset from the edges, not a page. Rendered on every page from `layout/theme.liquid` and refreshed through the Section Rendering API after each change |
+
+Cart behaviour: the header cart icon opens the drawer (the link still points at
+`/cart` so it works without JavaScript), quick add opens it after a successful
+add, quantity changes and removals go through `/cart/change.js`, and a refused
+change (no stock left) shows an Italian message in place instead of navigating
+away. `/cart` itself is still Skeleton's unstyled page and is only reached
+without JavaScript.
+
 Supporting files: `snippets/product-card.liquid` (product card with quick add),
+`snippets/quick-add.liquid` (shared quick add styles and the `<quick-add>`
+element, rendered by both the card and the product page),
+`snippets/consent-inset.liquid` (reserves the height of Shopify's cookie banner
+so it cannot cover the end of the footer),
 `snippets/css-variables.liquid` (tokens), `assets/critical.css` (reset,
 buttons, spacing, reveal keyframes), `templates/index.json` (page order).
+
+## Product card variants
+
+One snippet, three shapes, so the landing page and the catalog stay in step:
+`featured` (large, landing only), `split` (image beside the text from 900px,
+the two small landing cards) and the plain stacked default (catalog). The add
+control is `add_style: 'plus'` everywhere now; `'label'` still renders a text
+button if it is ever wanted. Price and + always sit on one row at the bottom.
+
+## Titles and the shop name
+
+`snippets/meta-tags.liquid` builds the tab title as `{{ page_title }} - {{ shop.name }}`,
+and the landing page shows `page_title` alone. `shop.name` is the only brand
+name Liquid exposes on every page, so it must be right in
+**Settings > Store details > Store name**; the Homepage title in Online Store >
+Preferences only affects the homepage. No brand name is hardcoded in the theme.
 
 ## Copy rules
 
@@ -124,6 +167,17 @@ buttons, spacing, reveal keyframes), `templates/index.json` (page order).
   creating in Settings > Policies; the footer links them automatically.
 - **Journey arrows** were verified to render and to start disabled on the left,
   but were not click-tested.
+- **Store name** is still "Il mio negozio" in Settings > Store details, so every
+  tab title outside the homepage, `og:site_name`, the footer copyright and all
+  checkout emails still say it. Change it to Agricola Dottorini.
+- **Product option pills** (the size-style selector) are written but never
+  rendered: every product has a single variant. Treat as unverified.
+- **Contact page** still exists at `/pages/contact`; the menu entry is rewritten
+  in `sections/header.liquid` to jump to `#contatti` on the footer instead.
+- **Footer bottom row on phones** was reported as hard to see. It now stacks the
+  policy links with 34px tap targets and keeps 56px of clearance below, but the
+  owner had not yet checked it on a real device, and their phone was looking at
+  the deployed theme, not these local changes.
 
 ## Gotchas
 
@@ -135,6 +189,15 @@ buttons, spacing, reveal keyframes), `templates/index.json` (page order).
 - With `shopify theme dev`, sections must upload before a template that
   references them. A fresh `templates/index.json` referencing a brand new
   section fails until the section syncs; touch the template afterwards.
+- `offsetParent` is always null on a fixed element. Measure the rect instead
+  when testing whether something like the consent banner is on screen.
+- In a column flex container `flex-basis` becomes a height. A button with
+  `flex: 1 1 14rem` rendered 224px tall on phones until it was reset.
+- Liquid `render` tags take values, not expressions: `split: forloop.first == false`
+  is a syntax error. Assign first.
+- The browser pane used for testing applies scrolls late and sometimes returns
+  blank screenshots or a stale `window.scrollY`. Trust measured geometry from
+  `document.scrollingElement`, and re-check rather than believing one reading.
 - Editor edits by the owner are saved to the JSON files on the Shopify theme
   (`templates/*.json`, `sections/*-group.json`, `config/settings_data.json`),
   not to git. Pull those before pushing, or connect the theme to GitHub, or

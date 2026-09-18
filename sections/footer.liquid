@@ -38,7 +38,7 @@
   endif
 -%}
 
-<footer class="site-footer full-width {{ section.settings.background }}">
+<footer id="contatti" class="site-footer full-width {{ section.settings.background }}">
   <div class="site-footer__inner">
     <div class="site-footer__top">
       <div class="site-footer__newsletter">
@@ -187,6 +187,8 @@
 
 {% stylesheet %}
   .site-footer {
+    /* clears the sticky header when jumped to from the menu */
+    scroll-margin-top: var(--header-height);
     display: grid;
     grid-template-columns: var(--content-grid);
     margin-top: var(--section-space);
@@ -335,9 +337,38 @@
     align-items: center;
     justify-content: space-between;
     gap: 1rem 1.5rem;
-    padding: 1.5rem 0 2rem;
+    /* Clears the phone browser toolbar and the home indicator, so the policy
+       links and payment icons are never stuck under them. */
+    padding: 1.5rem 0 max(3.5rem, calc(env(safe-area-inset-bottom, 0px) + 2.5rem));
     font-size: 0.875rem;
     color: var(--color-muted);
+  }
+
+  /* Phones: give the last row room to breathe and make the links tappable */
+  @media (max-width: 899px) {
+    .site-footer__bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+      margin-top: 0.5rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid var(--color-surface-strong);
+    }
+
+    .site-footer__policies {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .site-footer__policies a {
+      padding: 0.4rem 0;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .site-footer__bottom {
+      padding-bottom: 2rem;
+    }
   }
 
   .site-footer__policies {
