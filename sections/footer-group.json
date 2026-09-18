@@ -14,8 +14,30 @@
     "footer": {
       "type": "footer",
       "settings": {
+        "newsletter_heading": "Notizie dal frantoio, poche volte l'anno.",
+        "email_label": "La tua email",
+        "button_label": "Iscriviti",
+        "helper_text": "Puoi cancellarti in qualsiasi momento.",
+        "success_message": "Grazie, la tua iscrizione è confermata.",
+        "error_message": "Controlla l'indirizzo email e riprova.",
         "menu": "footer",
+        "menu_title": "Negozio",
+        "contact_title": "Contatti",
+        "email": "info@agricoladottorini.it",
+        "phone": "+39 335 1851096",
+        "pec": "",
+        "company_label": "Ragione sociale",
+        "company_name": "Azienda Agricola Belardi Dottorini Giuseppe",
+        "address_label": "Sede legale",
+        "address": "Str. dei Boschetti 12 · 06050 Collazzone (PG)",
+        "vat": "01234567890",
+        "fiscal_code": "",
+        "rea_label": "REA",
+        "rea": "PG 123456",
+        "share_capital": "",
+        "policies_label": "Note legali",
         "wordmark": "Dottorini",
+        "background": "d-bg--base",
         "show_payment_icons": true
       }
     }
