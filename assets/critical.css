@@ -295,11 +295,21 @@ a {
 }
 
 .d-bg--base {
-  background-color: var(--color-background);
+  --section-bg: var(--color-background);
+  background-color: var(--section-bg);
 }
 
+/* The tint is a warm sand, darker than the page. Inside it, text tokens are
+ * pulled toward the foreground so they keep WCAG AA (muted ~5:1, accent ~5:1
+ * on #EDE4D1), and surfaces are derived from the tint so placeholders, rules
+ * and the footer wordmark stay warm instead of the page's cool green greys. */
 .d-bg--tint {
-  background-color: var(--color-tint);
+  --section-bg: var(--color-tint);
+  --color-muted: color-mix(in srgb, var(--color-muted-base) 70%, var(--color-foreground));
+  --color-accent: color-mix(in srgb, var(--color-accent-base) 75%, var(--color-foreground));
+  --color-surface: color-mix(in srgb, var(--color-tint) 95%, var(--color-foreground));
+  --color-surface-strong: color-mix(in srgb, var(--color-tint) 90%, var(--color-foreground));
+  background-color: var(--section-bg);
 }
 
 /** Shopify consent banner

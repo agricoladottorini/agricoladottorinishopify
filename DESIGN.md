@@ -36,11 +36,23 @@ Explicitly ruled out by the owner:
 | `--color-muted` | `#5B6056` | Secondary text, meets WCAG AA |
 | `--color-surface` | `#ECEEE7` | Small product cards, footer |
 | `--color-surface-strong` | `#E1E6D5` | Large product card, image placeholders |
+| `--color-tint` | `#EDE4D1` | Warm sand for "Tinted" section bands (manifesto, origin by default) |
 
 Deliberately not the warm beige plus brass palette that artisan food brands
-default to. One accent only: the lighter green `#8A9A4B` on the hero line is a
-tint of the same olive hue, and the red in the newsletter error is a state
-color, not a second accent.
+default to. The sand tint is the one warm note, and it stays out of the shopping
+areas: it only colors the story sections (manifesto, origin), never cards,
+buttons or accents, and there is no brass or gold anywhere. One accent only: the
+lighter green `#8A9A4B` on the hero line is a tint of the same olive hue, and
+the red in the newsletter error is a state color, not a second accent.
+
+Inside `.d-bg--tint` (`assets/critical.css`) the tokens are scoped: muted and
+accent are mixed toward the foreground so they keep WCAG AA on the darker sand
+(the base muted `#5B6056` only reaches about 3.8:1 there), and both surfaces are
+derived from the tint so placeholders and rules stay warm rather than the page's
+cool greens. The unscoped values come from `--color-muted-base` and
+`--color-accent-base`, because a custom property cannot reference itself.
+Anything that must match the band behind it (the origin close-up's frame) uses
+`--section-bg`.
 
 **Type.** Outfit (Shopify font library) at 400 and 500. No serif anywhere.
 Headings use weight 500 with tight negative letter spacing. Italic is used for
@@ -53,6 +65,21 @@ rounded.
 **Theme.** Light only, by request. The dark hero frame is a photo container,
 not a theme switch. The color tokens make dark mode straightforward to add
 later if it is ever wanted.
+
+## Brand mark
+
+The hill line from the hero is the company mark. One path, reused everywhere:
+`snippets/brand-line.liquid` renders it inline in `currentColor` (deep olive),
+shown small above the footer copyright. The
+favicon (`assets/favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`, linked
+from `snippets/meta-tags.liquid`) is the same line in cream on an olive tile,
+vertically exaggerated so it still reads at 16px. The apple touch icon is a
+full square because iOS rounds the corners itself.
+
+Sources and exports (SVG, PNG, JPEG, `favicon.ico`) live in `brand/`, which is
+in `.shopifyignore`. Re-export with `sips`, e.g.
+`sips -s format png -Z 2000 brand/dottorini-linea.svg --out brand/dottorini-linea.png`.
+Not in the header on purpose: the animated wordmark is already the logo there.
 
 ## Motion
 
@@ -88,7 +115,7 @@ Each section uses a different layout family on purpose. Nothing repeats.
 | `sections/dottorini-manifesto.liquid` | Editorial statement with one offset portrait image |
 | `sections/dottorini-journey.liquid` | Horizontal scroll-snap gallery, staggered card heights |
 | `sections/dottorini-origin.liquid` | Offset photo collage next to copy and a short facts list |
-| `sections/footer.liquid` | Newsletter and columns above a large decorative wordmark |
+| `sections/footer.liquid` | Newsletter and columns, company details, then the copyright and policy row |
 
 ## Other pages
 
@@ -174,8 +201,10 @@ Preferences only affects the homepage. No brand name is hardcoded in the theme.
   rendered: every product has a single variant. Treat as unverified.
 - **Contact page** still exists at `/pages/contact`; the menu entry is rewritten
   in `sections/header.liquid` to jump to `#contatti` on the footer instead.
-- **Footer bottom row on phones** was reported as hard to see. It now stacks the
-  policy links with 34px tap targets and keeps 56px of clearance below, but the
+- **Footer bottom row on phones** was reported as hard to see. Copyright and
+  policy links now flow inline and wrap only when they do not fit (at 375px:
+  copyright on one line, both policy links side by side below), with 34px tap
+  targets and 56px of clearance below, but the
   owner had not yet checked it on a real device, and their phone was looking at
   the deployed theme, not these local changes.
 

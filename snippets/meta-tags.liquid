@@ -2,6 +2,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
+{% # Brand icon: the hill line from the hero. Sources live in brand/ %}
+<link rel="icon" href="{{ 'favicon.svg' | asset_url }}" type="image/svg+xml">
+<link rel="icon" href="{{ 'favicon-32.png' | asset_url }}" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="{{ 'apple-touch-icon.png' | asset_url }}">
+
 {%- liquid
   assign site_name = shop.name
   assign og_title = page_title | default: site_name

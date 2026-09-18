@@ -11,3 +11,6 @@
 #
 # Ignore templates and sections with a regular expression:
 #   /(templates|sections)/.*\.json/
+
+# Brand source files (logo, icons), not part of the theme
+brand/*
