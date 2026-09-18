@@ -1,5 +1,6 @@
 {% comment %}
-  Editorial statement: one large sentence, a short signature and a single
+  Editorial statement: one large sentence, then a short company text with a
+  couple of highlighted facts (blocks) and the signature, beside a single
   offset portrait image.
 {% endcomment %}
 
@@ -10,9 +11,28 @@
   </div>
 
   <div class="d-manifesto__foot">
-    {% if section.settings.signature != blank %}
-      <p class="d-manifesto__signature reveal">{{ section.settings.signature }}</p>
-    {% endif %}
+    <div class="d-manifesto__story reveal">
+      {% if section.settings.body != blank %}
+        <div class="d-manifesto__body">{{ section.settings.body }}</div>
+      {% endif %}
+
+      {% if section.blocks.size > 0 %}
+        <dl class="d-manifesto__facts">
+          {% for block in section.blocks %}
+            <div class="d-manifesto__fact" {{ block.shopify_attributes }}>
+              <dt>{{ block.settings.title }}</dt>
+              {% if block.settings.detail != blank %}
+                <dd>{{ block.settings.detail }}</dd>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </dl>
+      {% endif %}
+
+      {% if section.settings.signature != blank %}
+        <p class="d-manifesto__signature">{{ section.settings.signature }}</p>
+      {% endif %}
+    </div>
 
     <div class="d-manifesto__media reveal">
       {% if section.settings.image %}
@@ -61,7 +81,53 @@
     margin-top: clamp(2.5rem, 6vw, 5rem);
   }
 
+  .d-manifesto__body {
+    max-width: 52ch;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--color-muted);
+  }
+
+  .d-manifesto__body p {
+    margin: 0;
+  }
+
+  .d-manifesto__body p + p {
+    margin-top: 1em;
+  }
+
+  /* The two promises, lifted off the band as small light tiles: the claim is
+     the big line, the timing sits under it in olive */
+  .d-manifesto__facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    gap: 0.75rem;
+    max-width: 34rem;
+    margin: 2rem 0 0;
+  }
+
+  .d-manifesto__fact {
+    padding: 1.25rem 1.25rem 1.1rem;
+    border-radius: var(--radius-media);
+    background-color: var(--color-background);
+  }
+
+  .d-manifesto__fact dt {
+    font-size: clamp(1.25rem, 1.9vw, 1.5rem);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    color: var(--color-foreground);
+  }
+
+  .d-manifesto__fact dd {
+    margin: 0.45rem 0 0;
+    font-size: 0.9375rem;
+    color: var(--color-accent);
+  }
+
   .d-manifesto__signature {
+    margin-top: 2rem;
     font-size: 0.9375rem;
     color: var(--color-muted);
   }
@@ -87,7 +153,9 @@
     fill: rgb(30 34 29 / 0.14);
   }
 
-  /* Under 900px: signature above a full-width image */
+  /* Under 900px: text, facts and signature above a full-width image.
+     From 900px the text sits beside the image, which rises into the
+     statement above it. */
   @media (min-width: 900px) {
     .d-manifesto {
       display: grid;
@@ -95,18 +163,20 @@
       column-gap: 1.25rem;
     }
 
+    /* Stops before the image column: the image rises 8rem into this row,
+       so a longer statement would otherwise run underneath it */
     .d-manifesto__statement {
-      grid-column: 1 / span 10;
+      grid-column: 1 / span 7;
     }
 
     .d-manifesto__foot {
       grid-column: 1 / -1;
       grid-template-columns: subgrid;
-      align-items: end;
+      align-items: start;
     }
 
-    .d-manifesto__signature {
-      grid-column: 1 / span 4;
+    .d-manifesto__story {
+      grid-column: 1 / span 6;
     }
 
     .d-manifesto__media {
@@ -128,6 +198,12 @@
       "label": "Statement",
       "info": "One or two sentences. Use italic to highlight a few words.",
       "default": "<p>Poche piante curate, una raccolta attenta, <em>nessuna scorciatoia</em>. Così nasce il nostro olio.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Text",
+      "info": "Shown under the statement, beside the image."
     },
     {
       "type": "text",
@@ -152,9 +228,36 @@
       ]
     }
   ],
+  "blocks": [
+    {
+      "type": "fact",
+      "name": "Fact",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "info": "The big line, e.g. Raccolta a mano.",
+          "default": "Raccolta a mano"
+        },
+        {
+          "type": "text",
+          "id": "detail",
+          "label": "Detail",
+          "info": "The small line underneath, in olive.",
+          "default": "Ottobre-novembre"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3,
   "presets": [
     {
-      "name": "Dottorini statement"
+      "name": "Dottorini statement",
+      "blocks": [
+        { "type": "fact", "settings": { "title": "Raccolta a mano", "detail": "Ottobre-novembre" } },
+        { "type": "fact", "settings": { "title": "Estratto a freddo", "detail": "Entro poche ore" } }
+      ]
     }
   ]
 }

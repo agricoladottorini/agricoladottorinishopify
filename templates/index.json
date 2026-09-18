@@ -50,8 +50,20 @@
       "settings": {
         "statement": "<p>Una famiglia di 2.700 ulivi, lo stesso paesaggio, una raccolta attenta, <em>nessuna scorciatoia</em>.</p>",
         "signature": "Azienda Agricola Belardi Dottorini Giuseppe",
+        "body": "<p>La nostra azienda agricola nasce a Collazzone, nel cuore verde dell'Umbria, dove la famiglia Belardi Dottorini coltiva 2.700 ulivi sulla collina che dà forma al marchio. Qui le olive si raccolgono ancora a mano e si frangono a freddo, poche ore dopo la raccolta.</p><p>Ne nasce un extra vergine d'oliva di categoria superiore, espressione fedele di un territorio e di un modo di stare al mondo: fatto con misura, pensato per essere condiviso.</p>",
         "background": "d-bg--tint"
-      }
+      },
+      "blocks": {
+        "fact-harvest": {
+          "type": "fact",
+          "settings": { "title": "Raccolta a mano", "detail": "Ottobre-novembre" }
+        },
+        "fact-extraction": {
+          "type": "fact",
+          "settings": { "title": "Estratto a freddo", "detail": "Entro poche ore" }
+        }
+      },
+      "block_order": ["fact-harvest", "fact-extraction"]
     },
     "journey": {
       "type": "dottorini-journey",

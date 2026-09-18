@@ -113,7 +113,7 @@ Each section uses a different layout family on purpose. Nothing repeats.
 | `sections/header.liquid` | Sticky 3-column bar, 68px, blurred background. Mobile menu is a native `<details>`, which a small script closes when a link is tapped. Links come from `snippets/header-nav-links.liquid`, shared by the bar and the drawer: contact entries go to `#contatti`, and a theme-setting link ("Convivia" -> `/#convivia`, not a Shopify menu item) sits just before them. Arriving on a page with a hash, the header settles on the target once the page has loaded, because the browser's own jump was landing at the top |
 | `sections/dottorini-hero.liquid` | Full-bleed framed photo, copy at the bottom over a gradient scrim, plus the decorative line |
 | `sections/dottorini-featured-products.liquid` | Asymmetric grid: one large card, two stacked beside it |
-| `sections/dottorini-manifesto.liquid` | Editorial statement with one offset portrait image |
+| `sections/dottorini-manifesto.liquid` | Editorial statement, then the company text, up to three fact tiles (blocks: a big claim like "Raccolta a mano" with a small olive detail like "Ottobre-novembre") and the signature, beside one offset portrait image. From 900px the statement is limited to 7 columns because the image rises 8rem into its row. Fact tiles are light (`--color-background`) on the sand band, 14px radius like other cards, and stack on phones under ~400px so the detail never breaks at its hyphen |
 | `sections/dottorini-journey.liquid` | "Dottorini varietà": the three olives in the blend (Moraiolo, Frantoiano, Leccino), each with photo, name, italic tagline and a short description. Up to three cards: one row from 900px with the middle card dropped; phones scroll-snap. More than three falls back to the scrolling gallery with arrows. File and block type keep the old `journey`/`step` names so editor data survives |
 | `sections/dottorini-convivia.liquid` | Convivia, the family's home restaurant, as one large dark card (`--color-foreground`) inside the page column: copy left, full-height photo right, no hill line (removed at the owner's request). Phones stack photo over copy. The card is a photo container like the hero frame, not a theme switch. Adapted from an owner reference that used serif type and brass/terracotta; kept to Outfit and the olive tint `#8A9A4B` instead. The button links to the SumUp booking page and opens in a new tab |
 | `sections/dottorini-origin.liquid` | No longer on the homepage (replaced by Convivia). Offset photo collage plus a facts list, kept so editor data that still references it does not break |
@@ -162,7 +162,7 @@ Preferences only affects the homepage. No brand name is hardcoded in the theme.
 
 - Italian, because the storefront locale is Italian.
 - Hero: headline max 2 lines, subtext max 20 words. Currently 11.
-- Section paragraphs stay under 25 words.
+- Section paragraphs stay under 25 words. Exception: the company text in the statement section is the owner's own (about 70 words) and stays as written.
 - Only one small uppercase eyebrow on the whole page (Convivia section).
 - No em-dashes or en-dashes anywhere in visible copy. Use a comma, a period or
   a hyphen.
