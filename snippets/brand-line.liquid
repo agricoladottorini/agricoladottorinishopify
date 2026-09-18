@@ -1,0 +1,23 @@
+{% comment %}
+  The brand mark: the hill line from the hero, as a small inline SVG.
+  Colored by `color` (currentColor), sized by the width of the class passed in.
+  Sources and exported files live in brand/.
+
+  Accepts:
+  - class {String}: class for the svg
+{% endcomment %}
+<svg
+  class="brand-line {{ class }}"
+  viewBox="-40 80 1680 260"
+  aria-hidden="true"
+  focusable="false"
+>
+  <path
+    d="M 0 300 C 160 296 250 214 420 222 S 600 318 760 300 S 930 150 1110 128 S 1290 178 1400 196 S 1540 150 1600 138"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="40"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>

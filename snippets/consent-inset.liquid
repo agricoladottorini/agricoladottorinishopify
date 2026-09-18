@@ -1,0 +1,58 @@
+{% doc %}
+  Keeps the end of the page clear of Shopify's cookie consent banner.
+
+  The banner is fixed over the bottom of the viewport, so without this the
+  last footer row (policy links, payment icons) sits behind it. This reserves
+  exactly the banner's height while it is on screen and releases it as soon
+  as the shopper accepts or declines.
+
+  @example
+  {% render 'consent-inset' %}
+{% enddoc %}
+
+{% stylesheet %}
+  body {
+    padding-bottom: var(--consent-inset, 0px);
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  (() => {
+    const root = document.documentElement;
+    const gap = 16;
+    let watched = null;
+    let frame = null;
+
+    const setInset = (pixels) => root.style.setProperty('--consent-inset', `${Math.round(pixels)}px`);
+
+    const measure = () => {
+      const banner = document.querySelector('#shopify-pc__banner');
+      if (!banner) return setInset(0);
+      // offsetParent is always null on a fixed element, so measure instead
+      const height = banner.getBoundingClientRect().height;
+      const hidden = getComputedStyle(banner).visibility === 'hidden';
+      setInset(height > 0 && !hidden ? height + gap : 0);
+    };
+
+    const watch = () => {
+      frame = null;
+      const banner = document.querySelector('#shopify-pc__banner');
+      if (banner !== watched) {
+        if (watched) resizeObserver.unobserve(watched);
+        watched = banner;
+        if (banner) resizeObserver.observe(banner);
+      }
+      measure();
+    };
+
+    const schedule = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(watch);
+    };
+
+    const resizeObserver = new ResizeObserver(measure);
+    new MutationObserver(schedule).observe(document.body, { childList: true, subtree: true });
+    window.addEventListener('resize', schedule);
+    watch();
+  })();
+{% endjavascript %}

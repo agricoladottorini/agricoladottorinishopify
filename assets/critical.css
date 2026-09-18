@@ -295,9 +295,39 @@ a {
 }
 
 .d-bg--base {
-  background-color: var(--color-background);
+  --section-bg: var(--color-background);
+  background-color: var(--section-bg);
 }
 
+/* The tint is a warm sand, darker than the page. Inside it, text tokens are
+ * pulled toward the foreground so they keep WCAG AA (muted ~5:1, accent ~5:1
+ * on #EDE4D1), and surfaces are derived from the tint so placeholders, rules
+ * and the footer wordmark stay warm instead of the page's cool green greys. */
 .d-bg--tint {
-  background-color: var(--color-tint);
+  --section-bg: var(--color-tint);
+  --color-muted: color-mix(in srgb, var(--color-muted-base) 70%, var(--color-foreground));
+  --color-accent: color-mix(in srgb, var(--color-accent-base) 75%, var(--color-foreground));
+  --color-surface: color-mix(in srgb, var(--color-tint) 95%, var(--color-foreground));
+  --color-surface-strong: color-mix(in srgb, var(--color-tint) 90%, var(--color-foreground));
+  background-color: var(--section-bg);
+}
+
+/** Shopify consent banner
+ *
+ * Shopify injects and styles this banner itself: it pins it with bottom: 0
+ * and caps it at 90% of the large viewport, so on phones the bottom of it
+ * (Accetta, Declina, Gestisci le preferenze) can end up behind the browser
+ * toolbar. Tie it to the visible viewport instead and lift it above the
+ * home indicator. Shopify's own rules are equally specific and load later,
+ * hence !important. If Shopify changes these ids the override simply stops
+ * applying, it does not break the banner.
+ */
+html #shopify-pc__banner {
+  bottom: max(0.5rem, env(safe-area-inset-bottom, 0px)) !important;
+  max-height: min(85dvh, calc(100dvh - 1rem)) !important;
+  overscroll-behavior: contain;
+}
+
+html #shopify-pc__prefs {
+  max-height: min(90dvh, calc(100dvh - 1rem)) !important;
 }

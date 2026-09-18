@@ -38,7 +38,7 @@
   endif
 -%}
 
-<footer class="site-footer full-width {{ section.settings.background }}">
+<footer id="contatti" class="site-footer full-width {{ section.settings.background }}">
   <div class="site-footer__inner">
     <div class="site-footer__top">
       <div class="site-footer__newsletter">
@@ -159,9 +159,9 @@
       </dl>
     {% endif %}
 
-    <p class="site-footer__wordmark" aria-hidden="true">{{ section.settings.wordmark | default: shop.name }}</p>
-
     <div class="site-footer__bottom">
+      <div class="site-footer__mark">{% render 'brand-line' %}</div>
+
       <p class="site-footer__copyright">
         &copy; {{ 'now' | date: '%Y' }} {{ shop.name | link_to: routes.root_url }}
       </p>
@@ -187,6 +187,8 @@
 
 {% stylesheet %}
   .site-footer {
+    /* clears the sticky header when jumped to from the menu */
+    scroll-margin-top: var(--header-height);
     display: grid;
     grid-template-columns: var(--content-grid);
     margin-top: var(--section-space);
@@ -317,27 +319,59 @@
     line-height: 1.45;
   }
 
-  .site-footer__wordmark {
-    margin: clamp(2.5rem, 6vw, 4.5rem) 0 0;
-    font-size: clamp(4rem, 17.5vw, 17rem);
-    font-weight: 500;
-    line-height: 0.8;
-    letter-spacing: -0.06em;
-    white-space: nowrap;
-    overflow: hidden;
-    color: var(--color-surface-strong);
-    user-select: none;
-  }
-
   .site-footer__bottom {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 1rem 1.5rem;
-    padding: 1.5rem 0 2rem;
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+    border-top: 1px solid var(--color-surface-strong);
+    /* Clears the phone browser toolbar and the home indicator, so the policy
+       links and payment icons are never stuck under them. */
+    padding: 1.5rem 0 max(3.5rem, calc(env(safe-area-inset-bottom, 0px) + 2.5rem));
     font-size: 0.875rem;
     color: var(--color-muted);
+  }
+
+  /* Phones: give the last row room to breathe and make the links tappable */
+  @media (max-width: 899px) {
+    /* Items flow inline and only wrap when they do not fit the width */
+    .site-footer__bottom {
+      justify-content: flex-start;
+      gap: 0.25rem 1.25rem;
+      padding-top: 1.75rem;
+    }
+
+    .site-footer__policies {
+      gap: 0 1.25rem;
+    }
+
+    .site-footer__bottom .site-footer__payment {
+      margin-top: 0.75rem;
+    }
+
+    .site-footer__policies a {
+      padding: 0.4rem 0;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .site-footer__bottom {
+      padding-bottom: 2rem;
+    }
+  }
+
+  /* The brand line sits on its own row above the copyright */
+  .site-footer__mark {
+    flex: 0 0 100%;
+    color: var(--color-accent);
+  }
+
+  .site-footer__mark svg {
+    display: block;
+    width: 5.5rem;
+    height: auto;
   }
 
   .site-footer__policies {
@@ -526,12 +560,6 @@
       "id": "policies_label",
       "label": "Policy links label (for screen readers)",
       "default": "Note legali"
-    },
-    {
-      "type": "text",
-      "id": "wordmark",
-      "label": "Large wordmark",
-      "default": "Dottorini"
     },
     {
       "type": "select",
