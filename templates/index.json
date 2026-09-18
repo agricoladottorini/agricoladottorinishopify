@@ -37,16 +37,20 @@
         "image_fit": "contain",
         "show_quick_add": true,
         "add_label": "Aggiungi",
+        "added_label": "Aggiunto al carrello",
+        "error_label": "Non ha funzionato, riprova",
         "choose_label": "Scegli",
         "sold_out_label": "Esaurito",
-        "anchor": "oli"
+        "anchor": "oli",
+        "background": "d-bg--base"
       }
     },
     "statement": {
       "type": "dottorini-manifesto",
       "settings": {
-        "statement": "<p>Poche piante curate, una raccolta attenta, <em>nessuna scorciatoia</em>. Così nasce il nostro olio.</p>",
-        "signature": "Famiglia Dottorini"
+        "statement": "<p>Una famiglia di 2.700 ulivi, lo stesso paesaggio, una raccolta attenta, <em>nessuna scorciatoia</em>.</p>",
+        "signature": "Azienda Agricola Belardi Dottorini Giuseppe",
+        "background": "d-bg--tint"
       }
     },
     "journey": {
@@ -83,7 +87,9 @@
         "variety-leccino"
       ],
       "settings": {
-        "heading": "Tre olive, un solo blend d'equilibrio."
+        "heading": "Tre olive, un solo blend d'equilibrio.",
+        "anchor": "terra",
+        "background": "d-bg--base"
       }
     },
     "convivia": {
@@ -95,9 +101,9 @@
         "text": "Un home restaurant dove i piatti raccontano il territorio. Il modo più vero per conoscere il nostro olio è assaggiarlo dove nasce.",
         "link_label": "Visita Convivia",
         "link": "https://www.sumupbookings.com/convivia-home-restaurant",
-        "line_color": "#8A9A4B",
+        "line_color": "#8a9a4b",
         "anchor": "convivia",
-        "background": "d-bg--base"
+        "background": "d-bg--tint"
       }
     }
   },
