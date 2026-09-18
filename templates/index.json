@@ -52,43 +52,38 @@
     "journey": {
       "type": "dottorini-journey",
       "blocks": {
-        "step-harvest": {
+        "variety-moraiolo": {
           "type": "step",
           "settings": {
-            "title": "La raccolta",
-            "text": "Le olive si raccolgono in autunno, quando sono al punto giusto."
+            "title": "Moraiolo",
+            "tagline": "Il carattere umbro per eccellenza.",
+            "text": "Fruttato intenso, note d'erba, amaro e piccante decisi. Dà spina dorsale al blend."
           }
         },
-        "step-mill": {
+        "variety-frantoiano": {
           "type": "step",
           "settings": {
-            "title": "Il frantoio",
-            "text": "Spremitura a freddo, poche ore dopo la raccolta."
+            "title": "Frantoiano",
+            "tagline": "Eleganza ed armonia.",
+            "text": "Fruttato medio, profumi floreali e di mandorla. Smussa e arrotonda, porta finezza al taglio."
           }
         },
-        "step-bottle": {
+        "variety-leccino": {
           "type": "step",
           "settings": {
-            "title": "La bottiglia",
-            "text": "Vetro scuro, per proteggere profumo e colore."
-          }
-        },
-        "step-table": {
-          "type": "step",
-          "settings": {
-            "title": "In tavola",
-            "text": "A crudo, sul pane caldo o su una zuppa di legumi."
+            "title": "Leccino",
+            "tagline": "Morbidezza e gentilezza.",
+            "text": "Fruttato delicato, sentori dolci e puliti. Bilancia l'insieme e lo rende accessibile."
           }
         }
       },
       "block_order": [
-        "step-harvest",
-        "step-mill",
-        "step-bottle",
-        "step-table"
+        "variety-moraiolo",
+        "variety-frantoiano",
+        "variety-leccino"
       ],
       "settings": {
-        "heading": "Dall'oliva alla bottiglia"
+        "heading": "Tre olive, un solo blend d'equilibrio."
       }
     },
     "origin": {

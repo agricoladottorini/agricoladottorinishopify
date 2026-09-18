@@ -91,8 +91,9 @@ Not in the header on purpose: the animated wordmark is already the logo there.
   (`animation-timeline: view()`) on the shared `.reveal` class. No scroll
   event listeners anywhere. Firefox does not support this yet and simply shows
   the content, which is an acceptable fallback.
-- Journey gallery: arrow buttons scroll by one card; a small custom element
-  disables them at the ends using an IntersectionObserver.
+- Varieties gallery (journey section): on phones a scroll-snap gallery. With
+  more than three cards, desktop arrow buttons scroll by one card and a small
+  custom element disables them at the ends using an IntersectionObserver.
 - Header wordmark: on scroll the first word collapses its own width and fades
   while the last word slides into its place; scrolling back reverses it. Driven
   by a 1px marker below the sticky header plus an IntersectionObserver, so it
@@ -113,7 +114,7 @@ Each section uses a different layout family on purpose. Nothing repeats.
 | `sections/dottorini-hero.liquid` | Full-bleed framed photo, copy at the bottom over a gradient scrim, plus the decorative line |
 | `sections/dottorini-featured-products.liquid` | Asymmetric grid: one large card, two stacked beside it |
 | `sections/dottorini-manifesto.liquid` | Editorial statement with one offset portrait image |
-| `sections/dottorini-journey.liquid` | Horizontal scroll-snap gallery, staggered card heights |
+| `sections/dottorini-journey.liquid` | "Dottorini varietà": the three olives in the blend (Moraiolo, Frantoiano, Leccino), each with photo, name, italic tagline and a short description. Up to three cards: one row from 900px with the middle card dropped; phones scroll-snap. More than three falls back to the scrolling gallery with arrows. File and block type keep the old `journey`/`step` names so editor data survives |
 | `sections/dottorini-origin.liquid` | Offset photo collage next to copy and a short facts list |
 | `sections/footer.liquid` | Newsletter and columns, company details, then the copyright and policy row |
 
@@ -171,11 +172,10 @@ Preferences only affects the homepage. No brand name is hardcoded in the theme.
 
 - **Photos.** Products have no images and every image slot shows Shopify's
   placeholder. Needed: hero (landscape, 2400px or wider), statement (4:5),
-  four journey steps (4:5), origin (3:4 plus a square close-up), product
+  three olive varieties (4:5, e.g. the olives or the trees of each), origin (3:4 plus a square close-up), product
   packshots. Product cards default to `contain` because bottle packshots look
   better uncropped; switch the section setting to `cover` for lifestyle shots.
-- **Unverified copy.** The defaults "spremitura a freddo, poche ore dopo la
-  raccolta", "Ottobre, novembre", "vetro scuro" and "curiamo i nostri olivi a
+- **Unverified copy.** The defaults "Ottobre, novembre" and "curiamo i nostri olivi a
   mano" are placeholders written to fit the brand, not facts confirmed by the
   owner. Confirm before launch.
 - **Sample company details.** The Italian company block ships SAMPLE schema
@@ -192,8 +192,9 @@ Preferences only affects the homepage. No brand name is hardcoded in the theme.
 - **Missing policies.** Shopify has privacy and cookies set up. Termini di
   servizio, Politica di rimborso (14 day withdrawal) and Spedizioni still need
   creating in Settings > Policies; the footer links them automatically.
-- **Journey arrows** were verified to render and to start disabled on the left,
-  but were not click-tested.
+- **Varieties gallery arrows** only appear with more than three cards. They
+  were verified to render and to start disabled on the left, but were not
+  click-tested.
 - **Store name** is still "Il mio negozio" in Settings > Store details, so every
   tab title outside the homepage, `og:site_name`, the footer copyright and all
   checkout emails still say it. Change it to Agricola Dottorini.
