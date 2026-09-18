@@ -36,11 +36,11 @@ Explicitly ruled out by the owner:
 | `--color-muted` | `#5B6056` | Secondary text, meets WCAG AA |
 | `--color-surface` | `#ECEEE7` | Small product cards, footer |
 | `--color-surface-strong` | `#E1E6D5` | Large product card, image placeholders |
-| `--color-tint` | `#EDE4D1` | Warm sand for "Tinted" section bands (manifesto, origin by default) |
+| `--color-tint` | `#EDE4D1` | Warm sand for "Tinted" section bands (manifesto by default) |
 
 Deliberately not the warm beige plus brass palette that artisan food brands
 default to. The sand tint is the one warm note, and it stays out of the shopping
-areas: it only colors the story sections (manifesto, origin), never cards,
+areas: it only colors story sections (the manifesto), never cards,
 buttons or accents, and there is no brass or gold anywhere. One accent only: the
 lighter green `#8A9A4B` on the hero line is a tint of the same olive hue, and
 the red in the newsletter error is a state color, not a second accent.
@@ -51,7 +51,7 @@ accent are mixed toward the foreground so they keep WCAG AA on the darker sand
 derived from the tint so placeholders and rules stay warm rather than the page's
 cool greens. The unscoped values come from `--color-muted-base` and
 `--color-accent-base`, because a custom property cannot reference itself.
-Anything that must match the band behind it (the origin close-up's frame) uses
+Anything that must match the band behind it (e.g. the origin close-up's frame) uses
 `--section-bg`.
 
 **Type.** Outfit (Shopify font library) at 400 and 500. No serif anywhere.
@@ -110,12 +110,13 @@ Each section uses a different layout family on purpose. Nothing repeats.
 
 | File | Layout |
 | --- | --- |
-| `sections/header.liquid` | Sticky 3-column bar, 68px, blurred background. Mobile menu is a native `<details>`, no JavaScript |
+| `sections/header.liquid` | Sticky 3-column bar, 68px, blurred background. Mobile menu is a native `<details>`, which a small script closes when a link is tapped. Links come from `snippets/header-nav-links.liquid`, shared by the bar and the drawer: contact entries go to `#contatti`, and a theme-setting link ("Convivia" -> `/#convivia`, not a Shopify menu item) sits just before them. Arriving on a page with a hash, the header settles on the target once the page has loaded, because the browser's own jump was landing at the top |
 | `sections/dottorini-hero.liquid` | Full-bleed framed photo, copy at the bottom over a gradient scrim, plus the decorative line |
 | `sections/dottorini-featured-products.liquid` | Asymmetric grid: one large card, two stacked beside it |
 | `sections/dottorini-manifesto.liquid` | Editorial statement with one offset portrait image |
 | `sections/dottorini-journey.liquid` | "Dottorini varietà": the three olives in the blend (Moraiolo, Frantoiano, Leccino), each with photo, name, italic tagline and a short description. Up to three cards: one row from 900px with the middle card dropped; phones scroll-snap. More than three falls back to the scrolling gallery with arrows. File and block type keep the old `journey`/`step` names so editor data survives |
-| `sections/dottorini-origin.liquid` | Offset photo collage next to copy and a short facts list |
+| `sections/dottorini-convivia.liquid` | Convivia, the family's home restaurant, as one large dark card (`--color-foreground`) inside the page column: copy left, full-height photo right, no hill line (removed at the owner's request). Phones stack photo over copy. The card is a photo container like the hero frame, not a theme switch. Adapted from an owner reference that used serif type and brass/terracotta; kept to Outfit and the olive tint `#8A9A4B` instead. The button links to the SumUp booking page and opens in a new tab |
+| `sections/dottorini-origin.liquid` | No longer on the homepage (replaced by Convivia). Offset photo collage plus a facts list, kept so editor data that still references it does not break |
 | `sections/footer.liquid` | Newsletter and columns, company details, then the copyright and policy row |
 
 ## Other pages
@@ -162,7 +163,7 @@ Preferences only affects the homepage. No brand name is hardcoded in the theme.
 - Italian, because the storefront locale is Italian.
 - Hero: headline max 2 lines, subtext max 20 words. Currently 11.
 - Section paragraphs stay under 25 words.
-- Only one small uppercase eyebrow on the whole page (origin section).
+- Only one small uppercase eyebrow on the whole page (Convivia section).
 - No em-dashes or en-dashes anywhere in visible copy. Use a comma, a period or
   a hyphen.
 - No invented numbers or specifications.
@@ -172,12 +173,12 @@ Preferences only affects the homepage. No brand name is hardcoded in the theme.
 
 - **Photos.** Products have no images and every image slot shows Shopify's
   placeholder. Needed: hero (landscape, 2400px or wider), statement (4:5),
-  three olive varieties (4:5, e.g. the olives or the trees of each), origin (3:4 plus a square close-up), product
+  three olive varieties (4:5, e.g. the olives or the trees of each), Convivia (a table or a dish, 1600px or wider), product
   packshots. Product cards default to `contain` because bottle packshots look
   better uncropped; switch the section setting to `cover` for lifestyle shots.
-- **Unverified copy.** The defaults "Ottobre, novembre" and "curiamo i nostri olivi a
-  mano" are placeholders written to fit the brand, not facts confirmed by the
-  owner. Confirm before launch.
+- **Anchors.** The hero's second button ("La nostra terra") points at `#terra`,
+  which now lives on the varieties section (it used to be the origin section).
+  Convivia is at `#convivia`.
 - **Sample company details.** The Italian company block ships SAMPLE schema
   defaults in `sections/footer.liquid` (P. IVA `01234567890`, REA `PG 123456`,
   the Torgiano address, the phone number, the info email). Replace them with the

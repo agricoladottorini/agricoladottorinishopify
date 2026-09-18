@@ -1,0 +1,59 @@
+{% comment %}
+  The header menu links, shared by the desktop bar and the phone drawer.
+
+  - Contact entries scroll to the footer (#contatti), where the details live.
+  - An extra theme link (Convivia by default) is placed just before the
+    contact entry, or at the end when the menu has none.
+
+  Accepts:
+  - menu {Object}: the link list
+  - extra_label {String}: label of the extra link, blank to hide it
+  - extra_href {String}: where the extra link points
+  - stagger {Boolean}: add the --i index the drawer uses for its entrance
+{% endcomment %}
+
+{%- liquid
+  assign index = 0
+  assign extra_done = false
+  if extra_label == blank
+    assign extra_done = true
+  endif
+-%}
+
+{%- for link in menu.links -%}
+  {%- liquid
+    assign href = link.url
+    assign is_contact = false
+    if link.url contains '/pages/contact'
+      assign href = '#contatti'
+      assign is_contact = true
+    endif
+  -%}
+
+  {%- if is_contact and extra_done == false -%}
+    <a href="{{ extra_href }}" {% if stagger %}style="--i: {{ index }}"{% endif %}>
+      {{- extra_label -}}
+    </a>
+    {%- assign index = index | plus: 1 -%}
+    {%- assign extra_done = true -%}
+  {%- endif -%}
+
+  <a
+    href="{{ href }}"
+    {% if stagger %}
+      style="--i: {{ index }}"
+    {% endif %}
+    {% if link.current and is_contact == false %}
+      aria-current="page"
+    {% endif %}
+  >
+    {{- link.title -}}
+  </a>
+  {%- assign index = index | plus: 1 -%}
+{%- endfor -%}
+
+{%- if extra_done == false -%}
+  <a href="{{ extra_href }}" {% if stagger %}style="--i: {{ index }}"{% endif %}>
+    {{- extra_label -}}
+  </a>
+{%- endif -%}
