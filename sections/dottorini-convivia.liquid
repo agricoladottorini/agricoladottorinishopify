@@ -1,0 +1,243 @@
+{% comment %}
+  Convivia, the family's home restaurant. One large dark card inside the page
+  column: copy on the left, a full-height photo on the right. Phones stack
+  photo over copy.
+  The card is a photo container, not a theme switch, like the hero frame.
+{% endcomment %}
+
+<div class="section-band full-width {{ section.settings.background }}">
+  <div class="section-band__inner section-space" id="{{ section.settings.anchor | default: 'convivia' | handleize }}">
+    <article class="d-convivia reveal" style="--convivia-accent: {{ section.settings.line_color }};">
+      <div class="d-convivia__body">
+        {% if section.settings.eyebrow != blank %}
+          <p class="d-convivia__eyebrow">{{ section.settings.eyebrow }}</p>
+        {% endif %}
+        {% if section.settings.heading != blank %}
+          <h2 class="d-convivia__heading">{{ section.settings.heading | newline_to_br }}</h2>
+        {% endif %}
+        {% if section.settings.lede != blank %}
+          <p class="d-convivia__lede">{{ section.settings.lede }}</p>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <p class="d-convivia__text">{{ section.settings.text }}</p>
+        {% endif %}
+        {% if section.settings.link != blank and section.settings.link_label != blank %}
+          <a
+            class="button button--light d-convivia__cta"
+            href="{{ section.settings.link }}"
+            {% if section.settings.link contains '://' %}
+              target="_blank" rel="noopener"
+            {% endif %}
+          >
+            {{- section.settings.link_label -}}
+            <span class="d-convivia__cta-arrow" aria-hidden="true">&nearr;</span>
+          </a>
+        {% endif %}
+      </div>
+
+      <div class="d-convivia__media">
+        {% if section.settings.image %}
+          {% assign image_position = 'object-position: ' | append: section.settings.image.presentation.focal_point %}
+          {{
+            section.settings.image
+            | image_url: width: 1600
+            | image_tag:
+              widths: '600, 900, 1200, 1600',
+              sizes: '(min-width: 900px) 45vw, 90vw',
+              loading: 'lazy',
+              alt: section.settings.image.alt,
+              style: image_position
+          }}
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'd-convivia__placeholder' }}
+        {% endif %}
+
+      </div>
+    </article>
+  </div>
+</div>
+
+{% stylesheet %}
+  .d-convivia {
+    --convivia-ink: var(--color-background);
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow: hidden;
+    border-radius: var(--radius-media);
+    background-color: var(--color-foreground);
+    color: var(--convivia-ink);
+  }
+
+  .d-convivia__body {
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: clamp(2rem, 6vw, 4.5rem) clamp(1.5rem, 5vw, 4.5rem);
+  }
+
+  .d-convivia__eyebrow {
+    margin-bottom: 1.25rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--convivia-accent);
+  }
+
+  .d-convivia__heading {
+    font-size: clamp(2.25rem, 5vw, 4rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    color: var(--convivia-ink);
+  }
+
+  /* Emphasis stays in the same family: Outfit italic, not a second font */
+  .d-convivia__lede {
+    max-width: 30ch;
+    margin-top: 1.5rem;
+    padding-bottom: 0.1em;
+    font-size: clamp(1.1875rem, 1.9vw, 1.5rem);
+    font-style: italic;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+
+  .d-convivia__text {
+    max-width: 44ch;
+    margin-top: 1.25rem;
+    color: rgb(245 246 242 / 0.72);
+  }
+
+  .d-convivia__cta {
+    margin-top: clamp(2rem, 4vw, 2.75rem);
+  }
+
+  .d-convivia__cta-arrow {
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  .d-convivia__cta:hover .d-convivia__cta-arrow {
+    transform: translate(2px, -2px);
+  }
+
+  .d-convivia__media {
+    order: 1;
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background-color: rgb(245 246 242 / 0.06);
+  }
+
+  .d-convivia__media img,
+  .d-convivia__placeholder {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .d-convivia__placeholder {
+    fill: rgb(245 246 242 / 0.16);
+  }
+
+  /* From 900px: copy left, photo right at full card height */
+  @media (min-width: 900px) {
+    .d-convivia {
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      min-height: clamp(34rem, 46vw, 40rem);
+    }
+
+    .d-convivia__body {
+      order: 1;
+      justify-content: center;
+    }
+
+    .d-convivia__media {
+      order: 2;
+      aspect-ratio: auto;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Dottorini Convivia",
+  "tag": "section",
+  "class": "d-convivia-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Dalla collina alla tavola"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "info": "A line break starts a new line.",
+      "default": "Convivia\nHome Restaurant"
+    },
+    {
+      "type": "text",
+      "id": "lede",
+      "label": "Lede (italic)",
+      "default": "A casa nostra, a Collazzone, lo stesso olio diventa un'esperienza da vivere a tavola."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "info": "Under 25 words.",
+      "default": "Un home restaurant dove i piatti raccontano il territorio. Il modo più vero per conoscere il nostro olio è assaggiarlo dove nasce."
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Button label",
+      "default": "Visita Convivia"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Button link",
+      "info": "External links open in a new tab."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Photo",
+      "info": "A table or a dish at Convivia. Landscape or portrait both work, 1600px wide or more."
+    },
+    {
+      "type": "color",
+      "id": "line_color",
+      "label": "Eyebrow color",
+      "default": "#8A9A4B"
+    },
+    {
+      "type": "text",
+      "id": "anchor",
+      "label": "Anchor",
+      "default": "convivia"
+    },
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Background",
+      "default": "d-bg--base",
+      "options": [
+        { "value": "d-bg--base", "label": "Default" },
+        { "value": "d-bg--tint", "label": "Tinted" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dottorini Convivia"
+    }
+  ]
+}
+{% endschema %}

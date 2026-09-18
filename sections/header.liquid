@@ -31,24 +31,15 @@
     {% comment %}
       Contact entries scroll to the footer, where the details already live.
       Remove the item from the menu in Shopify navigation to drop it entirely.
+      The Convivia link is a theme setting, not a menu item: it points at the
+      homepage anchor so it works from every page.
     {% endcomment %}
     <nav class="site-header__nav" aria-label="{{ section.settings.menu_label | escape }}">
-      {% for link in section.settings.menu.links %}
-        {%- liquid
-          assign href = link.url
-          if link.url contains '/pages/contact'
-            assign href = '#contatti'
-          endif
-        -%}
-        <a
-          href="{{ href }}"
-          {% if link.current and href != '#contatti' %}
-            aria-current="page"
-          {% endif %}
-        >
-          {{- link.title -}}
-        </a>
-      {% endfor %}
+      {% render 'header-nav-links',
+        menu: section.settings.menu,
+        extra_label: section.settings.extra_link_label,
+        extra_href: section.settings.extra_link_href
+      %}
     </nav>
 
     <div class="site-header__end">
@@ -59,23 +50,12 @@
         </summary>
 
         <nav class="site-header__drawer-panel" aria-label="{{ section.settings.menu_label | escape }}">
-          {% for link in section.settings.menu.links %}
-            {%- liquid
-              assign href = link.url
-              if link.url contains '/pages/contact'
-                assign href = '#contatti'
-              endif
-            -%}
-            <a
-              href="{{ href }}"
-              style="--i: {{ forloop.index0 }}"
-              {% if link.current and href != '#contatti' %}
-                aria-current="page"
-              {% endif %}
-            >
-              {{- link.title -}}
-            </a>
-          {% endfor %}
+          {% render 'header-nav-links',
+            menu: section.settings.menu,
+            extra_label: section.settings.extra_link_label,
+            extra_href: section.settings.extra_link_href,
+            stagger: true
+          %}
         </nav>
       </details>
 
@@ -614,6 +594,7 @@
 
       this.setUpDrawer();
       this.setUpSearch();
+      this.settleHashTarget();
 
       // The sentinel has to sit outside the sticky wrapper, in normal flow.
       const sticky = this.closest('.shopify-section-group-header-group') || this.closest('.shopify-section');
@@ -655,7 +636,35 @@
       };
 
       summary.addEventListener('click', this.closeDrawer);
+
+      // Anchor links (#contatti, /#convivia) stay on the page, so close the
+      // drawer or it would keep covering the section it just scrolled to.
+      this.closeOnLink = (event) => {
+        if (event.target.closest('a')) details.open = false;
+      };
+      panel.addEventListener('click', this.closeOnLink);
       this.drawer = { details, summary, panel };
+    }
+
+    // Arriving from another page on /#convivia or /#contatti: the browser's
+    // own jump can land short or be cancelled while images and fonts still
+    // shift the layout, so settle on the target once the page has loaded.
+    settleHashTarget() {
+      if (!location.hash) return;
+      const settle = () => {
+        let target;
+        try {
+          target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+        } catch (error) {
+          return;
+        }
+        if (!target) return;
+        const top = target.getBoundingClientRect().top;
+        const header = this.getBoundingClientRect().height;
+        if (Math.abs(top - header) > 40) target.scrollIntoView({ behavior: 'instant', block: 'start' });
+      };
+      if (document.readyState === 'complete') settle();
+      else window.addEventListener('load', settle, { once: true });
     }
 
     setUpSearch() {
@@ -687,6 +696,7 @@
       this.sentinel?.remove();
       if (this.drawer && this.closeDrawer) {
         this.drawer.summary.removeEventListener('click', this.closeDrawer);
+        this.drawer.panel.removeEventListener('click', this.closeOnLink);
       }
       if (this.search) {
         this.search.toggle.removeEventListener('click', this.openSearch);
@@ -736,6 +746,20 @@
       "id": "customer_account_menu",
       "label": "t:labels.customer_account_menu",
       "default": "customer-account-main-menu"
+    },
+    {
+      "type": "text",
+      "id": "extra_link_label",
+      "label": "Extra menu link",
+      "info": "Shown just before the contact entry. Leave blank to hide it.",
+      "default": "Convivia"
+    },
+    {
+      "type": "text",
+      "id": "extra_link_href",
+      "label": "Extra menu link target",
+      "info": "Use /#anchor for a homepage section, so it works from every page.",
+      "default": "/#convivia"
     },
     {
       "type": "header",

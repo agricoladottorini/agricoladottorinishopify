@@ -86,41 +86,18 @@
         "heading": "Tre olive, un solo blend d'equilibrio."
       }
     },
-    "origin": {
-      "type": "dottorini-origin",
-      "blocks": {
-        "fact-origin": {
-          "type": "fact",
-          "settings": {
-            "label": "Origine",
-            "value": "Umbria"
-          }
-        },
-        "fact-category": {
-          "type": "fact",
-          "settings": {
-            "label": "Categoria",
-            "value": "Extravergine"
-          }
-        },
-        "fact-harvest": {
-          "type": "fact",
-          "settings": {
-            "label": "Raccolta",
-            "value": "Ottobre, novembre"
-          }
-        }
-      },
-      "block_order": [
-        "fact-origin",
-        "fact-category",
-        "fact-harvest"
-      ],
+    "convivia": {
+      "type": "dottorini-convivia",
       "settings": {
-        "eyebrow": "Azienda Agricola Dottorini",
-        "heading": "Dalle colline dell'Umbria.",
-        "text": "<p>Un'azienda agricola di famiglia. Curiamo i nostri olivi a mano e seguiamo ogni bottiglia, dalla pianta alla tavola.</p>",
-        "anchor": "terra"
+        "eyebrow": "Dalla collina alla tavola",
+        "heading": "Convivia\nHome Restaurant",
+        "lede": "A casa nostra, a Collazzone, lo stesso olio diventa un'esperienza da vivere a tavola.",
+        "text": "Un home restaurant dove i piatti raccontano il territorio. Il modo più vero per conoscere il nostro olio è assaggiarlo dove nasce.",
+        "link_label": "Visita Convivia",
+        "link": "https://www.sumupbookings.com/convivia-home-restaurant",
+        "line_color": "#8A9A4B",
+        "anchor": "convivia",
+        "background": "d-bg--base"
       }
     }
   },
@@ -129,6 +106,6 @@
     "products",
     "statement",
     "journey",
-    "origin"
+    "convivia"
   ]
 }

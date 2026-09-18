@@ -12,7 +12,10 @@
 -%}
 
 <div class="section-band full-width {{ section.settings.background }}">
-<scroll-gallery class="d-journey section-space{% if as_row %} d-journey--row{% endif %}">
+<scroll-gallery
+  class="d-journey section-space{% if as_row %} d-journey--row{% endif %}"
+  id="{{ section.settings.anchor | default: 'terra' | handleize }}"
+>
   <div class="d-journey__head">
     {% if section.settings.heading != blank %}
       <h2 class="d-journey__heading reveal">{{ section.settings.heading }}</h2>
@@ -266,6 +269,13 @@
       "id": "heading",
       "label": "Heading",
       "default": "Tre olive, un solo blend d'equilibrio."
+    },
+    {
+      "type": "text",
+      "id": "anchor",
+      "label": "Anchor",
+      "info": "The hero's second button links here by default (#terra).",
+      "default": "terra"
     },
     {
       "type": "select",
