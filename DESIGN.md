@@ -121,19 +121,28 @@ Each section uses a different layout family on purpose. Nothing repeats.
 
 ## Other pages
 
+Catalogo, product and Museo are standalone pages (not homepage sections), so
+each opens directly under the sticky header with nothing above it. They share
+one heading (`<h1>`, one per page) and one top spacing value, the
+`.section-space--flush-top` utility in `assets/critical.css`
+(`padding-top: clamp(2rem, 6vw, 4rem)`, versus the `~5-9.5rem` rhythm between
+homepage sections) so the gap from the header to the page's first heading
+stays identical across all three. Apply it alongside `section-space` on the
+page's outer wrapper; do not duplicate the value locally.
+
 | File | What it is |
 | --- | --- |
-| `sections/collection.liquid` | Catalogo: 3 cards per row desktop, 2 from 700px, 1 on phones, paginated (12 per page) |
+| `sections/collection.liquid` | Catalogo: 3 cards per row desktop, 2 from 700px, 1 on phones, paginated (12 per page). Heading is a section setting (default "Prodotti"), not `collection.title`, because the nav points at `/collections/all`, Shopify's auto-generated "every product" collection, which has no editable title in admin. Leave the setting blank to fall back to `collection.title` on a real collection |
 | `sections/product.liquid` | Product page: thumbnail rail plus large image left, details right and sticky; quantity stepper beside the add button showing the price; expandable info rows as blocks. On phones the stepper becomes a full width bar above a full width button |
-| `sections/dottorini-museo.liquid`, `templates/page.museo.json` | Museo della Civiltà Contadina, a photo showroom for the family's small collection of rural life exhibits, on its own page (`/pages/museo`), not the homepage. Short heading and intro, then a bento grid of photo blocks (no captions, images carry it). The first block anchors a 2x2 tile, the rest are uniform 1x1 tiles placed by `grid-auto-flow: dense`, which works for any block count without leaving a gap, though the layout is designed for 5. Phones stack single column with per-position aspect ratios for rhythm. Optional button, hidden unless both a label and a link are set. **The page itself still needs creating**: Online Store > Pages > Add page, handle `museo`, template `page.museo` |
+| `sections/dottorini-museo.liquid`, `templates/page.museo.json` | Museo della Civiltà Contadina, a photo showroom for the family's small collection of rural life exhibits, on its own page (`/pages/museo`, template `page.museo`), not the homepage. Short heading and intro, then a bento grid of photo blocks (no captions, images carry it). The first block anchors a 2x2 tile, the rest are uniform 1x1 tiles placed by `grid-auto-flow: dense`, which works for any block count without leaving a gap, though the layout is designed for 5. Phones stack single column with per-position aspect ratios for rhythm. Optional button, hidden unless both a label and a link are set |
 | `sections/cart-drawer.liquid` | Cart as a floating rounded panel inset from the edges, not a page. Rendered on every page from `layout/theme.liquid` and refreshed through the Section Rendering API after each change |
+| `sections/cart.liquid` | The `/cart` page: a no-JavaScript fallback, rarely seen since the drawer handles normal use. Line items reuse the drawer's `.cart-item` classes directly (the drawer section renders on every page, so those styles are already loaded globally) rather than duplicating them, so the two can't drift apart. Quantity changes go through a plain number input plus one shared "Aggiorna carrello" submit, since this page has to work with JavaScript off; remove is a plain link to `item.url_to_remove` |
 
 Cart behaviour: the header cart icon opens the drawer (the link still points at
 `/cart` so it works without JavaScript), quick add opens it after a successful
 add, quantity changes and removals go through `/cart/change.js`, and a refused
 change (no stock left) shows an Italian message in place instead of navigating
-away. `/cart` itself is still Skeleton's unstyled page and is only reached
-without JavaScript.
+away.
 
 Supporting files: `snippets/product-card.liquid` (product card with quick add),
 `snippets/quick-add.liquid` (shared quick add styles and the `<quick-add>`
@@ -182,10 +191,6 @@ Preferences only affects the homepage. No brand name is hardcoded in the theme.
 - **Anchors.** The hero's second button ("La nostra terra") points at `#terra`,
   which now lives on the varieties section (it used to be the origin section).
   Convivia is at `#convivia`.
-- **Museo page not created yet.** The header's "Museo" link points at
-  `/pages/museo`, and `templates/page.museo.json` exists, but no Shopify Page
-  uses it yet: create one in Online Store > Pages (handle `museo`, template
-  `page.museo`), or the link 404s.
 - **Sample company details.** The Italian company block ships SAMPLE schema
   defaults in `sections/footer.liquid` (P. IVA `01234567890`, REA `PG 123456`,
   the Torgiano address, the phone number, the info email). Replace them with the

@@ -1,37 +1,267 @@
 {% comment %}
-  This section is used in the cart template to render /cart page with an
-  overview of the items in customer's cart.
-
-  https://shopify.dev/docs/storefronts/themes/architecture/templates/cart
+  The /cart page: a no-JavaScript fallback for the cart drawer (which is what
+  everyone with JavaScript actually uses). Reuses the drawer's .cart-item
+  classes for the line items, since the cart drawer section renders on every
+  page and those styles are already loaded globally, so the two always match.
+  Quantity changes go through a plain form (a number input plus one shared
+  "update" submit) rather than the drawer's live +/- buttons, since this page
+  has to work with JavaScript off.
 {% endcomment %}
 
-<h1>{{ 'cart.title' | t }}</h1>
+<div class="cart-page section-space section-space--flush-top">
+  <h1 class="cart-page__title">{{ section.settings.title }}</h1>
 
-<form action="{{ routes.cart_url }}" method="post">
-  <table>
-    {% for item in cart.items %}
-      <tr>
-        <td>
-          {% render 'image', image: item.image, url: item.url %}
-        </td>
-        <td>
-          <p>{{ item.product.title }}</p>
-          {{ 'cart.remove' | t | link_to: item.url_to_remove }}
-        </td>
-        <td>
-          <input type="text" name="updates[]" value="{{ item.quantity }}">
-          <input type="submit" value="{{ 'cart.update' | t }}">
-        </td>
-      </tr>
-    {% endfor %}
-  </table>
+  {% if cart.item_count == 0 %}
+    <div class="cart-page__empty">
+      <p>{{ section.settings.empty_text }}</p>
+      <a class="button" href="{{ routes.all_products_collection_url }}">{{ section.settings.empty_link_label }}</a>
+    </div>
+  {% else %}
+    <form action="{{ routes.cart_url }}" method="post" class="cart-page__form">
+      <ul class="cart-page__items" role="list">
+        {% for item in cart.items %}
+          <li class="cart-item">
+            <a class="cart-item__media" href="{{ item.url }}" tabindex="-1" aria-hidden="true">
+              {% if item.image %}
+                {{
+                  item.image
+                  | image_url: width: 300
+                  | image_tag: widths: '100, 160, 240, 300', sizes: '80px', loading: 'lazy', alt: item.image.alt
+                }}
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'cart-item__placeholder' }}
+              {% endif %}
+            </a>
 
-  <input type="submit" name="checkout" value="{{ 'cart.checkout' | t }}">
-</form>
+            <div class="cart-item__body">
+              <div class="cart-item__head">
+                <div>
+                  <p class="cart-item__title">
+                    <a href="{{ item.url }}">{{ item.product.title }}</a>
+                  </p>
+                  {% unless item.product.has_only_default_variant %}
+                    <p class="cart-item__variant">{{ item.variant.title }}</p>
+                  {% endunless %}
+                </div>
+                <p class="cart-item__price">{{ item.final_line_price | money }}</p>
+              </div>
+
+              <div class="cart-item__foot">
+                <label class="visually-hidden" for="quantity-{{ forloop.index }}">
+                  {{ section.settings.quantity_label }}
+                </label>
+                <input
+                  class="cart-page__quantity"
+                  type="number"
+                  id="quantity-{{ forloop.index }}"
+                  name="updates[{{ item.key }}]"
+                  value="{{ item.quantity }}"
+                  min="0"
+                  inputmode="numeric"
+                >
+                <a class="cart-item__remove" href="{{ item.url_to_remove }}">
+                  <span class="cart-item__remove-mark" aria-hidden="true"></span>
+                  <span class="visually-hidden">{{ section.settings.remove_label }}</span>
+                </a>
+              </div>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+
+      <footer class="cart-page__foot">
+        <button type="submit" class="button button--light button--small cart-page__update">
+          {{ section.settings.update_label }}
+        </button>
+
+        <div class="cart-page__subtotal">
+          <span>{{ section.settings.subtotal_label }}</span>
+          <span class="cart-page__total">{{ cart.total_price | money }}</span>
+        </div>
+        {% if section.settings.note != blank %}
+          <p class="cart-page__note">{{ section.settings.note }}</p>
+        {% endif %}
+        <button type="submit" name="checkout" class="button cart-page__checkout">
+          {{ section.settings.checkout_label }}
+        </button>
+      </footer>
+    </form>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .cart-page__title {
+    font-size: clamp(2.25rem, 5vw, 4.25rem);
+    letter-spacing: -0.04em;
+  }
+
+  .cart-page__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin-top: clamp(2rem, 4vw, 3rem);
+  }
+
+  /* Single column on phones. From 900px, items sit beside a sticky summary
+     card, the same 7fr/5fr split the product page uses. */
+  .cart-page__form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-top: clamp(2rem, 4vw, 3rem);
+  }
+
+  .cart-page__items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* Line items reuse .cart-item from the cart drawer (sections/cart-drawer.liquid),
+     which renders on every page, so the two stay visually identical. */
+  .cart-page__items .cart-item {
+    padding: 1.25rem 0;
+  }
+
+  .cart-page__quantity {
+    width: 4rem;
+    min-height: 2.5rem;
+    padding: 0 0.5rem;
+    border: 1px solid var(--color-surface-strong);
+    border-radius: var(--radius-pill);
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font: inherit;
+    font-size: 0.9375rem;
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+    -moz-appearance: textfield;
+  }
+
+  .cart-page__quantity::-webkit-outer-spin-button,
+  .cart-page__quantity::-webkit-inner-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+  }
+
+  .cart-page__quantity:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  .cart-item__remove {
+    text-decoration: none;
+  }
+
+  .cart-page__foot {
+    padding: 1.5rem;
+    border-radius: var(--radius-media);
+    background-color: var(--color-surface);
+  }
+
+  .cart-page__update {
+    margin-bottom: 1.5rem;
+  }
+
+  .cart-page__subtotal {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 1rem;
+  }
+
+  .cart-page__total {
+    font-size: 1.125rem;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .cart-page__note {
+    margin-top: 0.4rem;
+    font-size: 0.8125rem;
+    color: var(--color-muted);
+  }
+
+  .cart-page__checkout {
+    width: 100%;
+    min-height: 3.25rem;
+    margin-top: 1rem;
+  }
+
+  @media (min-width: 900px) {
+    .cart-page__form {
+      grid-template-columns: 7fr 5fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: start;
+    }
+
+    .cart-page__foot {
+      position: sticky;
+      top: calc(var(--header-height) + 2rem);
+    }
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
   "name": "t:general.cart",
-  "settings": []
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Il tuo carrello"
+    },
+    {
+      "type": "text",
+      "id": "quantity_label",
+      "label": "Quantity label (for screen readers)",
+      "default": "Quantità"
+    },
+    {
+      "type": "text",
+      "id": "update_label",
+      "label": "Update button label",
+      "default": "Aggiorna carrello"
+    },
+    {
+      "type": "text",
+      "id": "remove_label",
+      "label": "Remove label",
+      "default": "Rimuovi"
+    },
+    {
+      "type": "text",
+      "id": "subtotal_label",
+      "label": "Subtotal label",
+      "default": "Subtotale"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Note under the subtotal",
+      "default": "Spedizione e tasse calcolate al checkout."
+    },
+    {
+      "type": "text",
+      "id": "checkout_label",
+      "label": "Checkout label",
+      "default": "Vai al checkout"
+    },
+    {
+      "type": "text",
+      "id": "empty_text",
+      "label": "Empty text",
+      "default": "Non hai ancora aggiunto niente."
+    },
+    {
+      "type": "text",
+      "id": "empty_link_label",
+      "label": "Empty link label",
+      "default": "Vedi i prodotti"
+    }
+  ]
 }
 {% endschema %}

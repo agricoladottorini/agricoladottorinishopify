@@ -255,6 +255,13 @@ a {
   padding-block: var(--section-space);
 }
 
+/* Standalone pages (catalog, product, museo) open directly under the header
+   with nothing above them, so they use less top air than the rhythm between
+   homepage sections. One shared value keeps all of them in sync. */
+.section-space--flush-top {
+  padding-top: clamp(2rem, 6vw, 4rem);
+}
+
 /** Scroll reveal
  * Progressive enhancement with CSS scroll-driven animations: browsers
  * without support simply show the content. No scroll listeners.

@@ -5,9 +5,9 @@
   https://shopify.dev/docs/storefronts/themes/architecture/templates/collection
 {% endcomment %}
 
-<div class="collection section-space">
+<div class="collection section-space section-space--flush-top">
   <header class="collection__head">
-    <h1 class="collection__title">{{ collection.title }}</h1>
+    <h1 class="collection__title">{{ section.settings.heading | default: collection.title }}</h1>
     {% if collection.description != blank %}
       <div class="collection__text">{{ collection.description }}</div>
     {% endif %}
@@ -43,12 +43,6 @@
 </div>
 
 {% stylesheet %}
-  /* Less air above the title than the shared section rhythm: this page opens
-     right under the header, with nothing above it to breathe against. */
-  .collection.section-space {
-    padding-top: clamp(2rem, 6vw, 4rem);
-  }
-
   .collection__head {
     margin-bottom: clamp(2rem, 4vw, 3.5rem);
   }
@@ -111,6 +105,13 @@
 {
   "name": "t:general.collection",
   "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "info": "Leave blank to use the collection's own title. Needed for /collections/all, which Shopify generates automatically and has no editable title.",
+      "default": "Prodotti"
+    },
     {
       "type": "range",
       "id": "products_per_page",
