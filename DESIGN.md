@@ -110,7 +110,7 @@ Each section uses a different layout family on purpose. Nothing repeats.
 
 | File | Layout |
 | --- | --- |
-| `sections/header.liquid` | Sticky 3-column bar, 68px, blurred background. Mobile menu is a native `<details>`, which a small script closes when a link is tapped. Links come from `snippets/header-nav-links.liquid`, shared by the bar and the drawer: contact entries go to `#contatti`, and a theme-setting link ("Convivia" -> `/#convivia`, not a Shopify menu item) sits just before them. Arriving on a page with a hash, the header settles on the target once the page has loaded, because the browser's own jump was landing at the top |
+| `sections/header.liquid` | Sticky 3-column bar, 68px, blurred background. Mobile menu is a native `<details>`, which a small script closes when a link is tapped. Links come from `snippets/header-nav-links.liquid`, shared by the bar and the drawer: contact entries go to `#contatti`, and up to two theme-setting links ("Convivia" -> `/#convivia`, a homepage anchor, "Museo" -> `/pages/museo`, its own page, neither a Shopify menu item) sit just before them, in that order. Arriving on a page with a hash, the header settles on the target once the page has loaded, because the browser's own jump was landing at the top |
 | `sections/dottorini-hero.liquid` | Full-bleed framed photo, copy at the bottom over a gradient scrim, plus the decorative line |
 | `sections/dottorini-featured-products.liquid` | Asymmetric grid: one large card, two stacked beside it |
 | `sections/dottorini-manifesto.liquid` | Editorial statement, then the company text, up to three fact tiles (blocks: a big claim like "Raccolta a mano" with a small olive detail like "Ottobre-novembre") and the signature, beside one offset portrait image. From 900px the statement is limited to 7 columns because the image rises 8rem into its row. Fact tiles are light (`--color-background`) on the sand band, 14px radius like other cards, and stack on phones under ~400px so the detail never breaks at its hyphen |
@@ -125,6 +125,7 @@ Each section uses a different layout family on purpose. Nothing repeats.
 | --- | --- |
 | `sections/collection.liquid` | Catalogo: 3 cards per row desktop, 2 from 700px, 1 on phones, paginated (12 per page) |
 | `sections/product.liquid` | Product page: thumbnail rail plus large image left, details right and sticky; quantity stepper beside the add button showing the price; expandable info rows as blocks. On phones the stepper becomes a full width bar above a full width button |
+| `sections/dottorini-museo.liquid`, `templates/page.museo.json` | Museo della Civiltà Contadina, a photo showroom for the family's small collection of rural life exhibits, on its own page (`/pages/museo`), not the homepage. Short heading and intro, then a bento grid of photo blocks (no captions, images carry it). The first block anchors a 2x2 tile, the rest are uniform 1x1 tiles placed by `grid-auto-flow: dense`, which works for any block count without leaving a gap, though the layout is designed for 5. Phones stack single column with per-position aspect ratios for rhythm. Optional button, hidden unless both a label and a link are set. **The page itself still needs creating**: Online Store > Pages > Add page, handle `museo`, template `page.museo` |
 | `sections/cart-drawer.liquid` | Cart as a floating rounded panel inset from the edges, not a page. Rendered on every page from `layout/theme.liquid` and refreshed through the Section Rendering API after each change |
 
 Cart behaviour: the header cart icon opens the drawer (the link still points at
@@ -174,11 +175,17 @@ Preferences only affects the homepage. No brand name is hardcoded in the theme.
 - **Photos.** Products have no images and every image slot shows Shopify's
   placeholder. Needed: hero (landscape, 2400px or wider), statement (4:5),
   three olive varieties (4:5, e.g. the olives or the trees of each), Convivia (a table or a dish, 1600px or wider), product
-  packshots. Product cards default to `contain` because bottle packshots look
-  better uncropped; switch the section setting to `cover` for lifestyle shots.
+  packshots, five Museo exhibit photos (any orientation, the first block reads
+  larger so pick the strongest one for it). Product cards default to `contain`
+  because bottle packshots look better uncropped; switch the section setting
+  to `cover` for lifestyle shots.
 - **Anchors.** The hero's second button ("La nostra terra") points at `#terra`,
   which now lives on the varieties section (it used to be the origin section).
   Convivia is at `#convivia`.
+- **Museo page not created yet.** The header's "Museo" link points at
+  `/pages/museo`, and `templates/page.museo.json` exists, but no Shopify Page
+  uses it yet: create one in Online Store > Pages (handle `museo`, template
+  `page.museo`), or the link 404s.
 - **Sample company details.** The Italian company block ships SAMPLE schema
   defaults in `sections/footer.liquid` (P. IVA `01234567890`, REA `PG 123456`,
   the Torgiano address, the phone number, the info email). Replace them with the

@@ -2,21 +2,28 @@
   The header menu links, shared by the desktop bar and the phone drawer.
 
   - Contact entries scroll to the footer (#contatti), where the details live.
-  - An extra theme link (Convivia by default) is placed just before the
-    contact entry, or at the end when the menu has none.
+  - Up to two extra theme links (Convivia, then Museo by default) are placed
+    just before the contact entry, in that order, or at the end when the
+    menu has no contact entry.
 
   Accepts:
   - menu {Object}: the link list
-  - extra_label {String}: label of the extra link, blank to hide it
-  - extra_href {String}: where the extra link points
+  - extra_label {String}: label of the first extra link, blank to hide it
+  - extra_href {String}: where the first extra link points
+  - extra_label_2 {String}: label of the second extra link, blank to hide it
+  - extra_href_2 {String}: where the second extra link points
   - stagger {Boolean}: add the --i index the drawer uses for its entrance
 {% endcomment %}
 
 {%- liquid
   assign index = 0
   assign extra_done = false
+  assign extra2_done = false
   if extra_label == blank
     assign extra_done = true
+  endif
+  if extra_label_2 == blank
+    assign extra2_done = true
   endif
 -%}
 
@@ -38,6 +45,14 @@
     {%- assign extra_done = true -%}
   {%- endif -%}
 
+  {%- if is_contact and extra2_done == false -%}
+    <a href="{{ extra_href_2 }}" {% if stagger %}style="--i: {{ index }}"{% endif %}>
+      {{- extra_label_2 -}}
+    </a>
+    {%- assign index = index | plus: 1 -%}
+    {%- assign extra2_done = true -%}
+  {%- endif -%}
+
   <a
     href="{{ href }}"
     {% if stagger %}
@@ -55,5 +70,12 @@
 {%- if extra_done == false -%}
   <a href="{{ extra_href }}" {% if stagger %}style="--i: {{ index }}"{% endif %}>
     {{- extra_label -}}
+  </a>
+  {%- assign index = index | plus: 1 -%}
+{%- endif -%}
+
+{%- if extra2_done == false -%}
+  <a href="{{ extra_href_2 }}" {% if stagger %}style="--i: {{ index }}"{% endif %}>
+    {{- extra_label_2 -}}
   </a>
 {%- endif -%}

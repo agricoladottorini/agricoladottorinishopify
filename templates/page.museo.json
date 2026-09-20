@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "museo": {
+      "type": "dottorini-museo",
+      "blocks": {
+        "photo-1": { "type": "photo", "settings": {} },
+        "photo-2": { "type": "photo", "settings": {} },
+        "photo-3": { "type": "photo", "settings": {} },
+        "photo-4": { "type": "photo", "settings": {} },
+        "photo-5": { "type": "photo", "settings": {} }
+      },
+      "block_order": ["photo-1", "photo-2", "photo-3", "photo-4", "photo-5"],
+      "settings": {
+        "heading": "Il Museo della Civiltà Contadina",
+        "text": "Attrezzi, gesti e storie di chi ha lavorato questa terra prima di noi, raccolti in una piccola collezione a Collazzone.",
+        "anchor": "museo",
+        "background": "d-bg--base"
+      }
+    }
+  },
+  "order": ["museo"]
+}

@@ -38,7 +38,9 @@
       {% render 'header-nav-links',
         menu: section.settings.menu,
         extra_label: section.settings.extra_link_label,
-        extra_href: section.settings.extra_link_href
+        extra_href: section.settings.extra_link_href,
+        extra_label_2: section.settings.extra_link_label_2,
+        extra_href_2: section.settings.extra_link_href_2
       %}
     </nav>
 
@@ -54,6 +56,8 @@
             menu: section.settings.menu,
             extra_label: section.settings.extra_link_label,
             extra_href: section.settings.extra_link_href,
+            extra_label_2: section.settings.extra_link_label_2,
+            extra_href_2: section.settings.extra_link_href_2,
             stagger: true
           %}
         </nav>
@@ -757,6 +761,20 @@
       "label": "Extra menu link target",
       "info": "Use /#anchor for a homepage section, so it works from every page.",
       "default": "/#convivia"
+    },
+    {
+      "type": "text",
+      "id": "extra_link_label_2",
+      "label": "Extra menu link 2",
+      "info": "Shown right after the first extra link, still before contact.",
+      "default": "Museo"
+    },
+    {
+      "type": "text",
+      "id": "extra_link_href_2",
+      "label": "Extra menu link 2 target",
+      "info": "Any URL. Defaults to the Museo page (create it in Online Store > Pages with the \"museo\" template).",
+      "default": "/pages/museo"
     },
     {
       "type": "header",
