@@ -86,6 +86,13 @@
       },
       {
         "type": "color",
+        "id": "accent_light_color",
+        "default": "#CBD6AC",
+        "label": "Accent light",
+        "info": "Hover fill for light buttons and ghost controls."
+      },
+      {
+        "type": "color",
         "id": "muted_color",
         "default": "#5B6056",
         "label": "Muted text"

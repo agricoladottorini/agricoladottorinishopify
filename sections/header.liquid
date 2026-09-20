@@ -21,6 +21,11 @@
           | image_tag: class: 'site-header__logo', alt: shop.name, style: logo_style
         }}
       {% else %}
+        {%- comment -%}
+          The hill line from the footer, as the mark in front of the wordmark.
+          It is skipped when a logo is uploaded, because the logo is the mark.
+        {%- endcomment -%}
+        <span class="site-header__mark">{% render 'brand-line' %}</span>
         {%- if lead != blank -%}
           <span class="site-header__word site-header__word--lead">{{ lead }}</span>
         {%- endif -%}
@@ -174,6 +179,29 @@
   .site-header__logo {
     width: var(--logo-width);
     height: auto;
+  }
+
+  /* The brand mark, same line as the footer's. The brand row aligns on the
+     baseline, so the mark centres itself against the words instead. */
+  .site-header__mark {
+    display: inline-flex;
+    align-self: center;
+    flex: 0 0 auto;
+    margin-right: 0.5rem;
+    color: var(--color-accent);
+  }
+
+  .site-header__mark svg {
+    display: block;
+    width: clamp(2.4rem, 8vw, 3.4rem);
+    height: auto;
+  }
+
+  /* The line is drawn for the footer, where it is 88px wide. At a third of
+     that the 40 unit stroke thins out to about a pixel and disappears, so it
+     is drawn heavier here. Same path, same file, only the weight changes. */
+  .site-header__mark path {
+    stroke-width: 64;
   }
 
   /*

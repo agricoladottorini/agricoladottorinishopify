@@ -32,7 +32,8 @@ Explicitly ruled out by the owner:
 | --- | --- | --- |
 | `--color-background` | `#F5F6F2` | Page, a cool off-white with a faint green cast |
 | `--color-foreground` | `#1E221D` | Text, primary buttons |
-| `--color-accent` | `#56622F` | Deep olive. Hover states, eyebrow, cart badge |
+| `--color-accent` | `#56622F` | Deep olive. Hover fill for dark controls, eyebrow, cart badge |
+| `--color-accent-light` | `#CBD6AC` | Light sage. Hover fill for light and ghost controls |
 | `--color-muted` | `#5B6056` | Secondary text, meets WCAG AA |
 | `--color-surface` | `#ECEEE7` | Small product cards, footer |
 | `--color-surface-strong` | `#E1E6D5` | Large product card, image placeholders |
@@ -62,6 +63,15 @@ emphasis inside the same family, never a second font.
 are full pills, media and cards use `--radius-media` (14px). Nothing else is
 rounded.
 
+**Hover.** One rule too, and it follows the control's own fill, not the section
+behind it: anything dark deepens to `--color-accent`, anything light or ghosted
+fills with `--color-accent-light`. That covers the solid pill and quick add
+(dark), the light pill, the varieties arrows and every ghost icon control (cart
+close, quantity steppers, remove), and the Museo viewer controls, which sit on
+the near-black ground and so take the deep olive with cream text (about 6:1).
+The one exception is the hero's outline pill `.button--outline-light`: it is
+translucent over photography and stays as it is, at the owner's request.
+
 **Theme.** Light only, by request. The dark hero frame is a photo container,
 not a theme switch. The color tokens make dark mode straightforward to add
 later if it is ever wanted.
@@ -70,8 +80,13 @@ later if it is ever wanted.
 
 The hill line from the hero is the company mark. One path, reused everywhere:
 `snippets/brand-line.liquid` renders it inline in `currentColor` (deep olive),
-shown small above the footer copyright. The
-favicon (`assets/favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`, linked
+shown small above the footer copyright and again in the header, in front of the
+wordmark. At header size it is about 54px wide against the footer's 88px, which
+thins the path's 40 unit stroke to roughly a pixel, so the header draws it at
+64 instead (`.site-header__mark path`). Same path, same file, only the weight
+changes. It is skipped when a logo is uploaded, because the logo is the mark
+then, and it sits outside the collapsing wordmark so the scroll animation is
+untouched. The favicon (`assets/favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`, linked
 from `snippets/meta-tags.liquid`) is the same line in cream on an olive tile,
 vertically exaggerated so it still reads at 16px. The apple touch icon is a
 full square because iOS rounds the corners itself.
@@ -79,7 +94,6 @@ full square because iOS rounds the corners itself.
 Sources and exports (SVG, PNG, JPEG, `favicon.ico`) live in `brand/`, which is
 in `.shopifyignore`. Re-export with `sips`, e.g.
 `sips -s format png -Z 2000 brand/dottorini-linea.svg --out brand/dottorini-linea.png`.
-Not in the header on purpose: the animated wordmark is already the logo there.
 
 ## Motion
 
@@ -124,7 +138,7 @@ Each section uses a different layout family on purpose. Nothing repeats.
 
 | File | Layout |
 | --- | --- |
-| `sections/header.liquid` | Sticky 3-column bar, 68px, blurred background. Mobile menu is a native `<details>`, which a small script closes when a link is tapped. Links come from `snippets/header-nav-links.liquid`, shared by the bar and the drawer: contact entries go to `#contatti`, and up to two theme-setting links ("Convivia" -> `/#convivia`, a homepage anchor, "Museo" -> `/pages/museo`, its own page, neither a Shopify menu item) sit just before them, in that order. Arriving on a page with a hash, the header settles on the target once the page has loaded, because the browser's own jump was landing at the top |
+| `sections/header.liquid` | Sticky 3-column bar, 68px, blurred background. The brand line sits in front of the wordmark, centred against it while the words align on the baseline. Mobile menu is a native `<details>`, which a small script closes when a link is tapped. Links come from `snippets/header-nav-links.liquid`, shared by the bar and the drawer: contact entries go to `#contatti`, and up to two theme-setting links ("Convivia" -> `/#convivia`, a homepage anchor, "Museo" -> `/pages/museo`, its own page, neither a Shopify menu item) sit just before them, in that order. Arriving on a page with a hash, the header settles on the target once the page has loaded, because the browser's own jump was landing at the top |
 | `sections/dottorini-hero.liquid` | Full-bleed framed photo, copy at the bottom over a gradient scrim, plus the decorative line |
 | `sections/dottorini-featured-products.liquid` | Asymmetric grid: one large card, two stacked beside it |
 | `sections/dottorini-manifesto.liquid` | Editorial statement, then the company text, up to three fact tiles (blocks: a big claim like "Raccolta a mano" with a small olive detail like "Ottobre-novembre") and the signature, beside one offset portrait image. From 900px the statement is limited to 7 columns because the image rises 8rem into its row. Fact tiles are light (`--color-background`) on the sand band, 14px radius like other cards, and stack on phones under ~400px so the detail never breaks at its hyphen |

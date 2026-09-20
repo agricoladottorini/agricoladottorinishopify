@@ -232,8 +232,8 @@ a {
 }
 
 .button--light:hover {
-  background-color: var(--color-surface-strong);
-  border-color: var(--color-surface-strong);
+  background-color: var(--color-accent-light);
+  border-color: var(--color-accent-light);
 }
 
 /* Outline pill for use on top of photography, always paired with a scrim */
