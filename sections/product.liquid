@@ -182,6 +182,12 @@
 {% render 'quick-add' %}
 
 {% stylesheet %}
+  /* Less air above the gallery than the shared section rhythm: this page
+     opens right under the header, with nothing above it to breathe against. */
+  .product.section-space {
+    padding-top: clamp(2rem, 6vw, 4rem);
+  }
+
   .product {
     display: grid;
     grid-template-columns: 1fr;

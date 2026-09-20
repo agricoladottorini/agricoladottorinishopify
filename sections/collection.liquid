@@ -43,6 +43,12 @@
 </div>
 
 {% stylesheet %}
+  /* Less air above the title than the shared section rhythm: this page opens
+     right under the header, with nothing above it to breathe against. */
+  .collection.section-space {
+    padding-top: clamp(2rem, 6vw, 4rem);
+  }
+
   .collection__head {
     margin-bottom: clamp(2rem, 4vw, 3.5rem);
   }
