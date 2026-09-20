@@ -3,13 +3,109 @@
     "museo": {
       "type": "dottorini-museo",
       "blocks": {
-        "photo-1": { "type": "photo", "settings": {} },
-        "photo-2": { "type": "photo", "settings": {} },
-        "photo-3": { "type": "photo", "settings": {} },
-        "photo-4": { "type": "photo", "settings": {} },
-        "photo-5": { "type": "photo", "settings": {} }
+        "photo-1": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo-2": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo-3": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo-4": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo-5": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo-6": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo-7": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo-8": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo-9": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo-10": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo-11": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo-12": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo-13": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo-14": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo-15": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo-16": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo-17": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo-18": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo-19": {
+          "type": "photo",
+          "settings": {}
+        },
+        "photo-20": {
+          "type": "photo",
+          "settings": {}
+        }
       },
-      "block_order": ["photo-1", "photo-2", "photo-3", "photo-4", "photo-5"],
+      "block_order": [
+        "photo-1",
+        "photo-2",
+        "photo-3",
+        "photo-4",
+        "photo-5",
+        "photo-6",
+        "photo-7",
+        "photo-8",
+        "photo-9",
+        "photo-10",
+        "photo-11",
+        "photo-12",
+        "photo-13",
+        "photo-14",
+        "photo-15",
+        "photo-16",
+        "photo-17",
+        "photo-18",
+        "photo-19",
+        "photo-20"
+      ],
       "settings": {
         "heading": "Il Museo della Civiltà Contadina",
         "text": "Attrezzi, gesti e storie di chi ha lavorato questa terra prima di noi, raccolti in una piccola collezione a Collazzone.",
@@ -18,5 +114,7 @@
       }
     }
   },
-  "order": ["museo"]
+  "order": [
+    "museo"
+  ]
 }

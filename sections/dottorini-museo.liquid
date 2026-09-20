@@ -1,12 +1,26 @@
 {% comment %}
   Museo della Civiltà Contadina: a photo showroom for the family's small
-  collection of rural life exhibits. One anchor photo plus a grid of smaller
-  ones, no captions, the images carry the section. A different layout family
-  from the rest of the page (bento grid, not a split or a scroll gallery).
+  collection of rural life exhibits. One masonry archive of equal photos, and a
+  viewer to look at one up close. No photo is featured over the others: the
+  collection is a set of peers and the varied heights carry the rhythm.
+
+  The archive keeps each photo at its own aspect ratio instead of cropping it
+  into a tile: a scythe or a yoke is the wrong shape for a square, and the
+  collection is the content of this page. That also means the layout holds any
+  number of photos, from five to thirty, without being redrawn.
 {% endcomment %}
 
+{%- liquid
+  assign photo_count = 0
+  for block in section.blocks
+    if block.settings.image
+      assign photo_count = photo_count | plus: 1
+    endif
+  endfor
+-%}
+
 <div class="section-band full-width {{ section.settings.background }}">
-<div class="d-museo section-band__inner section-space section-space--flush-top" id="{{ section.settings.anchor | default: 'museo' | handleize }}">
+<museo-gallery class="d-museo section-band__inner section-space section-space--flush-top" id="{{ section.settings.anchor | default: 'museo' | handleize }}">
   <div class="d-museo__head reveal">
     {% if section.settings.heading != blank %}
       <h1 class="d-museo__heading">{{ section.settings.heading }}</h1>
@@ -30,36 +44,124 @@
   {% if section.blocks.size > 0 %}
     <ul class="d-museo__grid" role="list">
       {% for block in section.blocks %}
-        {% assign sizes = '(min-width: 900px) 22vw, 90vw' %}
-        {% if forloop.first %}
-          {% assign sizes = '(min-width: 900px) 45vw, 90vw' %}
-        {% endif %}
         <li class="d-museo__item reveal" {{ block.shopify_attributes }}>
-          <div class="d-museo__photo">
-            {% if block.settings.image %}
-              {% assign image_position = 'object-position: ' | append: block.settings.image.presentation.focal_point %}
+          {% if block.settings.image %}
+            {%- liquid
+              assign ratio = 'aspect-ratio: ' | append: block.settings.image.aspect_ratio
+              assign full = block.settings.image | image_url: width: 2400
+
+              assign label = 'Apri la foto'
+              if block.settings.image.alt != blank
+                assign label = 'Apri la foto: ' | append: block.settings.image.alt
+              endif
+
+              # The top of the first column is the likeliest LCP element, and
+              # the first three are on screen on any desktop.
+              assign loading = 'lazy'
+              assign priority = 'auto'
+              if forloop.index <= 3
+                assign loading = 'eager'
+              endif
+              if forloop.first
+                assign priority = 'high'
+              endif
+            -%}
+            <button
+              type="button"
+              class="d-museo__tile d-museo__frame"
+              style="{{ ratio }}"
+              data-museo-open
+              data-museo-full="{{ full }}"
+              data-museo-alt="{{ block.settings.image.alt | escape }}"
+              aria-label="{{ label | escape }}"
+            >
               {{
                 block.settings.image
-                | image_url: width: 1200
+                | image_url: width: 1400
                 | image_tag:
-                  widths: '400, 600, 900, 1200',
-                  sizes: sizes,
-                  loading: 'lazy',
-                  alt: block.settings.image.alt,
-                  style: image_position
+                  widths: '300, 500, 700, 1000, 1400',
+                  sizes: '(min-width: 1100px) 31vw, (min-width: 560px) 45vw, 92vw',
+                  loading: loading,
+                  fetchpriority: priority,
+                  alt: block.settings.image.alt
               }}
-            {% else %}
+            </button>
+          {% else %}
+            <div class="d-museo__frame d-museo__frame--empty">
               {{ 'image' | placeholder_svg_tag: 'd-museo__placeholder' }}
-            {% endif %}
-          </div>
+            </div>
+          {% endif %}
         </li>
       {% endfor %}
     </ul>
+
+    {% comment %}
+      The load animation has to know which photos are on screen, and in a
+      multicol layout only layout can say: the DOM order runs down each column,
+      so the third photo in the markup is not the third one you see. This runs
+      inline, while the page is still parsing, because the section's own script
+      is deferred and would first let the photos paint and then hide them
+      again to animate them in. Everything below the fold is left alone and
+      rides the shared `.reveal` scroll animation instead.
+    {% endcomment %}
+    <script>
+      (function () {
+        var gallery = document.currentScript.parentElement;
+        var parts = Array.prototype.slice
+          .call(gallery.querySelectorAll('.d-museo__head, .d-museo__item'))
+          .map(function (element) {
+            return { element: element, box: element.getBoundingClientRect() };
+          })
+          .filter(function (part) {
+            return part.box.top < window.innerHeight && part.box.bottom > 0;
+          })
+          .sort(function (a, b) {
+            return a.box.top - b.box.top || a.box.left - b.box.left;
+          });
+
+        parts.forEach(function (part, index) {
+          part.element.style.setProperty('--museo-spawn-index', index);
+          part.element.setAttribute('data-museo-spawn', '');
+        });
+      })();
+    </script>
+
+    {% if photo_count > 0 %}
+      <dialog class="d-museo__viewer" data-museo-viewer aria-label="{{ section.settings.heading | escape }}">
+        <div class="d-museo__stage" data-museo-stage>
+          <img class="d-museo__viewer-image" data-museo-image alt="" />
+        </div>
+
+        <button type="button" class="d-museo__viewer-close" data-museo-close>
+          <span class="d-museo__close-mark" aria-hidden="true"></span>
+          <span class="visually-hidden">Chiudi</span>
+        </button>
+
+        {% if photo_count > 1 %}
+          <div class="d-museo__viewer-bar">
+            <button type="button" class="d-museo__nav" data-museo-step="-1" aria-label="Foto precedente">
+              <span aria-hidden="true">&larr;</span>
+            </button>
+            <p class="d-museo__viewer-count">
+              <span data-museo-current>1</span> di {{ photo_count }}
+            </p>
+            <button type="button" class="d-museo__nav" data-museo-step="1" aria-label="Foto successiva">
+              <span aria-hidden="true">&rarr;</span>
+            </button>
+          </div>
+        {% endif %}
+      </dialog>
+    {% endif %}
   {% endif %}
-</div>
+</museo-gallery>
 </div>
 
 {% stylesheet %}
+  .d-museo {
+    --museo-gap: clamp(1rem, 2.2vw, 1.75rem);
+    display: block;
+  }
+
   .d-museo__head {
     max-width: 46ch;
   }
@@ -78,40 +180,60 @@
     margin-top: 1.75rem;
   }
 
-  /* One anchor photo, taller than the rest, then a stack of smaller ones.
-     Single column on phones with a bit of rhythm per position. */
+  /* Masonry archive: columns, so every photo keeps its own shape. Column gaps
+     come from `column-gap`, row gaps from the item margin, and the negative
+     margin below cancels the trailing one under the shortest column. */
   .d-museo__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    margin: clamp(2.5rem, 5vw, 4rem) 0 0;
+    margin: clamp(2.5rem, 5vw, 4rem) 0 calc(var(--museo-gap) * -1);
     padding: 0;
     list-style: none;
+    columns: 1;
+    column-gap: var(--museo-gap);
   }
 
-  .d-museo__photo {
+  .d-museo__item {
+    break-inside: avoid;
+    margin-bottom: var(--museo-gap);
+  }
+
+  @media (min-width: 560px) {
+    .d-museo__grid {
+      columns: 2;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .d-museo__grid {
+      columns: 3;
+    }
+  }
+
+  .d-museo__frame {
+    display: block;
     position: relative;
     overflow: hidden;
+    width: 100%;
+    padding: 0;
+    border: 0;
     border-radius: var(--radius-media);
     background-color: var(--color-surface-strong);
+  }
+
+  /* Empty slots have no photo to take a shape from, so they cycle through three
+     ratios and the grid still reads as an archive before the owner fills it. */
+  .d-museo__frame--empty {
     aspect-ratio: 4 / 5;
   }
 
-  /* Rhythm on phones only: nth-child specificity would otherwise beat the
-     desktop aspect-ratio: auto reset below and leave gaps in the grid. */
-  @media (max-width: 899px) {
-    .d-museo__item:nth-child(2) .d-museo__photo,
-    .d-museo__item:nth-child(5) .d-museo__photo {
-      aspect-ratio: 16 / 10;
-    }
-
-    .d-museo__item:nth-child(3) .d-museo__photo,
-    .d-museo__item:nth-child(4) .d-museo__photo {
-      aspect-ratio: 1 / 1;
-    }
+  .d-museo__item:nth-child(3n + 1) .d-museo__frame--empty {
+    aspect-ratio: 1 / 1;
   }
 
-  .d-museo__photo img,
+  .d-museo__item:nth-child(3n + 2) .d-museo__frame--empty {
+    aspect-ratio: 16 / 11;
+  }
+
+  .d-museo__frame img,
   .d-museo__placeholder {
     position: absolute;
     inset: 0;
@@ -124,35 +246,287 @@
     fill: rgb(30 34 29 / 0.14);
   }
 
-  /* From 900px: the first photo anchors a 2x2 block, the rest fill in around
-     it as a bento grid. Works for any block count, not just five: dense
-     packing fills gaps left to right with no holes. */
-  @media (min-width: 900px) {
-    .d-museo__grid {
-      grid-template-columns: repeat(4, 1fr);
-      grid-auto-rows: clamp(9rem, 12vw, 12rem);
-      grid-auto-flow: dense;
-      gap: 1.25rem;
+  .d-museo__tile {
+    cursor: zoom-in;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .d-museo__tile img {
+    transition: transform 0.6s var(--ease-out), filter 0.4s var(--ease-out);
+  }
+
+  @media (hover: hover) {
+    .d-museo__tile:hover img {
+      transform: scale(1.035);
+      filter: brightness(1.04);
+    }
+  }
+
+  /** The spawn
+   * Everything below the fold rides the shared `.reveal` scroll animation, but
+   * that leaves the first screen with nothing to do: those photos are already
+   * in view, so the timeline hands them their finished state. They get a load
+   * animation instead, dealt out in the order they are read, top row first.
+   * The element marks them, because in a multicol layout the DOM order runs
+   * down each column and says nothing about where a photo actually sits.
+   *
+   * Desktop only: on a phone the archive is one column, the wall scrolls past
+   * quickly and the reveal is enough.
+   */
+  @media (min-width: 700px) and (prefers-reduced-motion: no-preference) {
+    .d-museo__head[data-museo-spawn],
+    .d-museo__item[data-museo-spawn] {
+      animation: museo-spawn 0.8s var(--ease-out) both;
+      animation-timeline: auto;
+      animation-delay: calc(var(--museo-spawn-index, 0) * 70ms);
     }
 
-    .d-museo__item:first-child {
-      grid-column: span 2;
-      grid-row: span 2;
+    /* The photo settles out of a slight zoom inside its frame, the same move
+       the hero image makes. `backwards` rather than `both` so the fill
+       releases the transform and hover works again once it has landed. */
+    .d-museo__item[data-museo-spawn] img {
+      animation: museo-settle 1.1s var(--ease-out) backwards;
+      animation-delay: calc(var(--museo-spawn-index, 0) * 70ms);
+    }
+  }
+
+  @keyframes museo-spawn {
+    from {
+      opacity: 0;
+      transform: translateY(2.25rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes museo-settle {
+    from {
+      transform: scale(1.07);
+    }
+    to {
+      transform: none;
+    }
+  }
+
+  /** The viewer
+   * A native <dialog>, so Escape, the backdrop and focus return are the
+   * browser's job. Only the photo, one counter and the controls.
+   */
+  .d-museo__viewer {
+    position: fixed;
+    inset: 0;
+    display: none;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    padding: 0;
+    border: 0;
+    background-color: rgb(20 24 18);
+    color: var(--color-background);
+    overflow: hidden;
+  }
+
+  .d-museo__viewer[open] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .d-museo__viewer::backdrop {
+    background-color: rgb(20 24 18 / 0.7);
+  }
+
+  /* The stage is a flex item of a full-height column, so its own height is
+     definite and the photo can simply fill it and letterbox itself. A
+     max-height percentage against an auto-sized grid row would be cyclic and
+     is dropped, which let tall photos run off the bottom. */
+  .d-museo__stage {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: clamp(1rem, 4vw, 3rem);
+    padding-bottom: 0;
+    cursor: zoom-out;
+  }
+
+  .d-museo__viewer-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .d-museo__viewer-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: clamp(1rem, 3vw, 1.75rem);
+    padding-bottom: max(clamp(1rem, 3vw, 1.75rem), env(safe-area-inset-bottom));
+  }
+
+  .d-museo__viewer-count {
+    margin: 0;
+    min-width: 6ch;
+    color: rgb(245 246 242 / 0.72);
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+  }
+
+  .d-museo__nav,
+  .d-museo__viewer-close {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    border: 1px solid rgb(245 246 242 / 0.5);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--color-background);
+    font: inherit;
+    font-size: 1.125rem;
+    cursor: pointer;
+    transition: background-color 0.3s var(--ease-out), color 0.3s var(--ease-out), border-color 0.3s var(--ease-out),
+      transform 0.2s var(--ease-out);
+  }
+
+  /* The page's olive focus ring has too little contrast on the viewer's
+     near-black ground, so inside it the ring switches to the cream. */
+  .d-museo__viewer :focus-visible {
+    outline-color: var(--color-background);
+  }
+
+  .d-museo__nav:hover,
+  .d-museo__viewer-close:hover {
+    background-color: var(--color-background);
+    border-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  .d-museo__nav:active,
+  .d-museo__viewer-close:active {
+    transform: scale(0.96);
+  }
+
+  .d-museo__viewer-close {
+    position: absolute;
+    top: clamp(0.75rem, 2vw, 1.25rem);
+    right: clamp(0.75rem, 2vw, 1.25rem);
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .d-museo__close-mark,
+  .d-museo__close-mark::before {
+    display: block;
+    width: 0.9rem;
+    height: 2px;
+    border-radius: 2px;
+    background-color: currentcolor;
+  }
+
+  .d-museo__close-mark {
+    transform: rotate(45deg);
+  }
+
+  .d-museo__close-mark::before {
+    content: '';
+    transform: rotate(90deg);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .d-museo__viewer[open] {
+      animation: museo-fade 0.3s var(--ease-out);
     }
 
-    .d-museo__photo {
-      height: 100%;
-      aspect-ratio: auto;
+    .d-museo__viewer[open]::backdrop {
+      animation: museo-fade 0.3s var(--ease-out);
+    }
+  }
+
+  @keyframes museo-fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
     }
   }
 {% endstylesheet %}
+
+{% javascript %}
+  class MuseoGallery extends HTMLElement {
+    connectedCallback() {
+      this.viewer = this.querySelector('[data-museo-viewer]');
+      this.tiles = Array.from(this.querySelectorAll('[data-museo-open]'));
+      this.image = this.viewer?.querySelector('[data-museo-image]');
+      if (!this.viewer || !this.image || !this.tiles.length) return;
+
+      this.counter = this.viewer.querySelector('[data-museo-current]');
+      this.index = 0;
+
+      this.onOpen = (event) => {
+        this.show(this.tiles.indexOf(event.currentTarget));
+        if (!this.viewer.open) this.viewer.showModal();
+      };
+      this.tiles.forEach((tile) => tile.addEventListener('click', this.onOpen));
+
+      this.onStep = (event) => this.show(this.index + Number(event.currentTarget.dataset.museoStep));
+      this.steps = this.viewer.querySelectorAll('[data-museo-step]');
+      this.steps.forEach((step) => step.addEventListener('click', this.onStep));
+
+      this.onKey = (event) => {
+        if (event.key === 'ArrowRight') this.show(this.index + 1);
+        if (event.key === 'ArrowLeft') this.show(this.index - 1);
+      };
+      this.viewer.addEventListener('keydown', this.onKey);
+
+      // The photo fills the stage and letterboxes itself, so there is no
+      // reliable "outside the photo" to click. Anything that is not a control
+      // closes the viewer instead, which the zoom-out cursor advertises.
+      this.onDismiss = (event) => {
+        if (event.target.closest('.d-museo__viewer-bar, [data-museo-close]')) return;
+        this.viewer.close();
+      };
+      this.viewer.addEventListener('click', this.onDismiss);
+
+      this.close = this.viewer.querySelector('[data-museo-close]');
+      this.onClose = () => this.viewer.close();
+      this.close?.addEventListener('click', this.onClose);
+    }
+
+    // Stagger the load animation over whatever is on screen, in reading order.
+    // The CSS decides whether it runs at all; this only hands out the indexes.
+    show(index) {
+      const count = this.tiles.length;
+      this.index = ((index % count) + count) % count;
+      const tile = this.tiles[this.index];
+      this.image.src = tile.dataset.museoFull;
+      this.image.alt = tile.dataset.museoAlt || '';
+      if (this.counter) this.counter.textContent = this.index + 1;
+    }
+
+    disconnectedCallback() {
+      this.tiles?.forEach((tile) => tile.removeEventListener('click', this.onOpen));
+      this.steps?.forEach((step) => step.removeEventListener('click', this.onStep));
+      this.viewer?.removeEventListener('keydown', this.onKey);
+      this.viewer?.removeEventListener('click', this.onDismiss);
+      this.close?.removeEventListener('click', this.onClose);
+    }
+  }
+
+  if (!customElements.get('museo-gallery')) customElements.define('museo-gallery', MuseoGallery);
+{% endjavascript %}
 
 {% schema %}
 {
   "name": "Dottorini museo",
   "tag": "section",
   "class": "d-museo-section",
-  "max_blocks": 6,
+  "max_blocks": 30,
   "settings": [
     {
       "type": "text",
@@ -206,7 +580,7 @@
           "type": "image_picker",
           "id": "image",
           "label": "Image",
-          "info": "The first photo anchors the grid and reads larger than the rest."
+          "info": "Every photo keeps its own shape, so any orientation works. No photo is featured over the others."
         }
       ]
     }
@@ -215,6 +589,7 @@
     {
       "name": "Dottorini museo",
       "blocks": [
+        { "type": "photo" },
         { "type": "photo" },
         { "type": "photo" },
         { "type": "photo" },

@@ -102,6 +102,20 @@ Not in the header on purpose: the animated wordmark is already the logo there.
 - Quick add: the + morphs into a check (two bars becoming an L, rotated) with a
   small pop, then returns after 1.8s.
 - Cart drawer: slides in from the right, backdrop fades.
+- Museo spawn: on desktop the heading and the photos already on screen rise and
+  fade in one after another, 70ms apart, each photo settling out of a slight
+  zoom the way the hero image does. Everything below the fold rides the shared
+  `.reveal` scroll animation instead. The order has to be measured, because in
+  a multicol layout the DOM runs down each column and says nothing about where
+  a photo sits, so a small inline script marks the on-screen parts with their
+  reading-order index. It is inline, not in the section's `{% javascript %}`
+  bundle, because that bundle is deferred: it would let the photos paint and
+  then hide them again to animate them in. Phones keep the plain reveal.
+- Museo viewer: the photo fades in with its ground. Arrows and the arrow keys
+  step through the collection and wrap at both ends, a counter says where you
+  are, and any click outside the controls closes it, which the `zoom-out`
+  cursor advertises. Inside the viewer the focus ring switches to the cream,
+  because the page's olive ring has too little contrast on the dark ground.
 - Everything collapses to static under `prefers-reduced-motion: reduce`.
 
 ## Section layouts
@@ -134,7 +148,7 @@ page's outer wrapper; do not duplicate the value locally.
 | --- | --- |
 | `sections/collection.liquid` | Catalogo: 3 cards per row desktop, 2 from 700px, 1 on phones, paginated (12 per page). Heading is a section setting (default "Prodotti"), not `collection.title`, because the nav points at `/collections/all`, Shopify's auto-generated "every product" collection, which has no editable title in admin. Leave the setting blank to fall back to `collection.title` on a real collection |
 | `sections/product.liquid` | Product page: thumbnail rail plus large image left, details right and sticky; quantity stepper beside the add button showing the price; expandable info rows as blocks. On phones the stepper becomes a full width bar above a full width button |
-| `sections/dottorini-museo.liquid`, `templates/page.museo.json` | Museo della Civiltà Contadina, a photo showroom for the family's small collection of rural life exhibits, on its own page (`/pages/museo`, template `page.museo`), not the homepage. Short heading and intro, then a bento grid of photo blocks (no captions, images carry it). The first block anchors a 2x2 tile, the rest are uniform 1x1 tiles placed by `grid-auto-flow: dense`, which works for any block count without leaving a gap, though the layout is designed for 5. Phones stack single column with per-position aspect ratios for rhythm. Optional button, hidden unless both a label and a link are set |
+| `sections/dottorini-museo.liquid`, `templates/page.museo.json` | Museo della Civiltà Contadina, a photo showroom for the family's small collection of rural life exhibits, on its own page (`/pages/museo`, template `page.museo`), not the homepage. Short heading and intro, then one masonry archive. No photo is featured over the others (the owner turned down a large opening plate): the collection is a set of peers and the varied heights carry the rhythm. The archive is CSS `columns`, 3 from 1100px, 2 from 560px, 1 on phones, and each photo keeps its own `aspect_ratio` rather than being cropped into a tile: a scythe or a yoke is the wrong shape for a square. Column gaps come from `column-gap`, row gaps from the item margin, and a negative bottom margin cancels the trailing one. No captions, images carry it. Clicking a photo opens it in a viewer, a native `<dialog>` so Escape, focus return and inertness are the browser's job. The layout holds any block count, from 5 to the 30 the schema allows; the template ships 20 empty slots. Optional button, hidden unless both a label and a link are set |
 | `sections/cart-drawer.liquid` | Cart as a floating rounded panel inset from the edges, not a page. Rendered on every page from `layout/theme.liquid` and refreshed through the Section Rendering API after each change |
 | `sections/cart.liquid` | The `/cart` page: a no-JavaScript fallback, rarely seen since the drawer handles normal use. Line items reuse the drawer's `.cart-item` classes directly (the drawer section renders on every page, so those styles are already loaded globally) rather than duplicating them, so the two can't drift apart. Quantity changes go through a plain number input plus one shared "Aggiorna carrello" submit, since this page has to work with JavaScript off; remove is a plain link to `item.url_to_remove` |
 
@@ -184,8 +198,8 @@ Preferences only affects the homepage. No brand name is hardcoded in the theme.
 - **Photos.** Products have no images and every image slot shows Shopify's
   placeholder. Needed: hero (landscape, 2400px or wider), statement (4:5),
   three olive varieties (4:5, e.g. the olives or the trees of each), Convivia (a table or a dish, 1600px or wider), product
-  packshots, five Museo exhibit photos (any orientation, the first block reads
-  larger so pick the strongest one for it). Product cards default to `contain`
+  packshots, about 20 Museo exhibit photos (any orientation, nothing is cropped,
+  every photo keeps its own shape). Product cards default to `contain`
   because bottle packshots look better uncropped; switch the section setting
   to `cover` for lifestyle shots.
 - **Anchors.** The hero's second button ("La nostra terra") points at `#terra`,
