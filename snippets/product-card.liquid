@@ -1,34 +1,18 @@
 {% doc %}
-  Renders a product card with image, title, price and an optional quick add
-  control. Products with more than one variant link to the product page
-  instead of adding the first variant.
-
-  Quick add posts to the cart with fetch, so the shopper stays on the page.
-  Without JavaScript the form submits normally and lands on the cart.
+  Renders a product card with image, title and price. The whole card links
+  to the product page — there's no buy control on it.
 
   @param {product} product - The product to render
   @param {boolean} [featured] - Large card variant, image above the text
   @param {boolean} [split] - Compact variant with the image beside the text from 900px
   @param {string} [image_fit] - 'contain' or 'cover', defaults to 'contain'
-  @param {boolean} [show_quick_add] - Shows the add to cart control
-  @param {string} [add_style] - 'label' for a text button, 'plus' for the round + button
-  @param {string} [add_label] - Accessible label of the add control
-  @param {string} [added_label] - Message announced after a successful add
-  @param {string} [error_label] - Message announced when the add fails
-  @param {string} [choose_label] - Label of the link for multi-variant products
-  @param {string} [sold_out_label] - Label shown when the product is sold out
 
   @example
-  {% render 'product-card', product: product, show_quick_add: true, add_style: 'plus' %}
+  {% render 'product-card', product: product %}
 {% enddoc %}
 
 {% liquid
   assign fit = image_fit | default: 'contain'
-  assign style = add_style | default: 'label'
-  assign variant = product.selected_or_first_available_variant
-  assign add = add_label | default: 'Aggiungi'
-  assign added = added_label | default: 'Aggiunto al carrello'
-  assign error = error_label | default: 'Non ha funzionato, riprova'
 
   if featured
     assign image_sizes = '(min-width: 900px) 55vw, 100vw'
@@ -70,53 +54,18 @@
       {% endunless %}
     </div>
 
-    <div class="product-card__buy">
-      <p class="product-card__price">
-        {% if product.compare_at_price > product.price %}
-          <s class="product-card__compare">{{ product.compare_at_price | money }}</s>
-        {% endif %}
-        {% if product.price_varies %}
-          da {{ product.price_min | money }}
-        {% else %}
-          {{ product.price | money }}
-        {% endif %}
-      </p>
-
-      {% if show_quick_add %}
-        {% if product.available == false %}
-          <span class="button button--small" aria-disabled="true" data-disabled>
-            {{- sold_out_label | default: 'Esaurito' -}}
-          </span>
-        {% elsif product.has_only_default_variant %}
-          <quick-add
-            class="quick-add quick-add--{{ style }}"
-            data-add-url="{{ routes.cart_add_url }}"
-            data-added="{{ added | escape }}"
-            data-error="{{ error | escape }}"
-          >
-            {% form 'product', product, class: 'quick-add__form' %}
-              <input type="hidden" name="id" value="{{ variant.id }}">
-              {% if style == 'plus' %}
-                <button type="submit" class="quick-add__button" aria-label="{{ add | escape }}">
-                  <span class="quick-add__icon" aria-hidden="true"></span>
-                </button>
-              {% else %}
-                <button type="submit" class="button button--small">{{ add }}</button>
-              {% endif %}
-            {% endform %}
-            <span class="visually-hidden" role="status" data-quick-add-status></span>
-          </quick-add>
-        {% else %}
-          <a class="button button--small" href="{{ product.url }}">
-            {{- choose_label | default: 'Scegli' -}}
-          </a>
-        {% endif %}
+    <p class="product-card__price">
+      {% if product.compare_at_price > product.price %}
+        <s class="product-card__compare">{{ product.compare_at_price | money }}</s>
       {% endif %}
-    </div>
+      {% if product.price_varies %}
+        da {{ product.price_min | money }}
+      {% else %}
+        {{ product.price | money }}
+      {% endif %}
+    </p>
   </div>
 </article>
-
-{% render 'quick-add' %}
 
 {% stylesheet %}
   .product-card {
@@ -196,13 +145,6 @@
     color: var(--color-muted);
   }
 
-  .product-card__buy {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-  }
-
   .product-card__price {
     font-size: 1rem;
     font-variant-numeric: tabular-nums;
@@ -211,13 +153,6 @@
   .product-card__compare {
     margin-right: 0.35rem;
     color: var(--color-muted);
-  }
-
-  .product-card [data-disabled] {
-    cursor: not-allowed;
-    background-color: transparent;
-    color: var(--color-muted);
-    border-color: var(--color-muted);
   }
 
   /* Compact cards on the landing page sit beside their image from 900px up */

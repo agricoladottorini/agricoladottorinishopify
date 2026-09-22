@@ -98,6 +98,10 @@
       data-add-url="{{ routes.cart_add_url }}"
       data-added="{{ section.settings.added_label | escape }}"
       data-error="{{ section.settings.error_label | escape }}"
+      data-stock-error="{{ section.settings.stock_error_label | escape }}"
+      {% if variant.inventory_management == 'shopify' %}
+        data-inventory-quantity="{{ variant.inventory_quantity }}"
+      {% endif %}
     >
       {% form 'product', product, class: 'product__form' %}
         {% unless product.has_only_default_variant %}
@@ -139,6 +143,9 @@
               name="quantity"
               value="1"
               min="1"
+              {% if variant.inventory_management == 'shopify' %}
+                max="{{ variant.inventory_quantity | at_least: 1 }}"
+              {% endif %}
               inputmode="numeric"
               aria-label="{{ section.settings.quantity_label }}"
             >
@@ -662,7 +669,8 @@
       this.onClick = (event) => {
         const step = Number(event.currentTarget.dataset.step);
         const min = Number(this.input.min || 1);
-        const next = Math.max(min, (Number(this.input.value) || min) + step);
+        const max = this.input.max ? Number(this.input.max) : Infinity;
+        const next = Math.min(max, Math.max(min, (Number(this.input.value) || min) + step));
         this.input.value = next;
         this.input.dispatchEvent(new Event('change', { bubbles: true }));
         this.sync();
@@ -670,9 +678,14 @@
 
       this.sync = () => {
         const min = Number(this.input.min || 1);
-        const value = Number(this.input.value) || min;
+        const max = this.input.max ? Number(this.input.max) : Infinity;
+        // A shopper can still type a number past the stock ceiling; clamp it
+        // back in line rather than letting the add fail later.
+        const value = Math.min(max, Math.max(min, Number(this.input.value) || min));
+        if (value !== Number(this.input.value)) this.input.value = value;
         this.buttons.forEach((button) => {
           if (Number(button.dataset.step) < 0) button.disabled = value <= min;
+          else button.disabled = value >= max;
         });
       };
 
@@ -718,6 +731,12 @@
       "id": "error_label",
       "label": "Error message",
       "default": "Non ha funzionato, riprova."
+    },
+    {
+      "type": "text",
+      "id": "stock_error_label",
+      "label": "Out of stock message",
+      "default": "Non c'è altra disponibilità per questo prodotto."
     },
     {
       "type": "text",

@@ -138,13 +138,45 @@
         this.classList.add('is-loading');
 
         try {
+          const formData = new FormData(this.form);
+
+          // Some variants stay "available" even past their real stock
+          // (continue-selling policy), and /cart/add.js happily oversells
+          // them, so the stock ceiling from Liquid is enforced here rather
+          // than trusting the server to refuse the request.
+          if (this.dataset.inventoryQuantity !== undefined) {
+            const limit = Number(this.dataset.inventoryQuantity);
+            const requested = Number(formData.get('quantity')) || 1;
+            const inCart = await this.quantityInCart(formData.get('id'));
+            if (requested > limit - inCart) {
+              this.classList.remove('is-loading');
+              this.classList.add('is-error');
+              if (this.status) this.status.textContent = this.dataset.stockError || this.dataset.error || '';
+              this.timer = setTimeout(() => this.classList.remove('is-error'), 2500);
+              return;
+            }
+          }
+
           const url = `${this.dataset.addUrl || '/cart/add'}.js`;
           const response = await fetch(url, {
             method: 'POST',
             headers: { Accept: 'application/json' },
-            body: new FormData(this.form),
+            body: formData,
           });
-          if (!response.ok) throw new Error(`Cart responded ${response.status}`);
+
+          if (!response.ok) {
+            // Shopify refuses the add when the requested quantity outgrows
+            // stock (422). Say so with the same message the cart drawer
+            // uses, rather than a generic failure.
+            this.classList.remove('is-loading');
+            this.classList.add('is-error');
+            const isStockError = response.status === 422;
+            if (this.status) {
+              this.status.textContent = (isStockError && this.dataset.stockError) || this.dataset.error || '';
+            }
+            this.timer = setTimeout(() => this.classList.remove('is-error'), 2500);
+            return;
+          }
 
           this.classList.remove('is-loading');
           this.classList.add('is-done');
@@ -166,6 +198,21 @@
       };
 
       this.form.addEventListener('submit', this.onSubmit);
+    }
+
+    // Sums what's already in the cart for this variant, so a second add
+    // is checked against what's actually still available, not the full stock.
+    async quantityInCart(variantId) {
+      try {
+        const response = await fetch('/cart.js', { headers: { Accept: 'application/json' } });
+        if (!response.ok) return 0;
+        const cart = await response.json();
+        return cart.items
+          .filter((item) => String(item.variant_id) === String(variantId))
+          .reduce((total, item) => total + item.quantity, 0);
+      } catch (error) {
+        return 0;
+      }
     }
 
     // Keeps the header badge in step without reloading the page

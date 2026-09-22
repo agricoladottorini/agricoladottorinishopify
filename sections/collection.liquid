@@ -1,6 +1,7 @@
 {% comment %}
   Collection listing: three products per row on desktop, two on tablets and
-  one on phones. Cards match the landing page, with a round + quick add.
+  one on phones. Cards match the landing page — no buy control, the whole
+  card links to the product page.
 
   https://shopify.dev/docs/storefronts/themes/architecture/templates/collection
 {% endcomment %}
@@ -20,14 +21,7 @@
           <li class="collection__item reveal">
             {% render 'product-card',
               product: product,
-              image_fit: section.settings.image_fit,
-              show_quick_add: section.settings.show_quick_add,
-              add_style: 'plus',
-              add_label: section.settings.add_label,
-              added_label: section.settings.added_label,
-              error_label: section.settings.error_label,
-              choose_label: section.settings.choose_label,
-              sold_out_label: section.settings.sold_out_label
+              image_fit: section.settings.image_fit
             %}
           </li>
         {% endfor %}
@@ -130,42 +124,6 @@
         { "value": "contain", "label": "Contain (bottle packshots)" },
         { "value": "cover", "label": "Cover (photos)" }
       ]
-    },
-    {
-      "type": "checkbox",
-      "id": "show_quick_add",
-      "label": "Show quick add button",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "add_label",
-      "label": "Add button label (for screen readers)",
-      "default": "Aggiungi al carrello"
-    },
-    {
-      "type": "text",
-      "id": "added_label",
-      "label": "Added message",
-      "default": "Aggiunto al carrello"
-    },
-    {
-      "type": "text",
-      "id": "error_label",
-      "label": "Error message",
-      "default": "Non ha funzionato, riprova"
-    },
-    {
-      "type": "text",
-      "id": "choose_label",
-      "label": "Choose options label",
-      "default": "Scegli"
-    },
-    {
-      "type": "text",
-      "id": "sold_out_label",
-      "label": "Sold out label",
-      "default": "Esaurito"
     },
     {
       "type": "text",

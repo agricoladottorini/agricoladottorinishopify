@@ -35,12 +35,6 @@
           "test"
         ],
         "image_fit": "contain",
-        "show_quick_add": true,
-        "add_label": "Aggiungi",
-        "added_label": "Aggiunto al carrello",
-        "error_label": "Non ha funzionato, riprova",
-        "choose_label": "Scegli",
-        "sold_out_label": "Esaurito",
         "anchor": "oli",
         "background": "d-bg--base"
       }
