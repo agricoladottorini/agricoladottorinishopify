@@ -14,3 +14,8 @@
 
 # Brand source files (logo, icons), not part of the theme
 brand/*
+
+# Docs for developers and agents, not part of the theme
+AGENTS.md
+CLAUDE.md
+DESIGN.md
