@@ -1,0 +1,68 @@
+{% doc %}
+  Outputs schema.org Organization data (JSON-LD) so search engines can read
+  the company's name, logo, address and contacts. Every value comes from the
+  footer's company settings, so editing them in the theme editor updates this
+  too. Nothing is hardcoded except the logo, which is the brand mark.
+
+  The address is split on its first comma or middle dot, following the format
+  the footer asks for ("Street, postcode town (province)"). If it does not match, the whole
+  string is sent as the street, which is still valid.
+
+  @param {string} name - Brand name, shown to customers
+  @param {string} [legal_name] - Registered company name
+  @param {string} [address] - Registered address, e.g. "Via Roma 1, 06089 Torgiano (PG)"
+  @param {string} [phone] - Phone number
+  @param {string} [email] - Contact email
+  @param {string} [vat] - Partita IVA
+
+  @example
+  {% render 'organization-structured-data', name: shop.name, legal_name: section.settings.company_name, address: section.settings.address, phone: section.settings.phone, email: section.settings.email, vat: section.settings.vat %}
+{% enddoc %}
+
+{%- liquid
+  assign normalized = address | replace: '·', ','
+  assign street = normalized | split: ',' | first | strip
+  assign rest = normalized | remove_first: street | remove_first: ',' | strip
+  assign postal_code = ''
+  assign locality = rest
+  assign region = ''
+
+  if rest contains '('
+    assign region = rest | split: '(' | last | remove: ')' | strip
+    assign locality = rest | split: '(' | first | strip
+  endif
+
+  assign first_word = locality | split: ' ' | first
+  assign digits = first_word | remove: '0' | remove: '1' | remove: '2' | remove: '3' | remove: '4' | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9'
+  if first_word.size == 5 and digits == blank
+    assign postal_code = first_word
+    assign locality = locality | remove_first: first_word | strip
+  endif
+
+  assign phone_clean = phone | remove: ' '
+  assign logo_url = 'apple-touch-icon.png' | asset_url | prepend: 'https:'
+-%}
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": {{ name | json }},
+    "url": {{ request.origin | append: routes.root_url | json }},
+    "logo": {{ logo_url | json }}
+    {%- if legal_name != blank -%}, "legalName": {{ legal_name | json }}{%- endif -%}
+    {%- if vat != blank -%}, "vatID": {{ vat | prepend: 'IT' | json }}{%- endif -%}
+    {%- if phone_clean != blank -%}, "telephone": {{ phone_clean | json }}{%- endif -%}
+    {%- if email != blank -%}, "email": {{ email | json }}{%- endif -%}
+    {%- if address != blank -%},
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": {{ street | json }},
+        {%- if postal_code != blank %} "postalCode": {{ postal_code | json }},{% endif %}
+        {%- if locality != blank %} "addressLocality": {{ locality | json }},{% endif %}
+        {%- if region != blank %} "addressRegion": {{ region | json }},{% endif %}
+        "addressCountry": "IT"
+      }
+    {%- endif %}
+  }
+</script>

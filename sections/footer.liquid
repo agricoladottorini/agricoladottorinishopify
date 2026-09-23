@@ -38,6 +38,22 @@
   endif
 -%}
 
+{% comment %}
+  Company data for search engines, homepage only. Held back while the
+  Partita IVA is still the schema's sample value, so placeholder details
+  are never published as real ones.
+{% endcomment %}
+{%- if request.page_type == 'index' and section.settings.vat != '01234567890' -%}
+  {% render 'organization-structured-data',
+    name: shop.name,
+    legal_name: section.settings.company_name,
+    address: section.settings.address,
+    phone: section.settings.phone,
+    email: section.settings.email,
+    vat: section.settings.vat
+  %}
+{%- endif -%}
+
 <footer id="contatti" class="site-footer full-width {{ section.settings.background }}">
   <div class="site-footer__inner">
     <div class="site-footer__top">
