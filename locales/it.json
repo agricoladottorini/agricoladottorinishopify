@@ -7,4 +7,55 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{}
+{
+  "404": {
+    "title": "404",
+    "not_found": "Pagina non trovata.",
+    "back_to_shopping": "Torna allo shop"
+  },
+  "blog": {
+    "article_comments": "Commenti",
+    "article_metadata_html": "{{ date }} di {{ author }}",
+    "comment_form_body": "Commento",
+    "comment_form_email": "Email",
+    "comment_form_name": "Nome",
+    "comment_form_submit": "Pubblica",
+    "comment_form_title": "Aggiungi un commento"
+  },
+  "cart": {
+    "checkout": "Vai alla cassa",
+    "title": "Carrello",
+    "update": "Aggiorna",
+    "remove": "Rimuovi"
+  },
+  "customers": {
+    "login": {
+      "email": "Email",
+      "password": "Password",
+      "submit": "Accedi",
+      "title": "Accedi"
+    }
+  },
+  "collections": {
+    "title": "Collezioni"
+  },
+  "gift_card": {
+    "add_to_apple_wallet": "Aggiungi ad Apple Wallet",
+    "card": "Carta regalo",
+    "expired": "Questa carta regalo è scaduta",
+    "expires_on": "Scade il {{ expires_on }}",
+    "use_at_checkout": "Usa questa carta regalo alla cassa"
+  },
+  "password": {
+    "title": "Questo negozio è privato",
+    "password": "Password",
+    "enter": "Entra"
+  },
+  "search": {
+    "title": "Cerca",
+    "placeholder": "Cerca articoli, pagine o prodotti",
+    "submit": "Cerca",
+    "no_results_html": "Nessun risultato per {{ terms }}",
+    "results_for_html": "{{ count }} risultati per {{ terms }}"
+  }
+}
