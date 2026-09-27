@@ -1,160 +1,128 @@
-<h1 align="center" style="position: relative;">
-  <br>
-    <img src="./assets/shoppy-x-ray.svg" alt="logo" width="200">
-  <br>
-  Shopify Skeleton Theme
-</h1>
-
-A minimal, carefully structured Shopify theme designed to help you quickly get started. Designed with modularity, maintainability, and Shopify's best practices in mind.
-
 <p align="center">
-  <a href="./LICENSE.md"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License"></a>
-  <a href="./actions/workflows/ci.yml"><img alt="CI" src="https://github.com/Shopify/skeleton-theme/actions/workflows/ci.yml/badge.svg"></a>
+  <img src="./brand/dottorini-social-1200x628.png" alt="Agricola Dottorini, olio extravergine nato in Umbria" width="720">
 </p>
+
+# Agricola Dottorini, Shopify theme
+
+The storefront theme for Azienda Agricola Dottorini: olive oil from Umbria, sold
+direct to consumers. It started from the [Shopify Skeleton theme](https://github.com/Shopify/skeleton-theme)
+and has been rebuilt around one idea: minimal, light and airy, with big images,
+very little copy and restrained motion.
+
+The storefront is in Italian. Design decisions, tokens and known gotchas live in
+[DESIGN.md](./DESIGN.md). Instructions for coding agents live in [AGENTS.md](./AGENTS.md).
 
 ## Getting started
 
 ### Prerequisites
 
-Before starting, ensure you have the latest Shopify CLI installed:
+- [Shopify CLI](https://shopify.dev/docs/api/shopify-cli)
+- Optional: the [Shopify Liquid VS Code extension](https://shopify.dev/docs/storefronts/themes/tools/shopify-liquid-vscode)
 
-- [Shopify CLI](https://shopify.dev/docs/api/shopify-cli) – helps you download, upload, preview themes, and streamline your workflows
-
-If you use VS Code:
-
-- [Shopify Liquid VS Code Extension](https://shopify.dev/docs/storefronts/themes/tools/shopify-liquid-vscode) – provides syntax highlighting, linting, inline documentation, and auto-completion specifically designed for Liquid templates
-
-### Clone
-
-Clone this repository using Git or Shopify CLI:
+### Local development
 
 ```bash
-git clone git@github.com:Shopify/skeleton-theme.git
-# or
-shopify theme init
+shopify theme dev --store=fijxgy-0c.myshopify.com
 ```
 
-### Preview
+This serves the theme at http://127.0.0.1:9292 and hot-reloads on save. Add
+`--theme-editor-sync` while the store owner is editing in the theme editor, so
+their changes are written back to the local JSON files instead of being
+overwritten on the next push.
 
-Preview this theme using Shopify CLI:
+### Lint
+
+Run before handing work over:
 
 ```bash
-shopify theme dev
+shopify theme check
+```
+
+## What's in the theme
+
+### Homepage
+
+| Section                       | What it is                                                                               |
+| ----------------------------- | ---------------------------------------------------------------------------------------- |
+| `dottorini-hero`              | Full-bleed framed photo, copy over a scrim, and the hill line drawing itself once        |
+| `dottorini-featured-products` | Asymmetric grid: one large product card, two stacked beside it                           |
+| `dottorini-manifesto`         | Editorial statement, company text, fact tiles and an offset portrait on a warm sand band |
+| `dottorini-journey`           | "Dottorini varietà": the three olives in the blend (Moraiolo, Frantoiano, Leccino)       |
+| `dottorini-convivia`          | Convivia, the family's home restaurant, as one large dark card with booking link         |
+
+### Other pages
+
+| File                              | What it is                                                                                       |
+| --------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `sections/collection.liquid`      | Catalogo, a paginated product grid                                                               |
+| `sections/product.liquid`         | Product page with thumbnail rail, sticky details and quantity stepper                            |
+| `sections/dottorini-museo.liquid` | Museo della Civiltà Contadina, a masonry photo archive with a `<dialog>` viewer (`/pages/museo`) |
+| `sections/cart-drawer.liquid`     | Floating cart panel, refreshed through the Section Rendering API                                 |
+| `sections/cart.liquid`            | `/cart` page, the no-JavaScript fallback                                                         |
+
+### Shared pieces
+
+- `snippets/product-card.liquid` and `snippets/quick-add.liquid`: one product card in three shapes (featured, split, stacked) with a quick add button
+- `snippets/brand-line.liquid`: the hill line, the company mark, used in the header and footer
+- `snippets/css-variables.liquid` and `assets/critical.css`: color tokens, reset, buttons, spacing and the scroll reveal
+
+## Visual language
+
+| Token        | Value     | Use                            |
+| ------------ | --------- | ------------------------------ |
+| Background   | `#F5F6F2` | Cool off-white page            |
+| Foreground   | `#1E221D` | Text, primary buttons          |
+| Accent       | `#56622F` | Deep olive, the one accent     |
+| Accent light | `#CBD6AC` | Light sage hover fill          |
+| Tint         | `#EDE4D1` | Warm sand, story sections only |
+
+Type is Outfit at 400 and 500, no serif. Buttons and inputs are full pills,
+media and cards use a 14px radius, nothing else is rounded. Motion collapses to
+static under `prefers-reduced-motion`. Full details in [DESIGN.md](./DESIGN.md).
+
+## Brand assets
+
+Sources and exports of the mark live in [`brand/`](./brand), which is excluded
+from theme uploads by `.shopifyignore`.
+
+| File                                                    | Use                                      |
+| ------------------------------------------------------- | ---------------------------------------- |
+| `dottorini-linea.svg` / `-chiara.svg`                   | The hill line, olive and light versions  |
+| `dottorini-icona.svg`, `dottorini-icona-512.png`        | Square icon, cream line on an olive tile |
+| `dottorini-social-1200x628.png` / `.jpg`                | Social share image (the one above)       |
+| `favicon.ico`, `favicon-32.png`, `apple-touch-icon.png` | Favicon exports                          |
+
+Re-export with `sips`, for example:
+
+```bash
+sips -s format png -Z 2000 brand/dottorini-linea.svg --out brand/dottorini-linea.png
 ```
 
 ## Theme architecture
 
 ```bash
 .
-├── assets          # Stores static assets (CSS, JS, images, fonts, etc.)
-├── blocks          # Reusable, nestable, customizable UI components
-├── config          # Global theme settings and customization options
-├── layout          # Top-level wrappers for pages (layout templates)
-├── locales         # Translation files for theme internationalization
-├── sections        # Modular full-width page components
-├── snippets        # Reusable Liquid code or HTML fragments
-└── templates       # Templates combining sections to define page structures
+├── assets          # critical.css, favicons and other static files
+├── blocks          # Reusable, nestable theme blocks
+├── brand           # Brand source files (not uploaded to Shopify)
+├── config          # Global theme settings
+├── layout          # theme.liquid and password.liquid
+├── locales         # Translations (storefront is Italian)
+├── sections        # Page sections, dottorini-* are the custom ones
+├── snippets        # Shared Liquid fragments
+└── templates       # JSON templates, incl. page.museo.json
 ```
 
-To learn more, refer to the [theme architecture documentation](https://shopify.dev/docs/storefronts/themes/architecture).
+Component CSS and JavaScript live in each file's `{% stylesheet %}` and
+`{% javascript %}` tags. Only what every page needs goes in `assets/critical.css`.
 
-### Templates
+## Editor content and git
 
-[Templates](https://shopify.dev/docs/storefronts/themes/architecture/templates#template-types) control what's rendered on each type of page in a theme.
-
-The Skeleton Theme scaffolds [JSON templates](https://shopify.dev/docs/storefronts/themes/architecture/templates/json-templates) to make it easy for merchants to customize their store.
-
-None of the template types are required, and not all of them are included in the Skeleton Theme. Refer to the [template types reference](https://shopify.dev/docs/storefronts/themes/architecture/templates#template-types) for a full list.
-
-### Sections
-
-[Sections](https://shopify.dev/docs/storefronts/themes/architecture/sections) are Liquid files that allow you to create reusable modules of content that can be customized by merchants. They can also include blocks which allow merchants to add, remove, and reorder content within a section.
-
-Sections are made customizable by including a `{% schema %}` in the body. For more information, refer to the [section schema documentation](https://shopify.dev/docs/storefronts/themes/architecture/sections/section-schema).
-
-### Blocks
-
-[Blocks](https://shopify.dev/docs/storefronts/themes/architecture/blocks) let developers create flexible layouts by breaking down sections into smaller, reusable pieces of Liquid. Each block has its own set of settings, and can be added, removed, and reordered within a section.
-
-Blocks are made customizable by including a `{% schema %}` in the body. For more information, refer to the [block schema documentation](https://shopify.dev/docs/storefronts/themes/architecture/blocks/theme-blocks/schema).
-
-## Schemas
-
-When developing components defined by schema settings, we recommend these guidelines to simplify your code:
-
-- **Single property settings**: For settings that correspond to a single CSS property, use CSS variables:
-
-  ```liquid
-  <div class="collection" style="--gap: {{ block.settings.gap }}px">
-    ...
-  </div>
-
-  {% stylesheet %}
-    .collection {
-      gap: var(--gap);
-    }
-  {% endstylesheet %}
-
-  {% schema %}
-  {
-    "settings": [{
-      "type": "range",
-      "label": "gap",
-      "id": "gap",
-      "min": 0,
-      "max": 100,
-      "unit": "px",
-      "default": 0,
-    }]
-  }
-  {% endschema %}
-  ```
-
-- **Multiple property settings**: For settings that control multiple CSS properties, use CSS classes:
-
-  ```liquid
-  <div class="collection {{ block.settings.layout }}">
-    ...
-  </div>
-
-  {% stylesheet %}
-    .collection--full-width {
-      /* multiple styles */
-    }
-    .collection--narrow {
-      /* multiple styles */
-    }
-  {% endstylesheet %}
-
-  {% schema %}
-  {
-    "settings": [{
-      "type": "select",
-      "id": "layout",
-      "label": "layout",
-      "values": [
-        { "value": "collection--full-width", "label": "t:options.full" },
-        { "value": "collection--narrow", "label": "t:options.narrow" }
-      ]
-    }]
-  }
-  {% endschema %}
-  ```
-
-## CSS & JavaScript
-
-For CSS and JavaScript, we recommend using the [`{% stylesheet %}`](https://shopify.dev/docs/api/liquid/tags#stylesheet) and [`{% javascript %}`](https://shopify.dev/docs/api/liquid/tags/javascript) tags. They can be included multiple times, but the code will only appear once.
-
-### `critical.css`
-
-The Skeleton Theme explicitly separates essential CSS necessary for every page into a dedicated `critical.css` file.
-
-## Contributing
-
-We're excited for your contributions to the Skeleton Theme! This repository aims to remain as lean, lightweight, and fundamental as possible, and we kindly ask your contributions to align with this intention.
-
-Visit our [CONTRIBUTING.md](./CONTRIBUTING.md) for a detailed overview of our process, guidelines, and recommendations.
+Changes the owner makes in the theme editor are saved on Shopify
+(`templates/*.json`, `sections/*-group.json`, `config/settings_data.json`), not
+in git. Pull them before pushing, or push with those paths ignored, otherwise
+they get overwritten.
 
 ## License
 
-Skeleton Theme is open-sourced under the [MIT](./LICENSE.md) License.
+Built on the Shopify Skeleton theme, released under the [MIT](./LICENSE.md) License.
