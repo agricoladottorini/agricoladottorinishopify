@@ -9,9 +9,6 @@
   if section.settings.fiscal_code != blank
     assign has_legal = true
   endif
-  if section.settings.rea != blank
-    assign has_legal = true
-  endif
   if section.settings.share_capital != blank
     assign has_legal = true
   endif
@@ -158,12 +155,6 @@
           <div class="site-footer__legal-item">
             <dt>Codice fiscale</dt>
             <dd>{{ section.settings.fiscal_code }}</dd>
-          </div>
-        {% endif %}
-        {% if section.settings.rea != blank %}
-          <div class="site-footer__legal-item">
-            <dt>{{ section.settings.rea_label }}</dt>
-            <dd>{{ section.settings.rea }}</dd>
           </div>
         {% endif %}
         {% if section.settings.share_capital != blank %}
@@ -547,19 +538,6 @@
       "id": "fiscal_code",
       "label": "Codice fiscale",
       "info": "Leave empty if it matches the Partita IVA."
-    },
-    {
-      "type": "text",
-      "id": "rea_label",
-      "label": "REA label",
-      "default": "REA"
-    },
-    {
-      "type": "text",
-      "id": "rea",
-      "label": "REA or Registro Imprese number",
-      "info": "SAMPLE value, replace it before publishing.",
-      "default": "PG 123456"
     },
     {
       "type": "text",

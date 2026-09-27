@@ -220,7 +220,7 @@ Preferences only affects the homepage. No brand name is hardcoded in the theme.
   which now lives on the varieties section (it used to be the origin section).
   Convivia is at `#convivia`.
 - **Sample company details.** The Italian company block ships SAMPLE schema
-  defaults in `sections/footer.liquid` (P. IVA `01234567890`, REA `PG 123456`,
+  defaults in `sections/footer.liquid` (P. IVA `01234567890`,
   the Torgiano address, the phone number, the info email). Replace them with the
   real details before publishing. They live as schema defaults, not in
   `sections/footer-group.json`, because Shopify's GitHub sync lets the theme

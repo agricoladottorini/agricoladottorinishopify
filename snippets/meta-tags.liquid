@@ -92,11 +92,11 @@
 >
 
 <title>
-  {{ page_title }}
+  {{ og_title }}
   {%- if current_tags %} - tag "{{ current_tags | join: ', ' }}"{% endif -%}
   {%- if current_page != 1 %} - Pagina {{ current_page }}{% endif -%}
   {%- comment -%} The landing page shows the title on its own {%- endcomment -%}
-  {%- unless request.page_type == 'index' or page_title contains site_name %} - {{ site_name }}{% endunless -%}
+  {%- unless request.page_type == 'index' or og_title contains site_name %} - {{ site_name }}{% endunless -%}
 </title>
 
 <link
