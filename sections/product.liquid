@@ -25,10 +25,14 @@
                 aria-current="true"
               {% endif %}
             >
+              {%- comment -%}
+                Eager: the rail sits in the first screen and the files are
+                tiny, so lazy loading only risked empty thumbnails
+              {%- endcomment -%}
               {{
                 media.preview_image
                 | image_url: width: 400
-                | image_tag: widths: '120, 200, 300, 400', sizes: '80px', loading: 'lazy', alt: media.alt
+                | image_tag: widths: '120, 200, 300, 400', sizes: '80px', loading: 'eager', alt: media.alt
               }}
             </button>
           {% endfor %}
