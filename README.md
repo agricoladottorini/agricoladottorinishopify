@@ -76,7 +76,7 @@ shopify theme check
 | Accent light | `#CBD6AC` | Light sage hover fill          |
 | Tint         | `#EDE4D1` | Warm sand, story sections only |
 
-Type is Outfit at 400 and 500, no serif. Buttons and inputs are full pills,
+Type is Hanken Grotesk for text and UI, Marcellus for headings and Cormorant Garamond italic for emphasis, all self-hosted in `assets/`. Buttons and inputs are full pills,
 media and cards use a 14px radius, nothing else is rounded. Motion collapses to
 static under `prefers-reduced-motion`. Full details in [DESIGN.md](./DESIGN.md).
 

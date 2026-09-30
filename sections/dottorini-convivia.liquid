@@ -87,20 +87,20 @@
 
   .d-convivia__heading {
     font-size: clamp(2.25rem, 5vw, 4rem);
-    line-height: 1.02;
-    letter-spacing: -0.035em;
+    line-height: 1.05;
     color: var(--convivia-ink);
   }
 
-  /* Emphasis stays in the same family: Outfit italic, not a second font */
+  /* Italic lede in the accent serif, a size up for Cormorant's small x-height */
   .d-convivia__lede {
     max-width: 30ch;
     margin-top: 1.5rem;
     padding-bottom: 0.1em;
-    font-size: clamp(1.1875rem, 1.9vw, 1.5rem);
+    font-family: var(--font-accent--family);
+    font-size: clamp(1.375rem, 2.2vw, 1.75rem);
     font-style: italic;
-    line-height: 1.35;
-    letter-spacing: -0.01em;
+    font-weight: 500;
+    line-height: 1.3;
   }
 
   .d-convivia__text {

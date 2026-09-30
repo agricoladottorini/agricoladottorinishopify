@@ -73,7 +73,7 @@ p:empty {
 
 /** Theme styles below */
 body {
-  font-family: var(--font-primary--family);
+  font-family: var(--font-body--family);
   background-color: var(--color-background);
   color: var(--color-foreground);
 }
@@ -149,14 +149,37 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Type: Hanken Grotesk for text and UI, Marcellus for headings and display
+   lines, Cormorant Garamond italic for emphasis inside them. Marcellus has one
+   weight and no italic, and no weight or style is ever synthesised. */
+html {
+  font-synthesis: none;
+}
+
 h1,
 h2,
 h3,
-h4 {
-  font-weight: 500;
-  letter-spacing: -0.025em;
-  line-height: 1.08;
+h4,
+.type-display {
+  font-family: var(--font-heading--family);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
   text-wrap: balance;
+}
+
+/* Cormorant's x-height is small next to Marcellus, so it runs a size up */
+:is(h1, h2, h3, h4, .type-display) em,
+.type-accent {
+  font-family: var(--font-accent--family);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+:is(h1, h2, h3, h4, .type-display) em {
+  font-size: 1.12em;
+  line-height: 0.9;
 }
 
 a {

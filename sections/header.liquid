@@ -1,14 +1,4 @@
-{%- liquid
-  assign wordmark = section.settings.wordmark | default: shop.name
-  assign words = wordmark | strip | split: ' '
-  assign tail = words | last
-  assign lead = ''
-  if words.size > 1
-    assign lead_count = words.size | minus: 1
-    assign lead_words = words | slice: 0, lead_count
-    assign lead = lead_words | join: ' '
-  endif
--%}
+{%- assign wordmark = section.settings.wordmark | default: shop.name -%}
 
 <site-header>
   <header class="site-header">
@@ -26,27 +16,24 @@
           It is skipped when a logo is uploaded, because the logo is the mark.
         {%- endcomment -%}
         <span class="site-header__mark">{% render 'brand-line' %}</span>
-        {%- if lead != blank -%}
-          <span class="site-header__word site-header__word--lead">{{ lead }}</span>
-        {%- endif -%}
-        <span class="site-header__word site-header__word--tail">{{ tail }}</span>
+        <span class="site-header__words">
+          <span class="site-header__name">{{ wordmark }}</span>
+          {%- if section.settings.tagline != blank -%}
+            <span class="site-header__tagline">
+              <span>{{ section.settings.tagline }}</span>
+            </span>
+          {%- endif -%}
+        </span>
       {% endif %}
     </a>
 
     {% comment %}
-      Contact entries scroll to the footer, where the details already live.
-      Remove the item from the menu in Shopify navigation to drop it entirely.
-      The Convivia link is a theme setting, not a menu item: it points at the
-      homepage anchor so it works from every page.
+      The links are section settings, not a Shopify menu. Homepage sections
+      are linked as /#anchor so they work from every page, and Contatti
+      scrolls to the footer (#contatti), where the details already live.
     {% endcomment %}
     <nav class="site-header__nav" aria-label="{{ section.settings.menu_label | escape }}">
-      {% render 'header-nav-links',
-        menu: section.settings.menu,
-        extra_label: section.settings.extra_link_label,
-        extra_href: section.settings.extra_link_href,
-        extra_label_2: section.settings.extra_link_label_2,
-        extra_href_2: section.settings.extra_link_href_2
-      %}
+      {% render 'header-nav-links', settings: section.settings %}
     </nav>
 
     <div class="site-header__end">
@@ -57,14 +44,7 @@
         </summary>
 
         <nav class="site-header__drawer-panel" aria-label="{{ section.settings.menu_label | escape }}">
-          {% render 'header-nav-links',
-            menu: section.settings.menu,
-            extra_label: section.settings.extra_link_label,
-            extra_href: section.settings.extra_link_href,
-            extra_label_2: section.settings.extra_link_label_2,
-            extra_href_2: section.settings.extra_link_href_2,
-            stagger: true
-          %}
+          {% render 'header-nav-links', settings: section.settings, stagger: true %}
         </nav>
       </details>
 
@@ -168,12 +148,12 @@
   .site-header__brand {
     grid-column: 1;
     display: inline-flex;
-    align-items: baseline;
+    align-items: center;
     min-width: 0;
     white-space: nowrap;
+    font-family: var(--font-heading--family);
     font-size: clamp(1rem, 4.4vw, 1.375rem);
-    font-weight: 500;
-    letter-spacing: -0.03em;
+    letter-spacing: 0;
   }
 
   .site-header__logo {
@@ -181,11 +161,9 @@
     height: auto;
   }
 
-  /* The brand mark, same line as the footer's. The brand row aligns on the
-     baseline, so the mark centres itself against the words instead. */
+  /* The brand mark, same line as the footer's, centred against the words */
   .site-header__mark {
     display: inline-flex;
-    align-self: center;
     flex: 0 0 auto;
     margin-right: 0.5rem;
     color: var(--color-accent);
@@ -204,35 +182,45 @@
     stroke-width: 64;
   }
 
-  /*
-    The first word collapses its own width, so the last word slides left into
-    its place. Reverses on scroll up because it is a plain transition.
-    --lead-width is measured in JavaScript; the 12ch fallback keeps it working
-    before that runs.
-  */
-  .site-header__word--lead {
-    /* One knob for the whole collapse. The fade runs at 60% of it.
-       The easing is deliberately even, not the front-loaded page easing,
-       so the slide reads as unhurried the whole way through. */
-    --brand-collapse: 1.1s;
+  /* Name on top, tagline under it. The header keeps its height, so on scroll
+     the tagline folds its row away and the name settles to the centre. */
+  .site-header__words {
+    /* One knob for the whole fold. The fade runs at 60% of it. The easing is
+       deliberately even, not the front-loaded page easing, so the fold reads
+       as unhurried the whole way through. */
+    --brand-collapse: 0.6s;
     --brand-ease: cubic-bezier(0.65, 0, 0.35, 1);
 
-    display: inline-block;
-    overflow: hidden;
-    max-width: var(--lead-width, 12ch);
-    margin-right: 0.3em;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .site-header__name {
+    line-height: 1.1;
+  }
+
+  .site-header__tagline {
+    display: grid;
+    grid-template-rows: 1fr;
     opacity: 1;
-    transition: max-width var(--brand-collapse) var(--brand-ease),
-      margin-right var(--brand-collapse) var(--brand-ease),
-      transform var(--brand-collapse) var(--brand-ease),
+    transition: grid-template-rows var(--brand-collapse) var(--brand-ease),
       opacity calc(var(--brand-collapse) * 0.6) var(--brand-ease);
   }
 
-  site-header.is-compact .site-header__word--lead {
-    max-width: 0;
-    margin-right: 0;
+  .site-header__tagline > span {
+    overflow: hidden;
+    font-family: var(--font-accent--family);
+    font-size: 0.8em;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--color-accent);
+  }
+
+  site-header.is-compact .site-header__tagline {
+    grid-template-rows: 0fr;
     opacity: 0;
-    transform: translateX(-0.25em);
   }
 
   /* Nav, desktop only */
@@ -586,7 +574,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .site-header__word--lead,
+    .site-header__tagline,
     .site-header__burger,
     .site-header__burger::before,
     .site-header__burger::after,
@@ -604,23 +592,6 @@
 {% javascript %}
   class SiteHeader extends HTMLElement {
     connectedCallback() {
-      this.brand = this.querySelector('.site-header__brand');
-      this.lead = this.querySelector('.site-header__word--lead');
-
-      if (this.lead && this.brand) {
-        this.measure = () => {
-          const width = this.lead.scrollWidth;
-          if (width && Math.abs(width - (this.measured || 0)) > 0.5) {
-            this.measured = width;
-            this.brand.style.setProperty('--lead-width', `${width}px`);
-          }
-        };
-        this.measure();
-        document.fonts?.ready.then(() => this.measure());
-        this.resizeObserver = new ResizeObserver(() => this.measure());
-        this.resizeObserver.observe(this);
-      }
-
       this.setUpDrawer();
       this.setUpSearch();
       this.settleHashTarget();
@@ -721,7 +692,6 @@
 
     disconnectedCallback() {
       this.observer?.disconnect();
-      this.resizeObserver?.disconnect();
       this.sentinel?.remove();
       if (this.drawer && this.closeDrawer) {
         this.drawer.summary.removeEventListener('click', this.closeDrawer);
@@ -761,14 +731,14 @@
       "type": "text",
       "id": "wordmark",
       "label": "Wordmark (used when no logo)",
-      "info": "With two or more words, the last one stays on screen and the rest collapse away on scroll.",
       "default": "Agricola Dottorini"
     },
     {
-      "type": "link_list",
-      "id": "menu",
-      "label": "t:labels.menu",
-      "default": "main-menu"
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline under the wordmark",
+      "info": "Folds away once the page scrolls. Leave blank to hide it.",
+      "default": "L'olio di Collazzone"
     },
     {
       "type": "link_list",
@@ -777,32 +747,87 @@
       "default": "customer-account-main-menu"
     },
     {
+      "type": "header",
+      "content": "Menu links",
+      "info": "Up to six links, in order. Leave a label blank to hide that link. Use /#anchor for a homepage section so it works from every page."
+    },
+    {
       "type": "text",
-      "id": "extra_link_label",
-      "label": "Extra menu link",
-      "info": "Shown just before the contact entry. Leave blank to hide it.",
+      "id": "nav_1_label",
+      "label": "Link 1",
+      "default": "L'olio"
+    },
+    {
+      "type": "text",
+      "id": "nav_1_href",
+      "label": "Link 1 target",
+      "info": "Default: the product catalog.",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "nav_2_label",
+      "label": "Link 2",
+      "default": "La collina"
+    },
+    {
+      "type": "text",
+      "id": "nav_2_href",
+      "label": "Link 2 target",
+      "info": "Default: the statement section on the homepage.",
+      "default": "/#collina"
+    },
+    {
+      "type": "text",
+      "id": "nav_3_label",
+      "label": "Link 3",
+      "default": "Cultivar"
+    },
+    {
+      "type": "text",
+      "id": "nav_3_href",
+      "label": "Link 3 target",
+      "info": "Default: the olive varieties section on the homepage.",
+      "default": "/#terra"
+    },
+    {
+      "type": "text",
+      "id": "nav_4_label",
+      "label": "Link 4",
       "default": "Convivia"
     },
     {
       "type": "text",
-      "id": "extra_link_href",
-      "label": "Extra menu link target",
-      "info": "Use /#anchor for a homepage section, so it works from every page.",
+      "id": "nav_4_href",
+      "label": "Link 4 target",
+      "info": "Default: the Convivia section on the homepage.",
       "default": "/#convivia"
     },
     {
       "type": "text",
-      "id": "extra_link_label_2",
-      "label": "Extra menu link 2",
-      "info": "Shown right after the first extra link, still before contact.",
+      "id": "nav_5_label",
+      "label": "Link 5",
       "default": "Museo"
     },
     {
       "type": "text",
-      "id": "extra_link_href_2",
-      "label": "Extra menu link 2 target",
-      "info": "Any URL. Defaults to the Museo page (create it in Online Store > Pages with the \"museo\" template).",
+      "id": "nav_5_href",
+      "label": "Link 5 target",
+      "info": "Default: the Museo page (template \"museo\").",
       "default": "/pages/museo"
+    },
+    {
+      "type": "text",
+      "id": "nav_6_label",
+      "label": "Link 6",
+      "default": "Contatti"
+    },
+    {
+      "type": "text",
+      "id": "nav_6_href",
+      "label": "Link 6 target",
+      "info": "Default: the contact details in the footer.",
+      "default": "#contatti"
     },
     {
       "type": "header",

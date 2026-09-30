@@ -5,8 +5,8 @@
 {% endcomment %}
 
 <div class="section-band full-width {{ section.settings.background }}">
-<div class="d-manifesto section-band__inner section-space">
-  <div class="d-manifesto__statement reveal">
+<div class="d-manifesto section-band__inner section-space" id="{{ section.settings.anchor | default: 'collina' | handleize }}">
+  <div class="d-manifesto__statement type-display reveal">
     {{ section.settings.statement }}
   </div>
 
@@ -20,7 +20,7 @@
         <dl class="d-manifesto__facts">
           {% for block in section.blocks %}
             <div class="d-manifesto__fact" {{ block.shopify_attributes }}>
-              <dt>{{ block.settings.title }}</dt>
+              <dt class="type-display">{{ block.settings.title }}</dt>
               {% if block.settings.detail != blank %}
                 <dd>{{ block.settings.detail }}</dd>
               {% endif %}
@@ -59,10 +59,7 @@
   .d-manifesto__statement {
     max-width: 22ch;
     font-size: clamp(1.875rem, 4.6vw, 4rem);
-    font-weight: 400;
     line-height: 1.12;
-    letter-spacing: -0.035em;
-    text-wrap: balance;
   }
 
   .d-manifesto__statement p {
@@ -70,7 +67,6 @@
   }
 
   .d-manifesto__statement em {
-    font-style: italic;
     color: var(--color-accent);
   }
 
@@ -114,9 +110,7 @@
 
   .d-manifesto__fact dt {
     font-size: clamp(1.25rem, 1.9vw, 1.5rem);
-    font-weight: 500;
     line-height: 1.15;
-    letter-spacing: -0.025em;
     color: var(--color-foreground);
   }
 
@@ -226,6 +220,13 @@
         { "value": "d-bg--base", "label": "Default" },
         { "value": "d-bg--tint", "label": "Tinted" }
       ]
+    },
+    {
+      "type": "text",
+      "id": "anchor",
+      "label": "Anchor",
+      "info": "The header's \"La collina\" link points here (/#collina).",
+      "default": "collina"
     }
   ],
   "blocks": [

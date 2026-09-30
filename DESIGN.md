@@ -55,9 +55,28 @@ cool greens. The unscoped values come from `--color-muted-base` and
 Anything that must match the band behind it (e.g. the origin close-up's frame) uses
 `--section-bg`.
 
-**Type.** Outfit (Shopify font library) at 400 and 500. No serif anywhere.
-Headings use weight 500 with tight negative letter spacing. Italic is used for
-emphasis inside the same family, never a second font.
+**Type.** Three families, chosen by the client (September 2026), replacing
+the original Outfit-only system. All three are self-hosted woff2 files from
+Google Fonts (SIL Open Font License, latin subset) in `assets/`, declared in
+`snippets/css-variables.liquid` as `--font-body--family`,
+`--font-heading--family` and `--font-accent--family`. There is no font picker
+in the theme editor any more: Hanken Grotesk is not in Shopify's font library,
+and the library only has Cormorant, not Cormorant Garamond.
+
+| Family | Role | Files |
+| --- | --- | --- |
+| Hanken Grotesk 400, 500, italic 400 | Body text and all UI: nav, buttons, prices, labels, forms | `hanken-grotesk.woff2` (variable), `hanken-grotesk-italic.woff2` |
+| Marcellus 400 | `h1` to `h4`, the header wordmark, and display lines marked `.type-display` (manifesto statement, fact tiles) | `marcellus-400.woff2` |
+| Cormorant Garamond italic 500 | `em` inside headings and `.type-display`, the varieties taglines, the Convivia lede, or anything marked `.type-accent` | `cormorant-garamond-italic.woff2` (variable) |
+
+Marcellus has a single weight and no italic, so headings are always 400 and
+`font-synthesis: none` stops the browser faking a bold or slanted Marcellus.
+Headings keep only a slight `-0.01em` tracking: the tight negative spacing
+tuned for Outfit crowded the serif. Cormorant's x-height is small next to
+Marcellus, so emphasis inside a heading runs at `1.12em` and the standalone
+italic lines are sized up by hand. Small uppercase labels (footer column
+titles, eyebrows) stay in Hanken Grotesk even when they are `h3`. The social
+image in `brand/` was exported with Outfit and needs redoing to match.
 
 **Shape.** One rule, applied everywhere: interactive controls (buttons, inputs)
 are full pills, media and cards use `--radius-media` (14px). Nothing else is
@@ -85,8 +104,7 @@ wordmark. At header size it is about 54px wide against the footer's 88px, which
 thins the path's 40 unit stroke to roughly a pixel, so the header draws it at
 64 instead (`.site-header__mark path`). Same path, same file, only the weight
 changes. It is skipped when a logo is uploaded, because the logo is the mark
-then, and it sits outside the collapsing wordmark so the scroll animation is
-untouched. The favicon (`assets/favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`, linked
+then, and it sits outside the wordmark so the tagline fold does not move it. The favicon (`assets/favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`, linked
 from `snippets/meta-tags.liquid`) is the same line in cream on an olive tile,
 vertically exaggerated so it still reads at 16px. The apple touch icon is a
 full square because iOS rounds the corners itself.
@@ -108,11 +126,15 @@ in `.shopifyignore`. Re-export with `sips`, e.g.
 - Varieties gallery (journey section): on phones a scroll-snap gallery. With
   more than three cards, desktop arrow buttons scroll by one card and a small
   custom element disables them at the ends using an IntersectionObserver.
-- Header wordmark: on scroll the first word collapses its own width and fades
-  while the last word slides into its place; scrolling back reverses it. Driven
-  by a 1px marker below the sticky header plus an IntersectionObserver, so it
-  works in every browser. One knob tunes it: `--brand-collapse` (1.1s) with an
-  even easing, deliberately not the page's front-loaded one.
+- Header wordmark: "Agricola Dottorini" on top in Marcellus, the tagline
+  "L'olio di Collazzone" under it in olive Cormorant italic (header setting
+  `tagline`, blank hides it). On scroll the tagline folds its row away
+  (`grid-template-rows` 1fr to 0fr) and fades, and the name settles to the
+  middle of the bar; scrolling back reverses it. The header keeps its 68px, so
+  nothing below moves. Driven by a 1px marker below the sticky header plus an
+  IntersectionObserver, so it works in every browser. One knob tunes it:
+  `--brand-collapse` (0.6s) with an even easing. This replaced the earlier
+  animation where "Agricola" collapsed and "Dottorini" slid into its place.
 - Quick add: the + morphs into a check (two bars becoming an L, rotated) with a
   small pop, then returns after 1.8s.
 - Cart drawer: slides in from the right, backdrop fades.
@@ -138,12 +160,12 @@ Each section uses a different layout family on purpose. Nothing repeats.
 
 | File | Layout |
 | --- | --- |
-| `sections/header.liquid` | Sticky 3-column bar, 68px, blurred background. The brand line sits in front of the wordmark, centred against it while the words align on the baseline. Mobile menu is a native `<details>`, which a small script closes when a link is tapped. Links come from `snippets/header-nav-links.liquid`, shared by the bar and the drawer: contact entries go to `#contatti`, and up to two theme-setting links ("Convivia" -> `/#convivia`, a homepage anchor, "Museo" -> `/pages/museo`, its own page, neither a Shopify menu item) sit just before them, in that order. Arriving on a page with a hash, the header settles on the target once the page has loaded, because the browser's own jump was landing at the top |
+| `sections/header.liquid` | Sticky 3-column bar, 68px, blurred background. The brand line sits in front of the wordmark and its tagline, centred against both. Mobile menu is a native `<details>`, which a small script closes when a link is tapped. Links come from `snippets/header-nav-links.liquid`, shared by the bar and the drawer. They are six label/target pairs in the header's own settings (`nav_1` to `nav_6`), not a Shopify menu, so homepage anchors live in the theme: "L'olio" -> `/collections/all`, "La collina" -> `/#collina` (statement), "Cultivar" -> `/#terra` (varieties), "Convivia" -> `/#convivia`, "Museo" -> `/pages/museo`, "Contatti" -> `#contatti` (footer). A blank label hides a link. There is no Home entry: the wordmark links home. Arriving on a page with a hash, the header settles on the target once the page has loaded, because the browser's own jump was landing at the top |
 | `sections/dottorini-hero.liquid` | Full-bleed framed photo, copy at the bottom over a gradient scrim, plus the decorative line |
 | `sections/dottorini-featured-products.liquid` | Asymmetric grid: one large card, two stacked beside it |
 | `sections/dottorini-manifesto.liquid` | Editorial statement, then the company text, up to three fact tiles (blocks: a big claim like "Raccolta a mano" with a small olive detail like "Ottobre-novembre") and the signature, beside one offset portrait image. From 900px the statement is limited to 7 columns because the image rises 8rem into its row. Fact tiles are light (`--color-background`) on the sand band, 14px radius like other cards, and stack on phones under ~400px so the detail never breaks at its hyphen |
 | `sections/dottorini-journey.liquid` | "Dottorini varietà": the three olives in the blend (Moraiolo, Frantoiano, Leccino), each with photo, name, italic tagline and a short description. Up to three cards: one row from 900px with the middle card dropped; phones scroll-snap. More than three falls back to the scrolling gallery with arrows. File and block type keep the old `journey`/`step` names so editor data survives |
-| `sections/dottorini-convivia.liquid` | Convivia, the family's home restaurant, as one large dark card (`--color-foreground`) inside the page column: copy left, full-height photo right, no hill line (removed at the owner's request). Phones stack photo over copy. The card is a photo container like the hero frame, not a theme switch. Adapted from an owner reference that used serif type and brass/terracotta; kept to Outfit and the olive tint `#8A9A4B` instead. The button links to the SumUp booking page and opens in a new tab |
+| `sections/dottorini-convivia.liquid` | Convivia, the family's home restaurant, as one large dark card (`--color-foreground`) inside the page column: copy left, full-height photo right, no hill line (removed at the owner's request). Phones stack photo over copy. The card is a photo container like the hero frame, not a theme switch. Adapted from an owner reference that used serif type and brass/terracotta; kept to the olive tint `#8A9A4B` instead of brass (the serif came back later with the client's type system). The button links to the SumUp booking page and opens in a new tab |
 | `sections/dottorini-origin.liquid` | No longer on the homepage (replaced by Convivia). Offset photo collage plus a facts list, kept so editor data that still references it does not break |
 | `sections/footer.liquid` | Newsletter and columns, company details, then the copyright and policy row |
 
@@ -217,8 +239,9 @@ Preferences only affects the homepage. No brand name is hardcoded in the theme.
   because bottle packshots look better uncropped; switch the section setting
   to `cover` for lifestyle shots.
 - **Anchors.** The hero's second button ("La nostra terra") points at `#terra`,
-  which now lives on the varieties section (it used to be the origin section).
-  Convivia is at `#convivia`.
+  which now lives on the varieties section (it used to be the origin section),
+  as does the header's "Cultivar". The statement is at `#collina`, Convivia at
+  `#convivia`.
 - **Sample company details.** The Italian company block ships SAMPLE schema
   defaults in `sections/footer.liquid` (P. IVA `01234567890`,
   the Torgiano address, the phone number, the info email). Replace them with the
@@ -241,8 +264,9 @@ Preferences only affects the homepage. No brand name is hardcoded in the theme.
   checkout emails still say it. Change it to Agricola Dottorini.
 - **Product option pills** (the size-style selector) are written but never
   rendered: every product has a single variant. Treat as unverified.
-- **Contact page** still exists at `/pages/contact`; the menu entry is rewritten
-  in `sections/header.liquid` to jump to `#contatti` on the footer instead.
+- **Contact page** still exists at `/pages/contact`, but nothing links to it:
+  the header's "Contatti" jumps to `#contatti` on the footer. The Shopify
+  `main-menu` is no longer read by the header either.
 - **Footer bottom row on phones** was reported as hard to see. Copyright and
   policy links now flow inline and wrap only when they do not fit (at 375px:
   copyright on one line, both policy links side by side below), with 34px tap
