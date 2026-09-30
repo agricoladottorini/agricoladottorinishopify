@@ -1,15 +1,45 @@
 {% style %}
-  {% # Loads all font variantions with display: swap %}
-  {{ settings.type_primary_font | font_face: font_display: 'swap' }}
-  {{ settings.type_primary_font | font_modify: 'weight', '500' | font_face: font_display: 'swap' }}
-  {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_face: font_display: 'swap' }}
-  {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
-  {{ settings.type_primary_font | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
+  {% comment %}
+    Three self-hosted families (Google Fonts, SIL Open Font License), latin
+    subset only. Hanken Grotesk and Cormorant Garamond are variable fonts, so
+    one file covers every weight listed in its range.
+    - Hanken Grotesk: body text and UI
+    - Marcellus: headings and display lines (one weight, no italic)
+    - Cormorant Garamond italic: emphasis inside headings and italic taglines
+  {% endcomment %}
+  @font-face {
+    font-family: 'Hanken Grotesk';
+    font-style: normal;
+    font-weight: 400 500;
+    font-display: swap;
+    src: url('{{ 'hanken-grotesk.woff2' | asset_url }}') format('woff2');
+  }
+  @font-face {
+    font-family: 'Hanken Grotesk';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url('{{ 'hanken-grotesk-italic.woff2' | asset_url }}') format('woff2');
+  }
+  @font-face {
+    font-family: 'Marcellus';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('{{ 'marcellus-400.woff2' | asset_url }}') format('woff2');
+  }
+  @font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: italic;
+    font-weight: 400 500;
+    font-display: swap;
+    src: url('{{ 'cormorant-garamond-italic.woff2' | asset_url }}') format('woff2');
+  }
 
   :root {
-    --font-primary--family: {{ settings.type_primary_font.family }}, {{ settings.type_primary_font.fallback_families }};
-    --font-primary--style: {{ settings.type_primary_font.style }};
-    --font-primary--weight: {{ settings.type_primary_font.weight }};
+    --font-body--family: 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-heading--family: 'Marcellus', Georgia, 'Times New Roman', serif;
+    --font-accent--family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
     --page-width: {{ settings.max_page_width }};
     --page-margin: {{ settings.min_page_margin }}px;
     --color-background: {{ settings.background_color }};
