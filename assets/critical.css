@@ -130,10 +130,26 @@ body {
   --section-space: clamp(5rem, 11vw, 9.5rem);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --icon-stroke-width: 1.5;
+  --color-error: #9b2c1f;
+  /* Text and light controls over photography and the dark cards: kept near
+     white, not the sand page colour, so they read as white on any photo */
+  --color-on-photo: #fdfcf9;
+  /* Input borders, 3:1 or better against whatever ground they sit on */
+  --color-field-border: color-mix(in srgb, var(--color-foreground) 55%, var(--color-background));
 }
 
 html {
   scroll-padding-top: calc(var(--header-height) + 1rem);
+}
+
+/* Section anchors (#oli, #collina, #terra, #convivia) sit on the band's
+   padded inner box. A jump skips most of that top padding, so the heading
+   lands --anchor-gap under the header instead of a whole section space
+   (up to 9.5rem) further down. The band's top edge scrolls out of view, so no
+   strip of the band above shows either. Scrolling normally is unchanged. */
+.section-band > [id] {
+  --anchor-gap: 2rem;
+  scroll-margin-top: calc(var(--anchor-gap) - 1rem - var(--section-space));
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -247,10 +263,10 @@ a {
   font-size: 0.875rem;
 }
 
-/* Light pill for use on top of photography */
+/* Light pill for use on top of photography and dark cards */
 .button--light {
-  background-color: var(--color-background);
-  border-color: var(--color-background);
+  background-color: var(--color-on-photo);
+  border-color: var(--color-on-photo);
   color: var(--color-foreground);
 }
 
@@ -261,16 +277,16 @@ a {
 
 /* Outline pill for use on top of photography, always paired with a scrim */
 .button--outline-light {
-  background-color: rgb(20 24 18 / 0.18);
-  border-color: rgb(245 246 242 / 0.7);
-  color: var(--color-background);
+  background-color: rgb(22 18 12 / 0.18);
+  border-color: rgb(253 252 249 / 0.7);
+  color: var(--color-on-photo);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 
 .button--outline-light:hover {
-  background-color: rgb(245 246 242 / 0.16);
-  border-color: var(--color-background);
+  background-color: rgb(253 252 249 / 0.16);
+  border-color: var(--color-on-photo);
 }
 
 /** Section spacing */
@@ -329,10 +345,9 @@ a {
   background-color: var(--section-bg);
 }
 
-/* The tint is a warm sand, darker than the page. Inside it, text tokens are
- * pulled toward the foreground so they keep WCAG AA (muted ~5:1, accent ~5:1
- * on #EDE4D1), and surfaces are derived from the tint so placeholders, rules
- * and the footer wordmark stay warm instead of the page's cool green greys. */
+/* The tint is a light cream panel, lighter than the sand page. Inside it,
+ * text tokens are pulled toward the foreground for extra contrast, and
+ * surfaces are derived from the tint so placeholders and rules stay warm. */
 .d-bg--tint {
   --section-bg: var(--color-tint);
   --color-muted: color-mix(in srgb, var(--color-muted-base) 70%, var(--color-foreground));
@@ -340,6 +355,27 @@ a {
   --color-surface: color-mix(in srgb, var(--color-tint) 95%, var(--color-foreground));
   --color-surface-strong: color-mix(in srgb, var(--color-tint) 90%, var(--color-foreground));
   background-color: var(--section-bg);
+}
+
+/* Dark band (the footer by default). The tokens flip rather than each
+ * component restyling itself: text turns cream, the olive lifts to the
+ * lighter #8A9A4B (the deep olive is under 3:1 on this ground, the light one
+ * about 5.5:1), and --color-background becomes a slightly raised dark so
+ * buttons (cream fill, dark label) and form fields (a step above the band)
+ * keep working unchanged. */
+.d-bg--dark {
+  --section-bg: var(--color-dark);
+  --color-foreground: var(--color-surface-base);
+  --color-background: color-mix(in srgb, var(--color-dark) 88%, var(--color-surface-base));
+  --color-muted: color-mix(in srgb, var(--color-surface-base) 70%, var(--color-dark));
+  --color-accent: #8a9a4b;
+  --color-accent-light: #cbd6ac;
+  --color-surface: color-mix(in srgb, var(--color-dark) 92%, var(--color-surface-base));
+  --color-surface-strong: color-mix(in srgb, var(--color-dark) 82%, var(--color-surface-base));
+  --color-error: #f09a84;
+  --color-field-border: color-mix(in srgb, var(--color-foreground) 45%, var(--color-background));
+  background-color: var(--section-bg);
+  color: var(--color-foreground);
 }
 
 /** Shopify consent banner

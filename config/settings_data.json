@@ -11,12 +11,14 @@
   "current": {
     "max_page_width": "90rem",
     "min_page_margin": 24,
-    "background_color": "#F5F6F2",
-    "foreground_color": "#1E221D",
+    "background_color": "#EDE4D1",
+    "foreground_color": "#211C14",
     "input_corner_radius": 10,
     "accent_color": "#56622F",
-    "muted_color": "#5B6056",
-    "surface_color": "#ECEEE7",
-    "surface_strong_color": "#E1E6D5"
+    "muted_color": "#625949",
+    "surface_color": "#FBF6EC",
+    "surface_strong_color": "#E2D6BD",
+    "tint_color": "#FBF6EC",
+    "dark_color": "#211C14"
   }
 }

@@ -26,34 +26,60 @@ Explicitly ruled out by the owner:
 
 ## Visual language
 
-**Colors** (theme settings, editable in the editor)
+**Colors** (theme settings, editable in the editor). Recolored September 30,
+2026 to the client's palette. The owner kept their own deep olive as the one
+accent instead of the client's lighter `#7C8650`.
 
 | Token | Value | Use |
 | --- | --- | --- |
-| `--color-background` | `#F5F6F2` | Page, a cool off-white with a faint green cast |
-| `--color-foreground` | `#1E221D` | Text, primary buttons |
-| `--color-accent` | `#56622F` | Deep olive. Hover fill for dark controls, eyebrow, cart badge |
+| `--color-background` | `#EDE4D1` | Page, a warm sand |
+| `--color-foreground` | `#211C14` | Text, primary buttons, the Convivia card |
+| `--color-dark` | `#211C14` | Ground of "Dark" sections (the footer) |
+| `--color-accent` | `#56622F` | Deep olive, the one accent. Hover fill for dark controls, eyebrow, cart badge |
 | `--color-accent-light` | `#CBD6AC` | Light sage. Hover fill for light and ghost controls |
-| `--color-muted` | `#5B6056` | Secondary text, meets WCAG AA |
-| `--color-surface` | `#ECEEE7` | Small product cards, footer |
-| `--color-surface-strong` | `#E1E6D5` | Large product card, image placeholders |
-| `--color-tint` | `#EDE4D1` | Warm sand for "Tinted" section bands (manifesto by default) |
+| `--color-muted` | `#625949` | Secondary text, AA on every light ground (4.8:1 on the large card, the lowest) |
+| `--color-surface` | `#FBF6EC` | Cream. Small product cards, light panels |
+| `--color-surface-strong` | `#E2D6BD` | Darker sand. Large product card, image placeholders |
+| `--color-tint` | `#FBF6EC` | "Tinted" section bands (statement, Convivia's band), lighter than the page |
 
-Deliberately not the warm beige plus brass palette that artisan food brands
-default to. The sand tint is the one warm note, and it stays out of the shopping
-areas: it only colors story sections (the manifesto), never cards,
-buttons or accents, and there is no brass or gold anywhere. One accent only: the
-lighter green `#8A9A4B` on the hero line is a tint of the same olive hue, and
-the red in the newsletter error is a state color, not a second accent.
+This is the warm beige plus dark-brown family the theme originally avoided;
+it is here because the client asked for it by value. The client's palette
+also had terracotta `#B05C3A` (gift card, secondary button) and gold
+`#B58A2E`. Neither is applied: there is no gift card yet, and a second and
+third accent would break the one-accent rule. Add terracotta to one specific
+element if the client insists, never as a general accent.
 
-Inside `.d-bg--tint` (`assets/critical.css`) the tokens are scoped: muted and
-accent are mixed toward the foreground so they keep WCAG AA on the darker sand
-(the base muted `#5B6056` only reaches about 3.8:1 there), and both surfaces are
-derived from the tint so placeholders and rules stay warm rather than the page's
-cool greens. The unscoped values come from `--color-muted-base` and
-`--color-accent-base`, because a custom property cannot reference itself.
-Anything that must match the band behind it (e.g. the origin close-up's frame) uses
-`--section-bg`.
+Section grounds are classes on each section's band, picked in the editor:
+`d-bg--base` (page), `d-bg--tint` (cream) and `d-bg--dark` (the footer's
+default). In `assets/critical.css` each one rescopes the tokens rather than
+components restyling themselves. Inside `.d-bg--tint` muted and accent are
+mixed toward the foreground and surfaces are derived from the tint. Inside
+`.d-bg--dark` text turns cream, the accent lifts to the light olive
+`#8A9A4B` (the deep olive is under 3:1 there, the light one 5.5:1),
+`--color-background` becomes a slightly raised dark so buttons (cream fill,
+dark label) and form fields keep working, and `--color-error` becomes a light
+coral. The unscoped values come from `--color-muted-base`,
+`--color-accent-base` and `--color-surface-base`, because a custom property
+cannot reference itself. Input borders use `--color-field-border`, derived
+from the section's own text and ground (3.5:1 on the page, 5:1 in the
+footer). Anything that must match the band behind it (e.g. the origin
+close-up's frame) uses `--section-bg`. Hardcoded translucent creams and
+near-blacks (scrims, the hero text, the Museo viewer) use the palette's warm
+values `rgb(251 246 236)` and `rgb(33 28 20)` / `rgb(22 18 12)`. Text and light
+controls over photography use `--color-on-photo` (`#FDFCF9`, near white, at
+the owner's request): the hero heading, text and both hero pills, and the
+light pill on the Convivia card. They must not follow the sand page colour.
+
+Section anchors (`#oli`, `#collina`, `#terra`, `#convivia`) sit on each band's
+padded inner box. `.section-band > [id]` gives them a negative
+`scroll-margin-top` that skips most of the section's top padding, so a menu
+jump puts the heading `--anchor-gap` (2rem) under the header instead of up to
+9.5rem further down, and the band's top edge scrolls out of view, so no strip
+of the band above shows. The padding itself stays symmetric (top and bottom)
+on purpose: moving it all to the bottom would glue headings to the top edge of
+the coloured bands for anyone scrolling normally. The footer drops its top margin when it follows a
+section band (`:has()` in `sections/footer.liquid`), otherwise a strip of page
+sand sat between the last band and the dark footer.
 
 **Type.** Three families, chosen by the client (September 2026), replacing
 the original Outfit-only system. All three are self-hosted woff2 files from
@@ -91,8 +117,8 @@ the near-black ground and so take the deep olive with cream text (about 6:1).
 The one exception is the hero's outline pill `.button--outline-light`: it is
 translucent over photography and stays as it is, at the owner's request.
 
-**Theme.** Light only, by request. The dark hero frame is a photo container,
-not a theme switch. The color tokens make dark mode straightforward to add
+**Theme.** Light only, by request. The dark footer is a band that closes the
+page and the dark hero frame is a photo container; neither is a theme switch. The color tokens make dark mode straightforward to add
 later if it is ever wanted.
 
 ## Brand mark
@@ -167,7 +193,7 @@ Each section uses a different layout family on purpose. Nothing repeats.
 | `sections/dottorini-journey.liquid` | "Dottorini varietà": the three olives in the blend (Moraiolo, Frantoiano, Leccino), each with photo, name, italic tagline and a short description. Up to three cards: one row from 900px with the middle card dropped; phones scroll-snap. More than three falls back to the scrolling gallery with arrows. File and block type keep the old `journey`/`step` names so editor data survives |
 | `sections/dottorini-convivia.liquid` | Convivia, the family's home restaurant, as one large dark card (`--color-foreground`) inside the page column: copy left, full-height photo right, no hill line (removed at the owner's request). Phones stack photo over copy. The card is a photo container like the hero frame, not a theme switch. Adapted from an owner reference that used serif type and brass/terracotta; kept to the olive tint `#8A9A4B` instead of brass (the serif came back later with the client's type system). The button links to the SumUp booking page and opens in a new tab |
 | `sections/dottorini-origin.liquid` | No longer on the homepage (replaced by Convivia). Offset photo collage plus a facts list, kept so editor data that still references it does not break |
-| `sections/footer.liquid` | Newsletter and columns, company details, then the copyright and policy row |
+| `sections/footer.liquid` | Dark band (`d-bg--dark`) by default: newsletter and columns, company details, then the copyright and policy row |
 
 ## Other pages
 
@@ -185,7 +211,7 @@ page's outer wrapper; do not duplicate the value locally.
 | `sections/collection.liquid` | Catalogo: 3 cards per row desktop, 2 from 700px, 1 on phones, paginated (12 per page). Heading is a section setting (default "Prodotti"), not `collection.title`, because the nav points at `/collections/all`, Shopify's auto-generated "every product" collection, which has no editable title in admin. Leave the setting blank to fall back to `collection.title` on a real collection |
 | `sections/product.liquid` | Product page: thumbnail rail plus large image left, details right and sticky; quantity stepper beside the add button showing the price; expandable info rows as blocks. On phones the stepper becomes a full width bar above a full width button |
 | `sections/dottorini-museo.liquid`, `templates/page.museo.json` | Museo della Civiltà Contadina, a photo showroom for the family's small collection of rural life exhibits, on its own page (`/pages/museo`, template `page.museo`), not the homepage. Short heading and intro, then one masonry archive. No photo is featured over the others (the owner turned down a large opening plate): the collection is a set of peers and the varied heights carry the rhythm. The archive is CSS `columns`, 3 from 1100px, 2 from 560px, 1 on phones, and each photo keeps its own `aspect_ratio` rather than being cropped into a tile: a scythe or a yoke is the wrong shape for a square. Column gaps come from `column-gap`, row gaps from the item margin, and a negative bottom margin cancels the trailing one. No captions, images carry it. Clicking a photo opens it in a viewer, a native `<dialog>` so Escape, focus return and inertness are the browser's job. The layout holds any block count, from 5 to the 30 the schema allows; the template ships 20 empty slots. Optional button, hidden unless both a label and a link are set |
-| `sections/cart-drawer.liquid` | Cart as a floating rounded panel inset from the edges, not a page. Rendered on every page from `layout/theme.liquid` and refreshed through the Section Rendering API after each change |
+| `sections/cart-drawer.liquid` | Cart as a floating rounded panel inset from the edges, not a page. Rendered on every page from `layout/theme.liquid` and refreshed through the Section Rendering API after each change. Empty, it keeps the same frame as a full cart: the hill line and the message centred in the items area, and "Vedi i prodotti" full width at the bottom where "Vai al checkout" sits |
 | `sections/cart.liquid` | The `/cart` page: a no-JavaScript fallback, rarely seen since the drawer handles normal use. Line items reuse the drawer's `.cart-item` classes directly (the drawer section renders on every page, so those styles are already loaded globally) rather than duplicating them, so the two can't drift apart. Quantity changes go through a plain number input plus one shared "Aggiorna carrello" submit, since this page has to work with JavaScript off; remove is a plain link to `item.url_to_remove` |
 
 Cart behaviour: the header cart icon opens the drawer (the link still points at

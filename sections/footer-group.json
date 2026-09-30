@@ -34,7 +34,7 @@
         "fiscal_code": "",
         "share_capital": "",
         "policies_label": "Note legali",
-        "background": "d-bg--base",
+        "background": "d-bg--dark",
         "show_payment_icons": true
       }
     }

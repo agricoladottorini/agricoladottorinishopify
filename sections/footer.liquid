@@ -202,6 +202,12 @@
     color: var(--color-foreground);
   }
 
+  /* After a section band the band's own bottom padding is the gap; the
+     footer's margin would add a strip of page colour between two grounds */
+  .shopify-section:has(> .section-band) + .shopify-section-group-footer-group .site-footer {
+    margin-top: 0;
+  }
+
   .site-footer.d-bg--base {
     border-top: 1px solid var(--color-surface-strong);
   }
@@ -256,7 +262,7 @@
     min-width: 0;
     min-height: 3rem;
     padding: 0 1.25rem;
-    border: 1px solid #8a8f84;
+    border: 1px solid var(--color-field-border);
     border-radius: var(--radius-pill);
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -269,7 +275,7 @@
   }
 
   .site-footer__field input[aria-invalid='true'] {
-    border-color: #9b2c1f;
+    border-color: var(--color-error);
   }
 
   .site-footer__help {
@@ -279,7 +285,7 @@
 
   .site-footer__error {
     font-size: 0.875rem;
-    color: #9b2c1f;
+    color: var(--color-error);
   }
 
   .site-footer__status {
@@ -561,10 +567,11 @@
       "type": "select",
       "id": "background",
       "label": "Background",
-      "default": "d-bg--base",
+      "default": "d-bg--dark",
       "options": [
         { "value": "d-bg--base", "label": "Default" },
-        { "value": "d-bg--tint", "label": "Tinted" }
+        { "value": "d-bg--tint", "label": "Tinted" },
+        { "value": "d-bg--dark", "label": "Dark" }
       ]
     },
     {

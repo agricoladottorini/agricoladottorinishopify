@@ -110,7 +110,7 @@
     position: sticky;
     top: 0;
     z-index: 10;
-    background-color: rgb(245 246 242 / 0.86);
+    background-color: color-mix(in srgb, var(--color-background) 86%, transparent);
     -webkit-backdrop-filter: saturate(160%) blur(14px);
     backdrop-filter: saturate(160%) blur(14px);
   }
@@ -314,11 +314,11 @@
     border-radius: var(--radius-media);
     background-color: var(--color-background);
     color: var(--color-foreground);
-    box-shadow: 0 1.5rem 4rem rgb(30 34 29 / 0.18);
+    box-shadow: 0 1.5rem 4rem rgb(33 28 20 / 0.18);
   }
 
   .site-search::backdrop {
-    background-color: rgb(20 24 18 / 0.45);
+    background-color: rgb(22 18 12 / 0.45);
     -webkit-backdrop-filter: blur(3px);
     backdrop-filter: blur(3px);
   }
@@ -345,7 +345,7 @@
     min-width: 0;
     min-height: 3rem;
     padding: 0 1.25rem;
-    border: 1px solid #8a8f84;
+    border: 1px solid var(--color-field-border);
     border-radius: var(--radius-pill);
     background-color: var(--color-background);
     color: var(--color-foreground);

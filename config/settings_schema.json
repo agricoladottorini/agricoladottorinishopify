@@ -44,13 +44,13 @@
       {
         "type": "color",
         "id": "background_color",
-        "default": "#FFFFFF",
+        "default": "#EDE4D1",
         "label": "t:labels.background"
       },
       {
         "type": "color",
         "id": "foreground_color",
-        "default": "#333333",
+        "default": "#211C14",
         "label": "t:labels.foreground"
       },
       {
@@ -79,26 +79,34 @@
       {
         "type": "color",
         "id": "muted_color",
-        "default": "#5B6056",
+        "default": "#625949",
         "label": "Muted text"
       },
       {
         "type": "color",
         "id": "surface_color",
-        "default": "#ECEEE7",
+        "default": "#FBF6EC",
         "label": "Surface"
       },
       {
         "type": "color",
         "id": "surface_strong_color",
-        "default": "#E1E6D5",
+        "default": "#E2D6BD",
         "label": "Surface strong"
       },
       {
         "type": "color",
         "id": "tint_color",
-        "default": "#EDE4D1",
-        "label": "Section tint"
+        "default": "#FBF6EC",
+        "label": "Section tint",
+        "info": "Background of sections set to \"Tinted\"."
+      },
+      {
+        "type": "color",
+        "id": "dark_color",
+        "default": "#211C14",
+        "label": "Dark background",
+        "info": "Background of sections set to \"Dark\", such as the footer."
       }
     ]
   }
