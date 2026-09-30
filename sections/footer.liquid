@@ -220,9 +220,11 @@
     color: var(--color-accent);
   }
 
+  /* minmax(0, 1fr), not 1fr, so no column's content can widen the track
+     past a small phone's screen (see Gotchas in DESIGN.md) */
   .site-footer__top {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 2.5rem;
   }
 
@@ -306,7 +308,7 @@
   /* Company details required for selling in Italy */
   .site-footer__legal {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(11rem, 100%), 1fr));
     gap: 1.5rem 1.25rem;
     margin: clamp(2.5rem, 5vw, 4rem) 0 0;
     padding-top: 1.75rem;

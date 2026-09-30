@@ -70,9 +70,12 @@
     color: var(--color-accent);
   }
 
+  /* minmax(0, 1fr), not 1fr: a plain 1fr track grows to its content's
+     minimum width, and the two fact tiles side by side would push the text,
+     tiles and image past the right edge on phones */
   .d-manifesto__foot {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 2rem;
     margin-top: clamp(2.5rem, 6vw, 5rem);
   }
@@ -94,18 +97,27 @@
 
   /* The two promises, lifted off the band as small light tiles: the claim is
      the big line, the timing sits under it in olive */
+  /* Side by side even on phones: one tile per row left the band half empty.
+     The narrow track plus the tighter phone padding below keeps a detail like
+     "Ottobre-novembre" on one line from 360px up. */
   .d-manifesto__facts {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(8.5rem, 100%), 1fr));
     gap: 0.75rem;
     max-width: 34rem;
     margin: 2rem 0 0;
   }
 
   .d-manifesto__fact {
-    padding: 1.25rem 1.25rem 1.1rem;
+    padding: 1rem 0.875rem 0.95rem;
     border-radius: var(--radius-media);
     background-color: var(--color-background);
+  }
+
+  @media (min-width: 560px) {
+    .d-manifesto__fact {
+      padding: 1.25rem 1.25rem 1.1rem;
+    }
   }
 
   .d-manifesto__fact dt {
@@ -116,7 +128,7 @@
 
   .d-manifesto__fact dd {
     margin: 0.45rem 0 0;
-    font-size: 0.9375rem;
+    font-size: clamp(0.875rem, 3.6vw, 0.9375rem);
     color: var(--color-accent);
   }
 
