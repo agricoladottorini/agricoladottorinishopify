@@ -1,1 +1,1 @@
-/Users/cassio/code/shopify/colorful-tone-theme/AGENTS.md
+AGENTS.md

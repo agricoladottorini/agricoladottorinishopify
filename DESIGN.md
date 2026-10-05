@@ -110,8 +110,8 @@ rounded.
 
 **Hover.** One rule too, and it follows the control's own fill, not the section
 behind it: anything dark deepens to `--color-accent`, anything light or ghosted
-fills with `--color-accent-light`. That covers the solid pill and quick add
-(dark), the light pill, the varieties arrows and every ghost icon control (cart
+fills with `--color-accent-light`. That covers the solid pill and the product
+page's add button (dark), the light pill, the varieties arrows and every ghost icon control (cart
 close, quantity steppers, remove), and the Museo viewer controls, which sit on
 the near-black ground and so take the deep olive with cream text (about 6:1).
 The one exception is the hero's outline pill `.button--outline-light`: it is
@@ -161,8 +161,8 @@ in `.shopifyignore`. Re-export with `sips`, e.g.
   IntersectionObserver, so it works in every browser. One knob tunes it:
   `--brand-collapse` (0.6s) with an even easing. This replaced the earlier
   animation where "Agricola" collapsed and "Dottorini" slid into its place.
-- Quick add: the + morphs into a check (two bars becoming an L, rotated) with a
-  small pop, then returns after 1.8s.
+- Add to cart (product page): the button confirms with the "added" label, then
+  returns after 1.8s.
 - Cart drawer: slides in from the right, backdrop fades.
 - Museo spawn: on desktop the heading and the photos already on screen rise and
   fade in one after another, 70ms apart, each photo settling out of a slight
@@ -215,14 +215,14 @@ page's outer wrapper; do not duplicate the value locally.
 | `sections/cart.liquid` | The `/cart` page: a no-JavaScript fallback, rarely seen since the drawer handles normal use. Line items reuse the drawer's `.cart-item` classes directly (the drawer section renders on every page, so those styles are already loaded globally) rather than duplicating them, so the two can't drift apart. Quantity changes go through a plain number input plus one shared "Aggiorna carrello" submit, since this page has to work with JavaScript off; remove is a plain link to `item.url_to_remove` |
 
 Cart behaviour: the header cart icon opens the drawer (the link still points at
-`/cart` so it works without JavaScript), quick add opens it after a successful
-add, quantity changes and removals go through `/cart/change.js`, and a refused
+`/cart` so it works without JavaScript), the product page's add button opens it
+after a successful add, quantity changes and removals go through `/cart/change.js`, and a refused
 change (no stock left) shows an Italian message in place instead of navigating
 away.
 
-Supporting files: `snippets/product-card.liquid` (product card with quick add),
-`snippets/quick-add.liquid` (shared quick add styles and the `<quick-add>`
-element, rendered by both the card and the product page),
+Supporting files: `snippets/product-card.liquid` (product card, links to the
+product page), `snippets/quick-add.liquid` (the `<quick-add>` element that adds
+to the cart with fetch, used by the product page, which styles its states),
 `snippets/consent-inset.liquid` (reserves the height of Shopify's cookie banner
 so it cannot cover the end of the footer),
 `snippets/css-variables.liquid` (tokens), `assets/critical.css` (reset,
@@ -232,9 +232,9 @@ buttons, spacing, reveal keyframes), `templates/index.json` (page order).
 
 One snippet, three shapes, so the landing page and the catalog stay in step:
 `featured` (large, landing only), `split` (image beside the text from 900px,
-the two small landing cards) and the plain stacked default (catalog). The add
-control is `add_style: 'plus'` everywhere now; `'label'` still renders a text
-button if it is ever wanted. Price and + always sit on one row at the bottom.
+the two small landing cards) and the plain stacked default (catalog). Cards have
+no buy control: the whole card links to the product page, where the add button
+lives. Title on top, price at the bottom.
 
 ## Titles and the shop name
 
@@ -268,14 +268,12 @@ Preferences only affects the homepage. No brand name is hardcoded in the theme.
   which now lives on the varieties section (it used to be the origin section),
   as does the header's "Cultivar". The statement is at `#collina`, Convivia at
   `#convivia`.
-- **Sample company details.** The Italian company block ships SAMPLE schema
-  defaults in `sections/footer.liquid` (P. IVA `01234567890`,
-  the Torgiano address, the phone number, the info email). Replace them with the
-  real details before publishing. They live as schema defaults, not in
-  `sections/footer-group.json`, because Shopify's GitHub sync lets the theme
-  editor's stored JSON win: pushes to section-group JSON are ignored when the
-  editor already holds a copy, while .liquid schema defaults always apply to
-  settings that have no stored value.
+- **Company details.** The real details (ragione sociale, P. IVA, Collazzone
+  address, phone, email) are stored in the theme editor. The schema defaults in
+  `sections/footer.liquid` are still SAMPLE values (P. IVA `01234567890`, a
+  Torgiano address) and only show if the stored values are ever cleared.
+  Shopify's GitHub sync lets the editor's stored JSON win over pushes to
+  `sections/footer-group.json`, so edit these in the editor.
 - **Search is switched off.** The header search button is commented out in
   `sections/header.liquid`; the modal markup and its script stay in place and
   are inert until the button is uncommented.
@@ -285,9 +283,8 @@ Preferences only affects the homepage. No brand name is hardcoded in the theme.
 - **Varieties gallery arrows** only appear with more than three cards. They
   were verified to render and to start disabled on the left, but were not
   click-tested.
-- **Store name** is still "Il mio negozio" in Settings > Store details, so every
-  tab title outside the homepage, `og:site_name`, the footer copyright and all
-  checkout emails still say it. Change it to Agricola Dottorini.
+- **Product vendor** is still "Il mio negozio" (the old store name) on the
+  products, and the product page shows it as the eyebrow. Change it in admin.
 - **Product option pills** (the size-style selector) are written but never
   rendered: every product has a single variant. Treat as unverified.
 - **Contact page** still exists at `/pages/contact`, but nothing links to it:
