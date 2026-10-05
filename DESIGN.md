@@ -62,8 +62,7 @@ coral. The unscoped values come from `--color-muted-base`,
 `--color-accent-base` and `--color-surface-base`, because a custom property
 cannot reference itself. Input borders use `--color-field-border`, derived
 from the section's own text and ground (3.5:1 on the page, 5:1 in the
-footer). Anything that must match the band behind it (e.g. the origin
-close-up's frame) uses `--section-bg`. Hardcoded translucent creams and
+footer). Anything that must match the band behind it uses `--section-bg`. Hardcoded translucent creams and
 near-blacks (scrims, the hero text, the Museo viewer) use the palette's warm
 values `rgb(251 246 236)` and `rgb(33 28 20)` / `rgb(22 18 12)`. Text and light
 controls over photography use `--color-on-photo` (`#FDFCF9`, near white, at
@@ -192,7 +191,6 @@ Each section uses a different layout family on purpose. Nothing repeats.
 | `sections/dottorini-manifesto.liquid` | Editorial statement, then the company text, up to three fact tiles (blocks: a big claim like "Raccolta a mano" with a small olive detail like "Ottobre-novembre") and the signature, beside one offset portrait image. From 900px the statement is limited to 7 columns because the image rises 8rem into its row. Fact tiles are light (`--color-background`) on the sand band, 14px radius like other cards. They stay side by side on phones too (one per row left the band half empty), with tighter padding under 560px so a detail like "Ottobre-novembre" stays on one line from 360px up; titles may wrap to two lines there. Only under ~350px do they stack |
 | `sections/dottorini-journey.liquid` | "Dottorini varietà": the three olives in the blend (Moraiolo, Frantoiano, Leccino), each with photo, name, italic tagline and a short description. Up to three cards: one row from 900px with the middle card dropped; phones scroll-snap. More than three falls back to the scrolling gallery with arrows. File and block type keep the old `journey`/`step` names so editor data survives |
 | `sections/dottorini-convivia.liquid` | Convivia, the family's home restaurant, as one large dark card (`--color-foreground`) inside the page column: copy left, full-height photo right, no hill line (removed at the owner's request). Phones stack photo over copy. The card is a photo container like the hero frame, not a theme switch. Adapted from an owner reference that used serif type and brass/terracotta; kept to the olive tint `#8A9A4B` instead of brass (the serif came back later with the client's type system). The button links to the SumUp booking page and opens in a new tab |
-| `sections/dottorini-origin.liquid` | No longer on the homepage (replaced by Convivia). Offset photo collage plus a facts list, kept so editor data that still references it does not break |
 | `sections/footer.liquid` | Dark band (`d-bg--dark`) by default: newsletter and columns, company details, then the copyright and policy row |
 
 ## Other pages
@@ -265,7 +263,7 @@ Preferences only affects the homepage. No brand name is hardcoded in the theme.
   because bottle packshots look better uncropped; switch the section setting
   to `cover` for lifestyle shots.
 - **Anchors.** The hero's second button ("La nostra terra") points at `#terra`,
-  which now lives on the varieties section (it used to be the origin section),
+  which lives on the varieties section,
   as does the header's "Cultivar". The statement is at `#collina`, Convivia at
   `#convivia`.
 - **Company details.** The real details (ragione sociale, P. IVA, Collazzone
@@ -274,9 +272,10 @@ Preferences only affects the homepage. No brand name is hardcoded in the theme.
   Torgiano address) and only show if the stored values are ever cleared.
   Shopify's GitHub sync lets the editor's stored JSON win over pushes to
   `sections/footer-group.json`, so edit these in the editor.
-- **Search is switched off.** The header search button is commented out in
-  `sections/header.liquid`; the modal markup and its script stay in place and
-  are inert until the button is uncommented.
+- **No header search.** The header search button and its popup were removed
+  (October 2026). The `/search` results page still works. To bring search back,
+  add a button and popup to `sections/header.liquid` (git history before
+  October 2026 has the old version).
 - **Missing policies.** Shopify has privacy and cookies set up. Termini di
   servizio, Politica di rimborso (14 day withdrawal) and Spedizioni still need
   creating in Settings > Policies; the footer links them automatically.
