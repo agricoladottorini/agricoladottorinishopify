@@ -1,0 +1,74 @@
+{% comment %}
+  Full-bleed olive strip with one centred line, used as a divider between
+  the hero and the statement. Colours and text are section settings.
+{% endcomment %}
+
+{% if section.settings.text != blank %}
+  <div
+    class="d-strip full-width"
+    style="--strip-bg: {{ section.settings.background_color }}; --strip-fg: {{ section.settings.text_color }};"
+  >
+    <p class="d-strip__text">{{ section.settings.text }}</p>
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .d-strip {
+    margin-top: clamp(1.5rem, 3vw, 2.5rem);
+    padding: clamp(1.1rem, 2.4vw, 1.75rem) var(--page-margin);
+    background-color: var(--strip-bg);
+    color: var(--strip-fg);
+    text-align: center;
+  }
+
+  .d-strip__text {
+    max-width: 60rem;
+    margin: 0 auto;
+    font-family: var(--font-heading--family);
+    font-size: clamp(1.125rem, 2.2vw, 1.625rem);
+    line-height: 1.3;
+    text-wrap: balance;
+  }
+
+  /* Italic emphasis in the accent serif, as in the headings */
+  .d-strip__text em {
+    font-family: var(--font-accent--family);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.12em;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Dottorini strip",
+  "tag": "section",
+  "class": "d-strip-section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "text",
+      "label": "Text",
+      "info": "One short line. Leave blank to hide the strip.",
+      "default": "Olio extravergine dalle colline di Collazzone, <em>raccolto a mano</em>."
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#56622F"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#FDFCF9"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dottorini strip"
+    }
+  ]
+}
+{% endschema %}

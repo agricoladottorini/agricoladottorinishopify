@@ -18,9 +18,15 @@
         "heading": "Olio extravergine, <em>nato in Umbria</em>.",
         "text": "Un solo ingrediente: le olive delle nostre colline. Nient'altro in bottiglia.",
         "primary_label": "Scopri gli oli",
-        "primary_link": "",
-        "secondary_label": "La nostra terra",
-        "secondary_link": ""
+        "primary_link": ""
+      }
+    },
+    "strip": {
+      "type": "dottorini-strip",
+      "settings": {
+        "text": "Olio extravergine dalle colline di Collazzone, <em>raccolto a mano</em>.",
+        "background_color": "#56622f",
+        "text_color": "#fdfcf9"
       }
     },
     "products": {
@@ -123,6 +129,7 @@
   },
   "order": [
     "hero",
+    "strip",
     "statement",
     "products",
     "journey",

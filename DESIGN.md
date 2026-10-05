@@ -66,7 +66,7 @@ footer). Anything that must match the band behind it uses `--section-bg`. Hardco
 near-blacks (scrims, the hero text, the Museo viewer) use the palette's warm
 values `rgb(251 246 236)` and `rgb(33 28 20)` / `rgb(22 18 12)`. Text and light
 controls over photography use `--color-on-photo` (`#FDFCF9`, near white, at
-the owner's request): the hero heading, text and both hero pills, and the
+the owner's request): the hero heading, text and pill, and the
 light pill on the Convivia card. They must not follow the sand page colour.
 
 Section anchors (`#oli`, `#collina`, `#terra`, `#convivia`) sit on each band's
@@ -114,8 +114,6 @@ fills with `--color-accent-light`. That covers the solid pill and the product
 page's add button (dark), the light pill, the varieties arrows and every ghost icon control (cart
 close, quantity steppers, remove), and the Museo viewer controls, which sit on
 the near-black ground and so take the deep olive with cream text (about 6:1).
-The one exception is the hero's outline pill `.button--outline-light`: it is
-translucent over photography and stays as it is, at the owner's request.
 
 **Theme.** Light only, by request. The dark footer is a band that closes the
 page and the dark hero frame is a photo container; neither is a theme switch. The color tokens make dark mode straightforward to add
@@ -197,7 +195,8 @@ Each section uses a different layout family on purpose. Nothing repeats.
 | File | Layout |
 | --- | --- |
 | `sections/header.liquid` | Sticky 3-column bar, 68px, blurred background. The logo sits in front of the wordmark and its tagline, centred against both. Mobile menu is a native `<details>`, which a small script closes when a link is tapped. Links come from `snippets/header-nav-links.liquid`, shared by the bar and the drawer. They are six label/target pairs in the header's own settings (`nav_1` to `nav_6`), not a Shopify menu, so homepage anchors live in the theme: "La collina" -> `/#collina` (statement), "L'olio" -> `/collections/all`, "Cultivar" -> `/#terra` (varieties), "Convivia" -> `/#convivia`, "Museo" -> `/pages/museo`, "Contatti" -> `#contatti` (footer). A blank label hides a link. There is no Home entry: the wordmark links home. Arriving on a page with a hash, the header settles on the target once the page has loaded, because the browser's own jump was landing at the top |
-| `sections/dottorini-hero.liquid` | Full-bleed framed photo in three bands: heading top left, the logo ribbon across the middle, text and buttons at the bottom, with a scrim at top and bottom for contrast. The ribbon is in the content flow (not absolutely positioned), centred between heading and text and pulled past the padding to run edge to edge, so it never overlaps the copy; the frame has a `min-height` and grows if the content needs it. Filled path, colour is a section setting (default `#B6B351`). Height capped at `40svh` so it flattens a little on short wide screens; drawn 1.5x taller under 900px |
+| `sections/dottorini-hero.liquid` | Full-bleed framed photo in three bands: heading top left, the logo ribbon across the middle, text and one button ("Scopri gli oli") at the bottom, with a scrim at top and bottom for contrast. The ribbon is in the content flow (not absolutely positioned), centred between heading and text and pulled past the padding to run edge to edge, so it never overlaps the copy; the frame has a `min-height` and grows if the content needs it. Filled path, colour is a section setting (default `#B6B351`). Height capped at `40svh` so it flattens a little on short wide screens; drawn 1.5x taller under 900px |
+| `sections/dottorini-strip.liquid` | Full-bleed olive strip (`#56622F`, cream text) between the hero and the statement, one centred line in Marcellus with an optional Cormorant italic emphasis. Text and both colours are section settings; a blank text hides it |
 | `sections/dottorini-featured-products.liquid` | Asymmetric grid: one large card, two stacked beside it |
 | `sections/dottorini-manifesto.liquid` | Editorial statement, then the company text, up to three fact tiles (blocks: a big claim like "Raccolta a mano" with a small olive detail like "Ottobre-novembre") and the signature, beside one offset portrait image. From 900px the statement is limited to 7 columns because the image rises 8rem into its row. The section sits on the sand band (`d-bg--base`), straight after the hero and before the products, so the fact tiles are cream (`--color-tint`) to stand off it; on a tint band they fall back to the sand `--color-background`, 14px radius like other cards. They stay side by side on phones too (one per row left the band half empty), with tighter padding under 560px so a detail like "Ottobre-novembre" stays on one line from 360px up; titles may wrap to two lines there. Only under ~350px do they stack |
 | `sections/dottorini-journey.liquid` | "Dottorini varietà": the three olives in the blend (Moraiolo, Frantoiano, Leccino), each with photo, name, italic tagline and a short description. Up to three cards: one row from 900px with the middle card dropped; phones scroll-snap. More than three falls back to the scrolling gallery with arrows. File and block type keep the old `journey`/`step` names so editor data survives |
@@ -273,8 +272,8 @@ Preferences only affects the homepage. No brand name is hardcoded in the theme.
   every photo keeps its own shape). Product cards default to `contain`
   because bottle packshots look better uncropped; switch the section setting
   to `cover` for lifestyle shots.
-- **Anchors.** The hero's buttons are "Scopri gli oli" (`#oli`) and "La nostra
-  terra" (`#collina`, the statement). The header's "Cultivar" points at `#terra`,
+- **Anchors.** The hero has one button, "Scopri gli oli" (`#oli`); the statement
+  is reached from the header's "La collina" (`#collina`). The header's "Cultivar" points at `#terra`,
   which lives on the varieties section. Convivia is at `#convivia`.
 - **Company details.** The real details (ragione sociale, P. IVA, Collazzone
   address, phone, email) are stored in the theme editor. The schema defaults in
