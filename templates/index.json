@@ -12,11 +12,11 @@
     "hero": {
       "type": "dottorini-hero",
       "settings": {
-        "image": "shopify://shop_images/green-plants-grow-in-lines-on-rolling-hills.jpg",
+        "image": "shopify://shop_images/DJI_0054.jpg",
         "show_line": true,
-        "line_color": "#b6b351",
-        "heading": "Olio extravergine, <em>nato in Umbria</em>.",
-        "text": "Un solo ingrediente: le olive delle nostre colline. Nient'altro in bottiglia.",
+        "line_color": "#C9A24A",
+        "heading": "Olio extravergine, nato sulla nostra collina",
+        "text": "100% Umbro, estratto a freddo, il nostro blend unico",
         "primary_label": "Scopri gli oli",
         "primary_link": ""
       }
@@ -27,21 +27,6 @@
         "text": "Olio extravergine dalle colline di Collazzone, <em>raccolto a mano</em>.",
         "background_color": "#56622f",
         "text_color": "#fdfcf9"
-      }
-    },
-    "products": {
-      "type": "dottorini-featured-products",
-      "settings": {
-        "heading": "I nostri oli",
-        "text": "Scegli il tuo olio e ricevilo a casa.",
-        "products": [
-          "olio-bono",
-          "olio-test",
-          "test"
-        ],
-        "image_fit": "contain",
-        "anchor": "oli",
-        "background": "d-bg--tint"
       }
     },
     "statement": {
@@ -70,7 +55,23 @@
         "statement": "<p>Una famiglia di 2.700 ulivi, lo stesso paesaggio, una raccolta attenta, <em>nessuna scorciatoia</em>.</p>",
         "body": "<p>La nostra azienda agricola nasce a Collazzone, nel cuore verde dell'Umbria, dove la famiglia Belardi Dottorini coltiva 2.700 ulivi sulla collina che dà forma al marchio. Qui le olive si raccolgono ancora a mano e si frangono a freddo, poche ore dopo la raccolta.</p><p>Ne nasce un extra vergine d'oliva di categoria superiore, espressione fedele di un territorio e di un modo di stare al mondo: fatto con misura, pensato per essere condiviso.</p>",
         "signature": "Azienda Agricola Belardi Dottorini Giuseppe",
-        "background": "d-bg--base"
+        "background": "d-bg--base",
+        "anchor": "collina"
+      }
+    },
+    "products": {
+      "type": "dottorini-featured-products",
+      "settings": {
+        "heading": "L'olio",
+        "text": "Scegli il tuo olio e ricevilo a casa.",
+        "products": [
+          "olio-bono",
+          "olio-test",
+          "test"
+        ],
+        "image_fit": "contain",
+        "anchor": "oli",
+        "background": "d-bg--tint"
       }
     },
     "journey": {
