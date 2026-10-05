@@ -262,10 +262,9 @@ Preferences only affects the homepage. No brand name is hardcoded in the theme.
   every photo keeps its own shape). Product cards default to `contain`
   because bottle packshots look better uncropped; switch the section setting
   to `cover` for lifestyle shots.
-- **Anchors.** The hero's second button ("La nostra terra") points at `#terra`,
-  which lives on the varieties section,
-  as does the header's "Cultivar". The statement is at `#collina`, Convivia at
-  `#convivia`.
+- **Anchors.** The hero's buttons are "Scopri gli oli" (`#oli`) and "La nostra
+  terra" (`#collina`, the statement). The header's "Cultivar" points at `#terra`,
+  which lives on the varieties section. Convivia is at `#convivia`.
 - **Company details.** The real details (ragione sociale, P. IVA, Collazzone
   address, phone, email) are stored in the theme editor. The schema defaults in
   `sections/footer.liquid` are still SAMPLE values (P. IVA `01234567890`, a

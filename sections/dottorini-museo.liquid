@@ -162,15 +162,16 @@
     display: block;
   }
 
-  .d-museo__head {
-    max-width: 46ch;
-  }
-
+  /* The 46ch measure is for the intro; on the heading it broke the title
+     into three short lines */
   .d-museo__heading {
+    max-width: 18ch;
     font-size: clamp(2rem, 4.2vw, 3.5rem);
+    text-wrap: balance;
   }
 
   .d-museo__text {
+    max-width: 46ch;
     margin-top: 1rem;
     color: var(--color-muted);
   }

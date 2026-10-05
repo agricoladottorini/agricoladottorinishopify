@@ -64,7 +64,7 @@
             </a>
           {% endif %}
           {% if section.settings.secondary_label != blank %}
-            <a class="button button--outline-light" href="{{ section.settings.secondary_link | default: '#terra' }}">
+            <a class="button button--outline-light" href="{{ section.settings.secondary_link | default: '#collina' }}">
               {{- section.settings.secondary_label -}}
             </a>
           {% endif %}
@@ -369,7 +369,7 @@
       "type": "url",
       "id": "secondary_link",
       "label": "Secondary button link",
-      "info": "Leave empty to scroll to the origin section."
+      "info": "Leave empty to scroll to the statement section (#collina)."
     }
   ],
   "presets": [
