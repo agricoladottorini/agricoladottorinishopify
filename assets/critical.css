@@ -131,6 +131,8 @@ body {
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --icon-stroke-width: 1.5;
   --color-error: #9b2c1f;
+  /* The logo's own olive, from the client's file (brand/logo/Logo.png) */
+  --color-logo: #b6b351;
   /* Text and light controls over photography and the dark cards: kept near
      white, not the sand page colour, so they read as white on any photo */
   --color-on-photo: #fdfcf9;

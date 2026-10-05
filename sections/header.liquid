@@ -12,10 +12,10 @@
         }}
       {% else %}
         {%- comment -%}
-          The hill line from the footer, as the mark in front of the wordmark.
+          The logo, as the mark in front of the wordmark.
           It is skipped when a logo is uploaded, because the logo is the mark.
         {%- endcomment -%}
-        <span class="site-header__mark">{% render 'brand-line' %}</span>
+        <span class="site-header__mark">{% render 'brand-logo' %}</span>
         <span class="site-header__words">
           <span class="site-header__name">{{ wordmark }}</span>
           {%- if section.settings.tagline != blank -%}
@@ -124,25 +124,19 @@
     height: auto;
   }
 
-  /* The brand mark, same line as the footer's, centred against the words */
+  /* The logo, same as the footer's, centred against the words. The ribbon
+     tapers to nothing at its ends, so it needs this width to keep its body */
   .site-header__mark {
     display: inline-flex;
     flex: 0 0 auto;
-    margin-right: 0.5rem;
-    color: var(--color-accent);
+    margin-right: 0.625rem;
+    color: var(--color-logo);
   }
 
   .site-header__mark svg {
     display: block;
-    width: clamp(2.4rem, 8vw, 3.4rem);
+    width: clamp(3.25rem, 11vw, 4.5rem);
     height: auto;
-  }
-
-  /* The line is drawn for the footer, where it is 88px wide. At a third of
-     that the 40 unit stroke thins out to about a pixel and disappears, so it
-     is drawn heavier here. Same path, same file, only the weight changes. */
-  .site-header__mark path {
-    stroke-width: 64;
   }
 
   /* Name on top, tagline under it. The header keeps its height, so on scroll
@@ -559,27 +553,27 @@
       "type": "text",
       "id": "nav_1_label",
       "label": "Link 1",
-      "default": "L'olio"
+      "default": "La collina"
     },
     {
       "type": "text",
       "id": "nav_1_href",
       "label": "Link 1 target",
-      "info": "Default: the product catalog.",
-      "default": "/collections/all"
+      "info": "Default: the statement section on the homepage.",
+      "default": "/#collina"
     },
     {
       "type": "text",
       "id": "nav_2_label",
       "label": "Link 2",
-      "default": "La collina"
+      "default": "L'olio"
     },
     {
       "type": "text",
       "id": "nav_2_href",
       "label": "Link 2 target",
-      "info": "Default: the statement section on the homepage.",
-      "default": "/#collina"
+      "info": "Default: the product catalog.",
+      "default": "/collections/all"
     },
     {
       "type": "text",

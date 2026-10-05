@@ -34,7 +34,7 @@
           button sits where "Vai al checkout" does, full width at the bottom.
         {% endcomment %}
         <div class="cart-drawer__empty">
-          <span class="cart-drawer__empty-mark">{% render 'brand-line' %}</span>
+          <span class="cart-drawer__empty-mark">{% render 'brand-logo' %}</span>
           <p>{{ section.settings.empty_text }}</p>
         </div>
         <footer class="cart-drawer__foot">
@@ -230,21 +230,17 @@
     margin: 0;
   }
 
-  /* The hill line, drawn heavier at this size like the header's */
+  /* The logo, as in the footer */
   .cart-drawer__empty-mark {
     display: block;
     width: 5.5rem;
-    color: var(--color-accent);
+    color: var(--color-logo);
   }
 
   .cart-drawer__empty-mark svg {
     display: block;
     width: 100%;
     height: auto;
-  }
-
-  .cart-drawer__empty-mark path {
-    stroke-width: 56;
   }
 
   .cart-drawer__items {

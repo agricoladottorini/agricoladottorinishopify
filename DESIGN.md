@@ -101,7 +101,8 @@ tuned for Outfit crowded the serif. Cormorant's x-height is small next to
 Marcellus, so emphasis inside a heading runs at `1.12em` and the standalone
 italic lines are sized up by hand. Small uppercase labels (footer column
 titles, eyebrows) stay in Hanken Grotesk even when they are `h3`. The social
-image in `brand/` was exported with Outfit and needs redoing to match.
+image in `brand/` uses the same set: logo, name in Marcellus, tagline in
+Hanken Grotesk with "nato in Umbria." in Cormorant italic, as in the hero.
 
 **Shape.** One rule, applied everywhere: interactive controls (buttons, inputs)
 are full pills, media and cards use `--radius-media` (14px). Nothing else is
@@ -122,27 +123,37 @@ later if it is ever wanted.
 
 ## Brand mark
 
-The hill line from the hero is the company mark. One path, reused everywhere:
-`snippets/brand-line.liquid` renders it inline in `currentColor` (deep olive),
-shown small above the footer copyright and again in the header, in front of the
-wordmark. At header size it is about 54px wide against the footer's 88px, which
-thins the path's 40 unit stroke to roughly a pixel, so the header draws it at
-64 instead (`.site-header__mark path`). Same path, same file, only the weight
-changes. It is skipped when a logo is uploaded, because the logo is the mark
-then, and it sits outside the wordmark so the tagline fold does not move it. The favicon (`assets/favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`, linked
-from `snippets/meta-tags.liquid`) is the same line in cream on an olive tile,
-vertically exaggerated so it still reads at 16px. The apple touch icon is a
-full square because iOS rounds the corners itself.
+The company mark is the client's logo: an olive ribbon (`#b6b351`, token
+`--color-logo` in `assets/critical.css`) running up over the hill, cropped flat
+at both ends. The original PNG is `brand/logo/Logo.png`; it was traced with
+potrace into one filled path, reused everywhere: `snippets/brand-logo.liquid`
+renders it inline in `currentColor`, and every mark container sets
+`color: var(--color-logo)`. It sits small above the footer copyright (88px),
+in the cart drawer's empty state, on the password page and in the header in
+front of the wordmark. The ribbon tapers to nothing at its ends, so the header
+draws it at 52-72px wide rather than smaller, or only the hump survives. It is
+skipped when a logo is uploaded, because the logo is the mark then, and it sits
+outside the wordmark so the tagline fold does not move it.
 
-Sources and exports (SVG, PNG, JPEG, `favicon.ico`) live in `brand/`, which is
-in `.shopifyignore`. Re-export with `sips`, e.g.
-`sips -s format png -Z 2000 brand/dottorini-linea.svg --out brand/dottorini-linea.png`.
+The favicon (`assets/favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`,
+linked from `snippets/meta-tags.liquid`) is the same ribbon in the logo colour
+on a dark tile (`#211C14`), running full bleed and stretched vertically 1.9x so
+it still reads at 16px. The small sizes (SVG, 16, 32, 48) add a stroke in the
+same colour to thicken it; 180 and 512 keep the true taper. The apple touch
+icon is a full square because iOS rounds the corners itself.
+
+Sources and exports live in `brand/`, which is in `.shopifyignore`: the logo
+as SVG and PNG (`dottorini-logo`, `-chiaro` for dark grounds, `-scuro` for
+one-colour print), the icon (`dottorini-icona.svg`, `-512.png`),
+`favicon.ico` (16/32/48), and the social image. PNGs from the SVGs can be
+re-exported with `sips`, e.g.
+`sips -s format png brand/dottorini-logo.svg --out brand/dottorini-logo.png`.
 
 ## Motion
 
 - Hero: image settles from a slight scale, then headline, text and buttons
   rise in sequence. Sets reading order.
-- Decorative hero line: draws itself once left to right behind a soft-edged
+- Hero logo ribbon: draws itself once left to right behind a soft-edged
   mask. It does not loop.
 - Sections: fade and rise on scroll via CSS scroll-driven animations
   (`animation-timeline: view()`) on the shared `.reveal` class. No scroll
@@ -185,10 +196,10 @@ Each section uses a different layout family on purpose. Nothing repeats.
 
 | File | Layout |
 | --- | --- |
-| `sections/header.liquid` | Sticky 3-column bar, 68px, blurred background. The brand line sits in front of the wordmark and its tagline, centred against both. Mobile menu is a native `<details>`, which a small script closes when a link is tapped. Links come from `snippets/header-nav-links.liquid`, shared by the bar and the drawer. They are six label/target pairs in the header's own settings (`nav_1` to `nav_6`), not a Shopify menu, so homepage anchors live in the theme: "L'olio" -> `/collections/all`, "La collina" -> `/#collina` (statement), "Cultivar" -> `/#terra` (varieties), "Convivia" -> `/#convivia`, "Museo" -> `/pages/museo`, "Contatti" -> `#contatti` (footer). A blank label hides a link. There is no Home entry: the wordmark links home. Arriving on a page with a hash, the header settles on the target once the page has loaded, because the browser's own jump was landing at the top |
-| `sections/dottorini-hero.liquid` | Full-bleed framed photo, copy at the bottom over a gradient scrim, plus the decorative line |
+| `sections/header.liquid` | Sticky 3-column bar, 68px, blurred background. The logo sits in front of the wordmark and its tagline, centred against both. Mobile menu is a native `<details>`, which a small script closes when a link is tapped. Links come from `snippets/header-nav-links.liquid`, shared by the bar and the drawer. They are six label/target pairs in the header's own settings (`nav_1` to `nav_6`), not a Shopify menu, so homepage anchors live in the theme: "La collina" -> `/#collina` (statement), "L'olio" -> `/collections/all`, "Cultivar" -> `/#terra` (varieties), "Convivia" -> `/#convivia`, "Museo" -> `/pages/museo`, "Contatti" -> `#contatti` (footer). A blank label hides a link. There is no Home entry: the wordmark links home. Arriving on a page with a hash, the header settles on the target once the page has loaded, because the browser's own jump was landing at the top |
+| `sections/dottorini-hero.liquid` | Full-bleed framed photo in three bands: heading top left, the logo ribbon across the middle, text and buttons at the bottom, with a scrim at top and bottom for contrast. The ribbon is in the content flow (not absolutely positioned), centred between heading and text and pulled past the padding to run edge to edge, so it never overlaps the copy; the frame has a `min-height` and grows if the content needs it. Filled path, colour is a section setting (default `#B6B351`). Height capped at `40svh` so it flattens a little on short wide screens; drawn 1.5x taller under 900px |
 | `sections/dottorini-featured-products.liquid` | Asymmetric grid: one large card, two stacked beside it |
-| `sections/dottorini-manifesto.liquid` | Editorial statement, then the company text, up to three fact tiles (blocks: a big claim like "Raccolta a mano" with a small olive detail like "Ottobre-novembre") and the signature, beside one offset portrait image. From 900px the statement is limited to 7 columns because the image rises 8rem into its row. Fact tiles are light (`--color-background`) on the sand band, 14px radius like other cards. They stay side by side on phones too (one per row left the band half empty), with tighter padding under 560px so a detail like "Ottobre-novembre" stays on one line from 360px up; titles may wrap to two lines there. Only under ~350px do they stack |
+| `sections/dottorini-manifesto.liquid` | Editorial statement, then the company text, up to three fact tiles (blocks: a big claim like "Raccolta a mano" with a small olive detail like "Ottobre-novembre") and the signature, beside one offset portrait image. From 900px the statement is limited to 7 columns because the image rises 8rem into its row. The section sits on the sand band (`d-bg--base`), straight after the hero and before the products, so the fact tiles are cream (`--color-tint`) to stand off it; on a tint band they fall back to the sand `--color-background`, 14px radius like other cards. They stay side by side on phones too (one per row left the band half empty), with tighter padding under 560px so a detail like "Ottobre-novembre" stays on one line from 360px up; titles may wrap to two lines there. Only under ~350px do they stack |
 | `sections/dottorini-journey.liquid` | "Dottorini varietà": the three olives in the blend (Moraiolo, Frantoiano, Leccino), each with photo, name, italic tagline and a short description. Up to three cards: one row from 900px with the middle card dropped; phones scroll-snap. More than three falls back to the scrolling gallery with arrows. File and block type keep the old `journey`/`step` names so editor data survives |
 | `sections/dottorini-convivia.liquid` | Convivia, the family's home restaurant, as one large dark card (`--color-foreground`) inside the page column: copy left, full-height photo right, no hill line (removed at the owner's request). Phones stack photo over copy. The card is a photo container like the hero frame, not a theme switch. Adapted from an owner reference that used serif type and brass/terracotta; kept to the olive tint `#8A9A4B` instead of brass (the serif came back later with the client's type system). The button links to the SumUp booking page and opens in a new tab |
 | `sections/footer.liquid` | Dark band (`d-bg--dark`) by default: newsletter and columns, company details, then the copyright and policy row |
@@ -209,7 +220,7 @@ page's outer wrapper; do not duplicate the value locally.
 | `sections/collection.liquid` | Catalogo: 3 cards per row desktop, 2 from 700px, 1 on phones, paginated (12 per page). Heading is a section setting (default "Prodotti"), not `collection.title`, because the nav points at `/collections/all`, Shopify's auto-generated "every product" collection, which has no editable title in admin. Leave the setting blank to fall back to `collection.title` on a real collection |
 | `sections/product.liquid` | Product page: thumbnail rail plus large image left, details right and sticky; quantity stepper beside the add button showing the price; expandable info rows as blocks. On phones the stepper becomes a full width bar above a full width button |
 | `sections/dottorini-museo.liquid`, `templates/page.museo.json` | Museo della Civiltà Contadina, a photo showroom for the family's small collection of rural life exhibits, on its own page (`/pages/museo`, template `page.museo`), not the homepage. Short heading and intro, then one masonry archive. No photo is featured over the others (the owner turned down a large opening plate): the collection is a set of peers and the varied heights carry the rhythm. The archive is CSS `columns`, 3 from 1100px, 2 from 560px, 1 on phones, and each photo keeps its own `aspect_ratio` rather than being cropped into a tile: a scythe or a yoke is the wrong shape for a square. Column gaps come from `column-gap`, row gaps from the item margin, and a negative bottom margin cancels the trailing one. No captions, images carry it. Clicking a photo opens it in a viewer, a native `<dialog>` so Escape, focus return and inertness are the browser's job. The layout holds any block count, from 5 to the 30 the schema allows; the template ships 20 empty slots. Optional button, hidden unless both a label and a link are set |
-| `sections/cart-drawer.liquid` | Cart as a floating rounded panel inset from the edges, not a page. Rendered on every page from `layout/theme.liquid` and refreshed through the Section Rendering API after each change. Empty, it keeps the same frame as a full cart: the hill line and the message centred in the items area, and "Vedi i prodotti" full width at the bottom where "Vai al checkout" sits |
+| `sections/cart-drawer.liquid` | Cart as a floating rounded panel inset from the edges, not a page. Rendered on every page from `layout/theme.liquid` and refreshed through the Section Rendering API after each change. Empty, it keeps the same frame as a full cart: the logo and the message centred in the items area, and "Vedi i prodotti" full width at the bottom where "Vai al checkout" sits |
 | `sections/cart.liquid` | The `/cart` page: a no-JavaScript fallback, rarely seen since the drawer handles normal use. Line items reuse the drawer's `.cart-item` classes directly (the drawer section renders on every page, so those styles are already loaded globally) rather than duplicating them, so the two can't drift apart. Quantity changes go through a plain number input plus one shared "Aggiorna carrello" submit, since this page has to work with JavaScript off; remove is a plain link to `item.url_to_remove` |
 
 Cart behaviour: the header cart icon opens the drawer (the link still points at
@@ -300,8 +311,8 @@ Preferences only affects the homepage. No brand name is hardcoded in the theme.
 - Liquid does not interpolate `{{ }}` inside filter string arguments. Build the
   value with `assign` first, as the sections do for `object-position`.
 - `assets/critical.css` gives every `svg` a `max-width: 100%`, which silently
-  caps absolutely positioned SVGs. The hero line overrides it with
-  `max-width: none`.
+  caps SVGs that are meant to run wider than their box. The hero ribbon, which
+  is pulled past the content padding, overrides it with `max-width: none`.
 - With `shopify theme dev`, sections must upload before a template that
   references them. A fresh `templates/index.json` referencing a brand new
   section fails until the section syncs; touch the template afterwards.
