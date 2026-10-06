@@ -209,7 +209,8 @@
   }
 
   .site-header__nav a:hover::after,
-  .site-header__nav a[aria-current='page']::after {
+  .site-header__nav a[aria-current='page']::after,
+  .site-header__nav a[aria-current='location']::after {
     transform: scaleX(1);
   }
 
@@ -421,6 +422,7 @@
     connectedCallback() {
       this.setUpDrawer();
       this.settleHashTarget();
+      this.trackSections();
 
       // The sentinel has to sit outside the sticky wrapper, in normal flow.
       const sticky = this.closest('.shopify-section-group-header-group') || this.closest('.shopify-section');
@@ -493,7 +495,52 @@
       else window.addEventListener('load', settle, { once: true });
     }
 
+    // Underlines the menu link of the homepage section in view, so the bar
+    // says where the visitor is. Links to an anchor on this page take part,
+    // and so do links to another page that a section claims with
+    // data-nav-match (the oils panel claims the catalog, which "L'olio"
+    // opens). A section counts as "in view" when it crosses the middle of
+    // the screen.
+    trackSections() {
+      const groups = new Map();
+      const claimed = new Map();
+      document.querySelectorAll('[data-nav-match]').forEach((element) => {
+        claimed.set(element.dataset.navMatch, element);
+      });
+      this.querySelectorAll('a[href]').forEach((link) => {
+        const url = new URL(link.href, location.href);
+        let target = claimed.get(url.pathname);
+        if (!target && url.pathname === location.pathname && url.hash.length > 1) {
+          target = document.getElementById(decodeURIComponent(url.hash.slice(1)));
+        }
+        if (!target) return;
+        const area = target.closest('.shopify-section') || target;
+        if (!groups.has(area)) groups.set(area, []);
+        groups.get(area).push(link);
+      });
+      if (!groups.size) return;
+
+      const visible = new Set();
+      this.sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) visible.add(entry.target);
+            else visible.delete(entry.target);
+          });
+          groups.forEach((links, area) => {
+            links.forEach((link) => {
+              if (visible.has(area)) link.setAttribute('aria-current', 'location');
+              else if (link.getAttribute('aria-current') === 'location') link.removeAttribute('aria-current');
+            });
+          });
+        },
+        { rootMargin: '-50% 0px -50% 0px' }
+      );
+      groups.forEach((links, area) => this.sectionObserver.observe(area));
+    }
+
     disconnectedCallback() {
+      this.sectionObserver?.disconnect();
       this.observer?.disconnect();
       this.sentinel?.remove();
       if (this.drawer && this.closeDrawer) {

@@ -1,0 +1,52 @@
+{% doc %}
+  Behaviour for horizontal scroll-snap galleries with arrow buttons.
+
+  Renders nothing visible: it defines the <scroll-gallery> custom element.
+  Inside it, the scrolling list carries data-gallery-track and the two
+  buttons carry data-gallery-arrow plus data-direction="-1" / "1". The
+  arrows step by one item and disable themselves at either end. Swiping
+  works without it; the arrows are a progressive enhancement.
+
+  @example
+  {% render 'scroll-gallery' %}
+{% enddoc %}
+
+{% javascript %}
+  class ScrollGallery extends HTMLElement {
+    connectedCallback() {
+      this.track = this.querySelector('[data-gallery-track]');
+      this.buttons = this.querySelectorAll('[data-gallery-arrow]');
+      const steps = this.track?.children;
+      if (!this.track || !steps?.length || !this.buttons.length) return;
+
+      this.onClick = (event) => {
+        const direction = Number(event.currentTarget.dataset.direction);
+        const step = steps[0].getBoundingClientRect().width + parseFloat(getComputedStyle(this.track).columnGap || 0);
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        this.track.scrollBy({ left: direction * step, behavior: reduce ? 'auto' : 'smooth' });
+      };
+      this.buttons.forEach((button) => button.addEventListener('click', this.onClick));
+
+      // Disable the arrows at the edges by observing the first and last step.
+      const [prev, next] = this.buttons;
+      this.observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.target === steps[0]) prev.disabled = entry.isIntersecting;
+            if (entry.target === steps[steps.length - 1]) next.disabled = entry.isIntersecting;
+          });
+        },
+        { root: this.track, threshold: 0.95 }
+      );
+      this.observer.observe(steps[0]);
+      this.observer.observe(steps[steps.length - 1]);
+    }
+
+    disconnectedCallback() {
+      this.buttons?.forEach((button) => button.removeEventListener('click', this.onClick));
+      this.observer?.disconnect();
+    }
+  }
+
+  if (!customElements.get('scroll-gallery')) customElements.define('scroll-gallery', ScrollGallery);
+{% endjavascript %}

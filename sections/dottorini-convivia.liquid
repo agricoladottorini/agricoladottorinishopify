@@ -7,6 +7,7 @@
 
 <div class="section-band full-width {{ section.settings.background }}">
   <div class="section-band__inner section-space" id="{{ section.settings.anchor | default: 'convivia' | handleize }}">
+    {% render 'section-label', label: section.settings.label %}
     <article class="d-convivia reveal" style="--convivia-accent: {{ section.settings.line_color }};">
       <div class="d-convivia__body">
         {% if section.settings.eyebrow != blank %}
@@ -167,6 +168,13 @@
   "tag": "section",
   "class": "d-convivia-section",
   "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Section name",
+      "info": "Small name at the top of the section, matching its menu link. Leave blank to hide it.",
+      "default": "Convivia"
+    },
     {
       "type": "text",
       "id": "eyebrow",

@@ -3,8 +3,6 @@
   to the product page — there's no buy control on it.
 
   @param {product} product - The product to render
-  @param {boolean} [featured] - Large card variant, image above the text
-  @param {boolean} [split] - Compact variant with the image beside the text from 900px
   @param {string} [image_fit] - 'contain' or 'cover', defaults to 'contain'
 
   @example
@@ -13,21 +11,10 @@
 
 {% liquid
   assign fit = image_fit | default: 'contain'
-
-  if featured
-    assign image_sizes = '(min-width: 900px) 55vw, 100vw'
-  elsif split
-    assign image_sizes = '(min-width: 900px) 20vw, 40vw'
-  else
-    assign image_sizes = '(min-width: 1000px) 30vw, (min-width: 700px) 45vw, 100vw'
-  endif
+  assign image_sizes = '(min-width: 1000px) 30vw, (min-width: 700px) 45vw, 100vw'
 %}
 
-<article
-  class="product-card product-card--{{ fit }}
-    {%- if featured %} product-card--featured{% endif -%}
-    {%- if split %} product-card--split{% endif -%}"
->
+<article class="product-card product-card--{{ fit }}">
   <a class="product-card__media" href="{{ product.url }}" tabindex="-1" aria-hidden="true">
     {% if product.featured_image %}
       {{
@@ -75,10 +62,6 @@
     overflow: hidden;
     border-radius: var(--radius-media);
     background-color: var(--color-surface);
-  }
-
-  .product-card--featured {
-    background-color: var(--color-surface-strong);
   }
 
   .product-card__media {
@@ -129,10 +112,6 @@
     font-size: 1.25rem;
   }
 
-  .product-card--featured .product-card__title {
-    font-size: clamp(1.5rem, 2.4vw, 2.25rem);
-  }
-
   .product-card__title a {
     color: var(--color-foreground);
     text-decoration: none;
@@ -152,34 +131,5 @@
   .product-card__compare {
     margin-right: 0.35rem;
     color: var(--color-muted);
-  }
-
-  /* Compact cards on the landing page sit beside their image from 900px up */
-  @media (min-width: 900px) {
-    .product-card--split {
-      flex-direction: row;
-    }
-
-    .product-card--split .product-card__media {
-      flex: 0 0 46%;
-      aspect-ratio: auto;
-    }
-
-    .product-card--split .product-card__body {
-      flex: 1 1 auto;
-      justify-content: space-between;
-      padding: 1.75rem;
-    }
-
-    .product-card--featured .product-card__media {
-      aspect-ratio: auto;
-    }
-
-    .product-card--featured .product-card__body {
-      flex-direction: row;
-      align-items: flex-end;
-      justify-content: space-between;
-      padding: 2rem;
-    }
   }
 {% endstylesheet %}

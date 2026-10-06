@@ -1,0 +1,29 @@
+{% doc %}
+  The name at the top of a homepage section ("La collina", "L'olio", ...),
+  matching the header link that leads to it, so a visitor arriving from the
+  menu sees where they landed. Set in the accent italic in sentence case,
+  like the italic words in the headings, not as a letter-spaced capitals
+  eyebrow. Coloured by --section-label-color, which falls back to the
+  band's accent.
+
+  @param {string} label - The section name, usually the menu label
+
+  @example
+  {% render 'section-label', label: section.settings.label %}
+{% enddoc %}
+
+{%- if label != blank -%}
+  <p class="section-label">{{ label }}</p>
+{%- endif -%}
+
+{% stylesheet %}
+  .section-label {
+    margin: 0 0 clamp(0.75rem, 1.6vw, 1.25rem);
+    font-family: var(--font-accent--family);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.25rem, 1.9vw, 1.625rem);
+    line-height: 1.2;
+    color: var(--section-label-color, var(--color-accent));
+  }
+{% endstylesheet %}
