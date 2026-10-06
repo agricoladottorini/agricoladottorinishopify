@@ -1,7 +1,13 @@
 {% comment %}
-  Asymmetric 1 + 2 product grid: the first product is the large card, the
-  next two stack beside it. Falls back to the first products of the store
-  when no products are picked.
+  The oils, as one dark rounded panel inside the page column: the heading
+  on the left and an italic note on the right, with the
+  logo ribbon faint behind them. Below, a sideways scroll-snap row: two
+  product cards (image over a cream body with price and buy button), a
+  terracotta promo card for the Convivia gift box, which is not a product
+  yet (it links to a URL until a product is picked for it), and a last card
+  to the full catalog that starts just outside the panel, so it reads as
+  "there is more". Falls back to the store's first products when none are
+  picked.
 {% endcomment %}
 
 {% liquid
@@ -9,103 +15,641 @@
   if products == blank
     assign products = collections.all.products
   endif
+  assign promo_url = section.settings.promo_link | default: '/#convivia'
+  assign all_url = section.settings.all_link | default: '/collections/all'
+  if section.settings.promo_product
+    assign promo_url = section.settings.promo_product.url
+  endif
 %}
 
 <div class="section-band full-width {{ section.settings.background }}">
-<div class="d-products section-band__inner section-space" id="{{ section.settings.anchor | default: 'oli' | handleize }}">
-  <div class="d-products__head reveal">
-    {% if section.settings.heading != blank %}
-      <h2 class="d-products__heading">{{ section.settings.heading }}</h2>
-    {% endif %}
-    {% if section.settings.text != blank %}
-      <p class="d-products__text">{{ section.settings.text }}</p>
-    {% endif %}
-  </div>
+  <div class="section-band__inner section-space" id="{{ section.settings.anchor | default: 'oli' | handleize }}">
+    <scroll-gallery class="d-products" data-nav-match="{{ routes.all_products_collection_url }}">
+      <div class="d-products__ribbon" aria-hidden="true">{% render 'brand-logo' %}</div>
 
-  <ul class="d-products__grid" role="list">
-    {% for product in products limit: 3 %}
-      {%- liquid
-        assign is_featured = false
-        assign is_split = true
-        if forloop.first
-          assign is_featured = true
-          assign is_split = false
-        endif
-      -%}
-      <li class="d-products__item{% if forloop.first %} d-products__item--featured{% endif %} reveal">
-        {% render 'product-card',
-          product: product,
-          featured: is_featured,
-          split: is_split,
-          image_fit: section.settings.image_fit
-        %}
-      </li>
-    {% else %}
-      <li class="d-products__empty">
-        <p>Nessun prodotto da mostrare.</p>
-        <p>Scegli fino a tre prodotti nelle impostazioni di questa sezione.</p>
-      </li>
-    {% endfor %}
-  </ul>
+      <div class="d-products__head reveal">
+        <div class="d-products__top">
+          {% render 'section-label', label: section.settings.label %}
+          <div class="d-products__controls">
+            <button type="button" class="d-products__arrow" data-gallery-arrow data-direction="-1" aria-label="Precedente" disabled>
+              <span aria-hidden="true">&larr;</span>
+            </button>
+            <button type="button" class="d-products__arrow" data-gallery-arrow data-direction="1" aria-label="Successivo">
+              <span aria-hidden="true">&rarr;</span>
+            </button>
+          </div>
+        </div>
+        <div class="d-products__intro">
+          {% if section.settings.heading != blank %}
+            <h2 class="d-products__heading">{{ section.settings.heading }}</h2>
+          {% endif %}
+          {% if section.settings.text != blank %}
+            <p class="d-products__text">{{ section.settings.text }}</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <ul
+        class="d-products__grid reveal"
+        data-gallery-track
+        role="list"
+        tabindex="0"
+        aria-label="{{ section.settings.heading | escape }}"
+      >
+        {% for product in products limit: 2 %}
+          {%- liquid
+            assign variant = product.selected_or_first_available_variant
+            assign tag = product.type
+            unless product.has_only_default_variant
+              if tag != blank
+                assign tag = tag | append: ' · ' | append: variant.title
+              else
+                assign tag = variant.title
+              endif
+            endunless
+          -%}
+          <li class="d-products__item">
+            <article class="d-card">
+              <a class="d-card__media" href="{{ product.url }}" tabindex="-1" aria-hidden="true">
+                {% if product.featured_image %}
+                  {{
+                    product.featured_image
+                    | image_url: width: 1200
+                    | image_tag:
+                      widths: '400, 600, 800, 1200',
+                      sizes: '(min-width: 1000px) 30vw, (min-width: 700px) 45vw, 90vw',
+                      loading: 'lazy',
+                      class: section.settings.image_fit,
+                      alt: product.featured_image.alt
+                  }}
+                {% else %}
+                  {{ 'image' | placeholder_svg_tag: 'd-card__placeholder' }}
+                {% endif %}
+              </a>
+
+              <div class="d-card__body">
+                <div class="d-card__copy">
+                  {% if tag != blank %}
+                    <p class="d-card__tag">{{ tag }}</p>
+                  {% endif %}
+                  <h3 class="d-card__title">
+                    <a href="{{ product.url }}">{{ product.title }}</a>
+                  </h3>
+                  {% if product.description != blank %}
+                    <p class="d-card__text">{{ product.description | strip_html | truncatewords: 22 }}</p>
+                  {% endif %}
+                </div>
+
+                <div class="d-card__foot">
+                  <p class="d-card__price">
+                    {% if product.price_varies %}
+                      <span class="d-card__from">{{ section.settings.from_label }}</span>
+                    {% endif %}
+                    {{ product.price_min | money_without_trailing_zeros }}
+                  </p>
+
+                  {%- comment -%}
+                    One variant: add straight to the cart. Several: the
+                    shopper picks a format on the product page.
+                  {%- endcomment -%}
+                  {% if product.has_only_default_variant and variant.available %}
+                    <quick-add
+                      class="d-card__buy"
+                      data-add-url="{{ routes.cart_add_url }}"
+                      data-added="{{ section.settings.added_label | escape }}"
+                      data-error="{{ section.settings.error_label | escape }}"
+                      data-stock-error="{{ section.settings.error_label | escape }}"
+                      {% if variant.inventory_management == 'shopify' %}
+                        data-inventory-quantity="{{ variant.inventory_quantity }}"
+                      {% endif %}
+                    >
+                      {% form 'product', product %}
+                        <input type="hidden" name="id" value="{{ variant.id }}">
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" class="d-card__button">
+                          <span class="d-card__button-label">{{ section.settings.buy_label }}</span>
+                          <span class="d-card__button-done" aria-hidden="true">{{ section.settings.added_label }}</span>
+                        </button>
+                      {% endform %}
+                      <p class="visually-hidden" role="status" data-quick-add-status></p>
+                    </quick-add>
+                  {% elsif product.available %}
+                    <a class="d-card__button" href="{{ product.url }}">{{ section.settings.buy_label }}</a>
+                  {% else %}
+                    <span class="d-card__soldout">{{ section.settings.sold_out_label }}</span>
+                  {% endif %}
+                </div>
+              </div>
+            </article>
+          </li>
+        {% else %}
+          <li class="d-products__empty">
+            <p>Nessun prodotto da mostrare.</p>
+            <p>Scegli due prodotti nelle impostazioni di questa sezione.</p>
+          </li>
+        {% endfor %}
+
+        {% if section.settings.show_promo %}
+          <li class="d-products__item d-products__item--promo">
+            <article class="d-promo" style="--promo-bg: {{ section.settings.promo_color }};">
+              {% if section.settings.promo_eyebrow != blank %}
+                <p class="d-promo__eyebrow">{{ section.settings.promo_eyebrow }}</p>
+              {% endif %}
+              {% if section.settings.promo_heading != blank %}
+                <h3 class="d-promo__heading">{{ section.settings.promo_heading }}</h3>
+              {% endif %}
+              {% if section.settings.promo_text != blank %}
+                <p class="d-promo__text">{{ section.settings.promo_text }}</p>
+              {% endif %}
+
+              <div class="d-promo__foot">
+                <span class="d-promo__line" aria-hidden="true">{% render 'brand-logo' %}</span>
+                {% if section.settings.promo_link_label != blank %}
+                  <a
+                    class="button button--light d-promo__cta"
+                    href="{{ promo_url }}"
+                    {% if promo_url contains '://' %}
+                      target="_blank" rel="noopener"
+                    {% endif %}
+                  >
+                    {{- section.settings.promo_link_label -}}
+                    <span aria-hidden="true">&nearr;</span>
+                  </a>
+                {% endif %}
+              </div>
+            </article>
+          </li>
+        {% endif %}
+
+        {% if section.settings.all_label != blank %}
+          <li class="d-products__item d-products__item--all">
+            <a class="d-all" href="{{ all_url }}">
+              {% if section.settings.all_eyebrow != blank %}
+                <span class="d-all__eyebrow">{{ section.settings.all_eyebrow }}</span>
+              {% endif %}
+              <span class="d-all__label">{{ section.settings.all_label }}</span>
+              <span class="d-all__arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    </scroll-gallery>
+  </div>
 </div>
-</div>
+
+{% render 'quick-add' %}
+{% render 'scroll-gallery' %}
 
 {% stylesheet %}
+  /* The dark panel, a photo-style container like the hero frame */
+  .d-products {
+    --panel-pad: clamp(1.25rem, 4.5vw, 4.5rem);
+    --gold: #c9a24a;
+    /* a custom element, inline by default */
+    display: block;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: var(--panel-pad);
+    border-radius: calc(var(--radius-media) * 2);
+    background-color: var(--color-dark);
+    color: var(--color-on-photo);
+  }
+
+  /* The logo ribbon, faint, rising behind the heading */
+  .d-products__ribbon {
+    position: absolute;
+    z-index: -1;
+    top: clamp(4rem, 9vw, 7rem);
+    left: 0;
+    width: 100%;
+    color: var(--color-logo);
+    opacity: 0.16;
+    pointer-events: none;
+  }
+
+  .d-products__ribbon svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
   .d-products__head {
-    margin-bottom: clamp(2rem, 4vw, 3.5rem);
+    margin-bottom: clamp(2rem, 4.5vw, 4rem);
+  }
+
+  /* Section name left, arrows right from 900px (phones and tablets swipe) */
+  .d-products__top {
+    --section-label-color: var(--color-logo);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: clamp(1.5rem, 3.5vw, 3rem);
+  }
+
+  .d-products__top .section-label {
+    margin: 0;
+  }
+
+  .d-products__controls {
+    display: none;
+    gap: 0.5rem;
+    margin-left: auto;
+  }
+
+  @media (min-width: 900px) {
+    .d-products__controls {
+      display: flex;
+    }
+  }
+
+  .d-products__arrow {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    border: 1px solid rgb(253 252 249 / 0.5);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--color-on-photo);
+    font: inherit;
+    font-size: 1.125rem;
+    cursor: pointer;
+    transition: background-color 0.3s var(--ease-out), color 0.3s var(--ease-out), transform 0.2s var(--ease-out),
+      opacity 0.3s var(--ease-out);
+  }
+
+  .d-products__arrow:hover:not([disabled]) {
+    border-color: var(--color-accent-light);
+    background-color: var(--color-accent-light);
+    color: var(--color-dark);
+  }
+
+  .d-products__arrow:active:not([disabled]) {
+    transform: scale(0.96);
+  }
+
+  .d-products__arrow[disabled] {
+    opacity: 0.3;
+    cursor: default;
+  }
+
+  .d-products__intro {
+    display: grid;
+    gap: 1.25rem;
   }
 
   .d-products__heading {
-    font-size: clamp(2.25rem, 5vw, 4.25rem);
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    line-height: 1;
+    color: var(--color-on-photo);
   }
 
   .d-products__text {
-    max-width: 44ch;
-    margin-top: 0.75rem;
-    font-size: 1.0625rem;
+    max-width: 30ch;
+    font-family: var(--font-accent--family);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.25rem, 2vw, 1.875rem);
+    line-height: 1.35;
+    color: rgb(253 252 249 / 0.82);
+  }
+
+  @media (min-width: 1000px) {
+    .d-products__intro {
+      grid-template-columns: 1.6fr 1fr;
+      align-items: end;
+      gap: 3rem;
+    }
+  }
+
+  /*
+    One sideways row on every screen. It runs to the panel edges (the panel
+    clips it) and snaps to the content edge, so the card after the last
+    whole one peeks in from the right: 1 card on phones, 2 on tablets, 3 on
+    desktop, then the catalog card waiting outside.
+  */
+  .d-products__grid {
+    --track-gap: clamp(0.875rem, 1.6vw, 1.25rem);
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 84%;
+    gap: var(--track-gap);
+    margin: 0 calc(-1 * var(--panel-pad));
+    padding: 0 var(--panel-pad) 0.25rem;
+    list-style: none;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--panel-pad);
+    scrollbar-width: none;
+  }
+
+  .d-products__grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .d-products__grid:focus-visible {
+    outline: 2px solid var(--color-accent-light);
+    outline-offset: 4px;
+  }
+
+  .d-products__item {
+    min-width: 0;
+    scroll-snap-align: start;
+  }
+
+  @media (min-width: 700px) {
+    .d-products__grid {
+      grid-auto-columns: calc((100% - var(--track-gap)) / 2);
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .d-products__grid {
+      grid-auto-columns: calc((100% - 2 * var(--track-gap)) / 3);
+    }
+  }
+
+  /* Catalog card: an outlined panel, a big label and an arrow */
+  .d-all {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+    height: 100%;
+    min-height: 22rem;
+    padding: clamp(1.5rem, 3vw, 2.75rem);
+    border: 1px solid rgb(253 252 249 / 0.22);
+    border-radius: var(--radius-media);
+    color: var(--color-on-photo);
+    text-decoration: none;
+    transition: background-color 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+  }
+
+  .d-all:hover {
+    border-color: rgb(253 252 249 / 0.5);
+    background-color: rgb(253 252 249 / 0.05);
+  }
+
+  .d-all__eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .d-all__label {
+    max-width: 10ch;
+    margin-top: auto;
+    font-family: var(--font-heading--family);
+    font-size: clamp(2rem, 3.2vw, 3rem);
+    line-height: 1.05;
+  }
+
+  .d-all__arrow {
+    display: grid;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: var(--radius-pill);
+    background-color: var(--color-on-photo);
+    color: var(--color-dark);
+    font-size: 1.25rem;
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  .d-all:hover .d-all__arrow {
+    transform: translateX(0.35rem);
+  }
+
+  /* Product card: image over a cream body */
+  .d-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    border-radius: var(--radius-media);
+    background-color: var(--color-tint);
+    color: var(--color-foreground);
+  }
+
+  .d-card__media {
+    position: relative;
+    display: block;
+    aspect-ratio: 6 / 5;
+    overflow: hidden;
+    background-color: color-mix(in srgb, var(--color-tint) 93%, var(--color-foreground));
+  }
+
+  .d-card__media img,
+  .d-card__placeholder {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.9s var(--ease-out);
+  }
+
+  .d-card__media img.contain {
+    object-fit: contain;
+    padding: 8%;
+  }
+
+  .d-card__media img.cover {
+    object-fit: cover;
+  }
+
+  .d-card__placeholder {
+    padding: 14%;
+    fill: rgb(33 28 20 / 0.16);
+  }
+
+  .d-card:hover .d-card__media img,
+  .d-card:hover .d-card__placeholder {
+    transform: scale(1.04);
+  }
+
+  .d-card__body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    padding: clamp(1.25rem, 2.4vw, 2rem);
+  }
+
+  .d-card__copy {
+    padding-bottom: 1.5rem;
+  }
+
+  .d-card__tag {
+    margin-bottom: 0.75rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #8a6a22;
+  }
+
+  .d-card__title {
+    font-size: clamp(1.5rem, 2.4vw, 2.125rem);
+    line-height: 1.05;
+  }
+
+  .d-card__title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .d-card__text {
+    margin-top: 0.875rem;
+    font-size: 0.9875rem;
+    line-height: 1.55;
     color: var(--color-muted);
   }
 
-  .d-products__grid {
-    display: grid;
-    grid-template-columns: 1fr;
+  .d-card__foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     gap: 1rem;
-    padding: 0;
-    list-style: none;
+    margin-top: auto;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgb(33 28 20 / 0.12);
+  }
+
+  .d-card__price {
+    font-family: var(--font-heading--family);
+    font-size: clamp(1.5rem, 2.2vw, 1.875rem);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .d-card__from {
+    margin-right: 0.3rem;
+    font-family: var(--font-body--family);
+    font-size: 0.875rem;
+    color: var(--color-muted);
+  }
+
+  .d-card__button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    padding: 0 1.5rem;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background-color: #6f7f45;
+    color: var(--color-on-photo);
+    font: inherit;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .d-card__button:hover {
+    background-color: var(--color-accent-base);
+  }
+
+  .d-card__button-done {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    opacity: 0;
+  }
+
+  .d-card__buy.is-loading .d-card__button {
+    opacity: 0.7;
+    cursor: progress;
+  }
+
+  .d-card__buy.is-done .d-card__button-label {
+    opacity: 0;
+  }
+
+  .d-card__buy.is-done .d-card__button-done {
+    opacity: 1;
+  }
+
+  .d-card__soldout {
+    font-size: 0.9375rem;
+    color: var(--color-muted);
+  }
+
+  /* Promo card: terracotta, copy on top, line and button at the bottom */
+  .d-promo {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 22rem;
+    padding: clamp(1.5rem, 3vw, 2.75rem);
+    border-radius: var(--radius-media);
+    background-color: var(--promo-bg);
+    color: var(--color-on-photo);
+  }
+
+  .d-promo__eyebrow {
+    margin-bottom: 1.25rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgb(253 252 249 / 0.8);
+  }
+
+  .d-promo__heading {
+    max-width: 12ch;
+    font-size: clamp(1.875rem, 3vw, 2.75rem);
+    line-height: 1.05;
+    color: inherit;
+  }
+
+  .d-promo__text {
+    max-width: 34ch;
+    margin-top: 1.25rem;
+    font-size: 1rem;
+    line-height: 1.65;
+    color: rgb(253 252 249 / 0.9);
+  }
+
+  .d-promo__foot {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: auto;
+    padding-top: 2rem;
+  }
+
+  .d-promo__line {
+    flex: 0 1 9rem;
+    min-width: 5rem;
+    color: var(--color-on-photo);
+  }
+
+  .d-promo__line svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .d-promo__cta {
+    gap: 0.5rem;
+    color: var(--promo-bg);
   }
 
   .d-products__empty {
     padding: 3rem 2rem;
     border-radius: var(--radius-media);
-    background-color: var(--color-surface);
-    color: var(--color-muted);
+    background-color: rgb(253 252 249 / 0.06);
+    color: rgb(253 252 249 / 0.72);
   }
 
   .d-products__empty p:first-child {
-    color: var(--color-foreground);
+    color: var(--color-on-photo);
     font-size: 1.25rem;
-  }
-
-  /* Under 900px: one column, every card stacked image over text */
-  @media (min-width: 900px) {
-    .d-products__grid {
-      grid-template-columns: 1.2fr 1fr;
-      grid-auto-rows: minmax(19rem, 1fr);
-      gap: 1.25rem;
-      min-height: min(54rem, 88dvh);
-    }
-
-    .d-products__item--featured {
-      grid-row: span 2;
-    }
-
-    .d-products__item--featured:last-child {
-      grid-column: 1 / -1;
-    }
-
-    .d-products__item:not(.d-products__item--featured) {
-      animation-range: entry 10% cover 34%;
-    }
   }
 {% endstylesheet %}
 
@@ -117,22 +661,29 @@
   "settings": [
     {
       "type": "text",
+      "id": "label",
+      "label": "Section name",
+      "info": "Small name at the top of the section, matching its menu link. Leave blank to hide it.",
+      "default": "L'olio"
+    },
+    {
+      "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "I nostri oli"
+      "default": "Il nostro extra vergine."
     },
     {
       "type": "text",
       "id": "text",
-      "label": "Text",
-      "default": "Scegli il tuo olio e ricevilo a casa."
+      "label": "Note beside the heading",
+      "default": "Un blend equilibrato: la struttura del Moraiolo, la finezza del Frantoiano, la dolcezza del Leccino."
     },
     {
       "type": "product_list",
       "id": "products",
       "label": "Products",
-      "limit": 3,
-      "info": "The first product gets the large card."
+      "limit": 2,
+      "info": "Two products. The small label above the name is the product type, plus the format when there are several."
     },
     {
       "type": "select",
@@ -143,6 +694,115 @@
         { "value": "contain", "label": "Contain (bottle packshots)" },
         { "value": "cover", "label": "Cover (photos)" }
       ]
+    },
+    {
+      "type": "text",
+      "id": "buy_label",
+      "label": "Buy button",
+      "default": "Acquista"
+    },
+    {
+      "type": "text",
+      "id": "added_label",
+      "label": "Added to cart",
+      "default": "Aggiunto"
+    },
+    {
+      "type": "text",
+      "id": "error_label",
+      "label": "Add to cart error",
+      "default": "Non disponibile"
+    },
+    {
+      "type": "text",
+      "id": "sold_out_label",
+      "label": "Sold out",
+      "default": "Esaurito"
+    },
+    {
+      "type": "text",
+      "id": "from_label",
+      "label": "Price prefix when formats differ",
+      "default": "da"
+    },
+    {
+      "type": "header",
+      "content": "Promo card"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_promo",
+      "label": "Show promo card",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "promo_eyebrow",
+      "label": "Eyebrow",
+      "default": "Idea regalo"
+    },
+    {
+      "type": "text",
+      "id": "promo_heading",
+      "label": "Heading",
+      "default": "Confezione Convivia"
+    },
+    {
+      "type": "textarea",
+      "id": "promo_text",
+      "label": "Text",
+      "default": "Olio nuovo e un invito a tavola da Convivia Home Restaurant: il nostro modo di dire benvenuto."
+    },
+    {
+      "type": "text",
+      "id": "promo_link_label",
+      "label": "Button label",
+      "default": "Scopri Convivia"
+    },
+    {
+      "type": "product",
+      "id": "promo_product",
+      "label": "Gift box product",
+      "info": "When the gift box exists as a product, pick it here and the button opens it."
+    },
+    {
+      "type": "url",
+      "id": "promo_link",
+      "label": "Button link",
+      "info": "Used while no product is picked. Leave empty to scroll to the Convivia section."
+    },
+    {
+      "type": "color",
+      "id": "promo_color",
+      "label": "Card color",
+      "default": "#B25F3C"
+    },
+    {
+      "type": "header",
+      "content": "Catalog card"
+    },
+    {
+      "type": "text",
+      "id": "all_eyebrow",
+      "label": "Eyebrow",
+      "default": "Catalogo"
+    },
+    {
+      "type": "text",
+      "id": "all_label",
+      "label": "Label",
+      "info": "Leave blank to hide the card.",
+      "default": "Vai a tutti i prodotti"
+    },
+    {
+      "type": "url",
+      "id": "all_link",
+      "label": "Link",
+      "info": "Leave empty for the full catalog (/collections/all)."
+    },
+    {
+      "type": "header",
+      "content": "Section"
     },
     {
       "type": "text",

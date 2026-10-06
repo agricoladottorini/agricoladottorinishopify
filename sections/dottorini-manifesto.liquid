@@ -1,48 +1,22 @@
 {% comment %}
-  Editorial statement: one large sentence, then a short company text with a
-  couple of highlighted facts (blocks) and the signature, beside a single
-  offset portrait image.
+  La collina: the photo on the left with a small dark note box overlapping
+  its lower corner (a title and a line, both editable), and on the right the
+  section name, the large statement, the company text and the signature.
+  Phones stack the text above the photo, the note box still overlapping it.
 {% endcomment %}
 
 <div class="section-band full-width {{ section.settings.background }}">
 <div class="d-manifesto section-band__inner section-space" id="{{ section.settings.anchor | default: 'collina' | handleize }}">
-  <div class="d-manifesto__statement type-display reveal">
-    {{ section.settings.statement }}
-  </div>
-
-  <div class="d-manifesto__foot">
-    <div class="d-manifesto__story reveal">
-      {% if section.settings.body != blank %}
-        <div class="d-manifesto__body">{{ section.settings.body }}</div>
-      {% endif %}
-
-      {% if section.blocks.size > 0 %}
-        <dl class="d-manifesto__facts">
-          {% for block in section.blocks %}
-            <div class="d-manifesto__fact" {{ block.shopify_attributes }}>
-              <dt class="type-display">{{ block.settings.title }}</dt>
-              {% if block.settings.detail != blank %}
-                <dd>{{ block.settings.detail }}</dd>
-              {% endif %}
-            </div>
-          {% endfor %}
-        </dl>
-      {% endif %}
-
-      {% if section.settings.signature != blank %}
-        <p class="d-manifesto__signature">{{ section.settings.signature }}</p>
-      {% endif %}
-    </div>
-
-    <div class="d-manifesto__media reveal">
+  <div class="d-manifesto__visual reveal">
+    <div class="d-manifesto__media">
       {% if section.settings.image %}
         {% assign image_position = 'object-position: ' | append: section.settings.image.presentation.focal_point %}
         {{
           section.settings.image
-          | image_url: width: 1400
+          | image_url: width: 1600
           | image_tag:
-            widths: '500, 800, 1100, 1400',
-            sizes: '(min-width: 900px) 34vw, 100vw',
+            widths: '500, 800, 1100, 1400, 1600',
+            sizes: '(min-width: 900px) 50vw, 100vw',
             loading: 'lazy',
             alt: section.settings.image.alt,
             style: image_position
@@ -51,96 +25,48 @@
         {{ 'image' | placeholder_svg_tag: 'd-manifesto__placeholder' }}
       {% endif %}
     </div>
+
+    {% if section.settings.note_title != blank or section.settings.note_text != blank %}
+      <div class="d-manifesto__note">
+        {% if section.settings.note_title != blank %}
+          <p class="d-manifesto__note-title">{{ section.settings.note_title }}</p>
+        {% endif %}
+        {% if section.settings.note_text != blank %}
+          <p class="d-manifesto__note-text">{{ section.settings.note_text }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="d-manifesto__copy reveal">
+    {% render 'section-label', label: section.settings.label %}
+
+    <div class="d-manifesto__statement type-display">
+      {{ section.settings.statement }}
+    </div>
+
+    {% if section.settings.body != blank %}
+      <div class="d-manifesto__body">{{ section.settings.body }}</div>
+    {% endif %}
+
+    {% if section.settings.signature != blank %}
+      <p class="d-manifesto__signature">{{ section.settings.signature }}</p>
+    {% endif %}
   </div>
 </div>
 </div>
 
 {% stylesheet %}
-  .d-manifesto__statement {
-    max-width: 22ch;
-    font-size: clamp(1.875rem, 4.6vw, 4rem);
-    line-height: 1.12;
-  }
-
-  .d-manifesto__statement p {
-    margin: 0;
-  }
-
-  .d-manifesto__statement em {
-    color: var(--color-accent);
-  }
-
-  /* minmax(0, 1fr), not 1fr: a plain 1fr track grows to its content's
-     minimum width, and the two fact tiles side by side would push the text,
-     tiles and image past the right edge on phones */
-  .d-manifesto__foot {
+  /* Phones: text first, then the photo with the note box over its foot */
+  .d-manifesto {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 2rem;
-    margin-top: clamp(2.5rem, 6vw, 5rem);
+    gap: clamp(2.5rem, 6vw, 4rem);
   }
 
-  .d-manifesto__body {
-    max-width: 52ch;
-    font-size: 1.0625rem;
-    line-height: 1.6;
-    color: var(--color-muted);
-  }
-
-  .d-manifesto__body p {
-    margin: 0;
-  }
-
-  .d-manifesto__body p + p {
-    margin-top: 1em;
-  }
-
-  /* The two promises, lifted off the band as small light tiles: the claim is
-     the big line, the timing sits under it in olive */
-  /* Side by side even on phones: one tile per row left the band half empty.
-     The narrow track plus the tighter phone padding below keeps a detail like
-     "Ottobre-novembre" on one line from 360px up. */
-  .d-manifesto__facts {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(8.5rem, 100%), 1fr));
-    gap: 0.75rem;
-    max-width: 34rem;
-    margin: 2rem 0 0;
-  }
-
-  .d-manifesto__fact {
-    padding: 1rem 0.875rem 0.95rem;
-    border-radius: var(--radius-media);
-    background-color: var(--color-background);
-  }
-
-  /* On the sand band the page colour would vanish, so the tiles go cream */
-  .d-bg--base .d-manifesto__fact {
-    background-color: var(--color-tint);
-  }
-
-  @media (min-width: 560px) {
-    .d-manifesto__fact {
-      padding: 1.25rem 1.25rem 1.1rem;
-    }
-  }
-
-  .d-manifesto__fact dt {
-    font-size: clamp(1.25rem, 1.9vw, 1.5rem);
-    line-height: 1.15;
-    color: var(--color-foreground);
-  }
-
-  .d-manifesto__fact dd {
-    margin: 0.45rem 0 0;
-    font-size: clamp(0.875rem, 3.6vw, 0.9375rem);
-    color: var(--color-accent);
-  }
-
-  .d-manifesto__signature {
-    margin-top: 2rem;
-    font-size: 0.9375rem;
-    color: var(--color-muted);
+  .d-manifesto__visual {
+    order: 2;
+    position: relative;
   }
 
   .d-manifesto__media {
@@ -164,35 +90,95 @@
     fill: rgb(33 28 20 / 0.14);
   }
 
-  /* Under 900px: text, facts and signature above a full-width image.
-     From 900px the text sits beside the image, which rises into the
-     statement above it. */
+  /* The note: a small dark box overlapping the photo's lower corner */
+  .d-manifesto__note {
+    position: relative;
+    width: min(22rem, 86%);
+    margin: -4.5rem 0 0 auto;
+    padding: clamp(1.5rem, 2.6vw, 2.25rem) clamp(1.5rem, 3vw, 2.75rem);
+    border-radius: var(--radius-media);
+    background-color: var(--color-dark);
+    color: var(--color-on-photo);
+  }
+
+  .d-manifesto__note-title {
+    font-family: var(--font-heading--family);
+    font-size: clamp(2rem, 3.4vw, 3rem);
+    line-height: 1.05;
+    color: var(--color-logo);
+  }
+
+  .d-manifesto__note-text {
+    margin-top: 0.75rem;
+    line-height: 1.55;
+    color: rgb(253 252 249 / 0.72);
+  }
+
+  .d-manifesto__statement {
+    max-width: 22ch;
+    font-size: clamp(1.875rem, 3.4vw, 3.25rem);
+    line-height: 1.12;
+  }
+
+  .d-manifesto__statement p {
+    margin: 0;
+  }
+
+  .d-manifesto__statement em {
+    color: var(--color-accent);
+  }
+
+  .d-manifesto__body {
+    max-width: 52ch;
+    margin-top: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--color-muted);
+  }
+
+  .d-manifesto__body p {
+    margin: 0;
+  }
+
+  .d-manifesto__body p + p {
+    margin-top: 1em;
+  }
+
+  .d-manifesto__signature {
+    margin-top: 2rem;
+    font-size: 0.9375rem;
+    color: var(--color-muted);
+  }
+
+  /* From 900px: photo left (the note box hangs past its right edge into
+     the gutter), text right, both starting at the top */
   @media (min-width: 900px) {
     .d-manifesto {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
+      grid-template-columns: repeat(12, minmax(0, 1fr));
       column-gap: 1.25rem;
+      align-items: center;
+      padding-bottom: calc(var(--section-space) + 2.5rem);
     }
 
-    /* Stops before the image column: the image rises 8rem into this row,
-       so a longer statement would otherwise run underneath it */
-    .d-manifesto__statement {
-      grid-column: 1 / span 7;
-    }
-
-    .d-manifesto__foot {
-      grid-column: 1 / -1;
-      grid-template-columns: subgrid;
-      align-items: start;
-    }
-
-    .d-manifesto__story {
+    .d-manifesto__visual {
+      order: 0;
       grid-column: 1 / span 6;
     }
 
     .d-manifesto__media {
-      grid-column: 8 / span 4;
-      margin-top: -8rem;
+      aspect-ratio: 1 / 1.05;
+    }
+
+    .d-manifesto__note {
+      position: absolute;
+      right: -2.75rem;
+      bottom: -2.5rem;
+      width: min(22rem, 68%);
+      margin: 0;
+    }
+
+    .d-manifesto__copy {
+      grid-column: 8 / -1;
     }
   }
 {% endstylesheet %}
@@ -204,6 +190,13 @@
   "class": "d-manifesto-section",
   "settings": [
     {
+      "type": "text",
+      "id": "label",
+      "label": "Section name",
+      "info": "Small name at the top of the section, matching its menu link. Leave blank to hide it.",
+      "default": "La collina"
+    },
+    {
       "type": "richtext",
       "id": "statement",
       "label": "Statement",
@@ -214,7 +207,7 @@
       "type": "richtext",
       "id": "body",
       "label": "Text",
-      "info": "Shown under the statement, beside the image."
+      "info": "Shown under the statement."
     },
     {
       "type": "text",
@@ -226,7 +219,28 @@
       "type": "image_picker",
       "id": "image",
       "label": "Image",
-      "info": "Portrait photo, 4:5. Hands, olives or a bottle detail."
+      "info": "The family or the olive trees. Shown 4:5 on phones, almost square from 900px."
+    },
+    {
+      "type": "header",
+      "content": "Note box over the photo"
+    },
+    {
+      "type": "text",
+      "id": "note_title",
+      "label": "Title",
+      "default": "La collina"
+    },
+    {
+      "type": "textarea",
+      "id": "note_text",
+      "label": "Text",
+      "info": "One short line. Leave both blank to hide the box.",
+      "default": "Un solo crinale, lo stesso che disegna il nostro marchio."
+    },
+    {
+      "type": "header",
+      "content": "Section"
     },
     {
       "type": "select",
@@ -246,36 +260,9 @@
       "default": "collina"
     }
   ],
-  "blocks": [
-    {
-      "type": "fact",
-      "name": "Fact",
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title",
-          "info": "The big line, e.g. Raccolta a mano.",
-          "default": "Raccolta a mano"
-        },
-        {
-          "type": "text",
-          "id": "detail",
-          "label": "Detail",
-          "info": "The small line underneath, in olive.",
-          "default": "Ottobre-novembre"
-        }
-      ]
-    }
-  ],
-  "max_blocks": 3,
   "presets": [
     {
-      "name": "Dottorini statement",
-      "blocks": [
-        { "type": "fact", "settings": { "title": "Raccolta a mano", "detail": "Ottobre-novembre" } },
-        { "type": "fact", "settings": { "title": "Estratto a freddo", "detail": "Entro poche ore" } }
-      ]
+      "name": "Dottorini statement"
     }
   ]
 }

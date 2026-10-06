@@ -1,7 +1,10 @@
 {% comment %}
-  The olive varieties. Phones: horizontal scroll-snap gallery. From 900px, up
-  to three cards sit in one row with the middle one dropped; more than three
-  keep the gallery and its arrow buttons (a progressive enhancement).
+  The olive varieties, as text-only cards (no photos, by the owner's
+  request). Each card has a tone, dark, olive or light, which by default
+  follows the oils from the most intense to the most delicate. Phones:
+  horizontal scroll-snap gallery. From 900px, up to three cards sit in one
+  row with the middle one dropped; more than three keep the gallery and its
+  arrow buttons (a progressive enhancement).
 {% endcomment %}
 
 {%- liquid
@@ -17,49 +20,37 @@
   id="{{ section.settings.anchor | default: 'terra' | handleize }}"
 >
   <div class="d-journey__head">
-    {% if section.settings.heading != blank %}
-      <h2 class="d-journey__heading reveal">{{ section.settings.heading }}</h2>
-    {% endif %}
+    <div>
+      {% render 'section-label', label: section.settings.label %}
+      {% if section.settings.heading != blank %}
+        <h2 class="d-journey__heading reveal">{{ section.settings.heading }}</h2>
+      {% endif %}
+    </div>
 
     {% if section.blocks.size > 1 %}
       <div class="d-journey__controls">
-        <button type="button" class="d-journey__arrow" data-direction="-1" aria-label="Precedente" disabled>
+        <button type="button" class="d-journey__arrow" data-gallery-arrow data-direction="-1" aria-label="Precedente" disabled>
           <span aria-hidden="true">&larr;</span>
         </button>
-        <button type="button" class="d-journey__arrow" data-direction="1" aria-label="Successivo">
+        <button type="button" class="d-journey__arrow" data-gallery-arrow data-direction="1" aria-label="Successivo">
           <span aria-hidden="true">&rarr;</span>
         </button>
       </div>
     {% endif %}
   </div>
 
-  <ol class="d-journey__track" role="list" tabindex="0" aria-label="{{ section.settings.heading | escape }}">
+  <ol class="d-journey__track" data-gallery-track role="list" tabindex="0" aria-label="{{ section.settings.heading | escape }}">
     {% for block in section.blocks %}
       <li class="d-journey__step" {{ block.shopify_attributes }}>
-        <div class="d-journey__media">
-          {% if block.settings.image %}
-            {% assign image_position = 'object-position: ' | append: block.settings.image.presentation.focal_point %}
-            {{
-              block.settings.image
-              | image_url: width: 1200
-              | image_tag:
-                widths: '400, 600, 900, 1200',
-                sizes: '(min-width: 900px) 30vw, 78vw',
-                loading: 'lazy',
-                alt: block.settings.image.alt,
-                style: image_position
-            }}
-          {% else %}
-            {{ 'image' | placeholder_svg_tag: 'd-journey__placeholder' }}
+        <article class="d-variety {{ block.settings.tone }}">
+          <h3 class="d-variety__title">{{ block.settings.title }}</h3>
+          {% if block.settings.tagline != blank %}
+            <p class="d-variety__tagline">{{ block.settings.tagline }}</p>
           {% endif %}
-        </div>
-        <h3 class="d-journey__title">{{ block.settings.title }}</h3>
-        {% if block.settings.tagline != blank %}
-          <p class="d-journey__tagline">{{ block.settings.tagline }}</p>
-        {% endif %}
-        {% if block.settings.text != blank %}
-          <p class="d-journey__text">{{ block.settings.text }}</p>
-        {% endif %}
+          {% if block.settings.text != blank %}
+            <p class="d-variety__text">{{ block.settings.text }}</p>
+          {% endif %}
+        </article>
       </li>
     {% endfor %}
   </ol>
@@ -146,45 +137,62 @@
     scroll-snap-align: start;
   }
 
-  .d-journey__media {
-    position: relative;
-    aspect-ratio: 4 / 5;
-    overflow: hidden;
-    border-radius: var(--radius-media);
-    background-color: var(--color-surface-strong);
-  }
-
-  .d-journey__media img,
-  .d-journey__placeholder {
-    position: absolute;
-    inset: 0;
-    width: 100%;
+  /* Text card: name on top, the italic line under it, the text at the foot */
+  .d-variety {
+    display: flex;
+    flex-direction: column;
     height: 100%;
-    object-fit: cover;
+    min-height: clamp(19rem, 30vw, 25rem);
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    border-radius: var(--radius-media);
+    background-color: var(--variety-bg);
+    color: var(--variety-fg);
   }
 
-  .d-journey__placeholder {
-    fill: rgb(33 28 20 / 0.14);
+  .d-variety--dark {
+    --variety-bg: var(--color-dark);
+    --variety-fg: var(--color-on-photo);
+    --variety-accent: var(--color-logo);
+    --variety-muted: rgb(253 252 249 / 0.78);
   }
 
-  .d-journey__title {
-    margin-top: 1.25rem;
-    font-size: 1.375rem;
+  .d-variety--olive {
+    --variety-bg: var(--color-accent-base);
+    --variety-fg: var(--color-on-photo);
+    --variety-accent: #e4e1b0;
+    --variety-muted: rgb(253 252 249 / 0.86);
   }
 
-  .d-journey__tagline {
-    margin-top: 0.2rem;
+  .d-variety--light {
+    --variety-bg: var(--color-tint);
+    --variety-fg: var(--color-foreground);
+    --variety-accent: var(--color-accent);
+    --variety-muted: var(--color-muted);
+  }
+
+  .d-variety__title {
+    font-size: clamp(2rem, 3.4vw, 3rem);
+    line-height: 1.05;
+    color: inherit;
+  }
+
+  .d-variety__tagline {
+    max-width: 22ch;
+    margin-top: 0.75rem;
     font-family: var(--font-accent--family);
-    font-size: 1.1875rem;
+    font-size: clamp(1.25rem, 1.8vw, 1.5rem);
     font-style: italic;
     font-weight: 500;
-    color: var(--color-accent);
+    line-height: 1.25;
+    color: var(--variety-accent);
   }
 
-  .d-journey__text {
+  .d-variety__text {
     max-width: 34ch;
-    margin-top: 0.6rem;
-    color: var(--color-muted);
+    margin-top: auto;
+    padding-top: 2rem;
+    line-height: 1.6;
+    color: var(--variety-muted);
   }
 
   /* From 900px: arrows appear and every second card drops for rhythm */
@@ -218,45 +226,8 @@
   }
 {% endstylesheet %}
 
-{% javascript %}
-  class ScrollGallery extends HTMLElement {
-    connectedCallback() {
-      this.track = this.querySelector('.d-journey__track');
-      this.buttons = this.querySelectorAll('.d-journey__arrow');
-      const steps = this.track?.children;
-      if (!this.track || !steps?.length || !this.buttons.length) return;
+{% render 'scroll-gallery' %}
 
-      this.onClick = (event) => {
-        const direction = Number(event.currentTarget.dataset.direction);
-        const step = steps[0].getBoundingClientRect().width + parseFloat(getComputedStyle(this.track).columnGap || 0);
-        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        this.track.scrollBy({ left: direction * step, behavior: reduce ? 'auto' : 'smooth' });
-      };
-      this.buttons.forEach((button) => button.addEventListener('click', this.onClick));
-
-      // Disable the arrows at the edges by observing the first and last step.
-      const [prev, next] = this.buttons;
-      this.observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.target === steps[0]) prev.disabled = entry.isIntersecting;
-            if (entry.target === steps[steps.length - 1]) next.disabled = entry.isIntersecting;
-          });
-        },
-        { root: this.track, threshold: 0.95 }
-      );
-      this.observer.observe(steps[0]);
-      this.observer.observe(steps[steps.length - 1]);
-    }
-
-    disconnectedCallback() {
-      this.buttons?.forEach((button) => button.removeEventListener('click', this.onClick));
-      this.observer?.disconnect();
-    }
-  }
-
-  if (!customElements.get('scroll-gallery')) customElements.define('scroll-gallery', ScrollGallery);
-{% endjavascript %}
 
 {% schema %}
 {
@@ -267,6 +238,13 @@
   "settings": [
     {
       "type": "text",
+      "id": "label",
+      "label": "Section name",
+      "info": "Small name at the top of the section, matching its menu link. Leave blank to hide it.",
+      "default": "Cultivar"
+    },
+    {
+      "type": "text",
       "id": "heading",
       "label": "Heading",
       "default": "Tre olive, un solo blend d'equilibrio."
@@ -275,7 +253,7 @@
       "type": "text",
       "id": "anchor",
       "label": "Anchor",
-      "info": "The hero's second button links here by default (#terra).",
+      "info": "The header's \"Cultivar\" link points here (/#terra).",
       "default": "terra"
     },
     {
@@ -295,12 +273,6 @@
       "name": "Varietà",
       "settings": [
         {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image",
-          "info": "Portrait photo, 4:5."
-        },
-        {
           "type": "text",
           "id": "title",
           "label": "Title",
@@ -317,6 +289,17 @@
           "id": "text",
           "label": "Text",
           "info": "Under 25 words."
+        },
+        {
+          "type": "select",
+          "id": "tone",
+          "label": "Card color",
+          "default": "d-variety--light",
+          "options": [
+            { "value": "d-variety--dark", "label": "Dark" },
+            { "value": "d-variety--olive", "label": "Olive" },
+            { "value": "d-variety--light", "label": "Light" }
+          ]
         }
       ]
     }
@@ -327,15 +310,15 @@
       "blocks": [
         {
           "type": "step",
-          "settings": {"title": "Moraiolo", "tagline": "Il carattere umbro per eccellenza.", "text": "Fruttato intenso, note d'erba, amaro e piccante decisi. Dà spina dorsale al blend."}
+          "settings": {"tone": "d-variety--dark", "title": "Moraiolo", "tagline": "Il carattere umbro per eccellenza.", "text": "Fruttato intenso, note d'erba, amaro e piccante decisi. Dà spina dorsale al blend."}
         },
         {
           "type": "step",
-          "settings": {"title": "Frantoiano", "tagline": "Eleganza ed armonia.", "text": "Fruttato medio, profumi floreali e di mandorla. Smussa e arrotonda, porta finezza al taglio."}
+          "settings": {"tone": "d-variety--olive", "title": "Frantoiano", "tagline": "Eleganza ed armonia.", "text": "Fruttato medio, profumi floreali e di mandorla. Smussa e arrotonda, porta finezza al taglio."}
         },
         {
           "type": "step",
-          "settings": {"title": "Leccino", "tagline": "Morbidezza e gentilezza.", "text": "Fruttato delicato, sentori dolci e puliti. Bilancia l'insieme e lo rende accessibile."}
+          "settings": {"tone": "d-variety--light", "title": "Leccino", "tagline": "Morbidezza e gentilezza.", "text": "Fruttato delicato, sentori dolci e puliti. Bilancia l'insieme e lo rende accessibile."}
         }
       ]
     }
