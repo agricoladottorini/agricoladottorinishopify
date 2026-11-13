@@ -25,8 +25,8 @@
       "type": "dottorini-strip",
       "settings": {
         "text": "Olio extravergine dalle colline di Collazzone, <em>raccolto a mano</em>.",
-        "background_color": "#56622f",
-        "text_color": "#fdfcf9"
+        "background_color": "#7c8650",
+        "text_color": "#eaeddc"
       }
     },
     "statement": {
@@ -53,7 +53,7 @@
           "olio-bono",
           "olio-test"
         ],
-        "image_fit": "contain",
+        "image_fit": "cover",
         "buy_label": "Acquista",
         "added_label": "Aggiunto",
         "error_label": "Non disponibile",
@@ -66,7 +66,7 @@
         "promo_link_label": "Scopri Convivia",
         "promo_product": "",
         "promo_link": "",
-        "promo_color": "#b25f3c",
+        "promo_color": "#b05c3a",
         "all_eyebrow": "Catalogo",
         "all_label": "Vai a tutti i prodotti",
         "all_link": "",
@@ -127,7 +127,7 @@
         "text": "Un home restaurant dove i piatti raccontano il territorio. Il modo più vero per conoscere il nostro olio è assaggiarlo dove nasce.",
         "link_label": "Visita Convivia",
         "link": "https://www.conviviahomerestaurant.it/",
-        "line_color": "#8a9a4b",
+        "line_color": "#e0966f",
         "anchor": "convivia",
         "background": "d-bg--tint"
       }

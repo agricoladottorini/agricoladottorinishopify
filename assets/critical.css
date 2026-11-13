@@ -127,7 +127,7 @@ body {
   --radius-media: 14px;
   --radius-pill: 999px;
   --header-height: 68px;
-  --section-space: clamp(5rem, 11vw, 9.5rem);
+  --section-space: clamp(3rem, 7vw, 6rem);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --icon-stroke-width: 1.5;
   --color-error: #9b2c1f;
@@ -147,7 +147,7 @@ html {
 /* Section anchors (#oli, #collina, #terra, #convivia) sit on the band's
    padded inner box. A jump skips most of that top padding, so the heading
    lands --anchor-gap under the header instead of a whole section space
-   (up to 9.5rem) further down. The band's top edge scrolls out of view, so no
+   (up to 6rem) further down. The band's top edge scrolls out of view, so no
    strip of the band above shows either. Scrolling normally is unchanged. */
 .section-band > [id] {
   --anchor-gap: 2rem;
@@ -286,7 +286,7 @@ a {
    with nothing above them, so they use less top air than the rhythm between
    homepage sections. One shared value keeps all of them in sync. */
 .section-space--flush-top {
-  padding-top: clamp(2rem, 6vw, 4rem);
+  padding-top: clamp(1.5rem, 4vw, 2.5rem);
 }
 
 /** Scroll reveal
@@ -353,10 +353,10 @@ a {
  * keep working unchanged. */
 .d-bg--dark {
   --section-bg: var(--color-dark);
-  --color-foreground: var(--color-surface-base);
+  --color-foreground: #d9ceb6;
   --color-background: color-mix(in srgb, var(--color-dark) 88%, var(--color-surface-base));
   --color-muted: color-mix(in srgb, var(--color-surface-base) 70%, var(--color-dark));
-  --color-accent: #8a9a4b;
+  --color-accent: #c9a24a;
   --color-accent-light: #cbd6ac;
   --color-surface: color-mix(in srgb, var(--color-dark) 92%, var(--color-surface-base));
   --color-surface-strong: color-mix(in srgb, var(--color-dark) 82%, var(--color-surface-base));

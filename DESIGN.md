@@ -27,35 +27,46 @@ Explicitly ruled out by the owner:
 ## Visual language
 
 **Colors** (theme settings, editable in the editor). Recolored September 30,
-2026 to the client's palette. The owner kept their own deep olive as the one
-accent instead of the client's lighter `#7C8650`.
+2026 to the client's palette, and again in November 2026 to the client's
+proposal: wherever a client colour passes WCAG AA in its role it is used as is,
+otherwise a darker variant. The accent is the client's deep olive `#565E37`
+(the lighter `#7C8650` fails as text). The values live in the theme settings,
+`templates/index.json` and `assets/critical.css`, not in a switch.
 
 | Token | Value | Use |
 | --- | --- | --- |
 | `--color-background` | `#EDE4D1` | Page, a warm sand |
 | `--color-foreground` | `#211C14` | Text, primary buttons, the Convivia card |
 | `--color-dark` | `#211C14` | Ground of "Dark" sections (the footer) |
-| `--color-accent` | `#56622F` | Deep olive, the one accent. Hover fill for dark controls, eyebrow, cart badge |
-| `--color-accent-light` | `#CBD6AC` | Light sage. Hover fill for light and ghost controls |
+| `--color-accent` | `#565E37` | Oliva profonda, the one accent. Hover fill for dark controls, eyebrow, cart badge |
+| `--color-accent-light` | `#C9CDAE` | Light sage. Hover fill for light and ghost controls |
 | `--color-muted` | `#625949` | Secondary text, AA on every light ground (4.8:1 on the large card, the lowest) |
 | `--color-surface` | `#FBF6EC` | Cream. Small product cards, light panels |
 | `--color-surface-strong` | `#E2D6BD` | Darker sand. Large product card, image placeholders |
 | `--color-tint` | `#FBF6EC` | "Tinted" section bands (statement, Convivia's band), lighter than the page |
 
 This is the warm beige plus dark-brown family the theme originally avoided;
-it is here because the client asked for it by value. The client's palette
-also had terracotta `#B05C3A` (gift card, secondary button) and gold
-`#B58A2E`. Neither is applied: there is no gift card yet, and a second and
-third accent would break the one-accent rule. Add terracotta to one specific
-element if the client insists, never as a general accent.
+it is here because the client asked for it by value. Beyond the accent, the
+client's colours are applied to specific elements, never as general accents:
+
+| Element | Value |
+| --- | --- |
+| Strip (`dottorini-strip`) | ground `#7C8650`, text `#EAEDDC` (large text only) |
+| Gift box card (`promo_color`) | terracotta `#B05C3A` |
+| Convivia eyebrow (`line_color`) | light terracotta `#E0966F` |
+| Accent and text on dark bands | gold `#C9A24A`, light sand `#D9CEB6` |
+| "Acquista" pill | the accent, deepening toward the ink on hover |
+
+Left out: grigio caldo `#9A9080` (about 2.5:1 on the page) and the client's
+muted `#6E6553` (about 4:1 on the large card), so muted stays `#625949`.
 
 Section grounds are classes on each section's band, picked in the editor:
 `d-bg--base` (page), `d-bg--tint` (cream) and `d-bg--dark` (the footer's
 default). In `assets/critical.css` each one rescopes the tokens rather than
 components restyling themselves. Inside `.d-bg--tint` muted and accent are
 mixed toward the foreground and surfaces are derived from the tint. Inside
-`.d-bg--dark` text turns cream, the accent lifts to the light olive
-`#8A9A4B` (the deep olive is under 3:1 there, the light one 5.5:1),
+`.d-bg--dark` text turns light sand `#D9CEB6`, the accent lifts to the gold
+`#C9A24A` (the deep olive is under 3:1 there),
 `--color-background` becomes a slightly raised dark so buttons (cream fill,
 dark label) and form fields keep working, and `--color-error` becomes a light
 coral. The unscoped values come from `--color-muted-base`,
@@ -73,7 +84,8 @@ Section anchors (`#oli`, `#collina`, `#terra`, `#convivia`) sit on each band's
 padded inner box. `.section-band > [id]` gives them a negative
 `scroll-margin-top` that skips most of the section's top padding, so a menu
 jump puts the heading `--anchor-gap` (2rem) under the header instead of up to
-9.5rem further down, and the band's top edge scrolls out of view, so no strip
+6rem further down. The offset is derived from `--section-space`
+(`clamp(3rem, 7vw, 6rem)`), so changing the spacing keeps menu jumps correct, and the band's top edge scrolls out of view, so no strip
 of the band above shows. The padding itself stays symmetric (top and bottom)
 on purpose: moving it all to the bottom would glue headings to the top edge of
 the coloured bands for anyone scrolling normally. The footer drops its top margin when it follows a
@@ -196,11 +208,11 @@ Each section uses a different layout family on purpose. Nothing repeats.
 | --- | --- |
 | `sections/header.liquid` | Sticky 3-column bar, 68px, blurred background. The logo sits in front of the wordmark and its tagline, centred against both. Mobile menu is a native `<details>`, which a small script closes when a link is tapped. Links come from `snippets/header-nav-links.liquid`, shared by the bar and the drawer. They are six label/target pairs in the header's own settings (`nav_1` to `nav_6`), not a Shopify menu, so homepage anchors live in the theme: "La collina" -> `/#collina` (statement), "L'olio" -> `/collections/all`, "Cultivar" -> `/#terra` (varieties), "Museo" -> `/pages/museo`, "Convivia" -> `/#convivia`, "Contatti" -> `#contatti` (footer). A blank label hides a link. There is no Home entry: the wordmark links home. Arriving on a page with a hash, the header settles on the target once the page has loaded, because the browser's own jump was landing at the top |
 | `sections/dottorini-hero.liquid` | Full-bleed framed photo in three bands: heading top left, the logo ribbon across the middle, text and one button ("Scopri gli oli") at the bottom, with a scrim at top and bottom for contrast. The ribbon is in the content flow (not absolutely positioned), centred between heading and text and pulled past the padding to run edge to edge, so it never overlaps the copy; the frame has a `min-height` and grows if the content needs it. Filled path, colour is a section setting (default `#B6B351`). Height capped at `40svh` so it flattens a little on short wide screens; drawn 1.5x taller under 900px |
-| `sections/dottorini-strip.liquid` | Full-bleed olive strip (`#56622F`, cream text) between the hero and the statement, one centred line in Marcellus with an optional Cormorant italic emphasis. Text and both colours are section settings; a blank text hides it |
-| `sections/dottorini-featured-products.liquid` | The oils, from an owner reference: one dark rounded panel (`--color-dark`, radius 28px) inside the page column, with the logo ribbon faint behind the head (logo colour at 16%). Head: heading left and an italic Cormorant note right from 1000px. Below, one sideways scroll-snap row on every screen size: two product cards, a terracotta promo card (`#B25F3C`) and a last outlined card "Vai a tutti i prodotti" to `/collections/all`. The row runs to the panel edges (the panel clips it) and snaps to the content edge, so 1 card shows on phones (84% wide), 2 from 700px, 3 from 1000px, and the next one always peeks in from the right; on desktop that is the catalog card. Arrow buttons sit top right, above the head, from 900px. The cards are not `.reveal` (inside a horizontal scroller their view timeline would follow the row, not the page); the whole row reveals instead. Product card: image (6:5, contain or cover) over a cream body with a small label (product type, plus the format when there are several), title, description cut to 22 words, then price and an olive "Acquista" pill. A single-variant product adds straight to the cart through `quick-add` and the pill reads "Aggiunto" for a moment; with several formats the pill opens the product page. The promo card is the Convivia gift box, which is not a product yet: copy and colour are settings, the button links to a URL (default `/#convivia`) until a product is picked in "Gift box product" |
+| `sections/dottorini-strip.liquid` | Full-bleed olive strip (`#7C8650`, light text `#EAEDDC`) between the hero and the statement, one centred line in Marcellus with an optional Cormorant italic emphasis. Text and both colours are section settings; a blank text hides it |
+| `sections/dottorini-featured-products.liquid` | The oils, from an owner reference: one dark rounded panel (`--color-dark`, radius 28px) inside the page column, with the logo ribbon faint behind the head (logo colour at 16%). Head: heading left and an italic Cormorant note right from 1000px. Below, one sideways scroll-snap row on every screen size: two product cards, a terracotta promo card (`#B05C3A`) and a last outlined card "Vai a tutti i prodotti" to `/collections/all`. The row runs to the panel edges (the panel clips it) and snaps to the content edge, so 1 card shows on phones (84% wide), 2 from 700px, 3 from 1000px, and the next one always peeks in from the right; on desktop that is the catalog card. Arrow buttons sit top right, above the head, from 900px. With a mouse the row can also be dragged (`snippets/scroll-gallery.liquid`: pointer events, snap off while dragging, a drag is not a click, grab cursor); touch keeps native swiping. The cards are not `.reveal` (inside a horizontal scroller their view timeline would follow the row, not the page); the whole row reveals instead. Product card: image (6:5, `cover` by default so the photo fills the whole frame; `contain` is a setting for packshots) over a cream body with a small label (product type, plus the format when there are several), title, description cut to 22 words, then price and an olive "Acquista" pill. A single-variant product adds straight to the cart through `quick-add` and the pill reads "Aggiunto" for a moment; with several formats the pill opens the product page. The promo card is the Convivia gift box, which is not a product yet: copy and colour are settings, the button links to a URL (default `/#convivia`) until a product is picked in "Gift box product" |
 | `sections/dottorini-manifesto.liquid` | La collina, from an owner reference. From 900px: the photo on the left (6 of 12 columns, almost square) and the text on the right (columns 8 to 12): section name, large statement, company text, signature. A small dark note box (`--color-dark`, title in Marcellus in the logo colour, one line of text) overlaps the photo's lower right corner and hangs past its edge into the gutter. Phones: text first, then the photo (4:5) with the note box over its foot, aligned right. Note title and text are settings; both blank hides the box. The fact tiles ("Raccolta a mano", "Estratto a freddo") were removed at the owner's request, they repeated the company text |
-| `sections/dottorini-journey.liquid` | "Dottorini varietà": the three olives in the blend (Moraiolo, Frantoiano, Leccino) as text-only cards, no photos (the owner's request): name in Marcellus, italic Cormorant tagline under it, short description pinned to the foot. Each card has a "Card color" setting, dark (`--color-dark`), olive (`#56622F`) or light (`--color-tint`), set from the most intense oil to the most delicate, so the three tones read as the fruttato scale and the row is not three identical boxes. Up to three cards: one row from 900px with the middle card dropped; phones scroll-snap. More than three falls back to the scrolling gallery with arrows. File and block type keep the old `journey`/`step` names so editor data survives |
-| `sections/dottorini-convivia.liquid` | Convivia, the family's home restaurant, as one large dark card (`--color-foreground`) inside the page column: copy left, full-height photo right, no hill line (removed at the owner's request). Phones stack photo over copy. The card is a photo container like the hero frame, not a theme switch. Adapted from an owner reference that used serif type and brass/terracotta; kept to the olive tint `#8A9A4B` instead of brass (the serif came back later with the client's type system). The button links to the SumUp booking page and opens in a new tab |
+| `sections/dottorini-journey.liquid` | "Dottorini varietà": the three olives in the blend (Moraiolo, Frantoiano, Leccino) as text-only cards, no photos (the owner's request): name in Marcellus, italic Cormorant tagline under it, short description pinned to the foot. Each card has a "Card color" setting, dark (`--color-dark`), olive (the accent) or light (`--color-tint`), set from the most intense oil to the most delicate, so the three tones read as the fruttato scale and the row is not three identical boxes. Up to three cards: one row from 900px, all three the same height (no stagger); phones scroll-snap. More than three falls back to the scrolling gallery with arrows. File and block type keep the old `journey`/`step` names so editor data survives |
+| `sections/dottorini-convivia.liquid` | Convivia, the family's home restaurant, as one large dark card (`--color-foreground`) inside the page column: copy left, full-height photo right, no hill line (removed at the owner's request). Phones stack photo over copy. The card is a photo container like the hero frame, not a theme switch. Adapted from an owner reference that used serif type and brass/terracotta; kept to a light terracotta `#E0966F` instead of brass (the serif came back later with the client's type system). The button links to the SumUp booking page and opens in a new tab |
 | `sections/footer.liquid` | Dark band (`d-bg--dark`) by default: newsletter and columns, company details, then the copyright and policy row |
 
 ## Other pages
@@ -209,7 +221,7 @@ Catalogo, product and Museo are standalone pages (not homepage sections), so
 each opens directly under the sticky header with nothing above it. They share
 one heading (`<h1>`, one per page) and one top spacing value, the
 `.section-space--flush-top` utility in `assets/critical.css`
-(`padding-top: clamp(2rem, 6vw, 4rem)`, versus the `~5-9.5rem` rhythm between
+(`padding-top: clamp(1.5rem, 4vw, 2.5rem)`, versus the `3-6rem` rhythm between
 homepage sections) so the gap from the header to the page's first heading
 stays identical across all three. Apply it alongside `section-space` on the
 page's outer wrapper; do not duplicate the value locally.

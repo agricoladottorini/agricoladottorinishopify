@@ -72,7 +72,7 @@
       {
         "type": "color",
         "id": "accent_light_color",
-        "default": "#CBD6AC",
+        "default": "#C9CDAE",
         "label": "Accent light",
         "info": "Hover fill for light buttons and ghost controls."
       },

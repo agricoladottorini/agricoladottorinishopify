@@ -159,7 +159,7 @@
   .d-variety--olive {
     --variety-bg: var(--color-accent-base);
     --variety-fg: var(--color-on-photo);
-    --variety-accent: #e4e1b0;
+    --variety-accent: #eaeddc;
     --variety-muted: rgb(253 252 249 / 0.86);
   }
 
@@ -222,6 +222,11 @@
       grid-auto-columns: auto;
       padding-inline: var(--gutter);
       overflow: visible;
+    }
+
+    /* Same height for all three: no stagger, the row stretches to the tallest */
+    .d-journey--row .d-journey__step:nth-child(even) {
+      margin-top: 0;
     }
   }
 {% endstylesheet %}
