@@ -455,7 +455,6 @@
 
   .d-card__media img.contain {
     object-fit: contain;
-    padding: 8%;
   }
 
   .d-card__media img.cover {
@@ -540,7 +539,7 @@
     padding: 0 1.5rem;
     border: 0;
     border-radius: var(--radius-pill);
-    background-color: #6f7f45;
+    background-color: var(--color-accent-base);
     color: var(--color-on-photo);
     font: inherit;
     font-size: 0.9375rem;
@@ -550,7 +549,7 @@
   }
 
   .d-card__button:hover {
-    background-color: var(--color-accent-base);
+    background-color: color-mix(in srgb, var(--color-accent-base) 75%, var(--color-foreground));
   }
 
   .d-card__button-done {
@@ -581,6 +580,7 @@
 
   /* Promo card: terracotta, copy on top, line and button at the bottom */
   .d-promo {
+    container-type: inline-size;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -637,7 +637,24 @@
 
   .d-promo__cta {
     gap: 0.5rem;
+    max-width: 100%;
     color: var(--promo-bg);
+  }
+
+  /* A narrow card (phones, the 3 column row): line above, button under it,
+     so the button never pushes past the card's edge */
+  @container (max-width: 22rem) {
+    .d-promo__foot {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
+
+    .d-promo__line {
+      flex: 0 0 auto;
+      width: 6rem;
+      min-width: 0;
+    }
   }
 
   .d-products__empty {
@@ -689,7 +706,7 @@
       "type": "select",
       "id": "image_fit",
       "label": "Image fit",
-      "default": "contain",
+      "default": "cover",
       "options": [
         { "value": "contain", "label": "Contain (bottle packshots)" },
         { "value": "cover", "label": "Cover (photos)" }

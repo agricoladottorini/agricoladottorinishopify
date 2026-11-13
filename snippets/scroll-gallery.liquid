@@ -5,7 +5,8 @@
   Inside it, the scrolling list carries data-gallery-track and the two
   buttons carry data-gallery-arrow plus data-direction="-1" / "1". The
   arrows step by one item and disable themselves at either end. Swiping
-  works without it; the arrows are a progressive enhancement.
+  works without it; the arrows are a progressive enhancement. With a mouse
+  the list can also be dragged sideways (touch keeps its native scrolling).
 
   @example
   {% render 'scroll-gallery' %}
@@ -17,7 +18,9 @@
       this.track = this.querySelector('[data-gallery-track]');
       this.buttons = this.querySelectorAll('[data-gallery-arrow]');
       const steps = this.track?.children;
-      if (!this.track || !steps?.length || !this.buttons.length) return;
+      if (!this.track || !steps?.length) return;
+      this.enableDrag();
+      if (!this.buttons.length) return;
 
       this.onClick = (event) => {
         const direction = Number(event.currentTarget.dataset.direction);
@@ -42,7 +45,71 @@
       this.observer.observe(steps[steps.length - 1]);
     }
 
+    // Mouse drag: scroll-snap is switched off while dragging (it would fight
+    // the pointer), then the row settles on the nearest card. A drag that
+    // moved is not a click, so a card link is not followed by mistake.
+    enableDrag() {
+      const track = this.track;
+      let startX = 0;
+      let startScroll = 0;
+      let moved = 0;
+      let dragging = false;
+
+      this.onDown = (event) => {
+        if (event.pointerType !== 'mouse' || event.button !== 0) return;
+        if (track.scrollWidth <= track.clientWidth) return;
+        dragging = true;
+        moved = 0;
+        startX = event.clientX;
+        startScroll = track.scrollLeft;
+      };
+
+      this.onMove = (event) => {
+        if (!dragging) return;
+        const delta = event.clientX - startX;
+        moved = Math.max(moved, Math.abs(delta));
+        if (moved < 5) return;
+        track.classList.add('is-dragging');
+        track.scrollLeft = startScroll - delta;
+      };
+
+      this.onUp = () => {
+        if (!dragging) return;
+        dragging = false;
+        if (!track.classList.contains('is-dragging')) return;
+        // Let the snap points take over again from where the row was left.
+        const left = track.scrollLeft;
+        track.classList.remove('is-dragging');
+        track.scrollLeft = left;
+      };
+
+      this.onClickCapture = (event) => {
+        if (moved >= 5) {
+          event.preventDefault();
+          event.stopPropagation();
+          moved = 0;
+        }
+      };
+
+      this.onDragStart = (event) => event.preventDefault();
+
+      track.addEventListener('pointerdown', this.onDown);
+      window.addEventListener('pointermove', this.onMove);
+      window.addEventListener('pointerup', this.onUp);
+      window.addEventListener('pointercancel', this.onUp);
+      track.addEventListener('click', this.onClickCapture, true);
+      track.addEventListener('dragstart', this.onDragStart);
+    }
+
     disconnectedCallback() {
+      if (this.track && this.onDown) {
+        this.track.removeEventListener('pointerdown', this.onDown);
+        this.track.removeEventListener('click', this.onClickCapture, true);
+        this.track.removeEventListener('dragstart', this.onDragStart);
+        window.removeEventListener('pointermove', this.onMove);
+        window.removeEventListener('pointerup', this.onUp);
+        window.removeEventListener('pointercancel', this.onUp);
+      }
       this.buttons?.forEach((button) => button.removeEventListener('click', this.onClick));
       this.observer?.disconnect();
     }
@@ -50,3 +117,23 @@
 
   if (!customElements.get('scroll-gallery')) customElements.define('scroll-gallery', ScrollGallery);
 {% endjavascript %}
+
+{% stylesheet %}
+  /* Mouse only: a grab cursor where the row can be dragged */
+  @media (hover: hover) and (pointer: fine) {
+    [data-gallery-track] {
+      cursor: grab;
+    }
+
+    [data-gallery-track] img {
+      -webkit-user-drag: none;
+    }
+
+    [data-gallery-track].is-dragging {
+      cursor: grabbing;
+      user-select: none;
+      scroll-snap-type: none;
+      scroll-behavior: auto;
+    }
+  }
+{% endstylesheet %}
