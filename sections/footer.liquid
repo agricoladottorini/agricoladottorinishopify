@@ -53,7 +53,8 @@
 
 <footer id="contatti" class="site-footer full-width {{ section.settings.background }}">
   <div class="site-footer__inner">
-    <div class="site-footer__top">
+    <div class="site-footer__top{% unless section.settings.show_newsletter %} site-footer__top--plain{% endunless %}">
+      {% if section.settings.show_newsletter %}
       <div class="site-footer__newsletter">
         {% if section.settings.newsletter_heading != blank %}
           <h2 class="site-footer__heading">{{ section.settings.newsletter_heading }}</h2>
@@ -94,6 +95,7 @@
           {% endif %}
         {% endform %}
       </div>
+      {% endif %}
 
       {% comment %}
         Search links are skipped here: search now lives in the header. Remove
@@ -422,6 +424,11 @@
       grid-template-columns: 6fr 3fr 3fr;
       gap: 1.25rem;
     }
+
+    /* No newsletter: the columns start at the left edge */
+    .site-footer__top--plain {
+      grid-template-columns: 3fr 3fr 6fr;
+    }
   }
 {% endstylesheet %}
 
@@ -432,6 +439,12 @@
     {
       "type": "header",
       "content": "Newsletter"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_newsletter",
+      "label": "Show newsletter signup",
+      "default": false
     },
     {
       "type": "text",
