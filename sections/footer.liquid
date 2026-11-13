@@ -16,13 +16,6 @@
     assign has_legal = true
   endif
 
-  assign menu_count = 0
-  for link in section.settings.menu.links
-    unless link.url contains routes.search_url
-      assign menu_count = menu_count | plus: 1
-    endunless
-  endfor
-
   assign has_contact = false
   if section.settings.email != blank
     assign has_contact = true
@@ -53,65 +46,104 @@
 
 <footer id="contatti" class="site-footer full-width {{ section.settings.background }}">
   <div class="site-footer__inner">
-    <div class="site-footer__top{% unless section.settings.show_newsletter %} site-footer__top--plain{% endunless %}">
-      {% if section.settings.show_newsletter %}
-      <div class="site-footer__newsletter">
-        {% if section.settings.newsletter_heading != blank %}
-          <h2 class="site-footer__heading">{{ section.settings.newsletter_heading }}</h2>
-        {% endif %}
+    <div class="site-footer__top">
+      <div class="site-footer__lead">
+        {%- assign wordmark = section.settings.wordmark | default: shop.name -%}
+        <a class="site-footer__brand" href="{{ routes.root_url }}">
+          <span class="site-footer__logo">{% render 'brand-logo' %}</span>
+          <span class="site-footer__words">
+            <span class="site-footer__name">{{ wordmark }}</span>
+            {%- if section.settings.tagline != blank -%}
+              <span class="site-footer__tagline">{{ section.settings.tagline }}</span>
+            {%- endif -%}
+          </span>
+        </a>
 
-        {% assign form_id = 'Newsletter-' | append: section.id %}
-        {% form 'customer', id: form_id, class: 'site-footer__form' %}
-          <input type="hidden" name="contact[tags]" value="newsletter">
-
-          {% if form.posted_successfully? %}
-            <p class="site-footer__status" role="status">{{ section.settings.success_message }}</p>
-          {% else %}
-            <label class="site-footer__label" for="NewsletterEmail-{{ section.id }}">
-              {{- section.settings.email_label -}}
-            </label>
-            <div class="site-footer__field">
-              <input
-                id="NewsletterEmail-{{ section.id }}"
-                type="email"
-                name="contact[email]"
-                autocomplete="email"
-                autocapitalize="off"
-                spellcheck="false"
-                required
-                aria-describedby="NewsletterHelp-{{ section.id }}{% if form.errors %} NewsletterError-{{ section.id }}{% endif %}"
-                {% if form.errors %}
-                  aria-invalid="true"
-                {% endif %}
-              >
-              <button type="submit" class="button">{{ section.settings.button_label }}</button>
-            </div>
-            <p class="site-footer__help" id="NewsletterHelp-{{ section.id }}">{{ section.settings.helper_text }}</p>
-            {% if form.errors %}
-              <p class="site-footer__error" id="NewsletterError-{{ section.id }}" role="alert">
-                {{ section.settings.error_message }}
-              </p>
-            {% endif %}
+        {% if section.settings.show_newsletter %}
+        <div class="site-footer__newsletter">
+          {% if section.settings.newsletter_heading != blank %}
+            <h2 class="site-footer__heading">{{ section.settings.newsletter_heading }}</h2>
           {% endif %}
-        {% endform %}
+
+          {% assign form_id = 'Newsletter-' | append: section.id %}
+          {% form 'customer', id: form_id, class: 'site-footer__form' %}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+
+            {% if form.posted_successfully? %}
+              <p class="site-footer__status" role="status">{{ section.settings.success_message }}</p>
+            {% else %}
+              <label class="site-footer__label" for="NewsletterEmail-{{ section.id }}">
+                {{- section.settings.email_label -}}
+              </label>
+              <div class="site-footer__field">
+                <input
+                  id="NewsletterEmail-{{ section.id }}"
+                  type="email"
+                  name="contact[email]"
+                  autocomplete="email"
+                  autocapitalize="off"
+                  spellcheck="false"
+                  required
+                  aria-describedby="NewsletterHelp-{{ section.id }}{% if form.errors %} NewsletterError-{{ section.id }}{% endif %}"
+                  {% if form.errors %}
+                    aria-invalid="true"
+                  {% endif %}
+                >
+                <button type="submit" class="button">{{ section.settings.button_label }}</button>
+              </div>
+              <p class="site-footer__help" id="NewsletterHelp-{{ section.id }}">{{ section.settings.helper_text }}</p>
+              {% if form.errors %}
+                <p class="site-footer__error" id="NewsletterError-{{ section.id }}" role="alert">
+                  {{ section.settings.error_message }}
+                </p>
+              {% endif %}
+            {% endif %}
+          {% endform %}
+        </div>
+        {% endif %}
       </div>
+
+      {%- liquid
+        assign has_nav = false
+        for i in (1..4)
+          assign label_key = 'nav_' | append: i | append: '_label'
+          if section.settings[label_key] != blank
+            assign has_nav = true
+          endif
+        endfor
+      -%}
+      {% if has_nav %}
+        <nav class="site-footer__column" aria-label="{{ section.settings.nav_title | escape }}">
+          {% if section.settings.nav_title != blank %}
+            <h3 class="site-footer__column-title">{{ section.settings.nav_title }}</h3>
+          {% endif %}
+          {%- for i in (1..4) -%}
+            {%- liquid
+              assign label_key = 'nav_' | append: i | append: '_label'
+              assign href_key = 'nav_' | append: i | append: '_href'
+            -%}
+            {%- if section.settings[label_key] != blank -%}
+              <a class="site-footer__link" href="{{ section.settings[href_key] | default: '#' }}">{{ section.settings[label_key] | escape }}</a>
+            {%- endif -%}
+          {%- endfor -%}
+        </nav>
       {% endif %}
 
-      {% comment %}
-        Search links are skipped here: search now lives in the header. Remove
-        the entry from the footer menu in Shopify navigation to drop it for good.
-      {% endcomment %}
-      {% if menu_count > 0 %}
-        <nav class="site-footer__column" aria-label="{{ section.settings.menu.title | escape }}">
-          {% if section.settings.menu_title != blank %}
-            <h3 class="site-footer__column-title">{{ section.settings.menu_title }}</h3>
+      {% if section.settings.table_label != blank %}
+        <div class="site-footer__column">
+          {% if section.settings.table_title != blank %}
+            <h3 class="site-footer__column-title">{{ section.settings.table_title }}</h3>
           {% endif %}
-          {% for link in section.settings.menu.links %}
-            {% unless link.url contains routes.search_url %}
-              <a href="{{ link.url }}">{{ link.title }}</a>
-            {% endunless %}
-          {% endfor %}
-        </nav>
+          <a
+            class="site-footer__feature"
+            href="{{ section.settings.table_href | default: '#' }}"
+            {% if section.settings.table_href contains '://' %}
+              target="_blank" rel="noopener"
+            {% endif %}
+          >
+            {{- section.settings.table_label | escape }} <span aria-hidden="true">&#8599;</span>
+          </a>
+        </div>
       {% endif %}
 
       {% if has_contact %}
@@ -169,8 +201,6 @@
     {% endif %}
 
     <div class="site-footer__bottom">
-      <div class="site-footer__mark">{% render 'brand-logo' %}</div>
-
       <p class="site-footer__copyright">
         &copy; {{ 'now' | date: '%Y' }} {{ shop.name | link_to: routes.root_url }}
       </p>
@@ -239,8 +269,77 @@
      past a small phone's screen (see Gotchas in DESIGN.md) */
   .site-footer__top {
     display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 2.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.5rem 1.25rem;
+  }
+
+  /* Phones: brand and contacts take the full width, "Naviga" and "In tavola"
+     sit side by side between them */
+  .site-footer__lead,
+  .site-footer__top > :last-child {
+    grid-column: 1 / -1;
+  }
+
+  .site-footer__lead {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  /* Same mark and wordmark as the header, name over tagline */
+  .site-footer__brand {
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-foreground);
+    text-decoration: none;
+    font-family: var(--font-heading--family);
+    font-size: clamp(1.25rem, 5vw, 1.75rem);
+  }
+
+  .site-footer__logo {
+    flex: 0 0 auto;
+    margin-right: 0.75rem;
+    color: var(--color-logo);
+  }
+
+  .site-footer__logo svg {
+    display: block;
+    width: clamp(4rem, 14vw, 5.5rem);
+    height: auto;
+  }
+
+  .site-footer__words {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .site-footer__name {
+    line-height: 1.1;
+  }
+
+  .site-footer__tagline {
+    font-family: var(--font-accent--family);
+    font-size: 0.8em;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--color-accent);
+  }
+
+  .site-footer__link {
+    font-size: 1.0625rem;
+  }
+
+  .site-footer a.site-footer__feature {
+    font-family: var(--font-heading--family);
+    font-size: clamp(1.375rem, 2.2vw, 1.75rem);
+    line-height: 1.15;
+    color: #e0966f;
+  }
+
+  .site-footer__feature span {
+    font-size: 0.75em;
   }
 
   .site-footer__heading {
@@ -387,17 +486,6 @@
   }
 
   /* The logo sits on its own row above the copyright */
-  .site-footer__mark {
-    flex: 0 0 100%;
-    color: var(--color-logo);
-  }
-
-  .site-footer__mark svg {
-    display: block;
-    width: 5.5rem;
-    height: auto;
-  }
-
   .site-footer__policies {
     display: flex;
     flex-wrap: wrap;
@@ -418,16 +506,16 @@
     height: auto;
   }
 
-  /* Under 900px: newsletter, menu and contact stack in one column */
+  /* From 900px one row of four columns */
   @media (min-width: 900px) {
     .site-footer__top {
-      grid-template-columns: 6fr 3fr 3fr;
-      gap: 1.25rem;
+      grid-template-columns: 5fr 2fr 3fr 2.5fr;
+      gap: 2rem 1.5rem;
     }
 
-    /* No newsletter: the columns start at the left edge */
-    .site-footer__top--plain {
-      grid-template-columns: 3fr 3fr 6fr;
+    .site-footer__lead,
+    .site-footer__top > :last-child {
+      grid-column: auto;
     }
   }
 {% endstylesheet %}
@@ -436,6 +524,48 @@
 {
   "name": "t:general.footer",
   "settings": [
+    {
+      "type": "header",
+      "content": "Brand"
+    },
+    {
+      "type": "text",
+      "id": "wordmark",
+      "label": "Name",
+      "info": "Leave blank to use the shop name."
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "L'olio di Collazzone"
+    },
+    {
+      "type": "header",
+      "content": "Navigation"
+    },
+    {
+      "type": "text",
+      "id": "nav_title",
+      "label": "Navigation title",
+      "default": "Naviga"
+    },
+    { "type": "text", "id": "nav_1_label", "label": "Link 1 label", "default": "La collina" },
+    { "type": "text", "id": "nav_1_href", "label": "Link 1 URL", "default": "/#collina" },
+    { "type": "text", "id": "nav_2_label", "label": "Link 2 label", "default": "L'olio" },
+    { "type": "text", "id": "nav_2_href", "label": "Link 2 URL", "default": "/collections/all" },
+    { "type": "text", "id": "nav_3_label", "label": "Link 3 label", "default": "Cultivar" },
+    { "type": "text", "id": "nav_3_href", "label": "Link 3 URL", "default": "/#terra" },
+    { "type": "text", "id": "nav_4_label", "label": "Link 4 label", "default": "Contatti" },
+    { "type": "text", "id": "nav_4_href", "label": "Link 4 URL", "default": "#contatti" },
+    {
+      "type": "text",
+      "id": "table_title",
+      "label": "Featured link title",
+      "default": "In tavola"
+    },
+    { "type": "text", "id": "table_label", "label": "Featured link label", "default": "Convivia Home Restaurant" },
+    { "type": "text", "id": "table_href", "label": "Featured link URL", "default": "https://www.conviviahomerestaurant.it/" },
     {
       "type": "header",
       "content": "Newsletter"
@@ -485,18 +615,6 @@
     {
       "type": "header",
       "content": "Links and contact"
-    },
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "t:labels.menu",
-      "default": "footer"
-    },
-    {
-      "type": "text",
-      "id": "menu_title",
-      "label": "Menu column title",
-      "default": "Negozio"
     },
     {
       "type": "text",
