@@ -641,9 +641,9 @@
     color: var(--promo-bg);
   }
 
-  /* A narrow card (phones, the 3 column row): line above, button under it,
+  /* A card too narrow for both side by side (phones): line above, button under it,
      so the button never pushes past the card's edge */
-  @container (max-width: 22rem) {
+  @container (max-width: 17rem) {
     .d-promo__foot {
       flex-direction: column;
       align-items: flex-start;
