@@ -6,18 +6,27 @@
   https://shopify.dev/docs/storefronts/themes/architecture/templates/collection
 {% endcomment %}
 
+{%- comment -%}
+  The products come from the collection picked in the section settings, if
+  any, otherwise from the page's own collection. A picked collection keeps
+  the order set in Shopify admin (Products > Collections > Sort: manual,
+  best selling, price...). /collections/all has no such setting, which is
+  why a collection can be picked here.
+{%- endcomment -%}
+{%- assign list = section.settings.collection | default: collection -%}
+
 <div class="collection section-space section-space--flush-top">
   <header class="collection__head">
-    <h1 class="collection__title">{{ section.settings.heading | default: collection.title }}</h1>
-    {% if collection.description != blank %}
-      <div class="collection__text">{{ collection.description }}</div>
+    <h1 class="collection__title">{{ section.settings.heading | default: list.title }}</h1>
+    {% if list.description != blank %}
+      <div class="collection__text">{{ list.description }}</div>
     {% endif %}
   </header>
 
-  {% paginate collection.products by section.settings.products_per_page %}
-    {% if collection.products.size > 0 %}
+  {% paginate list.products by section.settings.products_per_page %}
+    {% if list.products.size > 0 %}
       <ul class="collection__grid" role="list">
-        {% for product in collection.products %}
+        {% for product in list.products %}
           <li class="collection__item reveal">
             {% render 'product-card',
               product: product,
@@ -104,6 +113,12 @@
       "label": "Heading",
       "info": "Leave blank to use the collection's own title. Needed for /collections/all, which Shopify generates automatically and has no editable title.",
       "default": "Prodotti"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection to show",
+      "info": "Pick a collection to control the order from Shopify admin (Products > Collections > Sort products). Leave blank to show the collection of the page, which for /collections/all is every product and cannot be ordered."
     },
     {
       "type": "range",
