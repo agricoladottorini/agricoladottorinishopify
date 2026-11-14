@@ -11,7 +11,13 @@
   "sections": {
     "main": {
       "type": "collection",
-      "settings": {}
+      "settings": {
+        "heading": "Prodotti",
+        "collection": "",
+        "products_per_page": 12,
+        "image_fit": "cover",
+        "empty_text": "Non ci sono prodotti in questa collezione."
+      }
     }
   },
   "order": [
