@@ -7,7 +7,7 @@
   yet (it links to a URL until a product is picked for it), and a last card
   to the full catalog that starts just outside the panel, so it reads as
   "there is more". Falls back to the store's first products when none are
-  picked.
+  picked (up to six).
 {% endcomment %}
 
 {% liquid
@@ -56,7 +56,7 @@
         tabindex="0"
         aria-label="{{ section.settings.heading | escape }}"
       >
-        {% for product in products limit: 2 %}
+        {% for product in products limit: 6 %}
           {%- liquid
             assign variant = product.selected_or_first_available_variant
             assign tag = product.type
@@ -699,8 +699,8 @@
       "type": "product_list",
       "id": "products",
       "label": "Products",
-      "limit": 2,
-      "info": "Two products. The small label above the name is the product type, plus the format when there are several."
+      "limit": 6,
+      "info": "Up to six products, shown in this order. Leave empty to show the first products of the catalog. The small label above the name is the product type, plus the format when there are several."
     },
     {
       "type": "select",

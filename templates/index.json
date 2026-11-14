@@ -51,7 +51,8 @@
         "text": "Un blend equilibrato: la struttura del Moraiolo, la finezza del Frantoiano, la dolcezza del Leccino.",
         "products": [
           "bottiglia-500ml",
-          "latta-2l"
+          "latta-2l",
+          "latta-3l"
         ],
         "image_fit": "cover",
         "buy_label": "Acquista",
@@ -64,7 +65,7 @@
         "promo_heading": "Confezione Convivia",
         "promo_text": "Olio nuovo e un invito a tavola da Convivia Home Restaurant: il nostro modo di dire benvenuto.",
         "promo_link_label": "Scopri Convivia",
-        "promo_product": "",
+        "promo_product": "confezione-convivia",
         "promo_link": "",
         "promo_color": "#b05c3a",
         "all_eyebrow": "Catalogo",
