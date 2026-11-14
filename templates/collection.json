@@ -13,7 +13,12 @@
       "type": "collection",
       "settings": {
         "heading": "Prodotti",
-        "collection": "tutti",
+        "products": [
+          "bottiglia-500ml",
+          "latta-2l",
+          "latta-3l",
+          "confezione-convivia"
+        ],
         "show_sort": true,
         "sort_label": "Ordina per",
         "sort_apply_label": "Applica",
