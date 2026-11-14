@@ -23,6 +23,29 @@
     {% endif %}
   </header>
 
+  {%- comment -%}
+    "Sort by": the visitor's choice goes in ?sort_by=, which Shopify applies
+    to the collection of the page being opened. The form therefore points at
+    the shown collection's own URL, so it also works when a collection is
+    picked in the section settings. Without JavaScript the button applies it.
+  {%- endcomment -%}
+  {%- assign sort_current = collection.sort_by | default: collection.default_sort_by -%}
+  {% if section.settings.show_sort and list.products_count > 1 and collection.sort_options.size > 0 %}
+    <form class="collection__sort" method="get" action="{{ list.url }}">
+      <label class="collection__sort-label" for="CollectionSort-{{ section.id }}">
+        {{- section.settings.sort_label -}}
+      </label>
+      <select id="CollectionSort-{{ section.id }}" name="sort_by" class="collection__sort-select" data-sort-select>
+        {% for option in collection.sort_options %}
+          <option value="{{ option.value }}"{% if option.value == sort_current %} selected{% endif %}>
+            {{- option.name | escape -}}
+          </option>
+        {% endfor %}
+      </select>
+      <noscript><button type="submit" class="button">{{ section.settings.sort_apply_label }}</button></noscript>
+    </form>
+  {% endif %}
+
   {% paginate list.products by section.settings.products_per_page %}
     {% if list.products.size > 0 %}
       <ul class="collection__grid" role="list">
@@ -45,6 +68,13 @@
   {% endpaginate %}
 </div>
 
+{% javascript %}
+  document.addEventListener('change', (event) => {
+    const select = event.target.closest('[data-sort-select]');
+    if (select) select.form.submit();
+  });
+{% endjavascript %}
+
 {% stylesheet %}
   .collection__head {
     margin-bottom: clamp(2rem, 4vw, 3.5rem);
@@ -58,6 +88,47 @@
     max-width: 52ch;
     margin-top: 0.75rem;
     color: var(--color-muted);
+  }
+
+  .collection__sort {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .collection__sort-label {
+    font-size: 0.875rem;
+    color: var(--color-muted);
+  }
+
+  /* A pill like every other control; the native arrow is replaced by one
+     drawn in the background so the select looks the same everywhere */
+  .collection__sort-select {
+    min-height: 2.75rem;
+    padding: 0 2.5rem 0 1.25rem;
+    border: 1px solid var(--color-field-border);
+    border-radius: var(--radius-pill);
+    appearance: none;
+    background-color: var(--color-background);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%23211c14' stroke-width='1.5'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");
+    background-position: right 1.1rem center;
+    background-repeat: no-repeat;
+    color: var(--color-foreground);
+    font: inherit;
+    font-size: 0.9375rem;
+    cursor: pointer;
+    transition: background-color 0.3s var(--ease-out);
+  }
+
+  .collection__sort-select:hover {
+    background-color: var(--color-accent-light);
+  }
+
+  .collection__sort-select:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
   }
 
   /* One column on phones, two from 700px, three from 1000px */
@@ -119,6 +190,25 @@
       "id": "collection",
       "label": "Collection to show",
       "info": "Pick a collection to control the order from Shopify admin (Products > Collections > Sort products). Leave blank to show the collection of the page, which for /collections/all is every product and cannot be ordered."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sort",
+      "label": "Show the sort menu",
+      "info": "Lets visitors sort by price, name or date. The options come from Shopify.",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "sort_label",
+      "label": "Sort menu label",
+      "default": "Ordina per"
+    },
+    {
+      "type": "text",
+      "id": "sort_apply_label",
+      "label": "Sort button (no JavaScript)",
+      "default": "Applica"
     },
     {
       "type": "range",
