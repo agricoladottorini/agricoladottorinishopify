@@ -13,7 +13,10 @@
       "type": "collection",
       "settings": {
         "heading": "Prodotti",
-        "collection": "",
+        "collection": "tutti",
+        "show_sort": true,
+        "sort_label": "Ordina per",
+        "sort_apply_label": "Applica",
         "products_per_page": 12,
         "image_fit": "cover",
         "empty_text": "Non ci sono prodotti in questa collezione."
