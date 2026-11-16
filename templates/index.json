@@ -73,15 +73,6 @@
             "tone": "d-variety--light"
           }
         },
-        "metodo-filtrazione": {
-          "type": "step",
-          "settings": {
-            "title": "La filtrazione",
-            "tagline": "Subito dopo l'estrazione.",
-            "text": "Filtriamo appena estratto. All'olio non togliamo nulla: solo i residui di polpa e acqua, che col tempo lo consumerebbero dall'interno.",
-            "tone": "d-variety--dark"
-          }
-        },
         "metodo-riposo": {
           "type": "step",
           "settings": {
@@ -107,7 +98,6 @@
         "metodo-cura",
         "metodo-raccolta",
         "metodo-frantoio",
-        "metodo-filtrazione",
         "metodo-riposo",
         "metodo-tavola"
       ],
