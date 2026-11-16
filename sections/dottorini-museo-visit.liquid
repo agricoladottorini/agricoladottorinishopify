@@ -1,0 +1,200 @@
+{% comment %}
+  Museo closing: where the museum is, a notice that it is closed to the
+  public for now (a setting, so it can become opening hours later), a link
+  to the map and one to the contacts. Beside it the orange cart, the old
+  site's cover: too small for a full-bleed opening, right at this size.
+{% endcomment %}
+
+{%- liquid
+  assign map_query = section.settings.map_query | default: section.settings.address | url_encode
+  assign map_url = 'https://www.google.com/maps/search/?api=1&query=' | append: map_query
+-%}
+
+<div class="section-band full-width {{ section.settings.background }}">
+<div class="d-mvisit section-band__inner section-space" id="{{ section.settings.anchor | default: 'visita' | handleize }}">
+  <div class="d-mvisit__card reveal">
+    <div class="d-mvisit__copy">
+      {% render 'section-label', label: section.settings.label %}
+      {% if section.settings.heading != blank %}
+        <h2 class="d-mvisit__heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+
+      {% if section.settings.notice != blank %}
+        <p class="d-mvisit__notice">
+          <span class="d-mvisit__dot" aria-hidden="true"></span>
+          {{ section.settings.notice }}
+        </p>
+      {% endif %}
+
+      {% if section.settings.text != blank %}
+        <p class="d-mvisit__text">{{ section.settings.text }}</p>
+      {% endif %}
+
+      <address class="d-mvisit__address">
+        {% if section.settings.place != blank %}
+          <strong>{{ section.settings.place }}</strong><br>
+        {% endif %}
+        {{ section.settings.address | newline_to_br }}
+      </address>
+
+      <div class="d-mvisit__actions">
+        {% if section.settings.map_label != blank %}
+          <a class="button button--light d-mvisit__button" href="{{ map_url }}" target="_blank" rel="noopener">
+            {{- section.settings.map_label }} <span aria-hidden="true">&nearr;</span>
+          </a>
+        {% endif %}
+        {% if section.settings.contact_label != blank %}
+          <a class="d-mvisit__link" href="{{ section.settings.contact_link | default: '#contatti' }}">
+            {{- section.settings.contact_label -}}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if section.settings.image %}
+      {%- assign position = 'object-position: ' | append: section.settings.image.presentation.focal_point -%}
+      <div class="d-mvisit__media">
+        {{
+          section.settings.image
+          | image_url: width: 1260
+          | image_tag:
+            widths: '400, 700, 1000, 1260',
+            sizes: '(min-width: 900px) 40vw, 90vw',
+            loading: 'lazy',
+            alt: section.settings.image.alt,
+            style: position
+        }}
+      </div>
+    {% endif %}
+  </div>
+</div>
+</div>
+
+{% stylesheet %}
+  /* A dark card, like the Convivia one on the homepage: copy left, photo right */
+  .d-mvisit__card {
+    display: grid;
+    overflow: hidden;
+    border-radius: calc(var(--radius-media) * 2);
+    background-color: var(--color-dark);
+    color: var(--color-on-photo);
+  }
+
+  .d-mvisit__copy {
+    --section-label-color: var(--color-logo);
+    padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 5vw, 4rem);
+  }
+
+  .d-mvisit__heading {
+    font-size: clamp(2rem, 4.2vw, 3.25rem);
+    line-height: 1.05;
+    color: var(--color-on-photo);
+  }
+
+  .d-mvisit__notice {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+    padding: 0.55rem 1rem;
+    border: 1px solid rgb(253 252 249 / 0.28);
+    border-radius: var(--radius-pill);
+    font-weight: 500;
+  }
+
+  .d-mvisit__dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background-color: #e0966f;
+  }
+
+  .d-mvisit__text {
+    max-width: 40ch;
+    margin-top: 1.25rem;
+    line-height: 1.6;
+    color: rgb(253 252 249 / 0.78);
+  }
+
+  .d-mvisit__address {
+    margin-top: 1.75rem;
+    font-style: normal;
+    line-height: 1.6;
+    color: rgb(253 252 249 / 0.9);
+  }
+
+  .d-mvisit__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .d-mvisit__link {
+    padding-bottom: 0.15rem;
+    border-bottom: 1px solid currentColor;
+    color: var(--color-on-photo);
+    text-decoration: none;
+  }
+
+  .d-mvisit__link:hover {
+    color: var(--color-logo);
+  }
+
+  .d-mvisit__media {
+    position: relative;
+    min-height: 16rem;
+  }
+
+  .d-mvisit__media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (min-width: 900px) {
+    .d-mvisit__card {
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    }
+
+    .d-mvisit__media {
+      min-height: 100%;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Museo visita",
+  "tag": "section",
+  "class": "d-mvisit-section",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Section name", "default": "Visita" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Dove si trova" },
+    { "type": "text", "id": "notice", "label": "Notice", "default": "Per ora il museo è chiuso al pubblico.", "info": "Shown as a pill. Leave blank to hide, or replace with opening times." },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "text", "id": "place", "label": "Place name", "default": "Piccolo Museo della Civiltà Contadina" },
+    { "type": "textarea", "id": "address", "label": "Address", "default": "Str. dei Boschetti, 12\nCollazzone (PG)" },
+    { "type": "text", "id": "map_query", "label": "Map search", "info": "What Google Maps searches for. Defaults to the address." },
+    { "type": "text", "id": "map_label", "label": "Map button", "default": "Apri in Google Maps" },
+    { "type": "text", "id": "contact_label", "label": "Contact link", "default": "Scrivici per informazioni" },
+    { "type": "text", "id": "contact_link", "label": "Contact link target", "default": "#contatti" },
+    { "type": "image_picker", "id": "image", "label": "Photo" },
+    { "type": "text", "id": "anchor", "label": "Anchor", "default": "visita" },
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Background",
+      "default": "d-bg--base",
+      "options": [
+        { "value": "d-bg--base", "label": "Default" },
+        { "value": "d-bg--tint", "label": "Tinted" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Museo visita" }]
+}
+{% endschema %}

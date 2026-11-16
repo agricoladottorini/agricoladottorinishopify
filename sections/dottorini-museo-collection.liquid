@@ -1,0 +1,619 @@
+{% comment %}
+  The collection: one gallery per museum section, in the order of the
+  blocks, with a sticky row of section names under the header to jump
+  between them (the current one is marked as you scroll; phones swipe it
+  sideways) and one full-screen viewer for every photo on the page, which
+  steps across section boundaries and says which section it is in.
+
+  Photos are not picked one by one: each block names a file prefix and a
+  count, and the photos are looked up in Shopify Files by name
+  (museo-contadino-bilance-01.jpg ... -11.jpg). A name that is not in Files
+  yet is skipped, so a half-finished upload never shows a broken tile.
+
+  Every tile keeps its photo's own shape in a masonry of columns (3 from
+  1100px, 2 from 560px, 1 on phones) and every image is lazy, with its
+  ratio reserved, so 260-odd photos cost only what is on screen.
+{% endcomment %}
+
+<div class="section-band full-width {{ section.settings.background }}">
+<museo-collection class="d-mcoll" id="{{ section.settings.anchor | default: 'collezione' | handleize }}">
+  {% if section.blocks.size > 1 %}
+    <nav class="d-mcoll__nav" aria-label="{{ section.settings.nav_label | escape }}">
+      <ul class="d-mcoll__nav-list section-band__inner" role="list" data-mcoll-nav>
+        {% for block in section.blocks %}
+          {%- assign group_id = block.settings.prefix | remove: 'museo-contadino-' | remove_last: '-' | default: block.id | handleize -%}
+          <li>
+            <a class="d-mcoll__nav-link" href="#{{ group_id }}" data-mcoll-link>
+              {{- block.settings.nav_label | default: block.settings.title -}}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  {% endif %}
+
+  <div class="d-mcoll__body section-band__inner">
+    {% if section.settings.heading != blank %}
+      <div class="d-mcoll__head reveal">
+        {% render 'section-label', label: section.settings.label %}
+        <h2 class="d-mcoll__heading">{{ section.settings.heading }}</h2>
+      </div>
+    {% endif %}
+
+    {% for block in section.blocks %}
+      {%- liquid
+        assign group_id = block.settings.prefix | remove: 'museo-contadino-' | remove_last: '-' | default: block.id | handleize
+        assign group_title = block.settings.title
+        assign count = block.settings.count | at_least: 0 | at_most: 200
+        assign found = 0
+        for i in (1..count)
+          assign num = i | prepend: '0' | slice: -2, 2
+          assign file_name = block.settings.prefix | append: num | append: '.jpg'
+          if images[file_name]
+            assign found = found | plus: 1
+          endif
+        endfor
+      -%}
+      <section class="d-mcoll__group" id="{{ group_id }}" aria-labelledby="{{ group_id }}-title" data-mcoll-group {{ block.shopify_attributes }}>
+        <header class="d-mcoll__group-head">
+          <h3 class="d-mcoll__group-title" id="{{ group_id }}-title">{{ group_title }}</h3>
+          {% if found > 0 %}
+            <p class="d-mcoll__group-count">{{ found }} foto</p>
+          {% endif %}
+          {% if block.settings.intro != blank %}
+            <p class="d-mcoll__group-intro">{{ block.settings.intro }}</p>
+          {% endif %}
+        </header>
+
+        {% if found > 0 %}
+          <ul class="d-mcoll__grid" role="list">
+            {%- assign shown = 0 -%}
+            {% for i in (1..count) %}
+              {%- liquid
+                assign num = i | prepend: '0' | slice: -2, 2
+                assign file_name = block.settings.prefix | append: num | append: '.jpg'
+                assign photo = images[file_name]
+              -%}
+              {% if photo %}
+                {%- liquid
+                  assign shown = shown | plus: 1
+                  assign alt = photo.alt
+                  if alt == blank
+                    capture alt
+                      echo group_title | append: ', foto ' | append: shown | append: ' di ' | append: found | append: ' – Piccolo Museo della Civiltà Contadina, Collazzone'
+                    endcapture
+                  endif
+                -%}
+                <li class="d-mcoll__item">
+                  <button
+                    type="button"
+                    class="d-mcoll__tile"
+                    style="aspect-ratio: {{ photo.aspect_ratio }};"
+                    data-mcoll-open
+                    data-full="{{ photo | image_url: width: 1600 }}"
+                    data-alt="{{ alt | strip | escape }}"
+                    data-group="{{ group_title | escape }}"
+                    data-pos="{{ shown }}"
+                    data-total="{{ found }}"
+                    aria-label="Apri la foto {{ shown }} di {{ found }}: {{ group_title | escape }}"
+                  >
+                    {{
+                      photo
+                      | image_url: width: 1000
+                      | image_tag:
+                        widths: '300, 450, 650, 1000',
+                        sizes: '(min-width: 1100px) 30vw, (min-width: 560px) 45vw, 90vw',
+                        loading: 'lazy',
+                        decoding: 'async',
+                        alt: alt
+                    }}
+                  </button>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="d-mcoll__empty">{{ section.settings.empty_text }}</p>
+        {% endif %}
+      </section>
+    {% endfor %}
+  </div>
+
+  <dialog class="d-mcoll__viewer" data-mcoll-viewer aria-label="{{ section.settings.viewer_label | escape }}">
+    <div class="d-mcoll__stage" data-mcoll-stage>
+      <img class="d-mcoll__viewer-image" data-mcoll-image alt="" width="1600" height="1200">
+    </div>
+
+    <button type="button" class="d-mcoll__close" data-mcoll-close>
+      <span class="d-mcoll__close-mark" aria-hidden="true"></span>
+      <span class="visually-hidden">Chiudi</span>
+    </button>
+
+    <div class="d-mcoll__bar">
+      <button type="button" class="d-mcoll__step" data-mcoll-step="-1" aria-label="Foto precedente">
+        <span aria-hidden="true">&larr;</span>
+      </button>
+      <p class="d-mcoll__caption" aria-live="polite">
+        <span class="d-mcoll__caption-group" data-mcoll-group-name></span>
+        <span class="d-mcoll__caption-count" data-mcoll-count></span>
+      </p>
+      <button type="button" class="d-mcoll__step" data-mcoll-step="1" aria-label="Foto successiva">
+        <span aria-hidden="true">&rarr;</span>
+      </button>
+    </div>
+  </dialog>
+</museo-collection>
+</div>
+
+{% stylesheet %}
+  .d-mcoll {
+    --mcoll-gap: clamp(0.75rem, 1.8vw, 1.5rem);
+    --mcoll-nav-height: 3.5rem;
+    display: block;
+    padding-bottom: var(--section-space);
+  }
+
+  /* The section row: sticks under the header, scrolls sideways when it does
+     not fit, the current section underlined like the header's own links */
+  .d-mcoll__nav {
+    position: sticky;
+    top: var(--header-height);
+    z-index: 5;
+    background-color: color-mix(in srgb, var(--section-bg, var(--color-background)) 92%, transparent);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-surface-strong);
+  }
+
+  .d-mcoll__nav-list {
+    display: flex;
+    gap: clamp(1.1rem, 2.4vw, 2rem);
+    margin-block: 0;
+    padding: 0;
+    list-style: none;
+    overflow-x: auto;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+
+  .d-mcoll__nav-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .d-mcoll__nav-link {
+    display: flex;
+    align-items: center;
+    height: var(--mcoll-nav-height);
+    white-space: nowrap;
+    font-size: 0.9375rem;
+    color: var(--color-muted);
+    text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 calc(100% - 0.9rem);
+    background-repeat: no-repeat;
+    background-size: 0 1px;
+    transition: color 0.25s var(--ease-out), background-size 0.3s var(--ease-out);
+  }
+
+  .d-mcoll__nav-link:hover,
+  .d-mcoll__nav-link[aria-current='true'] {
+    color: var(--color-foreground);
+    background-size: 100% 1px;
+  }
+
+  .d-mcoll__head {
+    padding-top: var(--section-space);
+  }
+
+  .d-mcoll__heading {
+    max-width: 20ch;
+    font-size: clamp(2rem, 4.2vw, 3.5rem);
+  }
+
+  .d-mcoll__group {
+    padding-top: clamp(2.5rem, 5vw, 4rem);
+    scroll-margin-top: calc(var(--header-height) + var(--mcoll-nav-height) - 1rem);
+  }
+
+  .d-mcoll__group-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.35rem 1rem;
+    margin-bottom: clamp(1.25rem, 2.5vw, 1.75rem);
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--color-surface-strong);
+  }
+
+  .d-mcoll__group-title {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    line-height: 1.1;
+  }
+
+  .d-mcoll__group-count {
+    font-family: var(--font-accent--family);
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--color-accent);
+  }
+
+  .d-mcoll__group-intro {
+    flex-basis: 100%;
+    max-width: 60ch;
+    color: var(--color-muted);
+  }
+
+  .d-mcoll__empty {
+    color: var(--color-muted);
+  }
+
+  /* Masonry by columns: each photo keeps its shape */
+  .d-mcoll__grid {
+    margin: 0 0 calc(var(--mcoll-gap) * -1);
+    padding: 0;
+    list-style: none;
+    columns: 1;
+    column-gap: var(--mcoll-gap);
+  }
+
+  .d-mcoll__item {
+    break-inside: avoid;
+    margin-bottom: var(--mcoll-gap);
+  }
+
+  @media (min-width: 560px) {
+    .d-mcoll__grid {
+      columns: 2;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .d-mcoll__grid {
+      columns: 3;
+    }
+  }
+
+  .d-mcoll__tile {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-media);
+    background-color: var(--color-surface-strong);
+    cursor: zoom-in;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .d-mcoll__tile img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease-out), filter 0.4s var(--ease-out);
+  }
+
+  @media (hover: hover) {
+    .d-mcoll__tile:hover img {
+      transform: scale(1.035);
+      filter: brightness(1.04);
+    }
+  }
+
+  /** Viewer: a native <dialog>, so Escape, focus return and the backdrop
+   * are the browser's job. Swipe, arrows or the arrow keys step through
+   * every photo on the page; a tap on the photo closes it. */
+  .d-mcoll__viewer {
+    position: fixed;
+    inset: 0;
+    display: none;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: rgb(22 18 12);
+    color: var(--color-background);
+    overflow: hidden;
+  }
+
+  .d-mcoll__viewer[open] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .d-mcoll__viewer::backdrop {
+    background-color: rgb(22 18 12 / 0.7);
+  }
+
+  .d-mcoll__stage {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: clamp(1rem, 4vw, 3rem);
+    padding-bottom: 0;
+    cursor: zoom-out;
+    touch-action: pan-y;
+  }
+
+  .d-mcoll__viewer-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: opacity 0.2s var(--ease-out);
+  }
+
+  .d-mcoll__viewer-image.is-loading {
+    opacity: 0.35;
+  }
+
+  .d-mcoll__bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: clamp(1rem, 3vw, 1.75rem);
+    padding-bottom: max(clamp(1rem, 3vw, 1.75rem), env(safe-area-inset-bottom));
+  }
+
+  .d-mcoll__caption {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    min-width: 12rem;
+    margin: 0;
+    text-align: center;
+  }
+
+  .d-mcoll__caption-group {
+    font-family: var(--font-accent--family);
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--color-background);
+  }
+
+  .d-mcoll__caption-count {
+    font-size: 0.8125rem;
+    font-variant-numeric: tabular-nums;
+    color: rgb(251 246 236 / 0.68);
+  }
+
+  .d-mcoll__step,
+  .d-mcoll__close {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    border: 1px solid rgb(251 246 236 / 0.5);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--color-background);
+    font: inherit;
+    font-size: 1.125rem;
+    cursor: pointer;
+    transition: background-color 0.3s var(--ease-out), border-color 0.3s var(--ease-out), transform 0.2s var(--ease-out);
+  }
+
+  .d-mcoll__viewer :focus-visible {
+    outline-color: var(--color-background);
+  }
+
+  .d-mcoll__step:hover,
+  .d-mcoll__close:hover {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  .d-mcoll__step:active,
+  .d-mcoll__close:active {
+    transform: scale(0.96);
+  }
+
+  .d-mcoll__close {
+    position: absolute;
+    top: clamp(0.75rem, 2vw, 1.25rem);
+    right: clamp(0.75rem, 2vw, 1.25rem);
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .d-mcoll__close-mark,
+  .d-mcoll__close-mark::before {
+    display: block;
+    width: 0.9rem;
+    height: 2px;
+    border-radius: 2px;
+    background-color: currentcolor;
+  }
+
+  .d-mcoll__close-mark {
+    transform: rotate(45deg);
+  }
+
+  .d-mcoll__close-mark::before {
+    content: '';
+    transform: rotate(90deg);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .d-mcoll__viewer[open],
+    .d-mcoll__viewer[open]::backdrop {
+      animation: mcoll-fade 0.3s var(--ease-out);
+    }
+  }
+
+  @keyframes mcoll-fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  class MuseoCollection extends HTMLElement {
+    connectedCallback() {
+      this.tiles = Array.from(this.querySelectorAll('[data-mcoll-open]'));
+      this.viewer = this.querySelector('[data-mcoll-viewer]');
+      this.image = this.viewer?.querySelector('[data-mcoll-image]');
+      this.setupNav();
+      if (!this.viewer || !this.image || !this.tiles.length) return;
+
+      this.groupName = this.viewer.querySelector('[data-mcoll-group-name]');
+      this.count = this.viewer.querySelector('[data-mcoll-count]');
+      this.index = 0;
+
+      this.onOpen = (event) => {
+        this.show(this.tiles.indexOf(event.currentTarget));
+        if (!this.viewer.open) this.viewer.showModal();
+      };
+      this.tiles.forEach((tile) => tile.addEventListener('click', this.onOpen));
+
+      this.onStep = (event) => this.show(this.index + Number(event.currentTarget.dataset.mcollStep));
+      this.steps = this.viewer.querySelectorAll('[data-mcoll-step]');
+      this.steps.forEach((step) => step.addEventListener('click', this.onStep));
+
+      this.onKey = (event) => {
+        if (event.key === 'ArrowRight') this.show(this.index + 1);
+        if (event.key === 'ArrowLeft') this.show(this.index - 1);
+      };
+      this.viewer.addEventListener('keydown', this.onKey);
+
+      // Swipe on the stage steps; a tap (no real movement) closes
+      const stage = this.viewer.querySelector('[data-mcoll-stage]');
+      this.onDown = (event) => {
+        this.startX = event.clientX;
+        this.startY = event.clientY;
+      };
+      this.onUp = (event) => {
+        if (this.startX == null) return;
+        const dx = event.clientX - this.startX;
+        const dy = event.clientY - this.startY;
+        this.startX = null;
+        if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) {
+          this.show(this.index + (dx < 0 ? 1 : -1));
+        } else if (Math.abs(dx) < 8 && Math.abs(dy) < 8) {
+          this.viewer.close();
+        }
+      };
+      stage.addEventListener('pointerdown', this.onDown);
+      stage.addEventListener('pointerup', this.onUp);
+
+      this.close = this.viewer.querySelector('[data-mcoll-close]');
+      this.onClose = () => this.viewer.close();
+      this.close?.addEventListener('click', this.onClose);
+
+      this.image.addEventListener('load', () => this.image.classList.remove('is-loading'));
+    }
+
+    show(index) {
+      const total = this.tiles.length;
+      this.index = ((index % total) + total) % total;
+      const tile = this.tiles[this.index];
+      if (this.image.getAttribute('src') !== tile.dataset.full) {
+        this.image.classList.add('is-loading');
+        this.image.src = tile.dataset.full;
+      }
+      this.image.alt = tile.dataset.alt || '';
+      if (this.groupName) this.groupName.textContent = tile.dataset.group || '';
+      if (this.count) this.count.textContent = `${tile.dataset.pos} di ${tile.dataset.total}`;
+
+      // Warm the neighbours so stepping feels instant
+      [1, -1].forEach((offset) => {
+        const next = this.tiles[(this.index + offset + total) % total];
+        if (next) new Image().src = next.dataset.full;
+      });
+    }
+
+    // Mark the section crossing the upper third of the screen and keep its
+    // link in view inside the sideways-scrolling row
+    setupNav() {
+      this.navList = this.querySelector('[data-mcoll-nav]');
+      const links = Array.from(this.querySelectorAll('[data-mcoll-link]'));
+      const groups = Array.from(this.querySelectorAll('[data-mcoll-group]'));
+      if (!this.navList || !links.length || !('IntersectionObserver' in window)) return;
+
+      const byId = new Map(links.map((link) => [link.getAttribute('href').slice(1), link]));
+      this.observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            links.forEach((link) => link.removeAttribute('aria-current'));
+            const link = byId.get(entry.target.id);
+            if (!link) return;
+            link.setAttribute('aria-current', 'true');
+            const list = this.navList;
+            const left = link.offsetLeft - (list.clientWidth - link.offsetWidth) / 2;
+            list.scrollTo({ left, behavior: 'smooth' });
+          });
+        },
+        { rootMargin: '-30% 0px -65% 0px' }
+      );
+      groups.forEach((group) => this.observer.observe(group));
+    }
+
+    disconnectedCallback() {
+      this.observer?.disconnect();
+      this.tiles?.forEach((tile) => tile.removeEventListener('click', this.onOpen));
+      this.steps?.forEach((step) => step.removeEventListener('click', this.onStep));
+      this.viewer?.removeEventListener('keydown', this.onKey);
+      this.close?.removeEventListener('click', this.onClose);
+    }
+  }
+
+  if (!customElements.get('museo-collection')) customElements.define('museo-collection', MuseoCollection);
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Museo collezione",
+  "tag": "section",
+  "class": "d-mcoll-section",
+  "max_blocks": 16,
+  "settings": [
+    { "type": "text", "id": "label", "label": "Section name", "default": "La collezione" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Dalla semina alla bottega.", "info": "Leave blank to hide the heading." },
+    { "type": "text", "id": "nav_label", "label": "Accessible name of the section row", "default": "Sezioni della collezione" },
+    { "type": "text", "id": "viewer_label", "label": "Accessible name of the viewer", "default": "Foto della collezione" },
+    { "type": "text", "id": "empty_text", "label": "Text when a section has no photos yet", "default": "Le foto di questa sezione arrivano presto." },
+    { "type": "text", "id": "anchor", "label": "Anchor", "default": "collezione" },
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Background",
+      "default": "d-bg--tint",
+      "options": [
+        { "value": "d-bg--base", "label": "Default" },
+        { "value": "d-bg--tint", "label": "Tinted" }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "gallery",
+      "name": "Sezione",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Sezione" },
+        { "type": "text", "id": "nav_label", "label": "Short name in the section row", "info": "Leave blank to use the title." },
+        {
+          "type": "text",
+          "id": "prefix",
+          "label": "File name prefix",
+          "info": "Photos are found in Content > Files by name: prefix + two-digit number + .jpg, e.g. museo-contadino-bilance- finds museo-contadino-bilance-01.jpg. Also names the section's anchor (#bilance)."
+        },
+        { "type": "number", "id": "count", "label": "Number of photos", "default": 10 },
+        { "type": "textarea", "id": "intro", "label": "Intro", "info": "Optional, one or two lines." }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Museo collezione" }]
+}
+{% endschema %}

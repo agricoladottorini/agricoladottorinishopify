@@ -9,121 +9,199 @@
  */
 {
   "sections": {
-    "museo": {
-      "type": "dottorini-museo",
+    "intro": {
+      "type": "dottorini-museo-intro",
       "blocks": {
-        "photo-1": {
-          "type": "photo",
-          "settings": {}
+        "fact-anni": {
+          "type": "fact",
+          "settings": {
+            "value": "20+",
+            "label": "anni di raccolta"
+          }
         },
-        "photo-2": {
-          "type": "photo",
-          "settings": {}
+        "fact-pezzi": {
+          "type": "fact",
+          "settings": {
+            "value": "400",
+            "label": "pezzi, circa"
+          }
         },
-        "photo-3": {
-          "type": "photo",
-          "settings": {}
-        },
-        "photo-4": {
-          "type": "photo",
-          "settings": {}
-        },
-        "photo-5": {
-          "type": "photo",
-          "settings": {}
-        },
-        "photo-6": {
-          "type": "photo",
-          "settings": {}
-        },
-        "photo-7": {
-          "type": "photo",
-          "settings": {}
-        },
-        "photo-8": {
-          "type": "photo",
-          "settings": {}
-        },
-        "photo-9": {
-          "type": "photo",
-          "settings": {}
-        },
-        "photo-10": {
-          "type": "photo",
-          "settings": {}
-        },
-        "photo-11": {
-          "type": "photo",
-          "settings": {}
-        },
-        "photo-12": {
-          "type": "photo",
-          "settings": {}
-        },
-        "photo-13": {
-          "type": "photo",
-          "settings": {}
-        },
-        "photo-14": {
-          "type": "photo",
-          "settings": {}
-        },
-        "photo-15": {
-          "type": "photo",
-          "settings": {}
-        },
-        "photo-16": {
-          "type": "photo",
-          "settings": {}
-        },
-        "photo-17": {
-          "type": "photo",
-          "settings": {}
-        },
-        "photo-18": {
-          "type": "photo",
-          "settings": {}
-        },
-        "photo-19": {
-          "type": "photo",
-          "settings": {}
-        },
-        "photo-20": {
-          "type": "photo",
-          "settings": {}
+        "fact-sezioni": {
+          "type": "fact",
+          "settings": {
+            "value": "10",
+            "label": "sezioni"
+          }
         }
       },
       "block_order": [
-        "photo-1",
-        "photo-2",
-        "photo-3",
-        "photo-4",
-        "photo-5",
-        "photo-6",
-        "photo-7",
-        "photo-8",
-        "photo-9",
-        "photo-10",
-        "photo-11",
-        "photo-12",
-        "photo-13",
-        "photo-14",
-        "photo-15",
-        "photo-16",
-        "photo-17",
-        "photo-18",
-        "photo-19",
-        "photo-20"
+        "fact-anni",
+        "fact-pezzi",
+        "fact-sezioni"
       ],
       "settings": {
-        "heading": "Il Museo della Civiltà Contadina",
-        "text": "Attrezzi, gesti e storie di chi ha lavorato questa terra prima di noi, raccolti in una piccola collezione a Collazzone.",
-        "anchor": "museo",
+        "label": "Museo",
+        "heading": "Piccolo Museo della Civiltà Contadina",
+        "lede": "La raccolta di Giuseppe Belardi Dottorini, a Collazzone.",
+        "image_main": "shopify://shop_images/museo-contadino-giuseppe-01.jpg",
+        "image_second": "shopify://shop_images/museo-contadino-giuseppe-02.jpg",
+        "story_label": "Chi sono",
+        "story": "<p>Tutto è cominciato dalla passione per ciò che racconta la civiltà contadina. Oltre vent'anni fa ho iniziato a recuperare gli attrezzi di famiglia; poi sono arrivati i doni di amici e compaesani, e i pezzi scovati nelle fiere di settore e nei mercatini della zona. È una ricerca che non si è mai fermata e che porto avanti ancora oggi, con la stessa voglia.</p><p>Così, a casa mia, nelle campagne di Collazzone, nel verde dell'Umbria, ho realizzato il museo che sognavo: una macchina per la battitura del frumento e circa 400 pezzi dell'arte contadina, tutti conservati con cura e ancora funzionanti.</p><p>La collezione racconta l'intero lavoro dei campi: dalla semina alla raccolta di grano e mais, dalla vendemmia alla vinificazione, fino all'allevamento del bestiame e a tutto ciò che ruotava intorno alla vita in campagna. Accanto agli attrezzi della terra ci sono quelli degli antichi mestieri: il falegname, il ciabattino, il sarto, il tessitore, il fabbro ferraio, l'arrotino, il maniscalco, il norcino e il barbiere.</p><p>Ogni oggetto riporta a un tempo che ha ancora molto da raccontare. A me continua a emozionare, e chi viene a trovarmi ne resta stupito.</p>",
+        "signature": "Giuseppe Belardi Dottorini",
+        "link_label": "Guarda la collezione",
+        "link": "#collezione",
+        "anchor": "chi-sono",
+        "background": "d-bg--base"
+      }
+    },
+    "collezione": {
+      "type": "dottorini-museo-collection",
+      "blocks": {
+        "gallery-macchine": {
+          "type": "gallery",
+          "settings": {
+            "title": "Lavoro nei campi: le macchine",
+            "nav_label": "Macchine",
+            "prefix": "museo-contadino-macchine-",
+            "count": 20,
+            "intro": ""
+          }
+        },
+        "gallery-utensili-campi": {
+          "type": "gallery",
+          "settings": {
+            "title": "Lavoro nei campi: gli utensili",
+            "nav_label": "Utensili dei campi",
+            "prefix": "museo-contadino-utensili-campi-",
+            "count": 38,
+            "intro": ""
+          }
+        },
+        "gallery-animali": {
+          "type": "gallery",
+          "settings": {
+            "title": "Lavoro con gli animali",
+            "nav_label": "Animali",
+            "prefix": "museo-contadino-animali-",
+            "count": 26,
+            "intro": ""
+          }
+        },
+        "gallery-cereali-uva-olive": {
+          "type": "gallery",
+          "settings": {
+            "title": "Cereali, uva e olive",
+            "nav_label": "Cereali, uva, olive",
+            "prefix": "museo-contadino-cereali-uva-olive-",
+            "count": 33,
+            "intro": ""
+          }
+        },
+        "gallery-ferro": {
+          "type": "gallery",
+          "settings": {
+            "title": "Lavorazione del ferro",
+            "nav_label": "Ferro",
+            "prefix": "museo-contadino-ferro-",
+            "count": 13,
+            "intro": ""
+          }
+        },
+        "gallery-legno": {
+          "type": "gallery",
+          "settings": {
+            "title": "Lavorazione del legno",
+            "nav_label": "Legno",
+            "prefix": "museo-contadino-legno-",
+            "count": 26,
+            "intro": ""
+          }
+        },
+        "gallery-artigianato": {
+          "type": "gallery",
+          "settings": {
+            "title": "Artigianato",
+            "nav_label": "Artigianato",
+            "prefix": "museo-contadino-artigianato-",
+            "count": 17,
+            "intro": ""
+          }
+        },
+        "gallery-bilance": {
+          "type": "gallery",
+          "settings": {
+            "title": "Bilance",
+            "nav_label": "Bilance",
+            "prefix": "museo-contadino-bilance-",
+            "count": 11,
+            "intro": ""
+          }
+        },
+        "gallery-utensili-domestici": {
+          "type": "gallery",
+          "settings": {
+            "title": "Utensili domestici",
+            "nav_label": "Casa",
+            "prefix": "museo-contadino-utensili-domestici-",
+            "count": 63,
+            "intro": ""
+          }
+        },
+        "gallery-varie": {
+          "type": "gallery",
+          "settings": {
+            "title": "Varie",
+            "nav_label": "Varie",
+            "prefix": "museo-contadino-varie-",
+            "count": 17,
+            "intro": ""
+          }
+        }
+      },
+      "block_order": [
+        "gallery-macchine",
+        "gallery-utensili-campi",
+        "gallery-animali",
+        "gallery-cereali-uva-olive",
+        "gallery-ferro",
+        "gallery-legno",
+        "gallery-artigianato",
+        "gallery-bilance",
+        "gallery-utensili-domestici",
+        "gallery-varie"
+      ],
+      "settings": {
+        "label": "La collezione",
+        "heading": "Dalla semina alla bottega.",
+        "nav_label": "Sezioni della collezione",
+        "viewer_label": "Foto della collezione",
+        "empty_text": "Le foto di questa sezione arrivano presto.",
+        "anchor": "collezione",
+        "background": "d-bg--tint"
+      }
+    },
+    "visita": {
+      "type": "dottorini-museo-visit",
+      "settings": {
+        "label": "Visita",
+        "heading": "Dove si trova",
+        "notice": "Per ora il museo è chiuso al pubblico.",
+        "text": "",
+        "place": "Piccolo Museo della Civiltà Contadina",
+        "address": "Str. dei Boschetti, 12\nCollazzone (PG)",
+        "map_query": "Piccolo Museo della Civiltà Contadina, Str. dei Boschetti 12, Collazzone",
+        "map_label": "Apri in Google Maps",
+        "contact_label": "Scrivici per informazioni",
+        "contact_link": "#contatti",
+        "image": "shopify://shop_images/museo-contadino-copertina.jpg",
+        "anchor": "visita",
         "background": "d-bg--base"
       }
     }
   },
   "order": [
-    "museo"
+    "intro",
+    "collezione",
+    "visita"
   ]
 }

@@ -1,0 +1,293 @@
+{% comment %}
+  Museo opening: the page title and Giuseppe's own "Chi sono", beside two
+  portraits of him among the olive trees, a tall one and a smaller one
+  overlapping its lower corner. The portraits carry the opening because the
+  old site's cover (the orange cart) is only 1260px wide, too soft for a
+  full-bleed plate; the cart moves to the visit section, where it sits small.
+  Three figures under the story (years, pieces, sections) and a link down to
+  the collection. Phones: title, portraits, story, figures.
+{% endcomment %}
+
+<div class="section-band full-width {{ section.settings.background }}">
+<div class="d-mintro section-band__inner section-space section-space--flush-top" id="{{ section.settings.anchor | default: 'chi-sono' | handleize }}">
+  <div class="d-mintro__head reveal">
+    {% render 'section-label', label: section.settings.label %}
+    {% if section.settings.heading != blank %}
+      <h1 class="d-mintro__title">{{ section.settings.heading }}</h1>
+    {% endif %}
+    {% if section.settings.lede != blank %}
+      <p class="d-mintro__lede">{{ section.settings.lede }}</p>
+    {% endif %}
+  </div>
+
+  <div class="d-mintro__media">
+    {% if section.settings.image_main %}
+      {%- assign main_position = 'object-position: ' | append: section.settings.image_main.presentation.focal_point -%}
+      <figure class="d-mintro__photo d-mintro__photo--main">
+        {{
+          section.settings.image_main
+          | image_url: width: 1600
+          | image_tag:
+            widths: '500, 750, 1000, 1300, 1600',
+            sizes: '(min-width: 900px) 34vw, 82vw',
+            loading: 'eager',
+            fetchpriority: 'high',
+            alt: section.settings.image_main.alt,
+            style: main_position
+        }}
+      </figure>
+    {% endif %}
+    {% if section.settings.image_second %}
+      {%- assign second_position = 'object-position: ' | append: section.settings.image_second.presentation.focal_point -%}
+      <figure class="d-mintro__photo d-mintro__photo--second">
+        {{
+          section.settings.image_second
+          | image_url: width: 900
+          | image_tag:
+            widths: '300, 500, 700, 900',
+            sizes: '(min-width: 900px) 17vw, 42vw',
+            loading: 'lazy',
+            alt: section.settings.image_second.alt,
+            style: second_position
+        }}
+      </figure>
+    {% endif %}
+  </div>
+
+  <div class="d-mintro__story">
+    {% if section.settings.story_label != blank %}
+      <h2 class="d-mintro__story-label">{{ section.settings.story_label }}</h2>
+    {% endif %}
+    {% if section.settings.story != blank %}
+      <div class="d-mintro__text">{{ section.settings.story }}</div>
+    {% endif %}
+    {% if section.settings.signature != blank %}
+      <p class="d-mintro__signature">{{ section.settings.signature }}</p>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <dl class="d-mintro__facts">
+        {% for block in section.blocks %}
+          <div class="d-mintro__fact" {{ block.shopify_attributes }}>
+            <dt class="d-mintro__fact-label">{{ block.settings.label }}</dt>
+            <dd class="d-mintro__fact-value">{{ block.settings.value }}</dd>
+          </div>
+        {% endfor %}
+      </dl>
+    {% endif %}
+
+    {% if section.settings.link_label != blank %}
+      <a class="button d-mintro__cta" href="{{ section.settings.link | default: '#collezione' }}">
+        {{- section.settings.link_label }} <span aria-hidden="true">&darr;</span>
+      </a>
+    {% endif %}
+  </div>
+</div>
+</div>
+
+{% stylesheet %}
+  .d-mintro {
+    display: grid;
+    grid-template-areas:
+      'head'
+      'media'
+      'story';
+    gap: clamp(2rem, 5vw, 3rem);
+  }
+
+  .d-mintro__head {
+    grid-area: head;
+  }
+
+  .d-mintro__title {
+    max-width: 16ch;
+    font-size: clamp(2.4rem, 5.4vw, 4.5rem);
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+
+  .d-mintro__lede {
+    max-width: 34ch;
+    margin-top: 1rem;
+    font-family: var(--font-accent--family);
+    font-size: clamp(1.3rem, 2vw, 1.75rem);
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--color-accent);
+  }
+
+  /* The portraits: a tall one, and a smaller one overlapping its lower left
+     corner with a ring of the band colour, so the pair reads as one piece */
+  .d-mintro__media {
+    grid-area: media;
+    position: relative;
+    padding: 0 0 clamp(3rem, 10vw, 5rem) clamp(2.5rem, 14vw, 6rem);
+  }
+
+  .d-mintro__photo {
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--radius-media);
+    background-color: var(--color-surface-strong);
+  }
+
+  .d-mintro__photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .d-mintro__photo--main {
+    aspect-ratio: 4 / 5;
+  }
+
+  .d-mintro__photo--second {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 46%;
+    aspect-ratio: 2 / 3;
+    box-shadow: 0 0 0 clamp(0.35rem, 0.8vw, 0.6rem) var(--section-bg, var(--color-background));
+  }
+
+  .d-mintro__story {
+    grid-area: story;
+    max-width: 40rem;
+  }
+
+  .d-mintro__story-label {
+    margin-bottom: 1rem;
+    font-family: var(--font-accent--family);
+    font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+    font-style: italic;
+    font-weight: 500;
+    color: var(--color-foreground);
+  }
+
+  .d-mintro__text p {
+    line-height: 1.7;
+    text-wrap: pretty;
+  }
+
+  .d-mintro__text p + p {
+    margin-top: 1.1em;
+  }
+
+  .d-mintro__signature {
+    margin-top: 1.5rem;
+    font-family: var(--font-accent--family);
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--color-muted);
+  }
+
+  /* Three figures in a row between hairlines */
+  .d-mintro__facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: clamp(2rem, 4vw, 2.75rem) 0 0;
+    border-top: 1px solid var(--color-surface-strong);
+    border-bottom: 1px solid var(--color-surface-strong);
+  }
+
+  .d-mintro__fact {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    gap: 0.3rem;
+    padding: 1.1rem 0.75rem 1.2rem 0;
+  }
+
+  .d-mintro__fact + .d-mintro__fact {
+    padding-left: 0.9rem;
+    border-left: 1px solid var(--color-surface-strong);
+  }
+
+  .d-mintro__fact-value {
+    margin: 0;
+    font-family: var(--font-heading--family);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    line-height: 1;
+    color: var(--color-foreground);
+  }
+
+  .d-mintro__fact-label {
+    font-size: 0.875rem;
+    line-height: 1.35;
+    color: var(--color-muted);
+  }
+
+  .d-mintro__cta {
+    margin-top: 2rem;
+  }
+
+  /* From 900px: text on the left, the portraits on the right and sticky,
+     so they stay beside the story while it is read */
+  @media (min-width: 900px) {
+    .d-mintro {
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      grid-template-areas:
+        'head media'
+        'story media';
+      grid-template-rows: auto 1fr;
+      column-gap: clamp(3rem, 6vw, 6rem);
+      row-gap: clamp(2rem, 3.5vw, 3rem);
+    }
+
+    .d-mintro__media {
+      align-self: start;
+      position: sticky;
+      top: calc(var(--header-height) + 1.5rem);
+      padding: 0 0 clamp(3rem, 6vw, 5.5rem) clamp(3rem, 7vw, 6.5rem);
+    }
+
+    .d-mintro__photo--main {
+      aspect-ratio: 3 / 4;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Museo apertura",
+  "tag": "section",
+  "class": "d-mintro-section",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "text", "id": "label", "label": "Section name", "default": "Museo" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Piccolo Museo della Civiltà Contadina" },
+    { "type": "text", "id": "lede", "label": "Line under the heading", "default": "La raccolta di Giuseppe Belardi Dottorini, a Collazzone." },
+    { "type": "image_picker", "id": "image_main", "label": "Portrait, large", "info": "Tall photo, shown 4:5 on phones and 3:4 beside the text." },
+    { "type": "image_picker", "id": "image_second", "label": "Portrait, small", "info": "Overlaps the lower left corner of the large one." },
+    { "type": "text", "id": "story_label", "label": "Story heading", "default": "Chi sono" },
+    { "type": "richtext", "id": "story", "label": "Story" },
+    { "type": "text", "id": "signature", "label": "Signature", "default": "Giuseppe Belardi Dottorini" },
+    { "type": "text", "id": "link_label", "label": "Link label", "default": "Guarda la collezione", "info": "Leave blank to hide." },
+    { "type": "text", "id": "link", "label": "Link target", "default": "#collezione" },
+    { "type": "text", "id": "anchor", "label": "Anchor", "default": "chi-sono" },
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Background",
+      "default": "d-bg--base",
+      "options": [
+        { "value": "d-bg--base", "label": "Default" },
+        { "value": "d-bg--tint", "label": "Tinted" }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "fact",
+      "name": "Figure",
+      "settings": [
+        { "type": "text", "id": "value", "label": "Figure", "default": "400" },
+        { "type": "text", "id": "label", "label": "Label", "default": "pezzi" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Museo apertura" }]
+}
+{% endschema %}

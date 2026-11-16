@@ -1,0 +1,1422 @@
+{
+  "prefisso": "museo-contadino-",
+  "sezioni": [
+    {
+      "slug": "macchine",
+      "titolo": "Lavoro nei campi: le macchine",
+      "etichetta_menu": "Macchine",
+      "prefisso_file": "museo-contadino-macchine-",
+      "numero_foto": 20,
+      "foto": [
+        {
+          "file": "museo-contadino-macchine-01.jpg",
+          "file_precedente": "museo-agricoltura-01.jpg",
+          "file_originale": "wp-content/uploads/2016/04/carro01_DSC7142.jpg"
+        },
+        {
+          "file": "museo-contadino-macchine-02.jpg",
+          "file_precedente": "museo-agricoltura-02.jpg",
+          "file_originale": "wp-content/uploads/2016/04/carro02_DSC7149.jpg"
+        },
+        {
+          "file": "museo-contadino-macchine-03.jpg",
+          "file_precedente": "museo-agricoltura-03.jpg",
+          "file_originale": "wp-content/uploads/2016/04/carro03_DSC7140.jpg"
+        },
+        {
+          "file": "museo-contadino-macchine-04.jpg",
+          "file_precedente": "museo-agricoltura-04.jpg",
+          "file_originale": "wp-content/uploads/2016/04/carro04_DSC7139.jpg"
+        },
+        {
+          "file": "museo-contadino-macchine-05.jpg",
+          "file_precedente": "museo-agricoltura-05.jpg",
+          "file_originale": "wp-content/uploads/2016/04/carro10_DSC5829.jpg"
+        },
+        {
+          "file": "museo-contadino-macchine-06.jpg",
+          "file_precedente": "museo-agricoltura-06.jpg",
+          "file_originale": "wp-content/uploads/2016/04/carro15_DSC1608.jpg"
+        },
+        {
+          "file": "museo-contadino-macchine-07.jpg",
+          "file_precedente": "museo-agricoltura-07.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Macchine_DSC1581.jpg"
+        },
+        {
+          "file": "museo-contadino-macchine-08.jpg",
+          "file_precedente": "museo-agricoltura-08.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Macchine_DSC1583.jpg"
+        },
+        {
+          "file": "museo-contadino-macchine-09.jpg",
+          "file_precedente": "museo-agricoltura-09.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Macchine_DSC1584.jpg"
+        },
+        {
+          "file": "museo-contadino-macchine-10.jpg",
+          "file_precedente": "museo-agricoltura-10.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Macchine_DSC1586.jpg"
+        },
+        {
+          "file": "museo-contadino-macchine-11.jpg",
+          "file_precedente": "museo-agricoltura-11.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Macchine_DSC1589.jpg"
+        },
+        {
+          "file": "museo-contadino-macchine-12.jpg",
+          "file_precedente": "museo-agricoltura-12.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Macchine_DSC2280.jpg"
+        },
+        {
+          "file": "museo-contadino-macchine-13.jpg",
+          "file_precedente": "museo-agricoltura-13.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Ruote_DSC1580.jpg"
+        },
+        {
+          "file": "museo-contadino-macchine-14.jpg",
+          "file_precedente": "museo-agricoltura-14.jpg",
+          "file_originale": "wp-content/uploads/2016/04/SAM_0284_test.jpg"
+        },
+        {
+          "file": "museo-contadino-macchine-15.jpg",
+          "file_precedente": "museo-agricoltura-15.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC7161.jpg"
+        },
+        {
+          "file": "museo-contadino-macchine-16.jpg",
+          "file_precedente": "museo-agricoltura-16.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrTerra_DSC1645.jpg"
+        },
+        {
+          "file": "museo-contadino-macchine-17.jpg",
+          "file_precedente": "museo-agricoltura-17.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrTerra_DSC1651.jpg"
+        },
+        {
+          "file": "museo-contadino-macchine-18.jpg",
+          "file_precedente": "museo-agricoltura-18.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrTerra_DSC2278.jpg"
+        },
+        {
+          "file": "museo-contadino-macchine-19.jpg",
+          "file_precedente": "museo-agricoltura-19.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Carro_DSC2338.jpg"
+        },
+        {
+          "file": "museo-contadino-macchine-20.jpg",
+          "file_precedente": "museo-extra-01.jpg",
+          "file_originale": "Macchine_DSC2338_crop.jpg (backup)"
+        }
+      ]
+    },
+    {
+      "slug": "utensili-campi",
+      "titolo": "Lavoro nei campi: gli utensili",
+      "etichetta_menu": "Utensili dei campi",
+      "prefisso_file": "museo-contadino-utensili-campi-",
+      "numero_foto": 38,
+      "foto": [
+        {
+          "file": "museo-contadino-utensili-campi-01.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-01.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC5820.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-02.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-02.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrLavoro_DSC2233.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-03.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-03.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrManuali_DSC2245.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-04.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-04.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrMartelli_DSC3087.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-05.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-05.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrTaglio_DSC2114.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-06.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-06.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrTaglio_DSC2122.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-07.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-07.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrTaglio_DSC2123.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-08.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-08.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrTaglio_DSC2135.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-09.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-09.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrTaglio_DSC2146.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-10.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-10.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrTaglio_DSC2160.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-11.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-11.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrTaglio_DSC2179.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-12.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-12.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrTaglio_DSC2207.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-13.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-13.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrTaglio_DSC2219.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-14.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-14.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrTaglio_DSC2246.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-15.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-15.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrTaglio_DSC2247.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-16.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-16.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrTerra_DSC2136.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-17.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-17.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrTerra_DSC2138.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-18.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-18.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrTerra_DSC2144.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-19.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-19.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrTerra_DSC2145.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-20.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-20.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrTerra_DSC2168.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-21.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-21.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrTerra_DSC2213.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-22.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-22.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrTerra_DSC2224.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-23.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-23.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrTerra_DSC2243.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-24.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-24.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrTerra_DSC2261.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-25.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-25.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrTerra_DSC2262.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-26.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-26.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrTerra_DSC2264.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-27.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-27.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC2130.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-28.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-28.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC2155.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-29.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-29.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC2165.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-30.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-30.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC3093.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-31.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-31.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Giochi_DSC2268.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-32.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-32.jpg",
+          "file_originale": "wp-content/uploads/2016/04/SAM_0459.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-33.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-33.jpg",
+          "file_originale": "wp-content/uploads/2016/04/SAM_0461.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-34.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-34.jpg",
+          "file_originale": "wp-content/uploads/2016/04/SAM_0464.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-35.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-35.jpg",
+          "file_originale": "wp-content/uploads/2016/04/SAM_0472.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-36.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-36.jpg",
+          "file_originale": "wp-content/uploads/2016/04/SAM_0480.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-37.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-37.jpg",
+          "file_originale": "wp-content/uploads/2016/04/SAM_0483.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-campi-38.jpg",
+          "file_precedente": "museo-lavoro-nei-campi-utensili-38.jpg",
+          "file_originale": "wp-content/uploads/2016/04/SAM_0485.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "animali",
+      "titolo": "Lavoro con gli animali",
+      "etichetta_menu": "Animali",
+      "prefisso_file": "museo-contadino-animali-",
+      "numero_foto": 26,
+      "foto": [
+        {
+          "file": "museo-contadino-animali-01.jpg",
+          "file_precedente": "museo-lavoro-con-animali-01.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC2157.jpg"
+        },
+        {
+          "file": "museo-contadino-animali-02.jpg",
+          "file_precedente": "museo-lavoro-con-animali-02.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC2230.jpg"
+        },
+        {
+          "file": "museo-contadino-animali-03.jpg",
+          "file_precedente": "museo-lavoro-con-animali-03.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC2231.jpg"
+        },
+        {
+          "file": "museo-contadino-animali-04.jpg",
+          "file_precedente": "museo-lavoro-con-animali-04.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Giogo_DSC1628.jpg"
+        },
+        {
+          "file": "museo-contadino-animali-05.jpg",
+          "file_precedente": "museo-lavoro-con-animali-05.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Giogo_DSC1629.jpg"
+        },
+        {
+          "file": "museo-contadino-animali-06.jpg",
+          "file_precedente": "museo-lavoro-con-animali-06.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Giogo_DSC1631.jpg"
+        },
+        {
+          "file": "museo-contadino-animali-07.jpg",
+          "file_precedente": "museo-lavoro-con-animali-07.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Giogo_DSC1634.jpg"
+        },
+        {
+          "file": "museo-contadino-animali-08.jpg",
+          "file_precedente": "museo-lavoro-con-animali-08.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Giogo_DSC2305.jpg"
+        },
+        {
+          "file": "museo-contadino-animali-09.jpg",
+          "file_precedente": "museo-lavoro-con-animali-09.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Giogo_DSC2307.jpg"
+        },
+        {
+          "file": "museo-contadino-animali-10.jpg",
+          "file_precedente": "museo-lavoro-con-animali-10.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Giogo_DSC2310.jpg"
+        },
+        {
+          "file": "museo-contadino-animali-11.jpg",
+          "file_precedente": "museo-lavoro-con-animali-11.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Giogo_DSC2311.jpg"
+        },
+        {
+          "file": "museo-contadino-animali-12.jpg",
+          "file_precedente": "museo-lavoro-con-animali-12.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Giogo_DSC2318.jpg"
+        },
+        {
+          "file": "museo-contadino-animali-13.jpg",
+          "file_precedente": "museo-lavoro-con-animali-13.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Giogo_DSC2321.jpg"
+        },
+        {
+          "file": "museo-contadino-animali-14.jpg",
+          "file_precedente": "museo-lavoro-con-animali-14.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Giogo_DSC2322.jpg"
+        },
+        {
+          "file": "museo-contadino-animali-15.jpg",
+          "file_precedente": "museo-lavoro-con-animali-15.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Giogo_DSC2324.jpg"
+        },
+        {
+          "file": "museo-contadino-animali-16.jpg",
+          "file_precedente": "museo-lavoro-con-animali-16.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Giogo_DSC2325.jpg"
+        },
+        {
+          "file": "museo-contadino-animali-17.jpg",
+          "file_precedente": "museo-lavoro-con-animali-17.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Giogo_DSC2328.jpg"
+        },
+        {
+          "file": "museo-contadino-animali-18.jpg",
+          "file_precedente": "museo-lavoro-con-animali-18.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Giogo_DSC2329.jpg"
+        },
+        {
+          "file": "museo-contadino-animali-19.jpg",
+          "file_precedente": "museo-lavoro-con-animali-19.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Giogo_DSC2332.jpg"
+        },
+        {
+          "file": "museo-contadino-animali-20.jpg",
+          "file_precedente": "museo-lavoro-con-animali-20.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Giogo_DSC5806.jpg"
+        },
+        {
+          "file": "museo-contadino-animali-21.jpg",
+          "file_precedente": "museo-lavoro-con-animali-21.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Giogo_DSC5807.jpg"
+        },
+        {
+          "file": "museo-contadino-animali-22.jpg",
+          "file_precedente": "museo-lavoro-con-animali-22.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Giogo_DSC5809.jpg"
+        },
+        {
+          "file": "museo-contadino-animali-23.jpg",
+          "file_precedente": "museo-lavoro-con-animali-23.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrManuali_DSC2232.jpg"
+        },
+        {
+          "file": "museo-contadino-animali-24.jpg",
+          "file_precedente": "museo-lavoro-con-animali-24.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrTaglio_DSC2166.jpg"
+        },
+        {
+          "file": "museo-contadino-animali-25.jpg",
+          "file_precedente": "museo-lavoro-con-animali-25.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC1685.jpg"
+        },
+        {
+          "file": "museo-contadino-animali-26.jpg",
+          "file_precedente": "museo-lavoro-con-animali-26.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC2124.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "cereali-uva-olive",
+      "titolo": "Cereali, uva e olive",
+      "etichetta_menu": "Cereali, uva, olive",
+      "prefisso_file": "museo-contadino-cereali-uva-olive-",
+      "numero_foto": 33,
+      "foto": [
+        {
+          "file": "museo-contadino-cereali-uva-olive-01.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-01.jpg",
+          "file_originale": "wp-content/uploads/2016/04/contenitori_DSC1605.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-02.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-02.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Contenitori_DSC1643.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-03.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-03.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Contenitori_DSC1647.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-04.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-04.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Contenitori_DSC1656.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-05.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-05.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Contenitori_DSC2075.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-06.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-06.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Contenitori_DSC2256.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-07.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-07.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Contenitori_DSC2273.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-08.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-08.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Contenitori_DSC2295.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-09.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-09.jpg",
+          "file_originale": "wp-content/uploads/2016/04/contenitori_DSC5803.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-10.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-10.jpg",
+          "file_originale": "wp-content/uploads/2016/04/contenitori_DSC5812.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-11.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-11.jpg",
+          "file_originale": "wp-content/uploads/2016/04/contenitori_DSC5814.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-12.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-12.jpg",
+          "file_originale": "wp-content/uploads/2016/04/contenitori_DSC5815.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-13.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-13.jpg",
+          "file_originale": "wp-content/uploads/2016/04/contenitori_DSC5816.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-14.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-14.jpg",
+          "file_originale": "wp-content/uploads/2016/04/contenitori_DSC7077.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-15.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-15.jpg",
+          "file_originale": "wp-content/uploads/2016/04/contenitori_DSC7079.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-16.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-16.jpg",
+          "file_originale": "wp-content/uploads/2016/04/contenitori_DSC7115.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-17.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-17.jpg",
+          "file_originale": "wp-content/uploads/2016/04/contenitori_SAM_0473.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-18.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-18.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC2140.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-19.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-19.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Macchine_DSC1654.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-20.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-20.jpg",
+          "file_originale": "wp-content/uploads/2016/04/macchine_DSC2187.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-21.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-21.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Macchine_DSC2282.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-22.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-22.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Macchine_DSC2284.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-23.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-23.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Macchine_DSC2286.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-24.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-24.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Macchine_DSC2292.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-25.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-25.jpg",
+          "file_originale": "wp-content/uploads/2016/04/macchine_DSC5805.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-26.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-26.jpg",
+          "file_originale": "wp-content/uploads/2016/04/macchine_DSC7078.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-27.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-27.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Strumenti_DSC3099.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-28.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-28.jpg",
+          "file_originale": "wp-content/uploads/2016/04/utensili_DSC5811.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-29.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-29.jpg",
+          "file_originale": "wp-content/uploads/2016/04/utensili_DSC7097.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-30.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-30.jpg",
+          "file_originale": "wp-content/uploads/2016/04/utensili_SAM_0493.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-31.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-31.jpg",
+          "file_originale": "wp-content/uploads/2016/04/UtensiliCasa_DSC2164.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-32.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-32.jpg",
+          "file_originale": "wp-content/uploads/2016/04/UtensiliCasa_DSC3085.jpg"
+        },
+        {
+          "file": "museo-contadino-cereali-uva-olive-33.jpg",
+          "file_precedente": "museo-lavorazione-cerealiuvaoliva-33.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrLavoro_DSC2253.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "ferro",
+      "titolo": "Lavorazione del ferro",
+      "etichetta_menu": "Ferro",
+      "prefisso_file": "museo-contadino-ferro-",
+      "numero_foto": 13,
+      "foto": [
+        {
+          "file": "museo-contadino-ferro-01.jpg",
+          "file_precedente": "museo-lavorazione-del-ferro-01.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC5822.jpg"
+        },
+        {
+          "file": "museo-contadino-ferro-02.jpg",
+          "file_precedente": "museo-lavorazione-del-ferro-02.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC5823.jpg"
+        },
+        {
+          "file": "museo-contadino-ferro-03.jpg",
+          "file_precedente": "museo-lavorazione-del-ferro-03.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrManuali_DSC2249.jpg"
+        },
+        {
+          "file": "museo-contadino-ferro-04.jpg",
+          "file_precedente": "museo-lavorazione-del-ferro-04.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrManuali_DSC3094.jpg"
+        },
+        {
+          "file": "museo-contadino-ferro-05.jpg",
+          "file_precedente": "museo-lavorazione-del-ferro-05.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrManualiDSC2248.jpg"
+        },
+        {
+          "file": "museo-contadino-ferro-06.jpg",
+          "file_precedente": "museo-lavorazione-del-ferro-06.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrMartelli_DSC2127.jpg"
+        },
+        {
+          "file": "museo-contadino-ferro-07.jpg",
+          "file_precedente": "museo-lavorazione-del-ferro-07.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrMartelli_DSC2156.jpg"
+        },
+        {
+          "file": "museo-contadino-ferro-08.jpg",
+          "file_precedente": "museo-lavorazione-del-ferro-08.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrMartelli_DSC3086.jpg"
+        },
+        {
+          "file": "museo-contadino-ferro-09.jpg",
+          "file_precedente": "museo-lavorazione-del-ferro-09.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC2128.jpg"
+        },
+        {
+          "file": "museo-contadino-ferro-10.jpg",
+          "file_precedente": "museo-lavorazione-del-ferro-10.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC2132.jpg"
+        },
+        {
+          "file": "museo-contadino-ferro-11.jpg",
+          "file_precedente": "museo-lavorazione-del-ferro-11.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC2141.jpg"
+        },
+        {
+          "file": "museo-contadino-ferro-12.jpg",
+          "file_precedente": "museo-lavorazione-del-ferro-12.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC5794.jpg"
+        },
+        {
+          "file": "museo-contadino-ferro-13.jpg",
+          "file_precedente": "museo-lavorazione-del-ferro-13.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC5798.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "legno",
+      "titolo": "Lavorazione del legno",
+      "etichetta_menu": "Legno",
+      "prefisso_file": "museo-contadino-legno-",
+      "numero_foto": 26,
+      "foto": [
+        {
+          "file": "museo-contadino-legno-01.jpg",
+          "file_precedente": "museo-lavorazione-del-legno-01.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC5795.jpg"
+        },
+        {
+          "file": "museo-contadino-legno-02.jpg",
+          "file_precedente": "museo-lavorazione-del-legno-02.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC5797.jpg"
+        },
+        {
+          "file": "museo-contadino-legno-03.jpg",
+          "file_precedente": "museo-lavorazione-del-legno-03.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC5799.jpg"
+        },
+        {
+          "file": "museo-contadino-legno-04.jpg",
+          "file_precedente": "museo-lavorazione-del-legno-04.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC7103.jpg"
+        },
+        {
+          "file": "museo-contadino-legno-05.jpg",
+          "file_precedente": "museo-lavorazione-del-legno-05.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC7107.jpg"
+        },
+        {
+          "file": "museo-contadino-legno-06.jpg",
+          "file_precedente": "museo-lavorazione-del-legno-06.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC7124.jpg"
+        },
+        {
+          "file": "museo-contadino-legno-07.jpg",
+          "file_precedente": "museo-lavorazione-del-legno-07.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrManuali_DSC2134.jpg"
+        },
+        {
+          "file": "museo-contadino-legno-08.jpg",
+          "file_precedente": "museo-lavorazione-del-legno-08.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrManuali_DSC2162.jpg"
+        },
+        {
+          "file": "museo-contadino-legno-09.jpg",
+          "file_precedente": "museo-lavorazione-del-legno-09.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrManuali_DSC2167.jpg"
+        },
+        {
+          "file": "museo-contadino-legno-10.jpg",
+          "file_precedente": "museo-lavorazione-del-legno-10.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrManuali_DSC2169.jpg"
+        },
+        {
+          "file": "museo-contadino-legno-11.jpg",
+          "file_precedente": "museo-lavorazione-del-legno-11.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrManuali_DSC2199.jpg"
+        },
+        {
+          "file": "museo-contadino-legno-12.jpg",
+          "file_precedente": "museo-lavorazione-del-legno-12.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrManuali_DSC2204.jpg"
+        },
+        {
+          "file": "museo-contadino-legno-13.jpg",
+          "file_precedente": "museo-lavorazione-del-legno-13.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrManuali_DSC2206.jpg"
+        },
+        {
+          "file": "museo-contadino-legno-14.jpg",
+          "file_precedente": "museo-lavorazione-del-legno-14.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrManuali_DSC2250.jpg"
+        },
+        {
+          "file": "museo-contadino-legno-15.jpg",
+          "file_precedente": "museo-lavorazione-del-legno-15.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrManuali_DSC2251.jpg"
+        },
+        {
+          "file": "museo-contadino-legno-16.jpg",
+          "file_precedente": "museo-lavorazione-del-legno-16.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrManuali_DSC2252.jpg"
+        },
+        {
+          "file": "museo-contadino-legno-17.jpg",
+          "file_precedente": "museo-lavorazione-del-legno-17.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AttrezziTglPst_DSC2237.jpg"
+        },
+        {
+          "file": "museo-contadino-legno-18.jpg",
+          "file_precedente": "museo-lavorazione-del-legno-18.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AttrezziTglPst_DSC2238.jpg"
+        },
+        {
+          "file": "museo-contadino-legno-19.jpg",
+          "file_precedente": "museo-lavorazione-del-legno-19.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AttrezziTglPst_DSC2297.jpg"
+        },
+        {
+          "file": "museo-contadino-legno-20.jpg",
+          "file_precedente": "museo-lavorazione-del-legno-20.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AttrezziTglPst_DSC2303.jpg"
+        },
+        {
+          "file": "museo-contadino-legno-21.jpg",
+          "file_precedente": "museo-lavorazione-del-legno-21.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AttrezziTglPst_DSC2304.jpg"
+        },
+        {
+          "file": "museo-contadino-legno-22.jpg",
+          "file_precedente": "museo-lavorazione-del-legno-22.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Strumenti_DSC2150.jpg"
+        },
+        {
+          "file": "museo-contadino-legno-23.jpg",
+          "file_precedente": "museo-lavorazione-del-legno-23.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Strumenti_DSC2151.jpg"
+        },
+        {
+          "file": "museo-contadino-legno-24.jpg",
+          "file_precedente": "museo-lavorazione-del-legno-24.jpg",
+          "file_originale": "wp-content/uploads/2016/04/strumenti_DSC2229.jpg"
+        },
+        {
+          "file": "museo-contadino-legno-25.jpg",
+          "file_precedente": "museo-lavorazione-del-legno-25.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Strumenti_DSC3104.jpg"
+        },
+        {
+          "file": "museo-contadino-legno-26.jpg",
+          "file_precedente": "museo-lavorazione-del-legno-26.jpg",
+          "file_originale": "wp-content/uploads/2016/04/strumenti_DSC5817.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "artigianato",
+      "titolo": "Artigianato",
+      "etichetta_menu": "Artigianato",
+      "prefisso_file": "museo-contadino-artigianato-",
+      "numero_foto": 17,
+      "foto": [
+        {
+          "file": "museo-contadino-artigianato-01.jpg",
+          "file_precedente": "museo-artigianato-01.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC5804.jpg"
+        },
+        {
+          "file": "museo-contadino-artigianato-02.jpg",
+          "file_precedente": "museo-artigianato-02.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC5819.jpg"
+        },
+        {
+          "file": "museo-contadino-artigianato-03.jpg",
+          "file_precedente": "museo-artigianato-03.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC7081.jpg"
+        },
+        {
+          "file": "museo-contadino-artigianato-04.jpg",
+          "file_precedente": "museo-artigianato-04.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC7104.jpg"
+        },
+        {
+          "file": "museo-contadino-artigianato-05.jpg",
+          "file_precedente": "museo-artigianato-05.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC7113.jpg"
+        },
+        {
+          "file": "museo-contadino-artigianato-06.jpg",
+          "file_precedente": "museo-artigianato-06.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC7122.jpg"
+        },
+        {
+          "file": "museo-contadino-artigianato-07.jpg",
+          "file_precedente": "museo-artigianato-07.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC7133.jpg"
+        },
+        {
+          "file": "museo-contadino-artigianato-08.jpg",
+          "file_precedente": "museo-artigianato-08.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrLavoro_DSC1642.jpg"
+        },
+        {
+          "file": "museo-contadino-artigianato-09.jpg",
+          "file_precedente": "museo-artigianato-09.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC2170.jpg"
+        },
+        {
+          "file": "museo-contadino-artigianato-10.jpg",
+          "file_precedente": "museo-artigianato-10.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC2173.jpg"
+        },
+        {
+          "file": "museo-contadino-artigianato-11.jpg",
+          "file_precedente": "museo-artigianato-11.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC2181.jpg"
+        },
+        {
+          "file": "museo-contadino-artigianato-12.jpg",
+          "file_precedente": "museo-artigianato-12.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC3092.jpg"
+        },
+        {
+          "file": "museo-contadino-artigianato-13.jpg",
+          "file_precedente": "museo-artigianato-13.jpg",
+          "file_originale": "wp-content/uploads/2016/04/SAM_0467.jpg"
+        },
+        {
+          "file": "museo-contadino-artigianato-14.jpg",
+          "file_precedente": "museo-artigianato-14.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Strumenti_DSC2177.jpg"
+        },
+        {
+          "file": "museo-contadino-artigianato-15.jpg",
+          "file_precedente": "museo-artigianato-15.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Strumenti_DSC3077.jpg"
+        },
+        {
+          "file": "museo-contadino-artigianato-16.jpg",
+          "file_precedente": "museo-artigianato-16.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Strumenti_DSC3083.jpg"
+        },
+        {
+          "file": "museo-contadino-artigianato-17.jpg",
+          "file_precedente": "museo-artigianato-17.jpg",
+          "file_originale": "wp-content/uploads/2016/04/UtensiliCasa_DSC2174.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "bilance",
+      "titolo": "Bilance",
+      "etichetta_menu": "Bilance",
+      "prefisso_file": "museo-contadino-bilance-",
+      "numero_foto": 11,
+      "foto": [
+        {
+          "file": "museo-contadino-bilance-01.jpg",
+          "file_precedente": "museo-bilance-01.jpg",
+          "file_originale": "wp-content/uploads/2016/03/Bilancia_DSC2222.jpg"
+        },
+        {
+          "file": "museo-contadino-bilance-02.jpg",
+          "file_precedente": "museo-bilance-02.jpg",
+          "file_originale": "wp-content/uploads/2016/03/Bilancia_DSC2299.jpg"
+        },
+        {
+          "file": "museo-contadino-bilance-03.jpg",
+          "file_precedente": "museo-bilance-03.jpg",
+          "file_originale": "wp-content/uploads/2016/03/Bilancia_DSC2217.jpg"
+        },
+        {
+          "file": "museo-contadino-bilance-04.jpg",
+          "file_precedente": "museo-bilance-04.jpg",
+          "file_originale": "wp-content/uploads/2016/03/Bilancia_DSC2215.jpg"
+        },
+        {
+          "file": "museo-contadino-bilance-05.jpg",
+          "file_precedente": "museo-bilance-05.jpg",
+          "file_originale": "wp-content/uploads/2016/03/Bilancia_DSC2214.jpg"
+        },
+        {
+          "file": "museo-contadino-bilance-06.jpg",
+          "file_precedente": "museo-bilance-06.jpg",
+          "file_originale": "wp-content/uploads/2016/03/Bilancia_DSC2289.jpg"
+        },
+        {
+          "file": "museo-contadino-bilance-07.jpg",
+          "file_precedente": "museo-bilance-07.jpg",
+          "file_originale": "wp-content/uploads/2016/03/Bilancia_DSC5818.jpg"
+        },
+        {
+          "file": "museo-contadino-bilance-08.jpg",
+          "file_precedente": "museo-bilance-08.jpg",
+          "file_originale": "wp-content/uploads/2016/03/Bilancia_DSC2176.jpg"
+        },
+        {
+          "file": "museo-contadino-bilance-09.jpg",
+          "file_precedente": "museo-bilance-09.jpg",
+          "file_originale": "wp-content/uploads/2016/03/Bilancia_DSC2220.jpg"
+        },
+        {
+          "file": "museo-contadino-bilance-10.jpg",
+          "file_precedente": "museo-bilance-10.jpg",
+          "file_originale": "wp-content/uploads/2016/03/Bilancia_DSC2223.jpg"
+        },
+        {
+          "file": "museo-contadino-bilance-11.jpg",
+          "file_precedente": "museo-bilance-11.jpg",
+          "file_originale": "wp-content/uploads/2016/03/Bilancia_DSC2221.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "utensili-domestici",
+      "titolo": "Utensili domestici",
+      "etichetta_menu": "Casa",
+      "prefisso_file": "museo-contadino-utensili-domestici-",
+      "numero_foto": 63,
+      "foto": [
+        {
+          "file": "museo-contadino-utensili-domestici-01.jpg",
+          "file_precedente": "museo-utensili-domestici-01.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC5821.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-02.jpg",
+          "file_precedente": "museo-utensili-domestici-02.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC5824.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-03.jpg",
+          "file_precedente": "museo-utensili-domestici-03.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC5832.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-04.jpg",
+          "file_precedente": "museo-utensili-domestici-04.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC7087.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-05.jpg",
+          "file_precedente": "museo-utensili-domestici-05.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC7096.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-06.jpg",
+          "file_precedente": "museo-utensili-domestici-06.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC7102.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-07.jpg",
+          "file_precedente": "museo-utensili-domestici-07.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC7126.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-08.jpg",
+          "file_precedente": "museo-utensili-domestici-08.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC7129.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-09.jpg",
+          "file_precedente": "museo-utensili-domestici-09.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC7131.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-10.jpg",
+          "file_precedente": "museo-utensili-domestici-10.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrManualiDSC3088.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-11.jpg",
+          "file_precedente": "museo-utensili-domestici-11.jpg",
+          "file_originale": "wp-content/uploads/2016/04/AtrTaglio_DSC2149.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-12.jpg",
+          "file_precedente": "museo-utensili-domestici-12.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Contenitori_DSC1627.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-13.jpg",
+          "file_precedente": "museo-utensili-domestici-13.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Contenitori_DSC1638.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-14.jpg",
+          "file_precedente": "museo-utensili-domestici-14.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Contenitori_DSC2072.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-15.jpg",
+          "file_precedente": "museo-utensili-domestici-15.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Contenitori_DSC2074.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-16.jpg",
+          "file_precedente": "museo-utensili-domestici-16.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Contenitori_DSC2076.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-17.jpg",
+          "file_precedente": "museo-utensili-domestici-17.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Contenitori_DSC2077.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-18.jpg",
+          "file_precedente": "museo-utensili-domestici-18.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Contenitori_DSC2189.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-19.jpg",
+          "file_precedente": "museo-utensili-domestici-19.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Contenitori_DSC2190.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-20.jpg",
+          "file_precedente": "museo-utensili-domestici-20.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Contenitori_DSC2257.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-21.jpg",
+          "file_precedente": "museo-utensili-domestici-21.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Contenitori_DSC2258.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-22.jpg",
+          "file_precedente": "museo-utensili-domestici-22.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Contenitori_DSC2260.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-23.jpg",
+          "file_precedente": "museo-utensili-domestici-23.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Contenitori_DSC2263.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-24.jpg",
+          "file_precedente": "museo-utensili-domestici-24.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Contenitori_DSC2265.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-25.jpg",
+          "file_precedente": "museo-utensili-domestici-25.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Contenitori_DSC2267.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-26.jpg",
+          "file_precedente": "museo-utensili-domestici-26.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Contenitori_DSC2270.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-27.jpg",
+          "file_precedente": "museo-utensili-domestici-27.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Contenitori_DSC3082.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-28.jpg",
+          "file_precedente": "museo-utensili-domestici-28.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC2133.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-29.jpg",
+          "file_precedente": "museo-utensili-domestici-29.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC2152.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-30.jpg",
+          "file_precedente": "museo-utensili-domestici-30.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC2163.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-31.jpg",
+          "file_precedente": "museo-utensili-domestici-31.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Lumi_DSC1708.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-32.jpg",
+          "file_precedente": "museo-utensili-domestici-32.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Lumi_DSC2106.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-33.jpg",
+          "file_precedente": "museo-utensili-domestici-33.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Lumi_DSC2172.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-34.jpg",
+          "file_precedente": "museo-utensili-domestici-34.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Lumi_DSC3090.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-35.jpg",
+          "file_precedente": "museo-utensili-domestici-35.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Lumi_DSC3091.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-36.jpg",
+          "file_precedente": "museo-utensili-domestici-36.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Ruote_DSC2255.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-37.jpg",
+          "file_precedente": "museo-utensili-domestici-37.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Strumenti_DSC1597.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-38.jpg",
+          "file_precedente": "museo-utensili-domestici-38.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Strumenti_DSC1599.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-39.jpg",
+          "file_precedente": "museo-utensili-domestici-39.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Strumenti_DSC2089.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-40.jpg",
+          "file_precedente": "museo-utensili-domestici-40.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Strumenti_DSC2090.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-41.jpg",
+          "file_precedente": "museo-utensili-domestici-41.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Strumenti_DSC3078.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-42.jpg",
+          "file_precedente": "museo-utensili-domestici-42.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Strumenti_DSC3079.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-43.jpg",
+          "file_precedente": "museo-utensili-domestici-43.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Strumenti_DSC3080.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-44.jpg",
+          "file_precedente": "museo-utensili-domestici-44.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Strumenti_DSC3097.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-45.jpg",
+          "file_precedente": "museo-utensili-domestici-45.jpg",
+          "file_originale": "wp-content/uploads/2016/04/UtensiliCasa_DSC2085.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-46.jpg",
+          "file_precedente": "museo-utensili-domestici-46.jpg",
+          "file_originale": "wp-content/uploads/2016/04/UtensiliCasa_DSC2086.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-47.jpg",
+          "file_precedente": "museo-utensili-domestici-47.jpg",
+          "file_originale": "wp-content/uploads/2016/04/UtensiliCasa_DSC2091.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-48.jpg",
+          "file_precedente": "museo-utensili-domestici-48.jpg",
+          "file_originale": "wp-content/uploads/2016/04/UtensiliCasa_DSC2092.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-49.jpg",
+          "file_precedente": "museo-utensili-domestici-49.jpg",
+          "file_originale": "wp-content/uploads/2016/04/UtensiliCasa_DSC2094.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-50.jpg",
+          "file_precedente": "museo-utensili-domestici-50.jpg",
+          "file_originale": "wp-content/uploads/2016/04/UtensiliCasa_DSC2095.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-51.jpg",
+          "file_precedente": "museo-utensili-domestici-51.jpg",
+          "file_originale": "wp-content/uploads/2016/04/UtensiliCasa_DSC2096.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-52.jpg",
+          "file_precedente": "museo-utensili-domestici-52.jpg",
+          "file_originale": "wp-content/uploads/2016/04/UtensiliCasa_DSC2098.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-53.jpg",
+          "file_precedente": "museo-utensili-domestici-53.jpg",
+          "file_originale": "wp-content/uploads/2016/04/UtensiliCasa_DSC2100.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-54.jpg",
+          "file_precedente": "museo-utensili-domestici-54.jpg",
+          "file_originale": "wp-content/uploads/2016/04/UtensiliCasa_DSC2171.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-55.jpg",
+          "file_precedente": "museo-utensili-domestici-55.jpg",
+          "file_originale": "wp-content/uploads/2016/04/UtensiliCasa_DSC2197.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-56.jpg",
+          "file_precedente": "museo-utensili-domestici-56.jpg",
+          "file_originale": "wp-content/uploads/2016/04/UtensiliCasa_DSC2198.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-57.jpg",
+          "file_precedente": "museo-utensili-domestici-57.jpg",
+          "file_originale": "wp-content/uploads/2016/04/UtensiliCasa_DSC2208.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-58.jpg",
+          "file_precedente": "museo-utensili-domestici-58.jpg",
+          "file_originale": "wp-content/uploads/2016/04/UtensiliCasa_DSC2226.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-59.jpg",
+          "file_precedente": "museo-utensili-domestici-59.jpg",
+          "file_originale": "wp-content/uploads/2016/04/UtensiliCasa_DSC2227.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-60.jpg",
+          "file_precedente": "museo-utensili-domestici-60.jpg",
+          "file_originale": "wp-content/uploads/2016/04/UtensiliCasa_DSC2228.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-61.jpg",
+          "file_precedente": "museo-utensili-domestici-61.jpg",
+          "file_originale": "wp-content/uploads/2016/04/UtensiliCasa_DSC3081.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-62.jpg",
+          "file_precedente": "museo-utensili-domestici-62.jpg",
+          "file_originale": "wp-content/uploads/2016/04/UtensiliCasa_DSC3084.jpg"
+        },
+        {
+          "file": "museo-contadino-utensili-domestici-63.jpg",
+          "file_precedente": "museo-utensili-domestici-63.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC5800.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "varie",
+      "titolo": "Varie",
+      "etichetta_menu": "Varie",
+      "prefisso_file": "museo-contadino-varie-",
+      "numero_foto": 17,
+      "foto": [
+        {
+          "file": "museo-contadino-varie-01.jpg",
+          "file_precedente": "museo-varie-01.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC5802.jpg"
+        },
+        {
+          "file": "museo-contadino-varie-02.jpg",
+          "file_precedente": "museo-varie-02.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC5825.jpg"
+        },
+        {
+          "file": "museo-contadino-varie-03.jpg",
+          "file_precedente": "museo-varie-03.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC7083.jpg"
+        },
+        {
+          "file": "museo-contadino-varie-04.jpg",
+          "file_precedente": "museo-varie-04.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC7084.jpg"
+        },
+        {
+          "file": "museo-contadino-varie-05.jpg",
+          "file_precedente": "museo-varie-05.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC7089.jpg"
+        },
+        {
+          "file": "museo-contadino-varie-06.jpg",
+          "file_precedente": "museo-varie-06.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC7091.jpg"
+        },
+        {
+          "file": "museo-contadino-varie-07.jpg",
+          "file_precedente": "museo-varie-07.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC7094.jpg"
+        },
+        {
+          "file": "museo-contadino-varie-08.jpg",
+          "file_precedente": "museo-varie-08.jpg",
+          "file_originale": "wp-content/uploads/2016/04/DSC7095.jpg"
+        },
+        {
+          "file": "museo-contadino-varie-09.jpg",
+          "file_precedente": "museo-varie-09.jpg",
+          "file_originale": "wp-content/uploads/2016/04/00_DSC1591.jpg"
+        },
+        {
+          "file": "museo-contadino-varie-10.jpg",
+          "file_precedente": "museo-varie-10.jpg",
+          "file_originale": "wp-content/uploads/2016/04/00_DSC1601.jpg"
+        },
+        {
+          "file": "museo-contadino-varie-11.jpg",
+          "file_precedente": "museo-varie-11.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Giochi_DSC2153.jpg"
+        },
+        {
+          "file": "museo-contadino-varie-12.jpg",
+          "file_precedente": "museo-varie-12.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Giochi_DSC2334.jpg"
+        },
+        {
+          "file": "museo-contadino-varie-13.jpg",
+          "file_precedente": "museo-varie-13.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Quadri_DSC2193.jpg"
+        },
+        {
+          "file": "museo-contadino-varie-14.jpg",
+          "file_precedente": "museo-varie-14.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Quadri_DSC2194.jpg"
+        },
+        {
+          "file": "museo-contadino-varie-15.jpg",
+          "file_precedente": "museo-varie-15.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Ruote_DSC1615.jpg"
+        },
+        {
+          "file": "museo-contadino-varie-16.jpg",
+          "file_precedente": "museo-varie-16.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Ruote_DSC1626.jpg"
+        },
+        {
+          "file": "museo-contadino-varie-17.jpg",
+          "file_precedente": "museo-varie-17.jpg",
+          "file_originale": "wp-content/uploads/2016/04/Ruote_DSC2185.jpg"
+        }
+      ]
+    }
+  ],
+  "altre": {
+    "copertina": "museo-contadino-copertina.jpg",
+    "ritratti": [
+      "museo-contadino-giuseppe-01.jpg",
+      "museo-contadino-giuseppe-02.jpg"
+    ]
+  }
+}
