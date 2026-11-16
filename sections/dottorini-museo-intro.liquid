@@ -1,7 +1,6 @@
 {% comment %}
-  Museo opening: the page title and Giuseppe's own "Chi sono", beside two
-  portraits of him among the olive trees, a tall one and a smaller one
-  overlapping its upper left corner. The portraits carry the opening because the
+  Museo opening: the page title and Giuseppe's own "Chi sono", beside
+  portraits of him among the olive trees taking turns in one frame. The portraits carry the opening because the
   old site's cover (the orange cart) is only 1260px wide, too soft for a
   full-bleed plate; the cart moves to the visit section, where it sits small.
   Three figures under the story (years, pieces, sections) and a link down to
@@ -20,39 +19,65 @@
     {% endif %}
   </div>
 
-  <div class="d-mintro__media">
-    {% if section.settings.image_main %}
-      {%- assign main_position = 'object-position: ' | append: section.settings.image_main.presentation.focal_point -%}
-      <figure class="d-mintro__photo d-mintro__photo--main">
-        {{
-          section.settings.image_main
-          | image_url: width: 1600
-          | image_tag:
-            widths: '500, 750, 1000, 1300, 1600',
-            sizes: '(min-width: 900px) 34vw, 82vw',
-            loading: 'eager',
-            fetchpriority: 'high',
-            alt: section.settings.image_main.alt,
-            style: main_position
-        }}
-      </figure>
-    {% endif %}
-    {% if section.settings.image_second %}
-      {%- assign second_position = 'object-position: ' | append: section.settings.image_second.presentation.focal_point -%}
-      <figure class="d-mintro__photo d-mintro__photo--second">
-        {{
-          section.settings.image_second
-          | image_url: width: 900
-          | image_tag:
-            widths: '300, 500, 700, 900',
-            sizes: '(min-width: 900px) 17vw, 42vw',
-            loading: 'lazy',
-            alt: section.settings.image_second.alt,
-            style: second_position
-        }}
-      </figure>
-    {% endif %}
-  </div>
+  {%- liquid
+    assign slides = ''
+    if section.settings.image_main
+      assign slides = slides | append: 'image_main,'
+    endif
+    if section.settings.image_second
+      assign slides = slides | append: 'image_second,'
+    endif
+    if section.settings.image_third
+      assign slides = slides | append: 'image_third,'
+    endif
+    assign slide_keys = slides | split: ','
+  -%}
+  {% if slide_keys.size > 0 %}
+    <museo-slides class="d-mintro__media" data-interval="{{ section.settings.interval | times: 1000 }}">
+      <div class="d-mintro__frame">
+        {% for key in slide_keys %}
+          {%- assign photo = section.settings[key] -%}
+          {%- assign position = 'object-position: ' | append: photo.presentation.focal_point -%}
+          <figure class="d-mintro__slide{% if forloop.first %} is-active{% endif %}" data-slide>
+            {%- liquid
+              if forloop.first
+                assign loading = 'eager'
+                assign priority = 'high'
+              else
+                assign loading = 'lazy'
+                assign priority = 'auto'
+              endif
+            -%}
+            {{
+              photo
+              | image_url: width: 1600
+              | image_tag:
+                widths: '500, 750, 1000, 1300, 1600',
+                sizes: '(min-width: 900px) 40vw, 90vw',
+                loading: loading,
+                fetchpriority: priority,
+                alt: photo.alt,
+                style: position
+            }}
+          </figure>
+        {% endfor %}
+      </div>
+
+      {% if slide_keys.size > 1 %}
+        <div class="d-mintro__dots" role="group" aria-label="Foto">
+          {% for key in slide_keys %}
+            <button
+              type="button"
+              class="d-mintro__dot"
+              data-slide-dot="{{ forloop.index0 }}"
+              aria-label="Foto {{ forloop.index }} di {{ slide_keys.size }}"
+              {% if forloop.first %}aria-current="true"{% endif %}
+            ></button>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </museo-slides>
+  {% endif %}
 
   <div class="d-mintro__story">
     {% if section.settings.story_label != blank %}
@@ -117,41 +142,83 @@
     color: var(--color-accent);
   }
 
-  /* The portraits: a tall one at its own 2:3 (Giuseppe stands low in the
-     frame, a crop would cut him), and a smaller one overlapping its upper
-     left corner, over the foliage, with a ring of the band colour so the
-     pair reads as one piece */
+  /* The portraits: one frame at the photos' own 2:3 (Giuseppe stands low
+     in the frame, a crop would cut him). They take turns with a slow
+     crossfade and a slight settle; the dots below switch by hand. A pair
+     side by side was tried first and turned down. */
   .d-mintro__media {
     grid-area: media;
-    position: relative;
-    padding-left: clamp(2.5rem, 14vw, 6rem);
+    display: block;
   }
 
-  .d-mintro__photo {
-    margin: 0;
+  .d-mintro__frame {
+    position: relative;
     overflow: hidden;
+    aspect-ratio: 2 / 3;
     border-radius: var(--radius-media);
     background-color: var(--color-surface-strong);
   }
 
-  .d-mintro__photo img {
+  .d-mintro__slide {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    transition: opacity 1.4s var(--ease-out);
+  }
+
+  .d-mintro__slide.is-active {
+    opacity: 1;
+  }
+
+  .d-mintro__slide img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 
-  .d-mintro__photo--main {
-    aspect-ratio: 2 / 3;
+  @media (prefers-reduced-motion: no-preference) {
+    .d-mintro__slide img {
+      transform: scale(1.06);
+      transition: transform 7s linear;
+    }
+
+    .d-mintro__slide.is-active img {
+      transform: none;
+    }
   }
 
-  .d-mintro__photo--second {
-    position: absolute;
-    top: 14%;
-    left: 0;
-    width: 46%;
-    aspect-ratio: 2 / 3;
-    box-shadow: 0 0 0 clamp(0.35rem, 0.8vw, 0.6rem) var(--section-bg, var(--color-background));
+  .d-mintro__dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.25rem;
+    margin-top: 0.75rem;
+  }
+
+  .d-mintro__dot {
+    display: grid;
+    place-items: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+  }
+
+  .d-mintro__dot::before {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: var(--color-surface-strong);
+    transition: background-color 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+  }
+
+  .d-mintro__dot[aria-current='true']::before {
+    background-color: var(--color-accent);
+    transform: scale(1.25);
   }
 
   .d-mintro__story {
@@ -242,10 +309,61 @@
       align-self: start;
       position: sticky;
       top: calc(var(--header-height) + 1.5rem);
-      padding-left: clamp(3rem, 7vw, 6.5rem);
     }
   }
 {% endstylesheet %}
+
+{% javascript %}
+  class MuseoSlides extends HTMLElement {
+    connectedCallback() {
+      this.slides = Array.from(this.querySelectorAll('[data-slide]'));
+      this.dots = Array.from(this.querySelectorAll('[data-slide-dot]'));
+      if (this.slides.length < 2) return;
+      this.index = 0;
+      this.interval = Number(this.dataset.interval) || 6000;
+      this.reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      this.dots.forEach((dot) =>
+        dot.addEventListener('click', () => {
+          this.go(Number(dot.dataset.slideDot));
+          this.restart();
+        })
+      );
+
+      // Only run while on screen and the tab is visible
+      this.visible = false;
+      this.observer = new IntersectionObserver(([entry]) => {
+        this.visible = entry.isIntersecting;
+        this.restart();
+      });
+      this.observer.observe(this);
+      this.onVisibility = () => this.restart();
+      document.addEventListener('visibilitychange', this.onVisibility);
+    }
+
+    go(index) {
+      const count = this.slides.length;
+      this.index = ((index % count) + count) % count;
+      this.slides.forEach((slide, i) => slide.classList.toggle('is-active', i === this.index));
+      this.dots.forEach((dot, i) => dot.toggleAttribute('aria-current', i === this.index));
+      this.dots.forEach((dot, i) => i === this.index && dot.setAttribute('aria-current', 'true'));
+    }
+
+    restart() {
+      clearInterval(this.timer);
+      if (this.reduced || !this.visible || document.hidden) return;
+      this.timer = setInterval(() => this.go(this.index + 1), this.interval);
+    }
+
+    disconnectedCallback() {
+      clearInterval(this.timer);
+      this.observer?.disconnect();
+      document.removeEventListener('visibilitychange', this.onVisibility);
+    }
+  }
+
+  if (!customElements.get('museo-slides')) customElements.define('museo-slides', MuseoSlides);
+{% endjavascript %}
 
 {% schema %}
 {
@@ -257,8 +375,10 @@
     { "type": "text", "id": "label", "label": "Section name", "default": "Museo" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Piccolo Museo della Civiltà Contadina" },
     { "type": "text", "id": "lede", "label": "Line under the heading", "default": "La raccolta di Giuseppe Belardi Dottorini, a Collazzone." },
-    { "type": "image_picker", "id": "image_main", "label": "Portrait, large", "info": "Tall photo, shown at 2:3." },
-    { "type": "image_picker", "id": "image_second", "label": "Portrait, small", "info": "Overlaps the upper left corner of the large one." },
+    { "type": "image_picker", "id": "image_main", "label": "Photo 1", "info": "Portraits take turns in one 2:3 frame. Upright photos work best." },
+    { "type": "image_picker", "id": "image_second", "label": "Photo 2" },
+    { "type": "image_picker", "id": "image_third", "label": "Photo 3" },
+    { "type": "range", "id": "interval", "label": "Seconds per photo", "min": 3, "max": 12, "step": 1, "unit": "s", "default": 6 },
     { "type": "text", "id": "story_label", "label": "Story heading", "default": "Chi sono" },
     { "type": "richtext", "id": "story", "label": "Story" },
     { "type": "text", "id": "signature", "label": "Signature", "default": "Giuseppe Belardi Dottorini" },
