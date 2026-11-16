@@ -202,13 +202,13 @@
   }
 
   /*
-    Under 900px the scaled ribbon gets shallow and thin, so it is drawn 1.5x
-    taller (the viewBox is not kept, preserveAspectRatio is none): the curve
+    Under 900px the scaled ribbon gets shallow and thin, so it is drawn about
+    1.3x taller (the viewBox is not kept, preserveAspectRatio is none): the curve
     keeps its height and the band keeps its body.
   */
   @media (max-width: 899px) {
     .d-hero__line {
-      aspect-ratio: 2481 / 1131;
+      aspect-ratio: 2481 / 960;
     }
   }
 
@@ -266,9 +266,11 @@
   /* Under 900px: the button runs full width and the frame stops short of the fold */
   @media (max-width: 899px) {
     .d-hero__frame {
-      /* About 14% shorter than the screen (the owner found the full-height
-         photo too long on phones); the frame still grows if the copy needs it */
-      min-height: clamp(30rem, calc((100svh - var(--header-height)) * 0.86), 44rem);
+      /* About two thirds of the screen: the owner found the full-height
+         photo too long and narrow on phones (tried 86% first). The heading
+         and ribbon are a touch smaller here so the copy fits; the frame
+         still grows if it does not */
+      min-height: clamp(27rem, calc((100svh - var(--header-height)) * 0.68), 36rem);
     }
 
     .d-hero__content {
@@ -277,7 +279,7 @@
 
     .d-hero__heading {
       max-width: none;
-      font-size: clamp(2.75rem, 12.5vw, 5rem);
+      font-size: clamp(2.5rem, 11.5vw, 4.5rem);
     }
 
     .d-hero__text {
