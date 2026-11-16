@@ -372,3 +372,13 @@ Preferences only affects the homepage. No brand name is hardcoded in the theme.
   (`templates/*.json`, `sections/*-group.json`, `config/settings_data.json`),
   not to git. Pull those before pushing, or connect the theme to GitHub, or
   push with those paths ignored, otherwise their content gets overwritten.
+
+## Page transitions
+
+Moving between pages uses cross-document View Transitions, CSS only
+(`@view-transition { navigation: auto }` in `assets/critical.css`): the old
+page fades out lifting 8px in 0.22s, the new one fades in rising from 14px in
+0.5s, and the sticky header has its own transition name so it stays still
+while the page changes under it. Browsers without support change page as
+before; reduced motion turns it off. Anchor links on the same page keep the
+smooth scroll.

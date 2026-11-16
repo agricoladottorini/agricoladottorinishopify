@@ -385,3 +385,45 @@ html #shopify-pc__banner {
 html #shopify-pc__prefs {
   max-height: min(90dvh, calc(100dvh - 1rem)) !important;
 }
+
+/** Page transitions
+ * Cross-document View Transitions: moving between pages of the site, the old
+ * page fades out and the new one fades in rising slightly, while the header
+ * stays put. CSS only, no script: browsers without support (Firefox today)
+ * just change page as before. Off with reduced motion.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  .shopify-section-group-header-group {
+    view-transition-name: site-header;
+  }
+
+  ::view-transition-group(site-header) {
+    animation: none;
+  }
+
+  ::view-transition-old(root) {
+    animation: page-out 0.22s var(--ease-out) both;
+  }
+
+  ::view-transition-new(root) {
+    animation: page-in 0.5s var(--ease-out) 0.08s both;
+  }
+}
+
+@keyframes page-out {
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
