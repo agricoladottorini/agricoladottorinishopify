@@ -1,0 +1,1142 @@
+Type,Identification,Field,Locale,Market,Status,Default content,Translated content
+COLLECTION,'699462320454,title,en,,,Olio,Oil
+COLLECTION,'699462320454,body_html,en,,,<p>Tutti i nostri oli</p>,<p>All our oils</p>
+COLLECTION,'699462320454,handle,en,,,olio,olio
+COOKIE_BANNER,'13889896774,policy_link_text,en,,,Informativa sulla privacy,
+COOKIE_BANNER,'13889896774,title,en,,,Consenso ai cookie,
+COOKIE_BANNER,'13889896774,text,en,,,"Noi e i nostri partner, incluso Shopify, utilizziamo cookie e altre tecnologie per personalizzare la tua esperienza, mostrarti annunci ed eseguire analisi. Non utilizzeremo cookie o altre tecnologie per questi scopi senza il tuo consenso. Scopri di più nella nostra ",
+COOKIE_BANNER,'13889896774,button_prefs_open_text,en,,,Gestisci le preferenze,
+COOKIE_BANNER,'13889896774,button_accept_text,en,,,Accetta,
+COOKIE_BANNER,'13889896774,button_decline_text,en,,,Declina,
+COOKIE_BANNER,'13889896774,preferences_title,en,,,Preferenze per cookie e privacy,
+COOKIE_BANNER,'13889896774,preferences_intro_title,en,,,Sei tu a controllare i tuoi dati,
+COOKIE_BANNER,'13889896774,preferences_intro_text,en,,,Scopri di più sui cookie che utilizziamo e scegli quali cookie consentire.,
+COOKIE_BANNER,'13889896774,preferences_button_accept_text,en,,,Accetta tutti,
+COOKIE_BANNER,'13889896774,preferences_button_decline_text,en,,,Rifiuta tutto,
+COOKIE_BANNER,'13889896774,preferences_button_save_text,en,,,Salva le mie scelte,
+COOKIE_BANNER,'13889896774,preferences_bullet_points_title,en,,,Se accetti tutti i cookie,
+COOKIE_BANNER,'13889896774,preferences_bullet_points_first_text,en,,,il nostro sito potrebbe essere migliorato in base ai tuoi interessi,
+COOKIE_BANNER,'13889896774,preferences_bullet_points_second_text,en,,,Le tue preferenze potrebbero essere memorizzate per il tuo ritorno,
+COOKIE_BANNER,'13889896774,preferences_bullet_points_third_text,en,,,Potresti vedere pubblicità su misura per te,
+COOKIE_BANNER,'13889896774,preferences_purposes_essential_name,en,,,Necessario,
+COOKIE_BANNER,'13889896774,preferences_purposes_essential_desc,en,,,"Questi cookie sono necessari per il corretto funzionamento del sito funzioni, comprese funzionalità come l'accesso e l'aggiunta di articoli al carrello.",
+COOKIE_BANNER,'13889896774,preferences_purposes_performance_name,en,,,Analisi,
+COOKIE_BANNER,'13889896774,preferences_purposes_performance_desc,en,,,Questi cookie ci aiutano a capire come interagisci con il sito. Utilizziamo questi dati per identificare le aree da migliorare.,
+COOKIE_BANNER,'13889896774,preferences_purposes_preferences_name,en,,,Personalizzazione,
+COOKIE_BANNER,'13889896774,preferences_purposes_preferences_desc,en,,,Questi cookie memorizzano dettagli sulle tue azioni per personalizzare la tua prossima visita al sito Web.,
+COOKIE_BANNER,'13889896774,preferences_purposes_marketing_name,en,,,Marketing,
+COOKIE_BANNER,'13889896774,preferences_purposes_marketing_desc,en,,,"Noi e i nostri partner, incluso Shopify, utilizziamo questi cookie per ottimizzare le comunicazioni di marketing e mostrarti annunci su altri siti web.",
+COOKIE_BANNER,'13889896774,policy_link_url,en,,,https://www.agricoladottorini.it/policies/privacy-policy,
+DELIVERY_METHOD_DEFINITION,'1266137039174,name,en,,,Standard,Standard
+DELIVERY_METHOD_DEFINITION,'1266137071942,name,en,,,Standard Internazionale,International Standard
+DELIVERY_METHOD_DEFINITION,'1266137104710,name,en,,,Standard,Standard
+DELIVERY_METHOD_DEFINITION,'1266139070790,name,en,,,Pickup,Pickup
+DELIVERY_METHOD_DEFINITION,'1312340476230,name,en,,,Standard,Standard
+FILTER,'125200269638,label,en,,,Disponibilità,Availability
+FILTER,'125200302406,label,en,,,Prezzo,Price
+LINK,'816384115014,title,en,,,Home,Home
+LINK,'816384147782,title,en,,,Catalogo,Shop
+LINK,'816384180550,title,en,,,Contatti,Contact
+LINK,'816384213318,title,en,,,Cerca,Search
+LINK,'816384246086,title,en,,,Ordini,Orders
+LINK,'816384278854,title,en,,,Profilo,Profile
+MEDIA_IMAGE,'76381641179462,alt,en,,,bottiglia olio,
+MEDIA_IMAGE,'76381671260486,alt,en,,,,
+MEDIA_IMAGE,'76381671555398,alt,en,,,,
+MEDIA_IMAGE,'76402794889542,alt,en,,,,
+MEDIA_IMAGE,'76846072824134,alt,en,,,,
+MEDIA_IMAGE,'76846073053510,alt,en,,,,
+MEDIA_IMAGE,'76846073086278,alt,en,,,,
+MEDIA_IMAGE,'76846073184582,alt,en,,,,
+MEDIA_IMAGE,'76846073217350,alt,en,,,,
+MEDIA_IMAGE,'76846073250118,alt,en,,,,
+MEDIA_IMAGE,'76846073282886,alt,en,,,,
+MEDIA_IMAGE,'76846073413958,alt,en,,,,
+MEDIA_IMAGE,'76846073446726,alt,en,,,,
+MEDIA_IMAGE,'76846073479494,alt,en,,,,
+MEDIA_IMAGE,'76846073512262,alt,en,,,,
+MEDIA_IMAGE,'76846073545030,alt,en,,,,
+MEDIA_IMAGE,'76846073610566,alt,en,,,,
+MEDIA_IMAGE,'76846073643334,alt,en,,,,
+MEDIA_IMAGE,'76846073708870,alt,en,,,,
+MEDIA_IMAGE,'76846073741638,alt,en,,,,
+MEDIA_IMAGE,'76846073774406,alt,en,,,,
+MEDIA_IMAGE,'76846073839942,alt,en,,,,
+MEDIA_IMAGE,'76846073872710,alt,en,,,,
+MEDIA_IMAGE,'76846074003782,alt,en,,,,
+MEDIA_IMAGE,'76846074069318,alt,en,,,,
+MEDIA_IMAGE,'76846074102086,alt,en,,,,
+MEDIA_IMAGE,'76846074528070,alt,en,,,,
+MEDIA_IMAGE,'76846074593606,alt,en,,,,
+MEDIA_IMAGE,'76846074659142,alt,en,,,,
+MEDIA_IMAGE,'76846074691910,alt,en,,,,
+MEDIA_IMAGE,'76846074724678,alt,en,,,,
+MEDIA_IMAGE,'76846074757446,alt,en,,,,
+MEDIA_IMAGE,'76846074790214,alt,en,,,,
+MEDIA_IMAGE,'76846074822982,alt,en,,,,
+MEDIA_IMAGE,'77889403453766,alt,en,,,,
+MEDIA_IMAGE,'77889446707526,alt,en,,,,
+MEDIA_IMAGE,'77893972787526,alt,en,,,,
+MEDIA_IMAGE,'77893972820294,alt,en,,,,
+MEDIA_IMAGE,'77893980684614,alt,en,,,,
+MEDIA_IMAGE,'77893981077830,alt,en,,,,
+MEDIA_IMAGE,'77893981110598,alt,en,,,,
+MEDIA_IMAGE,'77893981143366,alt,en,,,,
+MEDIA_IMAGE,'77893981241670,alt,en,,,,
+MEDIA_IMAGE,'77893981274438,alt,en,,,,
+MEDIA_IMAGE,'77893981765958,alt,en,,,,
+MEDIA_IMAGE,'77893981798726,alt,en,,,,
+MEDIA_IMAGE,'77893981831494,alt,en,,,,
+MEDIA_IMAGE,'77893981864262,alt,en,,,,
+MEDIA_IMAGE,'77893981897030,alt,en,,,,
+MEDIA_IMAGE,'77893981929798,alt,en,,,,
+MEDIA_IMAGE,'77893981962566,alt,en,,,,
+MEDIA_IMAGE,'77893981995334,alt,en,,,,
+MEDIA_IMAGE,'77893982028102,alt,en,,,,
+MEDIA_IMAGE,'77893982060870,alt,en,,,,
+MEDIA_IMAGE,'77893982093638,alt,en,,,,
+MEDIA_IMAGE,'77893982126406,alt,en,,,,
+MEDIA_IMAGE,'77893982159174,alt,en,,,,
+MEDIA_IMAGE,'77893982191942,alt,en,,,,
+MEDIA_IMAGE,'77893982224710,alt,en,,,,
+MEDIA_IMAGE,'77893982257478,alt,en,,,,
+MEDIA_IMAGE,'77893982290246,alt,en,,,,
+MEDIA_IMAGE,'77893982323014,alt,en,,,,
+MEDIA_IMAGE,'77893982355782,alt,en,,,,
+MEDIA_IMAGE,'77893982388550,alt,en,,,,
+MEDIA_IMAGE,'77893982421318,alt,en,,,,
+MEDIA_IMAGE,'77893982454086,alt,en,,,,
+MEDIA_IMAGE,'77893982486854,alt,en,,,,
+MEDIA_IMAGE,'77893982519622,alt,en,,,,
+MEDIA_IMAGE,'77893982552390,alt,en,,,,
+MEDIA_IMAGE,'77893982912838,alt,en,,,,
+MEDIA_IMAGE,'77893982945606,alt,en,,,,
+MEDIA_IMAGE,'77893982978374,alt,en,,,,
+MEDIA_IMAGE,'77893983011142,alt,en,,,,
+MEDIA_IMAGE,'77893983043910,alt,en,,,,
+MEDIA_IMAGE,'77893983076678,alt,en,,,,
+MEDIA_IMAGE,'77893983109446,alt,en,,,,
+MEDIA_IMAGE,'77893983142214,alt,en,,,,
+MEDIA_IMAGE,'77893983174982,alt,en,,,,
+MEDIA_IMAGE,'77893983207750,alt,en,,,,
+MEDIA_IMAGE,'77893983240518,alt,en,,,,
+MEDIA_IMAGE,'77893983273286,alt,en,,,,
+MEDIA_IMAGE,'77893983306054,alt,en,,,,
+MEDIA_IMAGE,'77893983338822,alt,en,,,,
+MEDIA_IMAGE,'77893988024646,alt,en,,,,
+MEDIA_IMAGE,'77893988057414,alt,en,,,,
+MEDIA_IMAGE,'77893988090182,alt,en,,,,
+MEDIA_IMAGE,'77893988122950,alt,en,,,,
+MEDIA_IMAGE,'77893988155718,alt,en,,,,
+MEDIA_IMAGE,'77893988188486,alt,en,,,,
+MEDIA_IMAGE,'77893988221254,alt,en,,,,
+MEDIA_IMAGE,'77893988254022,alt,en,,,,
+MEDIA_IMAGE,'77893988286790,alt,en,,,,
+MEDIA_IMAGE,'77893988385094,alt,en,,,,
+MEDIA_IMAGE,'77893988417862,alt,en,,,,
+MEDIA_IMAGE,'77893988712774,alt,en,,,,
+MEDIA_IMAGE,'77893988745542,alt,en,,,,
+MEDIA_IMAGE,'77893988778310,alt,en,,,,
+MEDIA_IMAGE,'77893988811078,alt,en,,,,
+MEDIA_IMAGE,'77893988843846,alt,en,,,,
+MEDIA_IMAGE,'77893988876614,alt,en,,,,
+MEDIA_IMAGE,'77893988909382,alt,en,,,,
+MEDIA_IMAGE,'77893988942150,alt,en,,,,
+MEDIA_IMAGE,'77893988974918,alt,en,,,,
+MEDIA_IMAGE,'77893989007686,alt,en,,,,
+MEDIA_IMAGE,'77893989040454,alt,en,,,,
+MEDIA_IMAGE,'77893989073222,alt,en,,,,
+MEDIA_IMAGE,'77893989138758,alt,en,,,,
+MEDIA_IMAGE,'77893989171526,alt,en,,,,
+MEDIA_IMAGE,'77893989204294,alt,en,,,,
+MEDIA_IMAGE,'77893989237062,alt,en,,,,
+MEDIA_IMAGE,'77893989269830,alt,en,,,,
+MEDIA_IMAGE,'77893989302598,alt,en,,,,
+MEDIA_IMAGE,'77893989335366,alt,en,,,,
+MEDIA_IMAGE,'77893989368134,alt,en,,,,
+MEDIA_IMAGE,'77893989400902,alt,en,,,,
+MEDIA_IMAGE,'77893989433670,alt,en,,,,
+MEDIA_IMAGE,'77893989466438,alt,en,,,,
+MEDIA_IMAGE,'77893989499206,alt,en,,,,
+MEDIA_IMAGE,'77893989531974,alt,en,,,,
+MEDIA_IMAGE,'77893989564742,alt,en,,,,
+MEDIA_IMAGE,'77893989859654,alt,en,,,,
+MEDIA_IMAGE,'77893989892422,alt,en,,,,
+MEDIA_IMAGE,'77893989925190,alt,en,,,,
+MEDIA_IMAGE,'77893989957958,alt,en,,,,
+MEDIA_IMAGE,'77893989990726,alt,en,,,,
+MEDIA_IMAGE,'77893990023494,alt,en,,,,
+MEDIA_IMAGE,'77893990089030,alt,en,,,,
+MEDIA_IMAGE,'77893990121798,alt,en,,,,
+MEDIA_IMAGE,'77893998018886,alt,en,,,,
+MEDIA_IMAGE,'77893998051654,alt,en,,,,
+MEDIA_IMAGE,'77893998084422,alt,en,,,,
+MEDIA_IMAGE,'77893998117190,alt,en,,,,
+MEDIA_IMAGE,'77893998149958,alt,en,,,,
+MEDIA_IMAGE,'77893998182726,alt,en,,,,
+MEDIA_IMAGE,'77893998215494,alt,en,,,,
+MEDIA_IMAGE,'77893998248262,alt,en,,,,
+MEDIA_IMAGE,'77893998281030,alt,en,,,,
+MEDIA_IMAGE,'77893998313798,alt,en,,,,
+MEDIA_IMAGE,'77893998346566,alt,en,,,,
+MEDIA_IMAGE,'77893998379334,alt,en,,,,
+MEDIA_IMAGE,'77893998412102,alt,en,,,,
+MEDIA_IMAGE,'77893998444870,alt,en,,,,
+MEDIA_IMAGE,'77893998477638,alt,en,,,,
+MEDIA_IMAGE,'77893998510406,alt,en,,,,
+MEDIA_IMAGE,'77893998543174,alt,en,,,,
+MEDIA_IMAGE,'77893998575942,alt,en,,,,
+MEDIA_IMAGE,'77893998608710,alt,en,,,,
+MEDIA_IMAGE,'77893998641478,alt,en,,,,
+MEDIA_IMAGE,'77893998674246,alt,en,,,,
+MEDIA_IMAGE,'77893998707014,alt,en,,,,
+MEDIA_IMAGE,'77893998739782,alt,en,,,,
+MEDIA_IMAGE,'77893998772550,alt,en,,,,
+MEDIA_IMAGE,'77893998805318,alt,en,,,,
+MEDIA_IMAGE,'77893998838086,alt,en,,,,
+MEDIA_IMAGE,'77893998870854,alt,en,,,,
+MEDIA_IMAGE,'77893998903622,alt,en,,,,
+MEDIA_IMAGE,'77893998936390,alt,en,,,,
+MEDIA_IMAGE,'77893998969158,alt,en,,,,
+MEDIA_IMAGE,'77893999001926,alt,en,,,,
+MEDIA_IMAGE,'77893999034694,alt,en,,,,
+MEDIA_IMAGE,'77893999067462,alt,en,,,,
+MEDIA_IMAGE,'77893999100230,alt,en,,,,
+MEDIA_IMAGE,'77893999132998,alt,en,,,,
+MEDIA_IMAGE,'77893999165766,alt,en,,,,
+MEDIA_IMAGE,'77893999198534,alt,en,,,,
+MEDIA_IMAGE,'77893999231302,alt,en,,,,
+MEDIA_IMAGE,'77893999264070,alt,en,,,,
+MEDIA_IMAGE,'77893999296838,alt,en,,,,
+MEDIA_IMAGE,'77893999329606,alt,en,,,,
+MEDIA_IMAGE,'77893999362374,alt,en,,,,
+MEDIA_IMAGE,'77893999395142,alt,en,,,,
+MEDIA_IMAGE,'77893999427910,alt,en,,,,
+MEDIA_IMAGE,'77893999460678,alt,en,,,,
+MEDIA_IMAGE,'77894021775686,alt,en,,,,
+MEDIA_IMAGE,'77894021808454,alt,en,,,,
+MEDIA_IMAGE,'77894021841222,alt,en,,,,
+MEDIA_IMAGE,'77894021873990,alt,en,,,,
+MEDIA_IMAGE,'77894021906758,alt,en,,,,
+MEDIA_IMAGE,'77894021939526,alt,en,,,,
+MEDIA_IMAGE,'77894021972294,alt,en,,,,
+MEDIA_IMAGE,'77894022005062,alt,en,,,,
+MEDIA_IMAGE,'77894022037830,alt,en,,,,
+MEDIA_IMAGE,'77894022070598,alt,en,,,,
+MEDIA_IMAGE,'77894022103366,alt,en,,,,
+MEDIA_IMAGE,'77894022136134,alt,en,,,,
+MEDIA_IMAGE,'77894022168902,alt,en,,,,
+MEDIA_IMAGE,'77894022201670,alt,en,,,,
+MEDIA_IMAGE,'77894022234438,alt,en,,,,
+MEDIA_IMAGE,'77894022267206,alt,en,,,,
+MEDIA_IMAGE,'77894022299974,alt,en,,,,
+MEDIA_IMAGE,'77894022332742,alt,en,,,,
+MEDIA_IMAGE,'77894022365510,alt,en,,,,
+MEDIA_IMAGE,'77894022398278,alt,en,,,,
+MEDIA_IMAGE,'77894022431046,alt,en,,,,
+MEDIA_IMAGE,'77894022463814,alt,en,,,,
+MEDIA_IMAGE,'77894022496582,alt,en,,,,
+MEDIA_IMAGE,'77894022529350,alt,en,,,,
+MEDIA_IMAGE,'77894022562118,alt,en,,,,
+MEDIA_IMAGE,'77894022594886,alt,en,,,,
+MEDIA_IMAGE,'77894022627654,alt,en,,,,
+MEDIA_IMAGE,'77894022660422,alt,en,,,,
+MEDIA_IMAGE,'77894022693190,alt,en,,,,
+MEDIA_IMAGE,'77894022725958,alt,en,,,,
+MEDIA_IMAGE,'77894022758726,alt,en,,,,
+MEDIA_IMAGE,'77894022791494,alt,en,,,,
+MEDIA_IMAGE,'77894022824262,alt,en,,,,
+MEDIA_IMAGE,'77894022857030,alt,en,,,,
+MEDIA_IMAGE,'77894022889798,alt,en,,,,
+MEDIA_IMAGE,'77894022922566,alt,en,,,,
+MEDIA_IMAGE,'77894022955334,alt,en,,,,
+MEDIA_IMAGE,'77894022988102,alt,en,,,,
+MEDIA_IMAGE,'77894023020870,alt,en,,,,
+MEDIA_IMAGE,'77894023053638,alt,en,,,,
+MEDIA_IMAGE,'77894023086406,alt,en,,,,
+MEDIA_IMAGE,'77894023119174,alt,en,,,,
+MEDIA_IMAGE,'77894023151942,alt,en,,,,
+MEDIA_IMAGE,'77894023184710,alt,en,,,,
+MEDIA_IMAGE,'77894023217478,alt,en,,,,
+MEDIA_IMAGE,'77894025969990,alt,en,,,,
+MEDIA_IMAGE,'77894026002758,alt,en,,,,
+MEDIA_IMAGE,'77894026035526,alt,en,,,,
+MEDIA_IMAGE,'77894026068294,alt,en,,,,
+MEDIA_IMAGE,'77894026101062,alt,en,,,,
+MEDIA_IMAGE,'77894026527046,alt,en,,,,
+MEDIA_IMAGE,'77894026592582,alt,en,,,,
+MEDIA_IMAGE,'77894026625350,alt,en,,,,
+MEDIA_IMAGE,'77894026658118,alt,en,,,,
+MEDIA_IMAGE,'77894026690886,alt,en,,,,
+MEDIA_IMAGE,'77894026723654,alt,en,,,,
+MEDIA_IMAGE,'77894026756422,alt,en,,,,
+MEDIA_IMAGE,'77894026789190,alt,en,,,,
+MEDIA_IMAGE,'77894026821958,alt,en,,,,
+MEDIA_IMAGE,'77894026887494,alt,en,,,,
+MEDIA_IMAGE,'77894026920262,alt,en,,,,
+MEDIA_IMAGE,'77894026953030,alt,en,,,,
+MEDIA_IMAGE,'77894026985798,alt,en,,,,
+MEDIA_IMAGE,'77894027018566,alt,en,,,,
+MEDIA_IMAGE,'77894027051334,alt,en,,,,
+MEDIA_IMAGE,'77894027084102,alt,en,,,,
+MEDIA_IMAGE,'77894027116870,alt,en,,,,
+MEDIA_IMAGE,'77894027149638,alt,en,,,,
+MEDIA_IMAGE,'77894027182406,alt,en,,,,
+MEDIA_IMAGE,'77894027215174,alt,en,,,,
+MEDIA_IMAGE,'77894027772230,alt,en,,,,
+MEDIA_IMAGE,'77894027804998,alt,en,,,,
+MEDIA_IMAGE,'77894027837766,alt,en,,,,
+MEDIA_IMAGE,'77894027870534,alt,en,,,,
+MEDIA_IMAGE,'77894027903302,alt,en,,,,
+MEDIA_IMAGE,'77894027936070,alt,en,,,,
+MEDIA_IMAGE,'77894027968838,alt,en,,,,
+MEDIA_IMAGE,'77894028001606,alt,en,,,,
+MEDIA_IMAGE,'77894028034374,alt,en,,,,
+MEDIA_IMAGE,'77894028067142,alt,en,,,,
+MEDIA_IMAGE,'77894028099910,alt,en,,,,
+MEDIA_IMAGE,'77894028132678,alt,en,,,,
+MEDIA_IMAGE,'77894028165446,alt,en,,,,
+MEDIA_IMAGE,'77894028198214,alt,en,,,,
+MEDIA_IMAGE,'77894028230982,alt,en,,,,
+MEDIA_IMAGE,'77894028263750,alt,en,,,,
+MEDIA_IMAGE,'77894028296518,alt,en,,,,
+MEDIA_IMAGE,'77894028329286,alt,en,,,,
+MEDIA_IMAGE,'77894028362054,alt,en,,,,
+MEDIA_IMAGE,'77894028394822,alt,en,,,,
+MEDIA_IMAGE,'77894033015110,alt,en,,,,
+MEDIA_IMAGE,'77894033047878,alt,en,,,,
+MEDIA_IMAGE,'77894033080646,alt,en,,,,
+MEDIA_IMAGE,'77894033113414,alt,en,,,,
+MEDIA_IMAGE,'77894033146182,alt,en,,,,
+MEDIA_IMAGE,'77894033178950,alt,en,,,,
+MEDIA_IMAGE,'77894033211718,alt,en,,,,
+MEDIA_IMAGE,'77894033244486,alt,en,,,,
+MEDIA_IMAGE,'77894033277254,alt,en,,,,
+MEDIA_IMAGE,'77894033310022,alt,en,,,,
+MEDIA_IMAGE,'77894033342790,alt,en,,,,
+MEDIA_IMAGE,'77894033375558,alt,en,,,,
+MEDIA_IMAGE,'77894033408326,alt,en,,,,
+MEDIA_IMAGE,'77894033441094,alt,en,,,,
+MEDIA_IMAGE,'77894033473862,alt,en,,,,
+MEDIA_IMAGE,'77894033506630,alt,en,,,,
+MEDIA_IMAGE,'77894033539398,alt,en,,,,
+MEDIA_IMAGE,'77894033572166,alt,en,,,,
+MEDIA_IMAGE,'77894033604934,alt,en,,,,
+MEDIA_IMAGE,'77894033637702,alt,en,,,,
+MEDIA_IMAGE,'77894033670470,alt,en,,,,
+MEDIA_IMAGE,'77894033703238,alt,en,,,,
+MEDIA_IMAGE,'77894033736006,alt,en,,,,
+MEDIA_IMAGE,'77894033768774,alt,en,,,,
+MEDIA_IMAGE,'77894033801542,alt,en,,,,
+MEDIA_IMAGE,'77894033834310,alt,en,,,,
+MEDIA_IMAGE,'77894033867078,alt,en,,,,
+MEDIA_IMAGE,'77894033899846,alt,en,,,,
+MEDIA_IMAGE,'77894033932614,alt,en,,,,
+MEDIA_IMAGE,'77894033965382,alt,en,,,,
+MEDIA_IMAGE,'77894033998150,alt,en,,,,
+MEDIA_IMAGE,'77894034030918,alt,en,,,,
+MEDIA_IMAGE,'77894034063686,alt,en,,,,
+MEDIA_IMAGE,'77894034096454,alt,en,,,,
+MEDIA_IMAGE,'77894034129222,alt,en,,,,
+MEDIA_IMAGE,'77894034161990,alt,en,,,,
+MEDIA_IMAGE,'77894034194758,alt,en,,,,
+MEDIA_IMAGE,'77894034227526,alt,en,,,,
+MEDIA_IMAGE,'77894034260294,alt,en,,,,
+MEDIA_IMAGE,'77894034293062,alt,en,,,,
+METAFIELD,'203244148588870,value,en,,,"Circa 400 attrezzi agricoli e degli antichi mestieri raccolti in oltre vent'anni da Giuseppe Belardi Dottorini a Collazzone, in Umbria. Sfoglia la collezione.","Around 400 farm tools and tools of the old trades, collected over more than twenty years by Giuseppe Belardi Dottorini in Collazzone, Umbria. Browse the collection."
+METAFIELD,'203244148556102,value,en,,,Piccolo Museo della Civiltà Contadina a Collazzone,"Small Museum of Rural Life in Collazzone, Umbria"
+BLOG,'124884517190,title,en,,,Notizie,News
+BLOG,'124884517190,handle,en,,,notizie,notizie
+MENU,'325076091206,title,en,,,Menu principale,Main menu
+MENU,'325076123974,title,en,,,Menu footer,Footer menu
+MENU,'325076156742,title,en,,,Menu principale account cliente,Customer account main menu
+PAGE,'175868870982,title,en,,,Contatti,Contact
+PAGE,'175868870982,body_html,en,,,"Raggiungi Agricola Dottorini per informazioni sui nostri prodotti agricoli, ordini e collaborazioni. Siamo a disposizione per rispondere alle tue domande e supportarti nella scelta dei migliori prodotti a km zero.","Contact Agricola Dottorini for information about our agricultural products, orders, and collaborations. We are available to answer your questions and help you choose the best locally sourced products."
+PAGE,'175868870982,handle,en,,,contact,contact
+PAGE,'176644653382,title,en,,,Museo della Civiltà Contadina,Museum of Rural Life
+PAGE,'176644653382,body_html,en,,,"<p>Attrezzi, gesti e storie di chi ha lavorato questa terra prima di noi, raccolti in una piccola collezione a Collazzone.</p>","<p>Tools, skills and stories of the people who worked this land before us, gathered in a small collection in Collazzone.</p>"
+PAGE,'176644653382,handle,en,,,museo,museo
+PAGE,'176644653382,meta_title,en,,,Piccolo Museo della Civiltà Contadina a Collazzone,"Small Museum of Rural Life in Collazzone, Umbria"
+PAGE,'176644653382,meta_description,en,,,"Circa 400 attrezzi agricoli e degli antichi mestieri raccolti in oltre vent'anni da Giuseppe Belardi Dottorini a Collazzone, in Umbria. Sfoglia la collezione.","Around 400 farm tools and tools of the old trades, collected over more than twenty years by Giuseppe Belardi Dottorini in Collazzone, Umbria. Browse the collection."
+ONLINE_STORE_THEME,'195198484806,section.cart-drawer.title,en,,,Carrello,Cart
+ONLINE_STORE_THEME,'195198484806,section.cart-drawer.item_label,en,,,articolo nel carrello,item in your cart
+ONLINE_STORE_THEME,'195198484806,section.cart-drawer.items_label,en,,,articoli nel carrello,items in your cart
+ONLINE_STORE_THEME,'195198484806,section.cart-drawer.stock_error,en,,,Non c'è altra disponibilità per questo prodotto.,There is no more stock of this product.
+ONLINE_STORE_THEME,'195198484806,section.cart-drawer.generic_error,en,,,"Non ha funzionato, riprova.","Something went wrong, please try again."
+ONLINE_STORE_THEME,'195198484806,section.cart-drawer.subtotal_label,en,,,Subtotale,Subtotal
+ONLINE_STORE_THEME,'195198484806,section.cart-drawer.note,en,,,Spedizione e tasse calcolate al checkout.,Shipping and taxes calculated at checkout.
+ONLINE_STORE_THEME,'195198484806,section.cart-drawer.checkout_label,en,,,Vai al checkout,Go to checkout
+ONLINE_STORE_THEME,'195198484806,section.cart-drawer.empty_title,en,,,Il carrello è vuoto,Your cart is empty
+ONLINE_STORE_THEME,'195198484806,section.cart-drawer.empty_text,en,,,Non hai ancora aggiunto niente.,You haven't added anything yet.
+ONLINE_STORE_THEME,'195198484806,section.cart-drawer.empty_link_label,en,,,Vedi i prodotti,See the products
+ONLINE_STORE_THEME,'195198484806,section.cart-drawer.close_label,en,,,Chiudi il carrello,Close cart
+ONLINE_STORE_THEME,'195198484806,section.cart-drawer.remove_label,en,,,Rimuovi,Remove
+ONLINE_STORE_THEME,'195198484806,section.cart-drawer.decrease_label,en,,,Diminuisci quantità,Decrease quantity
+ONLINE_STORE_THEME,'195198484806,section.cart-drawer.increase_label,en,,,Aumenta quantità,Increase quantity
+ONLINE_STORE_THEME,'195198484806,section.cart.json.main.title:14sytmyn5q79d,en,,,Il tuo carrello,Your cart
+ONLINE_STORE_THEME,'195198484806,section.cart.json.main.quantity_label:2efrapj8ddp37,en,,,Quantità,Quantity
+ONLINE_STORE_THEME,'195198484806,section.cart.json.main.update_label:3unz101ynw4yx,en,,,Aggiorna carrello,Update cart
+ONLINE_STORE_THEME,'195198484806,section.cart.json.main.remove_label:11te1ndngvloe,en,,,Rimuovi,Remove
+ONLINE_STORE_THEME,'195198484806,section.cart.json.main.subtotal_label:10y8fyivaxlku,en,,,Subtotale,Subtotal
+ONLINE_STORE_THEME,'195198484806,section.cart.json.main.note:3ow4eyf4w4vpt,en,,,Spedizione e tasse calcolate al checkout.,Shipping and taxes calculated at checkout.
+ONLINE_STORE_THEME,'195198484806,section.cart.json.main.checkout_label:36urx6elbtdxs,en,,,Vai al checkout,Go to checkout
+ONLINE_STORE_THEME,'195198484806,section.cart.json.main.empty_text:7r57unu8h7zq,en,,,Non hai ancora aggiunto niente.,You haven't added anything yet.
+ONLINE_STORE_THEME,'195198484806,section.cart.json.main.empty_link_label:23ix6dlhyae42,en,,,Vedi i prodotti,See the products
+ONLINE_STORE_THEME,'195198484806,section.collection.json.main.heading:7yrkl0vs3okb,en,,,Prodotti,Products
+ONLINE_STORE_THEME,'195198484806,section.collection.json.main.sort_label:2haplx5t8lncg,en,,,Ordina per,Sort by
+ONLINE_STORE_THEME,'195198484806,section.collection.json.main.sort_default_label:2mi87yrsiwp2c,en,,,Consigliati,Featured
+ONLINE_STORE_THEME,'195198484806,section.collection.json.main.sort_price_asc_label:zdexv0oox224,en,,,Prezzo crescente,"Price, low to high"
+ONLINE_STORE_THEME,'195198484806,section.collection.json.main.sort_price_desc_label:1beozas2sgoj0,en,,,Prezzo decrescente,"Price, high to low"
+ONLINE_STORE_THEME,'195198484806,section.collection.json.main.sort_title_asc_label:3t603xfm4kgx,en,,,"Nome, A-Z","Name, A-Z"
+ONLINE_STORE_THEME,'195198484806,section.collection.json.main.sort_title_desc_label:3gty96sd8tdkx,en,,,"Nome, Z-A","Name, Z-A"
+ONLINE_STORE_THEME,'195198484806,section.collection.json.main.sort_apply_label:1z2x7ohppc6ij,en,,,Applica,Apply
+ONLINE_STORE_THEME,'195198484806,section.collection.json.main.empty_text:2af4uzxdkluqs,en,,,Non ci sono prodotti in questa collezione.,There are no products in this collection.
+ONLINE_STORE_THEME,'195198484806,section.index.json.hero.image:hfrw6qb4vzqf,en,,,shopify://shop_images/Hero.jpg,shopify://shop_images/Hero.jpg
+ONLINE_STORE_THEME,'195198484806,section.index.json.hero.heading:1xz6vxtlud4lk,en,,,"Olio extravergine, nato sulla nostra collina","Extra virgin olive oil, grown on our hill"
+ONLINE_STORE_THEME,'195198484806,section.index.json.hero.text:d9p12h9l2inx,en,,,"100% Umbro, estratto a freddo, il nostro blend unico","100% Umbrian, cold extracted, our own blend"
+ONLINE_STORE_THEME,'195198484806,section.index.json.hero.primary_label:2mdzkdal7jjdh,en,,,Scopri il nostro olio,Discover our oil
+ONLINE_STORE_THEME,'195198484806,section.index.json.hero.primary_link:3118fkubzlp4j,en,,,/#metodo,/#metodo
+ONLINE_STORE_THEME,'195198484806,section.index.json.strip.text:1zyvenb3jxv9d,en,,,"Olio extravergine dalle colline di Collazzone, <em>raccolto a mano</em>.","Extra virgin olive oil from the hills of Collazzone, <em>picked by hand</em>."
+ONLINE_STORE_THEME,'195198484806,section.index.json.statement.label:1mxguvdcfnbg3,en,,,La collina,The hill
+ONLINE_STORE_THEME,'195198484806,section.index.json.statement.statement:3akzvxbfv8cw,en,,,"<p>Una famiglia, 2.400 ulivi, una sola collina. Raccolta a mano, <em>senza scorciatoie</em>.</p>","<p>One family, 2,400 olive trees, one hill. Picked by hand, <em>no shortcuts</em>.</p>"
+ONLINE_STORE_THEME,'195198484806,section.index.json.statement.body:r9mp4f35fyh1,en,,,"<p>La nostra azienda agricola nasce a Collazzone, nel cuore verde dell'Umbria, dove la famiglia Belardi Dottorini coltiva 2.400 ulivi sulla collina che dà forma al marchio. Qui le olive si raccolgono ancora a mano e si frangono a freddo, poche ore dopo la raccolta.</p><p>Ne nasce un extra vergine d'oliva di categoria superiore, espressione fedele di un territorio e di un modo di stare al mondo: fatto con misura, pensato per essere condiviso.</p>","<p>Our farm is in Collazzone, in the green heart of Umbria, where the Belardi Dottorini family grows 2,400 olive trees on the hill that gives our logo its shape. The olives are still picked by hand and cold pressed a few hours after the harvest.</p><p>The result is a superior category extra virgin olive oil, true to its land and to a way of living: made with restraint, meant to be shared.</p>"
+ONLINE_STORE_THEME,'195198484806,section.index.json.statement.signature:3ancycjae18x,en,,,Azienda Agricola Belardi Dottorini Giuseppe,Azienda Agricola Belardi Dottorini Giuseppe
+ONLINE_STORE_THEME,'195198484806,section.index.json.statement.image:1mxguvf9o0mcy,en,,,shopify://shop_images/DJI_0062.jpg,shopify://shop_images/DJI_0062.jpg
+ONLINE_STORE_THEME,'195198484806,section.index.json.statement.note_title:2tmsejs2raibe,en,,,La collina,The hill
+ONLINE_STORE_THEME,'195198484806,section.index.json.statement.note_text:32vemf13k5af,en,,,"Un solo crinale, lo stesso che disegna il nostro marchio.","A single ridge, the same one drawn in our logo."
+ONLINE_STORE_THEME,'195198484806,section.index.json.statement.anchor:3eqdxjbcmg8z0,en,,,collina,collina
+ONLINE_STORE_THEME,'195198484806,section.index.json.metodo.label:pebm77kj1ccu,en,,,Il metodo,The method
+ONLINE_STORE_THEME,'195198484806,section.index.json.metodo.heading:1crmz8tg8ytk0,en,,,Dall'ulivo alla tavola.,From the tree to the table.
+ONLINE_STORE_THEME,'195198484806,section.index.json.metodo.anchor:3tdp7exgavysx,en,,,metodo,metodo
+ONLINE_STORE_THEME,'195198484806,section.index.json.metodo.metodo-cura.title:1lrgzdr3u11vn,en,,,La cura,Care
+ONLINE_STORE_THEME,'195198484806,section.index.json.metodo.metodo-cura.tagline:38y5hy5k26dy7,en,,,Tutto l'anno.,All year round.
+ONLINE_STORE_THEME,'195198484806,section.index.json.metodo.metodo-cura.text:r8cvsz1gix7i,en,,,"Seguiamo la salute degli ulivi in ogni stagione: concime stallatico a gennaio, potatura attenta e costante, rame per disinfettare i tagli e concime fogliare.","We look after the trees in every season: manure in January, careful and regular pruning, copper to heal the cuts, and foliar feeding."
+ONLINE_STORE_THEME,'195198484806,section.index.json.metodo.metodo-raccolta.title:33m65qbcloaw3,en,,,La raccolta,The harvest
+ONLINE_STORE_THEME,'195198484806,section.index.json.metodo.metodo-raccolta.tagline:13vgkm4sz8gan,en,,,Quando l'oliva è ancora verde.,While the olives are still green.
+ONLINE_STORE_THEME,'195198484806,section.index.json.metodo.metodo-raccolta.text:kdbpe0m2w6da,en,,,"Raccogliamo presto, di solito dal 10 ottobre, ma decide la stagione. La resa è più bassa, in cambio le olive sono cariche di antiossidanti, che tengono vivo il profumo anche dopo mesi.","We pick early, usually from 10 October, but the season has the last word. The yield is lower; in return the olives are rich in antioxidants, which keep the aroma alive for months."
+ONLINE_STORE_THEME,'195198484806,section.index.json.metodo.metodo-frantoio.title:f3z72bdf288w,en,,,Il frantoio,The mill
+ONLINE_STORE_THEME,'195198484806,section.index.json.metodo.metodo-frantoio.tagline:1lt3cpxs0rndo,en,,,Entro 8 ore.,Within 8 hours.
+ONLINE_STORE_THEME,'195198484806,section.index.json.metodo.metodo-frantoio.text:u6puz7cued8d,en,,,"A fine giornata, di solito entro le 18, le olive sono già al frantoio e vengono lavorate subito. Mai ammassate in attesa: aspettando fermenterebbero.","By the end of the day, usually by 6 pm, the olives are at the mill and pressed straight away. They are never left piled up waiting, or they would ferment."
+ONLINE_STORE_THEME,'195198484806,section.index.json.metodo.metodo-riposo.title:31pmnalpxf266,en,,,Il riposo,Resting
+ONLINE_STORE_THEME,'195198484806,section.index.json.metodo.metodo-riposo.tagline:1wq2ajo99ucbm,en,,,"In latta, al fresco.","In tins, somewhere cool."
+ONLINE_STORE_THEME,'195198484806,section.index.json.metodo.metodo-riposo.text:1z9xo43vw86gz,en,,,"Qualche giorno di riposo, poi in latte a doppia stagnatura, al fresco e all'asciutto tra 12 e 18 °C. Da lì passa nelle nostre bottiglie e latte.","A few days of rest, then into double tin-plated containers, kept cool and dry between 12 and 18 °C. From there it goes into our bottles and tins."
+ONLINE_STORE_THEME,'195198484806,section.index.json.metodo.metodo-tavola.title:2i6avyu0l1gbr,en,,,La tavola,The table
+ONLINE_STORE_THEME,'195198484806,section.index.json.metodo.metodo-tavola.tagline:2nul07uq2oda3,en,,,"Da Convivia, a casa nostra.","At Convivia, in our home."
+ONLINE_STORE_THEME,'195198484806,section.index.json.metodo.metodo-tavola.text:3umvdyt74qdbu,en,,,"L'ultimo passaggio è il più bello: assaggiarlo nei piatti di Convivia, il nostro home restaurant a Collazzone.","The last step is the best one: tasting it in the dishes of Convivia, our home restaurant in Collazzone."
+ONLINE_STORE_THEME,'195198484806,section.index.json.metodo.metodo-tavola.link_label:2gmvw22sr8m66,en,,,Prenota una cena,Book a dinner
+ONLINE_STORE_THEME,'195198484806,section.index.json.metodo.metodo-tavola.link:3umvdytcj5cfb,en,,,https://conviviarestaurant.it/,https://conviviarestaurant.it/
+ONLINE_STORE_THEME,'195198484806,section.index.json.products.label:fgp0oro6czou,en,,,L'olio,The oil
+ONLINE_STORE_THEME,'195198484806,section.index.json.products.heading:m22fnix17ips,en,,,Il nostro extra vergine.,Our extra virgin.
+ONLINE_STORE_THEME,'195198484806,section.index.json.products.text:lpblzt3ofmk5,en,,,"Un solo blend, tre olive umbre: ognuna porta la sua parte.","One blend, three Umbrian olives, each playing its part."
+ONLINE_STORE_THEME,'195198484806,section.index.json.products.cultivar_anchor:3ffi32ezzdtos,en,,,terra,terra
+ONLINE_STORE_THEME,'195198484806,section.index.json.products.buy_label:1is0apmzz10db,en,,,Acquista,Buy
+ONLINE_STORE_THEME,'195198484806,section.index.json.products.added_label:2b91i31efqgr5,en,,,Aggiunto,Added
+ONLINE_STORE_THEME,'195198484806,section.index.json.products.error_label:sw1jp3ooxgsp,en,,,Non disponibile,Unavailable
+ONLINE_STORE_THEME,'195198484806,section.index.json.products.sold_out_label:16vkhsri7kcs4,en,,,Esaurito,Sold out
+ONLINE_STORE_THEME,'195198484806,section.index.json.products.from_label:3gfu38snv5gw7,en,,,da,from
+ONLINE_STORE_THEME,'195198484806,section.index.json.products.promo_eyebrow:23ukive794iix,en,,,Idea regalo,Gift idea
+ONLINE_STORE_THEME,'195198484806,section.index.json.products.promo_heading:23uknvh6hjo1c,en,,,Confezione Convivia,Convivia gift box
+ONLINE_STORE_THEME,'195198484806,section.index.json.products.promo_text:3eey3s43b4c5h,en,,,Olio nuovo e un invito a tavola da Convivia Home Restaurant: il nostro modo di dire benvenuto.,New season oil and an invitation to dinner at Convivia Home Restaurant: our way of saying welcome.
+ONLINE_STORE_THEME,'195198484806,section.index.json.products.promo_link_label:m46micgwrpfl,en,,,Scopri Convivia,Discover Convivia
+ONLINE_STORE_THEME,'195198484806,section.index.json.products.all_eyebrow:2e8l3fpxipwbr,en,,,Catalogo,Shop
+ONLINE_STORE_THEME,'195198484806,section.index.json.products.all_label:1irw9r7x910og,en,,,Vai a tutti i prodotti,See all products
+ONLINE_STORE_THEME,'195198484806,section.index.json.products.anchor:2hurjgdv0791t,en,,,oli,oli
+ONLINE_STORE_THEME,'195198484806,section.index.json.products.variety-moraiolo.title:3684lzp5tby0e,en,,,Moraiolo,Moraiolo
+ONLINE_STORE_THEME,'195198484806,section.index.json.products.variety-moraiolo.tagline:272tvn4vli0xe,en,,,Il carattere umbro per eccellenza.,Umbrian character at its purest.
+ONLINE_STORE_THEME,'195198484806,section.index.json.products.variety-moraiolo.text:bye2ws5rv637,en,,,"Fruttato intenso, note d'erba, amaro e piccante decisi. Dà spina dorsale al blend.","Intensely fruity, grassy, with bold bitterness and pepper. It gives the blend its backbone."
+ONLINE_STORE_THEME,'195198484806,section.index.json.products.variety-frantoiano.title:fdvs74b59jwz,en,,,Frantoiano,Frantoiano
+ONLINE_STORE_THEME,'195198484806,section.index.json.products.variety-frantoiano.tagline:2552kzs6g1x73,en,,,Eleganza ed armonia.,Elegance and harmony.
+ONLINE_STORE_THEME,'195198484806,section.index.json.products.variety-frantoiano.text:374tw8pwuuhxq,en,,,"Fruttato medio, profumi floreali e di mandorla. Smussa e arrotonda, porta finezza al taglio.","Medium fruity, with floral and almond notes. It softens and rounds the blend and brings finesse."
+ONLINE_STORE_THEME,'195198484806,section.index.json.products.variety-leccino.title:1ry82aqy996jf,en,,,Leccino,Leccino
+ONLINE_STORE_THEME,'195198484806,section.index.json.products.variety-leccino.tagline:3k0ncfeyu1klj,en,,,Morbidezza e gentilezza.,Softness and gentleness.
+ONLINE_STORE_THEME,'195198484806,section.index.json.products.variety-leccino.text:3tu9hfja6kcg6,en,,,"Fruttato delicato, sentori dolci e puliti. Bilancia l'insieme e lo rende accessibile.","Delicately fruity, with clean, sweet notes. It balances the whole and makes it easy to love."
+ONLINE_STORE_THEME,'195198484806,section.index.json.convivia.label:nz3eqyvtogl1,en,,,Convivia,Convivia
+ONLINE_STORE_THEME,'195198484806,section.index.json.convivia.eyebrow:14ro1r679vxk2,en,,,Dalla collina alla tavola,From the hill to the table
+ONLINE_STORE_THEME,'195198484806,section.index.json.convivia.heading:14rnw9k4dq97f,en,,,"Convivia
+Home Restaurant","Convivia
+Home Restaurant"
+ONLINE_STORE_THEME,'195198484806,section.index.json.convivia.lede:37e77u1qs5onv,en,,,"A casa nostra, a Collazzone, lo stesso olio diventa un'esperienza da vivere a tavola.","In our home in Collazzone, the same oil becomes something to enjoy at the table."
+ONLINE_STORE_THEME,'195198484806,section.index.json.convivia.text:37e77u26axthq,en,,,Un home restaurant dove i piatti raccontano il territorio. Il modo più vero per conoscere il nostro olio è assaggiarlo dove nasce.,A home restaurant where every dish speaks of the land. The truest way to know our oil is to taste it where it is made.
+ONLINE_STORE_THEME,'195198484806,section.index.json.convivia.link_label:310tvw3id6buy,en,,,Visita Convivia,Visit Convivia
+ONLINE_STORE_THEME,'195198484806,section.index.json.convivia.link:37e77u1qv3xoz,en,,,https://conviviarestaurant.it/,https://conviviarestaurant.it/
+ONLINE_STORE_THEME,'195198484806,section.index.json.convivia.image:nz3er59neq5w,en,,,shopify://shop_images/convivia-tavola-in-giardino.jpg,shopify://shop_images/convivia-tavola-in-giardino.jpg
+ONLINE_STORE_THEME,'195198484806,section.index.json.convivia.anchor:2if6duozllwmi,en,,,convivia,convivia
+ONLINE_STORE_THEME,'195198484806,section.index.json.museo.label:3heymdt5c07br,en,,,Museo,Museum
+ONLINE_STORE_THEME,'195198484806,section.index.json.museo.eyebrow:1zrrclzwycchs,en,,,Piccolo Museo della Civiltà Contadina,Small Museum of Rural Life
+ONLINE_STORE_THEME,'195198484806,section.index.json.museo.heading:1zrrazm1c8855,en,,,Gli attrezzi di chi ha lavorato <em>questa terra</em>.,The tools of the people who worked <em>this land</em>.
+ONLINE_STORE_THEME,'195198484806,section.index.json.museo.text:xj1ucnlf86jw,en,,,"Da oltre vent'anni Giuseppe Belardi Dottorini raccoglie gli attrezzi dei campi e degli antichi mestieri: circa 400 pezzi, conservati con cura e ancora funzionanti.","For more than twenty years Giuseppe Belardi Dottorini has been collecting tools from the fields and the old trades: around 400 pieces, carefully kept and still in working order."
+ONLINE_STORE_THEME,'195198484806,section.index.json.museo.note:xj1ucn78yswx,en,,,"Per ora il museo è chiuso al pubblico, ma la collezione si sfoglia qui.","The museum is closed to the public for now, but you can browse the collection here."
+ONLINE_STORE_THEME,'195198484806,section.index.json.museo.link_label:1obtqilu2jhig,en,,,Sfoglia la collezione,Browse the collection
+ONLINE_STORE_THEME,'195198484806,section.index.json.museo.link:xj1ucn5zb7xt,en,,,/pages/museo,/pages/museo
+ONLINE_STORE_THEME,'195198484806,section.index.json.museo.image:3heymduxjmaza,en,,,shopify://shop_images/museo-contadino-copertina.jpg,shopify://shop_images/museo-contadino-copertina.jpg
+ONLINE_STORE_THEME,'195198484806,section.index.json.museo.tile_1:22dfp5w9mfkob,en,,,shopify://shop_images/museo-contadino-ferro-01.jpg,shopify://shop_images/museo-contadino-ferro-01.jpg
+ONLINE_STORE_THEME,'195198484806,section.index.json.museo.tile_2:22dfp5w9mfoq0,en,,,shopify://shop_images/museo-contadino-legno-03.jpg,shopify://shop_images/museo-contadino-legno-03.jpg
+ONLINE_STORE_THEME,'195198484806,section.index.json.museo.tile_3:22dfp5w9mfm95,en,,,shopify://shop_images/museo-contadino-ferro-03.jpg,shopify://shop_images/museo-contadino-ferro-03.jpg
+ONLINE_STORE_THEME,'195198484806,section.index.json.museo.anchor:22dfoypibac20,en,,,museo,museo
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.intro.label:3pi8gvqeut196,en,,,Museo,Museum
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.intro.heading:1hd2ygxlhooac,en,,,Piccolo Museo della Civiltà Contadina,Small Museum of Rural Life
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.intro.lede:1zzw5dh4fr1uc,en,,,"La raccolta di Giuseppe Belardi Dottorini, a Collazzone.","The collection of Giuseppe Belardi Dottorini, in Collazzone."
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.intro.image_main:1g2cfvqeefez3,en,,,shopify://shop_images/museo-contadino-giuseppe-02.jpg,shopify://shop_images/museo-contadino-giuseppe-02.jpg
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.intro.image_second:26gwurl0qswr8,en,,,shopify://shop_images/museo-contadino-giuseppe-01.jpg,shopify://shop_images/museo-contadino-giuseppe-01.jpg
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.intro.story_label:fr2ezzvnoozq,en,,,Chi sono,About me
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.intro.story:3pi8gvu87wtwf,en,,,"<p>Tutto è cominciato dalla passione per ciò che racconta la civiltà contadina. Oltre vent'anni fa ho iniziato a recuperare gli attrezzi di famiglia; poi sono arrivati i doni di amici e compaesani, e i pezzi scovati nelle fiere di settore e nei mercatini della zona. È una ricerca che non si è mai fermata e che porto avanti ancora oggi, con la stessa voglia.</p><p>Così, a casa mia, nelle campagne di Collazzone, nel verde dell'Umbria, ho realizzato il museo che sognavo: una macchina per la battitura del frumento e circa 400 pezzi dell'arte contadina, tutti conservati con cura e ancora funzionanti.</p><p>La collezione racconta l'intero lavoro dei campi: dalla semina alla raccolta di grano e mais, dalla vendemmia alla vinificazione, fino all'allevamento del bestiame e a tutto ciò che ruotava intorno alla vita in campagna. Accanto agli attrezzi della terra ci sono quelli degli antichi mestieri: il falegname, il ciabattino, il sarto, il tessitore, il fabbro ferraio, l'arrotino, il maniscalco, il norcino e il barbiere.</p><p>Ogni oggetto riporta a un tempo che ha ancora molto da raccontare. A me continua a emozionare, e chi viene a trovarmi ne resta stupito.</p>","<p>It all began with a love for everything rural life has to tell. More than twenty years ago I started saving my family's old tools; then came gifts from friends and neighbours, and pieces found at trade fairs and local flea markets. The search has never stopped, and I keep at it today with the same enthusiasm.</p><p>So, at my home in the countryside of Collazzone, in green Umbria, I built the museum I had always dreamed of: a wheat threshing machine and around 400 pieces of rural craft, all carefully kept and still in working order.</p><p>The collection tells the whole story of work on the land: from sowing to the wheat and maize harvest, from the grape harvest to winemaking, to raising livestock and everything that went with life in the countryside. Next to the farm tools are those of the old trades: the carpenter, the cobbler, the tailor, the weaver, the blacksmith, the knife grinder, the farrier, the pork butcher and the barber.</p><p>Every object takes you back to a time that still has a lot to say. It still moves me, and everyone who comes to visit leaves amazed.</p>"
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.intro.signature:2ivskmhcld7ug,en,,,Giuseppe Belardi Dottorini,Giuseppe Belardi Dottorini
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.intro.link_label:1h4k1jvh1kmth,en,,,Guarda la collezione,See the collection
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.intro.link:1zzw5dh4cys4c,en,,,#collezione,#collezione
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.intro.anchor:1p2ol0jju6d9h,en,,,chi-sono,chi-sono
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.intro.fact-anni.value:1xwuq3n5wlvtl,en,,,20+,20+
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.intro.fact-anni.label:1xwuq35fvcv9w,en,,,anni di raccolta,years of collecting
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.intro.fact-pezzi.value:l9wfxa0n8h8t,en,,,400,400
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.intro.fact-pezzi.label:l9wfxba7mpmo,en,,,"pezzi, circa","pieces, roughly"
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.intro.fact-sezioni.value:3uc27ecg4wopo,en,,,10,10
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.intro.fact-sezioni.label:3uc27dzbxts0h,en,,,sezioni,sections
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.label:9a8xxo7kgaqy,en,,,La collezione,The collection
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.heading:k8gfjcszpvlw,en,,,Dalla semina alla bottega.,From the field to the workshop.
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.nav_label:wda3yzwemrik,en,,,Sezioni della collezione,Collection sections
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.viewer_label:lwctw1xob4q7,en,,,Foto della collezione,Photos from the collection
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.empty_text:2bt60m9umkhjv,en,,,Le foto di questa sezione arrivano presto.,Photos of this section are coming soon.
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.anchor:q3f1n9t1xljp,en,,,collezione,collezione
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-macchine.title:y43zepdua904,en,,,Lavoro nei campi: le macchine,Working the fields: machines
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-macchine.nav_label:3mmvo7vndagyc,en,,,Macchine,Machines
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-macchine.prefix:4kj86i9jouck,en,,,museo-contadino-macchine-,museo-contadino-macchine-
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-utensili-campi.title:pyi7fmen8pq4,en,,,Lavoro nei campi: gli utensili,Working the fields: hand tools
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-utensili-campi.nav_label:3s7iidqjgr8ho,en,,,Utensili dei campi,Field tools
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-utensili-campi.prefix:fqcn2musf824,en,,,museo-contadino-utensili-campi-,museo-contadino-utensili-campi-
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-animali.title:3jgg4p9cobffh,en,,,Lavoro con gli animali,Working with animals
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-animali.nav_label:2n0tnroxrbspp,en,,,Animali,Animals
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-animali.prefix:1l3g74fvqma5,en,,,museo-contadino-animali-,museo-contadino-animali-
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-cereali-uva-olive.title:3qfxpvpwlzfj0,en,,,"Cereali, uva e olive","Grain, grapes and olives"
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-cereali-uva-olive.nav_label:o68n130fly8s,en,,,"Cereali, uva, olive","Grain, grapes, olives"
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-cereali-uva-olive.prefix:2jytu3bxak31o,en,,,museo-contadino-cereali-uva-olive-,museo-contadino-cereali-uva-olive-
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-ferro.title:3e95co8ac9svy,en,,,Lavorazione del ferro,Ironwork
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-ferro.nav_label:3eh4q3btvn532,en,,,Ferro,Iron
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-ferro.prefix:326ztbaxgywi6,en,,,museo-contadino-ferro-,museo-contadino-ferro-
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-legno.title:1anitw23olm8t,en,,,Lavorazione del legno,Woodworking
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-legno.nav_label:2dt9cg1igu2vx,en,,,Legno,Wood
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-legno.prefix:3u2d40olsw6z1,en,,,museo-contadino-legno-,museo-contadino-legno-
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-artigianato.title:20zbb4fpwqeav,en,,,Artigianato,Crafts
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-artigianato.nav_label:17klmre0q031j,en,,,Artigianato,Crafts
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-artigianato.prefix:ptqpil1pepvb,en,,,museo-contadino-artigianato-,museo-contadino-artigianato-
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-bilance.title:1j570e9i5zxvg,en,,,Bilance,Scales
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-bilance.nav_label:3eeok3fpo5zng,en,,,Bilance,Scales
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-bilance.prefix:3tyr0ng26mw7g,en,,,museo-contadino-bilance-,museo-contadino-bilance-
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-utensili-domestici.title:1cvf0llht1fgt,en,,,Utensili domestici,Household tools
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-utensili-domestici.nav_label:2x3k0ugpr034d,en,,,Casa,Household
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-utensili-domestici.prefix:1z5h8f1j7ic2l,en,,,museo-contadino-utensili-domestici-,museo-contadino-utensili-domestici-
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-varie.title:3oedhagn77t4r,en,,,Varie,Miscellaneous
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-varie.nav_label:1d5cmk91ai857,en,,,Varie,Miscellaneous
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.collezione.gallery-varie.prefix:oj9yq5n1497v,en,,,museo-contadino-varie-,museo-contadino-varie-
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.visita.label:1a51soo993w4k,en,,,Visita,Visit
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.visita.heading:215ujrtf086h6,en,,,Dove si trova,Where to find us
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.visita.notice:3d4r0attnz7vc,en,,,Per ora il museo è chiuso al pubblico.,The museum is closed to the public for now.
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.visita.place:1a51solsd36l5,en,,,Piccolo Museo della Civiltà Contadina,Small Museum of Rural Life
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.visita.address:215ukgpnqjt04,en,,,"Str. dei Boschetti, 12
+Collazzone (PG)","Str. dei Boschetti, 12
+Collazzone (PG)"
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.visita.map_query:1wrczijstftrf,en,,,"Piccolo Museo della Civiltà Contadina, Str. dei Boschetti 12, Collazzone","Piccolo Museo della Civiltà Contadina, Str. dei Boschetti 12, Collazzone"
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.visita.map_label:1wrczimm84mtj,en,,,Apri in Google Maps,Open in Google Maps
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.visita.contact_label:lhrm95rzctob,en,,,Scrivici per informazioni,Write to us for information
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.visita.contact_link:lvwf0frsymal,en,,,#contatti,#contatti
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.visita.image:1a51somrea8rp,en,,,shopify://shop_images/museo-contadino-copertina.jpg,shopify://shop_images/museo-contadino-copertina.jpg
+ONLINE_STORE_THEME,'195198484806,section.page.museo.json.visita.anchor:3d4r0ebzjzouz,en,,,visita,visita
+ONLINE_STORE_THEME,'195198484806,section.password.json.main.heading:2ulk5pr9gppma,en,,,Il sito è quasi pronto,The site is almost ready
+ONLINE_STORE_THEME,'195198484806,section.password.json.main.message:2ulk4ens80bap,en,,,"Stiamo preparando il negozio online. Se hai la password, entra pure.","We are getting the online shop ready. If you have the password, come on in."
+ONLINE_STORE_THEME,'195198484806,section.password.json.main.password_label:s8j35z9qn5ek,en,,,Password,Password
+ONLINE_STORE_THEME,'195198484806,section.password.json.main.button_label:3hvfbj3gedtpx,en,,,Entra,Enter
+ONLINE_STORE_THEME,'195198484806,section.password.json.main.error_message:2bpy5o2m5pbrq,en,,,Password non corretta. Riprova.,Incorrect password. Try again.
+ONLINE_STORE_THEME,'195198484806,section.product.json.main.add_label:iw9f5shjx1p2,en,,,Aggiungi al carrello,Add to cart
+ONLINE_STORE_THEME,'195198484806,section.product.json.main.sold_out_label:3mcqdsp6cijrm,en,,,Esaurito,Sold out
+ONLINE_STORE_THEME,'195198484806,section.product.json.main.added_label:382ltdzzzvvcn,en,,,Aggiunto al carrello.,Added to cart.
+ONLINE_STORE_THEME,'195198484806,section.product.json.main.error_label:lcorqvqtaelr,en,,,"Non ha funzionato, riprova.","Something went wrong, please try again."
+ONLINE_STORE_THEME,'195198484806,section.product.json.main.stock_error_label:1tqeovvinaqc0,en,,,Non c'è altra disponibilità per questo prodotto.,There is no more stock of this product.
+ONLINE_STORE_THEME,'195198484806,section.product.json.main.quantity_label:1oeswvkrsxf7w,en,,,Quantità,Quantity
+ONLINE_STORE_THEME,'195198484806,section.product.json.main.decrease_label:2435y31zot2b9,en,,,Diminuisci quantità,Decrease quantity
+ONLINE_STORE_THEME,'195198484806,section.product.json.main.increase_label:3si0y7a8urys3,en,,,Aumenta quantità,Increase quantity
+ONLINE_STORE_THEME,'195198484806,section.product.json.main.image_label:24t1g5hvmczm8,en,,,Immagine,Image
+ONLINE_STORE_THEME,'195198484806,section.product.json.main.convivia.eyebrow:1j6glhqsaejyf,en,,,Assaggialo dove nasce,Taste it where it is made
+ONLINE_STORE_THEME,'195198484806,section.product.json.main.convivia.text:3h8aim0nh9ibv,en,,,"Da Convivia, il nostro home restaurant a Collazzone, questo olio arriva a tavola nei piatti di stagione.","At Convivia, our home restaurant in Collazzone, this oil comes to the table in seasonal dishes."
+ONLINE_STORE_THEME,'195198484806,section.product.json.main.convivia.link_label:30hz7s1qtszz,en,,,Prenota una cena,Book a dinner
+ONLINE_STORE_THEME,'195198484806,section.product.json.main.convivia.link:3h8aim086wkwm,en,,,https://conviviarestaurant.it/,https://conviviarestaurant.it/
+ONLINE_STORE_THEME,'195198484806,section.product.json.main.shipping.title:19l0thzeuev53,en,,,Spedizioni,Shipping
+ONLINE_STORE_THEME,'195198484806,section.product.json.main.shipping.text:1dq7ftfsqj7e,en,,,<p>Spedizione in tutta Italia in 2 o 3 giorni lavorativi.</p>,<p>Shipping across Italy in 2 to 3 working days.</p>
+ONLINE_STORE_THEME,'195198484806,section.product.json.main.returns.title:ibbnqnmhs7sc,en,,,Resi,Returns
+ONLINE_STORE_THEME,'195198484806,section.product.json.main.returns.text:2lzkm4sc6f3gx,en,,,<p>Hai 14 giorni per cambiare idea. Scrivici e ti diciamo come fare.</p>,<p>You have 14 days to change your mind. Write to us and we'll tell you how.</p>
+ONLINE_STORE_THEME,'195198484806,section.product.json.main.storage.title:241ca3dq6x0zw,en,,,Conservazione,Storage
+ONLINE_STORE_THEME,'195198484806,section.product.json.main.storage.text:3d7vwtd5ros8h,en,,,<p>Tieni la bottiglia al riparo dalla luce e lontano da fonti di calore.</p>,<p>Keep the bottle away from light and heat.</p>
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.tagline:1sy4y8hcwyoix,en,,,L'olio di Collazzone,Olive oil from Collazzone
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.nav_title:2ky3x1ynrrq37,en,,,Naviga,Explore
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.nav_1_label:vp5fuxju6j0b,en,,,La collina,The hill
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.nav_1_href:3g4eoaleooep0,en,,,/#collina,/#collina
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.nav_2_label:vp5gbtocy1q0,en,,,L'olio,The oil
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.nav_2_href:3g4eob3u4plc7,en,,,/collections/all,/collections/all
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.nav_3_label:vp5iqbsllnp5,en,,,Cultivar,Olive varieties
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.nav_3_href:3g4eodq7e29wm,en,,,/#terra,/#terra
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.nav_4_label:vp5fg7nzbt8e,en,,,Contatti,Contact
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.nav_4_href:3g4eoa5hrffy9,en,,,#contatti,#contatti
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.table_title:vl1u4q0x9vdg,en,,,In tavola,At the table
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.table_label:vl1u4bxx6epe,en,,,Convivia Home Restaurant,Convivia Home Restaurant
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.table_href:3om2bp4ips8nh,en,,,https://conviviarestaurant.it/,https://conviviarestaurant.it/
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.newsletter_heading:3mws8faawdff7,en,,,"Notizie dal frantoio, poche volte l'anno.","News from the mill, a few times a year."
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.email_label:2iemnprdlci68,en,,,La tua email,Your email
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.button_label:i5yikjhuibyy,en,,,Iscriviti,Subscribe
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.helper_text:2qsjjqp7deck1,en,,,Puoi cancellarti in qualsiasi momento.,You can unsubscribe at any time.
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.success_message:1u25d04xmb8zm,en,,,"Grazie, la tua iscrizione è confermata.","Thank you, you are subscribed."
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.error_message:wojryxz6qpcp,en,,,Controlla l'indirizzo email e riprova.,Please check your email address and try again.
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.contact_title:2h33cq3st45nu,en,,,Contatti,Contact
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.email:1lghinr9nqb15,en,,,agricoladottorini@gmail.com,agricoladottorini@gmail.com
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.phone:1lghinz05k8g9,en,,,'+39 335 1851096,'+39 335 1851096
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.company_label:9xxjsd83pquj,en,,,Ragione sociale,Company
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.company_name:u12wgcw7mm0a,en,,,Azienda Agricola Belardi Dottorini Giuseppe,Azienda Agricola Belardi Dottorini Giuseppe
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.address_label:2cu8r9elewet6,en,,,Sede legale,Registered office
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.address:1sy4nr7ejif37,en,,,Str. dei Boschetti 12 · 06050 Collazzone (PG),Str. dei Boschetti 12 · 06050 Collazzone (PG)
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.vat:s8jbzqmck1yu,en,,,03906480540,03906480540
+ONLINE_STORE_THEME,'195198484806,section.sections/footer-group.json.footer.policies_label:1tb5fm7136x7u,en,,,Note legali,Legal
+ONLINE_STORE_THEME,'195198484806,section.sections/header-group.json.header.wordmark:l6x8ggntfn8u,en,,,Agricola Dottorini,Agricola Dottorini
+ONLINE_STORE_THEME,'195198484806,section.sections/header-group.json.header.tagline:3bk23mgvad5ux,en,,,L'olio di Collazzone,Olive oil from Collazzone
+ONLINE_STORE_THEME,'195198484806,section.sections/header-group.json.header.nav_1_label:7lnpu2pgu16j,en,,,La collina,The hill
+ONLINE_STORE_THEME,'195198484806,section.sections/header-group.json.header.nav_1_href:2d63rl6saxw9w,en,,,/#collina,/#collina
+ONLINE_STORE_THEME,'195198484806,section.sections/header-group.json.header.nav_2_label:7lnqayoyufw8,en,,,L'olio,The oil
+ONLINE_STORE_THEME,'195198484806,section.sections/header-group.json.header.nav_2_href:2d63rlp7qz2x3,en,,,/#metodo,/#metodo
+ONLINE_STORE_THEME,'195198484806,section.sections/header-group.json.header.nav_4_label:7lnljzya6q2m,en,,,Museo,Museum
+ONLINE_STORE_THEME,'195198484806,section.sections/header-group.json.header.nav_4_href:2d63rgiukzsu9,en,,,/pages/museo,/pages/museo
+ONLINE_STORE_THEME,'195198484806,section.sections/header-group.json.header.nav_5_label:7lnnyi7jlg1r,en,,,Convivia,Convivia
+ONLINE_STORE_THEME,'195198484806,section.sections/header-group.json.header.nav_5_href:2d63rj57ucheo,en,,,/#convivia,/#convivia
+ONLINE_STORE_THEME,'195198484806,section.sections/header-group.json.header.nav_6_label:7lnofe71lurg,en,,,Contatti,Contact
+ONLINE_STORE_THEME,'195198484806,section.sections/header-group.json.header.nav_6_href:2d63rjnnado1v,en,,,#contatti,#contatti
+ONLINE_STORE_THEME,'195198484806,section.sections/header-group.json.header.menu_label:2f1e4xij1xmfz,en,,,Menu,Menu
+ONLINE_STORE_THEME,'195198484806,section.sections/header-group.json.header.cart_label:2ed8k00t4ef0o,en,,,Carrello,Cart
+ONLINE_STORE_THEME,'195198484806,section.sections/header-group.json.header.shop_label:2kemtge6hmmso,en,,,Prodotti,Shop
+ONLINE_STORE_THEME,'195198484806,section.sections/header-group.json.header.shop_href:3upb0ssmz1zmf,en,,,/collections/all,/collections/all
+PACKING_SLIP_TEMPLATE,'6470598982,body,en,,,"<div class=""wrapper"">
+  <div class=""header"">
+    <div class=""shop-title"">
+      <p class=""to-uppercase"">
+        {{ shop.name }}
+      </p>
+    </div>
+    <div class=""order-title"">
+      <p class=""text-align-right"">
+        Ordine {{ order.name }}
+      </p>
+      {% if order.po_number != blank %}
+        <p class=""text-align-right"">
+          Numero d&#39;ordine dell&#39;acquisto #{{ order.po_number }}
+        </p>
+      {% endif %}
+      <p class=""text-align-right"">
+        {{ order.created_at | date: format: ""date"" }}
+      </p>
+    </div>
+  </div>
+  <div class=""customer-addresses{% if delivery_method.type == ""pick-up"" %} pickup-addresses{% endif %}"">
+    {% unless delivery_method.type == ""pick-up"" %}
+      <div class=""shipping-address"">
+        <p class=""subtitle-bold to-uppercase"">
+          {% if delivery_method.instructions != blank %}
+            Consegna a
+          {% else %}
+            Spedire a
+          {% endif %}
+        </p>
+        <p class=""address-detail"">
+          {% if shipping_address != blank %}
+            {{ shipping_address.name }}
+            {% if shipping_address.company != blank %}
+              <br>
+              {{ shipping_address.company }}
+            {% endif %}
+            <br>
+            {{ shipping_address.address1 }}
+            {% if shipping_address.address2 != blank %}
+              <br>
+              {{ shipping_address.address2 }}
+            {% endif %}
+            {% if shipping_address.city_province_zip != blank %}
+              <br>
+              {{ shipping_address.city_province_zip }}
+            {% endif %}
+            <br>
+            {{ shipping_address.country }}
+            {% if shipping_address.phone != blank %}
+              <br>
+              {{ shipping_address.phone }}
+            {% endif %}
+          {% else %}
+            Nessun indirizzo di spedizione
+          {% endif %}
+        </p>
+      </div>
+    {% endunless %}
+    <div class=""billing-address{% if delivery_method.type == ""pick-up"" %} pickup-billing-address{% endif %}"">
+      <p class=""subtitle-bold to-uppercase"">
+        Fatturare a
+      </p>
+      <p class=""address-detail"">
+        {% if billing_address != blank %}
+          {{ billing_address.name }}
+          {% if billing_address.company != blank %}
+            <br>
+            {{ billing_address.company }}
+          {% endif %}
+          <br>
+          {{ billing_address.address1 }}
+          {%  if billing_address.address2 != blank %}
+            <br>
+            {{ billing_address.address2 }}
+          {% endif %}
+          {% if billing_address.city_province_zip != blank %}
+            <br>
+            {{ billing_address.city_province_zip }}
+          {% endif %}
+          <br>
+          {{ billing_address.country }}
+        {% else %}
+          Nessun indirizzo di fatturazione
+        {% endif %}
+      </p>
+    </div>
+  </div>
+  <hr>
+  <div class=""order-container"">
+    <div class=""order-container-header"">
+      <div class=""order-container-header-left-content"">
+        <p class=""subtitle-bold to-uppercase"">
+          Articoli
+        </p>
+      </div>
+      <div class=""order-container-header-right-content"">
+        <p class=""subtitle-bold to-uppercase"">
+          Quantità
+        </p>
+      </div>
+    </div>
+
+    {% comment %}
+    To adjust the size of line item images, change desired_image_size.
+    The other variables make sure your images print at high quality.
+    {% endcomment %}
+    {% assign desired_image_size = 58 %}
+    {% assign resolution_adjusted_size = desired_image_size | times: 300 | divided_by: 72 | ceil %}
+    {% capture effective_image_dimensions %}
+      {{ resolution_adjusted_size }}x{{ resolution_adjusted_size }}
+    {% endcapture %}
+
+    {% for line_item in line_items_in_shipment %}
+      <div class=""flex-line-item"">
+        <div class=""flex-line-item-img"">
+          {% if line_item.image != blank %}
+            <div class=""aspect-ratio aspect-ratio-square"" style=""width: {{ desired_image_size }}px; height: {{ desired_image_size }}px;"">
+              {{ line_item.image | img_url: effective_image_dimensions | img_tag: '', 'aspect-ratio__content' }}
+            </div>
+          {% endif %}
+        </div>
+        <div class=""flex-line-item-description"">
+          <p>
+            <span class=""line-item-description-line"">
+              {{ line_item.title }}
+            </span>
+            {% if line_item.variant_title != blank %}
+              <span class=""line-item-description-line"">
+                {{ line_item.variant_title }}
+              </span>
+            {% endif %}
+            {% if line_item.sku != blank %}
+              <span class=""line-item-description-line"">
+                {{ line_item.sku }}
+              </span>
+            {% endif %}
+            {% for group in line_item.groups %}
+              {% if group.deliverable? %}
+                <span class=""line-item-description-line"">
+                  Per: {{ group.title }}
+                </span>
+              {% else %}
+                <span class=""line-item-description-line"">
+                  Parte di: {{ group.title }}
+                </span>
+              {% endif %}
+            {% endfor %}
+          </p>
+        </div>
+        <div class=""flex-line-item-quantity"">
+          <p class=""text-align-right"">
+            {{ line_item.shipping_quantity }} di {{ line_item.quantity }}
+          </p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  {% unless includes_all_line_items_in_order %}
+    {% unless delivery_method.type == ""pick-up"" %}
+      <hr class=""subdued-separator"">
+      <p class=""missing-line-items-text "">
+        Ci sono altri articoli del tuo ordine non inclusi in questa spedizione.
+      </p>
+    {% endunless %}
+  {% endunless %}
+  <hr>
+  {% if order.note != blank %}
+    <div class=""notes"">
+      <p class=""subtitle-bold to-uppercase"">
+        Note
+      </p>
+      <p class=""notes-details"">
+        {{ order.note }}
+      </p>
+    </div>
+  {% endif %}
+  {% if delivery_method.instructions != blank %}
+    <div class=""notes"">
+      <p class=""subtitle-bold to-uppercase"">
+        Istruzioni per la consegna
+      </p>
+      <p class=""notes-details"">
+        {{ delivery_method.instructions }}
+      </p>
+    </div>
+  {% endif %}
+  <div class=""footer"">
+    <p>
+      Grazie per aver acquistato da noi!
+    </p>
+    <p>
+      <strong>
+        {{ shop.name }}
+      </strong>
+      <br>
+      {{ shop_address.summary }}
+      <br>
+      {{ shop.email }}
+      <br>
+      {{ shop.domain }}
+    </p>
+  </div>
+</div>
+<style type=""text/css"">
+  body {
+    font-size: 15px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .wrapper {
+    width: 831px;
+    margin: auto;
+    padding: 4em;
+    font-family: ""Noto Sans"", sans-serif;
+    font-weight: 250;
+  }
+
+  .header {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    align-items: top;
+  }
+
+  .header p {
+    margin: 0;
+  }
+
+  .shop-title {
+    -webkit-box-flex: 6;
+    -webkit-flex: 6;
+    flex: 6;
+    font-size: 1.9em;
+  }
+
+  .order-title {
+    -webkit-box-flex: 4;
+    -webkit-flex: 4;
+    flex: 4;
+  }
+
+  .customer-addresses {
+    width: 100%;
+    display: inline-block;
+    margin: 2em 0;
+  }
+
+  .address-detail {
+    margin: 0.7em 0 0;
+    line-height: 1.5;
+  }
+
+  .subtitle-bold {
+    font-weight: bold;
+    margin: 0;
+    font-size: 0.85em;
+  }
+
+  .to-uppercase {
+    text-transform: uppercase;
+  }
+
+  .text-align-right {
+    text-align: right;
+  }
+
+  .shipping-address {
+    float: left;
+    min-width: 18em;
+    max-width: 50%;
+  }
+
+  .billing-address {
+    padding-left: 20em;
+    min-width: 18em;
+  }
+
+  .pickup-billing-address {
+    padding-left: 0;
+  }
+
+  .order-container {
+    padding: 0 0.7em;
+  }
+
+  .order-container-header {
+    display: inline-block;
+    width: 100%;
+    margin-top: 1.4em;
+  }
+
+  .order-container-header-left-content {
+    float: left;
+  }
+
+  .order-container-header-right-content {
+    float: right;
+  }
+
+  .flex-line-item {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 1.4em 0;
+    page-break-inside: avoid;
+  }
+
+  .flex-line-item-img {
+    margin-right: 1.4em;
+    min-width: {{ desired_image_size }}px;
+  }
+
+  .flex-line-item-description {
+    -webkit-box-flex: 7;
+    -webkit-flex: 7;
+    flex: 7;
+  }
+
+  .line-item-description-line {
+    display: block;
+  }
+
+  .flex-line-item-description p {
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .flex-line-item-quantity {
+    -webkit-box-flex: 3;
+    -webkit-flex: 3;
+    flex: 3;
+  }
+
+  .subdued-separator {
+    height: 0.07em;
+    border: none;
+    color: lightgray;
+    background-color: lightgray;
+    margin: 0;
+  }
+
+  .missing-line-items-text {
+    margin: 1.4em 0;
+    padding: 0 0.7em;
+  }
+
+  .notes {
+    margin-top: 2em;
+  }
+
+  .notes p {
+    margin-bottom: 0;
+  }
+
+  .notes .notes-details {
+    margin-top: 0.7em;
+  }
+
+  .footer {
+    margin-top: 2em;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .footer p {
+    margin: 0;
+    margin-bottom: 1.4em;
+  }
+
+  hr {
+    height: 0.14em;
+    border: none;
+    color: black;
+    background-color: black;
+    margin: 0;
+  }
+
+  .aspect-ratio {
+    position: relative;
+    display: block;
+    background: #fafbfc;
+    padding: 0;
+  }
+
+  .aspect-ratio::before {
+    z-index: 1;
+    content: """";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 1px solid rgba(195,207,216,0.3);
+  }
+
+  .aspect-ratio--square {
+    width: 100%;
+    padding-bottom: 100%;
+  }
+
+  .aspect-ratio__content {
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+  }
+</style>
+",
+PRODUCT,'15704565449030,title,en,,,Confezione Convivia,Convivia gift box
+PRODUCT,'15704565449030,body_html,en,,,"<p><meta charset=""utf-8""><span>Olio nuovo e un invito a tavola da Convivia Home Restaurant: il nostro modo di dire benvenuto.</span></p>","<p><meta charset=""utf-8""><span>New season oil and an invitation to dinner at Convivia Home Restaurant: our way of saying welcome.</span></p>"
+PRODUCT,'15704565449030,handle,en,,,confezione-convivia,confezione-convivia
+PRODUCT,'15704565449030,product_type,en,,,,
+PRODUCT,'15730027168070,title,en,,,"Bottiglia 0,5 L",0.5 L bottle
+PRODUCT,'15730027168070,body_html,en,,,"<p><meta charset=""utf-8""><span>Fruttato medio, sentori d'erba e carciofo, finale amaro e piccante in equilibrio.</span></p>","<p><meta charset=""utf-8""><span>Medium fruity, with hints of grass and artichoke and a balanced bitter and peppery finish.</span></p>"
+PRODUCT,'15730027168070,handle,en,,,bottiglia-500ml,bottiglia-500ml
+PRODUCT,'15730027168070,product_type,en,,,,
+PRODUCT,'15730027233606,title,en,,,Latta 2 L,2 L tin
+PRODUCT,'15730027233606,body_html,en,,,"<p><meta charset=""utf-8""><span>La nostra annata in latta, pensata per chi l'olio buono lo usa ogni giorno.</span></p>","<p><meta charset=""utf-8""><span>This year’s oil in a tin, for people who use good oil every day.</span></p>"
+PRODUCT,'15730027233606,handle,en,,,latta-2l,latta-2l
+PRODUCT,'15730027233606,product_type,en,,,,
+PRODUCT,'15852986433862,title,en,,,Latta 5 L,5 L tin
+PRODUCT,'15852986433862,body_html,en,,,<p>Formato famiglia!</p>,<p>Family size!</p>
+PRODUCT,'15852986433862,handle,en,,,latta-5l,latta-5l
+PRODUCT,'15852986433862,product_type,en,,,,
+PRODUCT_OPTION,'18228810514758,name,en,,,Title,Title
+PRODUCT_OPTION,'18261449081158,name,en,,,Title,Title
+PRODUCT_OPTION,'18261449212230,name,en,,,Title,Title
+PRODUCT_OPTION,'18406952141126,name,en,,,Title,Title
+PRODUCT_OPTION_VALUE,'12126532993350,name,en,,,Default Title,
+PRODUCT_OPTION_VALUE,'12240191521094,name,en,,,Default Title,
+PRODUCT_OPTION_VALUE,'12240192110918,name,en,,,Default Title,
+PRODUCT_OPTION_VALUE,'12701892706630,name,en,,,Default Title,
+SHOP,'101927846214,meta_title,en,,,Agricola Dottorini,Agricola Dottorini
+SHOP,'101927846214,meta_description,en,,,Olio di nostra produzione dal cuore verde d'Italia.,"Oil from our own production, from the green heart of Italy."
+SHOP_POLICY,'56228053318,body,en,,,"<div>
+  <p>Ultimo aggiornamento: {{ last_updated }}</p>
+  <p>{{ shop_name }} gestisce questo negozio e sito web, tra cui tutte le informazioni, i contenuti, le funzionalità, gli strumenti, i prodotti e i servizi correlati, al fine di offrire alla clientela un'esperienza d'acquisto curata (i &quot;Servizi&quot;). {{ shop_name }} è supportato da Shopify, che ci consente di fornire i Servizi. Questa Informativa sulla privacy descrive come raccogliamo, utilizziamo e divulghiamo i dati personali degli utenti quando visitano, utilizzano o effettuano un acquisto o un'altra transazione tramite i Servizi o comunicano con noi in altro modo. In caso di conflitto tra i nostri Termini e condizioni del servizio e la presente Informativa sulla privacy, quest'ultima prevale per quanto riguarda la raccolta, l'elaborazione e la divulgazione dei dati personali. </p>
+  <p>Leggi attentamente questa Informativa sulla privacy. Utilizzando e accedendo a uno qualsiasi dei Servizi, confermi di aver letto la presente Informativa sulla privacy e di aver compreso le modalità di raccolta, utilizzo e divulgazione dei dati come qui descritte.</p>
+  <h2>Dati personali che raccogliamo o elaboriamo</h2>
+  <p>Quando utilizziamo il termine &quot;dati personali&quot;, ci riferiamo a informazioni che identificano o possono essere ragionevolmente collegate a te o a un'altra persona. I dati personali non includono informazioni raccolte in modo anonimo o de-identificate, in modo tale che non possano identificare o essere ragionevolmente collegate a te. A seconda di come interagisci con i Servizi, del luogo in cui vivi e di quanto consentito o richiesto dalla legge applicabile, potremmo raccogliere o elaborare le seguenti categorie di dati personali, incluse le deduzioni da essi tratte:</p>
+  <ul>
+      <li><strong>Recapiti</strong>, inclusi nome, indirizzo, indirizzo di fatturazione, indirizzo di spedizione, numero di telefono e indirizzo email.</li>
+      <li><strong>Informazioni finanziarie</strong>, inclusi numeri di carte di credito e di debito e conti finanziari, informazioni sulle carte di pagamento, informazioni sui conti finanziari, dettagli delle transazioni, metodo di pagamento, conferme di pagamento e altri dettagli di pagamento.</li>
+      <li><strong>Informazioni sull'account</strong>, inclusi nome utente, password, domande di sicurezza, preferenze e impostazioni.</li>
+      <li><strong>Informazioni sulle transazioni</strong>, inclusi gli articoli visualizzati, inseriti nel carrello, aggiunti alla lista dei desideri, acquistati, restituiti, scambiati o annullati e le transazioni passate.</li>
+      <li><strong>Comunicazioni con noi</strong>, incluse le informazioni fornite nelle comunicazioni con noi, ad esempio, quando si invia una richiesta all'assistenza clienti.</li>
+      <li><strong>Informazioni sul dispositivo</strong>, incluse quelle sul dispositivo, sul browser o sulla connessione di rete, l'indirizzo IP e altri identificatori univoci.</li>
+      <li><strong>Informazioni sull'utilizzo</strong>, incluse le informazioni relative all'interazione con i Servizi, tra cui le modalità e le tempistiche di interazione o di navigazione al loro interno. </li>
+  </ul>
+  <h2>Fonti dei dati personali</h2>
+  <p>Potremmo raccogliere dati personali dalle seguenti fonti:</p>
+  <ul>
+      <li><strong>Direttamente da te</strong>, incluso quando crei un account, visiti o utilizzi i Servizi, comunichi con noi o ci fornisci altrimenti i tuoi dati personali;</li>
+      <li><strong>Automaticamente tramite i Servizi</strong>, incluso dal tuo dispositivo quando utilizzi i nostri prodotti o servizi, visiti i nostri siti web e tramite l'uso di cookie e tecnologie simili;</li>
+      <li><strong>Dai nostri fornitori di servizi</strong>, incluso quando li incarichiamo di abilitare determinate tecnologie e quando raccolgono o elaborano i tuoi dati personali per nostro conto; </li>
+      <li><strong>Dai nostri partner o da altre terze parti.</strong></li>
+  </ul>
+  <h2>Come utilizziamo i tuoi dati personali</h2>
+  <p>A seconda di come interagisci con noi o di quali Servizi utilizzi, potremmo usare i dati personali per le seguenti finalità:</p>
+  <ul>
+      <li><strong>Fornire, personalizzare e migliorare i Servizi.</strong> Utilizziamo i tuoi dati personali per fornirti i Servizi, inclusi l'esecuzione del nostro contratto con te, l'elaborazione dei pagamenti, l'evasione degli ordini, la memorizzazione delle preferenze e degli articoli di tuo interesse, l'invio di notifiche relative all'account, l'elaborazione di acquisti, resi, cambi o altre transazioni, la creazione, il mantenimento e la gestione dell'account, l'organizzazione della spedizione, l'agevolazione di eventuali resi e cambi, la possibilità di pubblicare recensioni e la creazione di un'esperienza d'acquisto personalizzata (ad esempio consigliando prodotti correlati ai tuoi acquisti). Ciò può includere l'utilizzo dei tuoi dati personali per personalizzare e migliorare ulteriormente i Servizi.</li>
+      <li><strong>Marketing e pubblicità.</strong> Utilizziamo i tuoi dati personali per scopi di marketing e promozionali, ad esempio per inviare comunicazioni di marketing, pubblicitarie e promozionali tramite email, SMS o posta, e per mostrare annunci online di prodotti o servizi sui Servizi o su altri siti web, anche in base agli articoli precedentemente acquistati o aggiunti al carrello e ad altre attività sui Servizi. </li>
+      <li><strong>Sicurezza e prevenzione delle frodi.</strong> Utilizziamo i tuoi dati personali per autenticare l'account, fornire un'esperienza di pagamento e acquisto sicura, rilevare, indagare o agire in merito a possibili attività fraudolente, illegali, non sicure o dannose, per proteggere la sicurezza pubblica e i nostri servizi. Se scegli di utilizzare i Servizi e registrare un account, hai la responsabilità di mantenere al sicuro le relative credenziali. Ti sconsigliamo vivamente di condividere nome utente, password o altri dettagli di accesso.</li>
+      <li><strong>Comunicazioni con l'utente.</strong> Utilizziamo i tuoi dati personali per fornirti assistenza clienti, rispondere alle tue richieste, offrirti servizi efficaci e mantenere un rapporto commerciale. </li>
+      <li><strong>Motivi legali.</strong> Utilizziamo i tuoi dati personali per conformarci alle leggi applicabili o rispondere a procedimenti legali validi, incluse le richieste da parte delle forze dell'ordine o di agenzie governative, per indagare o partecipare a procedimenti civili, contenziosi potenziali o effettivi o altri procedimenti legali avversari, e per far rispettare o indagare su potenziali violazioni dei nostri termini o politiche.</li>
+  </ul>
+  <h2>Come divulghiamo i dati personali</h2>
+  <p>In determinate circostanze, potremmo divulgare i tuoi dati personali a terze parti per scopi legittimi soggetti a questa Informativa sulla privacy. Tali circostanze possono includere:</p>
+  <ul>
+      <li>Shopify, venditori e altre terze parti che forniscono servizi per nostro conto (ad es. gestione IT, elaborazione dei pagamenti, analisi dei dati, assistenza clienti, cloud storage, evasione ordini e spedizione).</li>
+      <li>Partner commerciali e di marketing per fornire servizi di marketing e mostrare annunci. {% if shopify_network_intelligence_enabled %} Ad esempio, utilizziamo Shopify per supportare la pubblicità personalizzata con servizi di terze parti in base alle tue attività online con diversi merchant e siti web.{% endif %} I nostri partner commerciali e di marketing utilizzeranno le tue informazioni in conformità con le rispettive informative sulla privacy. A seconda del luogo in cui risiedi, potresti avere il diritto di chiederci di non condividere le tue informazioni per mostrare pubblicità mirata e marketing in base alle tue attività online con diversi merchant e siti web. {% if data_sale_opt_out_enabled %}Puoi esercitare il diritto di rifiutare esplicitamente tali utilizzi <a href=""{{ data_sale_opt_out_page_url }}""> qui</a> {% endif %}.</li>
+      <li>Quando ci indirizzi, ci richiedi o acconsenti in altro modo alla divulgazione di determinate informazioni a terze parti, ad esempio per spedire i prodotti o tramite l'utilizzo di widget di social media o integrazioni di accesso.</li>
+      <li>Le nostre affiliate o altre società all'interno del nostro gruppo aziendale.</li>
+      <li>
+      In relazione a una transazione commerciale, ad esempio una fusione o un fallimento, per rispettare eventuali obblighi legali applicabili (inclusa la risposta a mandati di comparizione, mandati di perquisizione e richieste simili), per far rispettare eventuali termini e condizioni del servizio o politiche applicabili e per proteggere o difendere i Servizi, i nostri diritti e i diritti dei nostri utenti o di altre persone.
+      </li>
+  </ul>
+  <h2>Relazione con Shopify</h2>
+  <p>I Servizi sono ospitati da Shopify, che raccoglie ed elabora i dati personali relativi all'accesso e all'utilizzo dei Servizi per poterteli fornire e per migliorarli. Le informazioni che invii ai Servizi saranno trasmesse e condivise con Shopify, oltre che con terze parti che potrebbero trovarsi in paesi diversi da quello in cui risiedi, al fine di fornirti e migliorare i Servizi. {% if shopify_network_intelligence_enabled %}Inoltre, per contribuire a proteggere, far crescere e migliorare la nostra attività, utilizziamo determinate funzionalità avanzate di Shopify che integrano dati e informazioni ottenuti dalle tue interazioni con il nostro negozio, con altri merchant e con Shopify. Per fornire queste funzionalità avanzate, Shopify potrebbe utilizzare i dati personali raccolti in merito alle tue interazioni con il nostro negozio, con altri merchant e con Shopify. In queste circostanze, Shopify è responsabile del trattamento dei tuoi dati personali, incluso il compito di rispondere alle tue richieste di esercizio dei diritti in merito all'utilizzo di questi per tali scopi.{% endif %} Per maggiori informazioni su come Shopify utilizza i tuoi dati personali e su eventuali diritti a tua disposizione, visita la pagina relativa all'<a href=""https://www.shopify.com/legal/privacy/app-users"">Informativa sulla privacy dei consumatori di Shopify</a>. A seconda del luogo in cui vivi, puoi esercitare determinati diritti in relazione ai tuoi dati personali <a href=""https://privacy.shopify.com/en"">qui nel Portale sulla privacy di Shopify</a>. </p>
+  <h2>Siti web e link di terze parti</h2>
+  <p>I Servizi potrebbero fornire link a siti web o ad altre piattaforme online gestite da terze parti. Se clicchi su link diretti a siti non affiliati o non controllati da noi, devi rivedere le relative informative sulla privacy e sulla sicurezza e gli altri termini e condizioni. Non garantiamo e non siamo responsabili per la privacy o la sicurezza di tali siti, incluse l'accuratezza, la completezza o l'affidabilità delle informazioni ivi contenute. Le informazioni che fornisci in luoghi pubblici o semipubblici, incluse quelle che condividi su piattaforme di social networking di terze parti, potrebbero essere visibili ad altri utenti dei Servizi e/o agli utenti di tali piattaforme di terze parti, senza limitazioni in merito al relativo utilizzo da parte nostra o di terze parti. L'inclusione di tali link non implica, di per sé, alcuna approvazione dei contenuti presenti su tali piattaforme o dei rispettivi proprietari o operatori, salvo quanto specificato nei Servizi.</p>
+  <h2>Dati dei minori</h2>
+  <p>I Servizi non sono destinati all'uso da parte di minori e non raccogliamo consapevolmente alcun dato personale su bambini al di sotto della maggiore età nella tua giurisdizione. Se sei il genitore o il tutore di un bambino che ci ha fornito i propri dati personali, puoi contattarci utilizzando i recapiti riportati di seguito per richiederne l'eliminazione. Alla data di entrata in vigore di questa Informativa sulla privacy, non siamo a conoscenza del fatto che &quot;condividiamo&quot; o &quot;vendiamo&quot; (secondo la definizione di tali termini nella legge applicabile) dati personali di persone di età inferiore a 16 anni.</p>
+  <h2>Sicurezza e conservazione dei dati</h2>
+  <p>Ti ricordiamo che nessuna misura di sicurezza è perfetta o impenetrabile e non possiamo garantire una &quot;sicurezza assoluta&quot;. Inoltre, qualsiasi informazione ci invii potrebbe non essere sicura durante il transito. Ti consigliamo di non utilizzare canali non sicuri per comunicarci informazioni sensibili o riservate.</p>
+  <p>La durata della conservazione dei dati personali dipende da diversi fattori, ad esempio la necessità di tali informazioni per mantenere l'account, fornire i Servizi, rispettare gli obblighi legali, risolvere controversie o far rispettare altri contratti e informative applicabili.</p>
+  <h2>Diritti e scelte</h2>
+  <p>A seconda di dove vivi, potresti avere alcuni o tutti i diritti elencati di seguito in relazione ai tuoi dati personali. Tuttavia, tali diritti non sono assoluti, potrebbero essere applicabili solo in determinate circostanze e, in alcuni casi, potremmo rifiutare la tua richiesta come consentito dalla legge.</p>
+  <ul>
+      <li><strong>Diritto di accesso / informazione.</strong> Potresti avere il diritto di richiedere l'accesso ai dati personali in nostro possesso.</li>
+      <li><strong>Diritto di cancellazione.</strong> Potresti avere il diritto di richiedere la cancellazione dei tuoi dati personali in nostro possesso.</li>
+      <li><strong>Diritto di correzione.</strong> Potresti avere il diritto di richiedere la correzione di dati personali inesatti in nostro possesso.</li>
+      <li><strong>Diritto alla portabilità.</strong> Potresti avere il diritto di ricevere una copia dei tuoi dati personali in nostro possesso e di richiedere di trasferirli a una terza parte, in determinate circostanze e con determinate eccezioni.</li>
+      {% if selling_to_united_states %}<li><strong>Diritto di rifiutare esplicitamente la vendita o la condivisione per la pubblicità mirata.</strong> A seconda di dove risiedi, potresti avere il diritto di rifiutare esplicitamente la &quot;vendita&quot; o la &quot;condivisione&quot; dei tuoi dati personali, oppure di rifiutare l'elaborazione dei tuoi dati per finalità considerate come &quot;pubblicità mirata&quot;, secondo la definizione delle leggi sulla privacy applicabili. {% if data_sale_opt_out_enabled  %}Puoi esercitare il diritto di rifiutare tali utilizzi <a href=""{{ data_sale_opt_out_page_url }}"">qui</a>. Tieni presente che se visiti il nostro sito web con il segnale di preferenza del Controllo globale della privacy abilitato, a seconda di dove ti trovi, lo tratteremo automaticamente come una richiesta di rifiuto esplicito per il dispositivo e il browser che utilizzi per visitare il sito web. Se riusciamo ad associare il dispositivo che invia il segnale a un account Shopify, applicheremo la richiesta di rifiuto esplicito anche all'account. Per scoprire di più sul Controllo globale della privacy, puoi visitare la pagina https://globalprivacycontrol.org/. Oltre al Controllo globale della privacy, non riconosciamo altri segnali &quot;DO NOT TRACK&quot; che potrebbero essere inviati dal tuo browser web o dispositivo.{% endif %}</li>{% endif %}
+      <li>
+      <strong>Gestione delle preferenze di comunicazione.</strong> Potremmo inviarti email promozionali; puoi scegliere di non riceverle in qualsiasi momento utilizzando l'opzione di annullamento dell'iscrizione visualizzata nelle nostre email. Se decidi di non riceverle, potremmo comunque inviarti email non promozionali, ad esempio quelle relative all'account o agli ordini effettuati.
+      </li>
+  </ul>
+  <div>
+      {% if selling_to_europe %}
+      <p><strong>Se risiedi nel Regno Unito o nello Spazio economico europeo</strong> e salvo eccezioni e limitazioni previste dalla legge locale, puoi esercitare i seguenti diritti in aggiunta a quelli sopra descritti:</p>
+      <ul>
+      <li><strong>Obiezione all'elaborazione e restrizione all'elaborazione:</strong> potresti avere il diritto di chiederci di interrompere o limitare l'elaborazione dei tuoi dati personali per determinate finalità. </li>
+      <li><strong>Revoca del consenso:</strong> nei casi in cui facciamo affidamento sul consenso per l'elaborazione dei tuoi dati personali, hai il diritto di revocarlo. Qualora procedessi con la revoca, la liceità di eventuali elaborazioni basate sul tuo consenso precedenti a tale momento non ne risentirà.</li>
+      </ul>
+      {% endif %}
+  </div>
+  <p>Puoi esercitare uno qualsiasi di questi diritti nei casi indicati nei Servizi o contattandoci tramite i recapiti forniti di seguito. Per scoprire di più su come Shopify utilizza i tuoi dati personali e su eventuali diritti a tua disposizione, inclusi quelli relativi ai dati elaborati da Shopify, visita la pagina https://privacy.shopify.com/en. </p>
+  <p>Non faremo alcuna discriminazione nei tuoi confronti in caso di esercizio di uno di questi diritti. Potremmo dover verificare la tua identità prima di elaborare le richieste, come consentito o richiesto dalla legge applicabile. In conformità con le leggi applicabili, puoi designare un agente autorizzato per effettuare le richieste per tuo conto al fine di esercitare i diritti. Prima di accettare una tale richiesta da parte di un agente, richiederemo che quest'ultimo fornisca la prova di autorizzazione ad agire per tuo conto, e potremmo aver bisogno che tu verifichi direttamente con noi la tua identità. Risponderemo alla richiesta in modo tempestivo come richiesto dalla legge applicabile.</p>
+  <h2>Reclami</h2>
+  <p>Se hai dei reclami su come elaboriamo i tuoi dati personali, contattaci utilizzando i recapiti forniti di seguito. A seconda di dove vivi, potresti avere il diritto di presentare ricorso contro la nostra decisione contattandoci ai recapiti di seguito o presentare un reclamo alla tua autorità locale per la protezione dei dati.{% if selling_to_europe %} Per lo SEE, puoi trovare un elenco delle autorità di controllo della protezione dei dati responsabili <a href=""https://edpb.europa.eu/about-edpb/about-edpb/members"">qui</a>.{% endif %}</p>
+  <h2>Trasferimenti internazionali</h2>
+  <p>Ti ricordiamo che potremmo trasferire, archiviare ed elaborare i tuoi dati personali al di fuori del paese in cui risiedi. </p>
+  <p>Se trasferiamo i tuoi dati personali al di fuori dello Spazio economico europeo o del Regno Unito, faremo affidamento su meccanismi di trasferimento riconosciuti, ad esempio le Clausole contrattuali tipo della Commissione europea o eventuali contratti equivalenti emessi dalla relativa autorità competente del Regno Unito, a seconda dei casi, a meno che il trasferimento dei dati non avvenga verso un paese che è stato considerato in grado di fornire un livello di protezione adeguato.</p>
+  <h2>Modifiche alla presente Informativa sulla privacy</h2>
+  <p>Potremmo aggiornare questa Informativa sulla privacy di tanto in tanto, anche per riflettere le modifiche alle nostre pratiche o per altri motivi operativi, legali o normativi. Pubblicheremo l'Informativa sulla privacy aggiornata su questo sito web, aggiorneremo la data dell'&quot;Ultimo aggiornamento&quot; e forniremo una notifica come richiesto dalla legge applicabile.</p>
+  <h2>Contatti</h2>
+  <p>In caso di domande sulle nostre pratiche sulla privacy o su questa Informativa sulla privacy, o per esercitare uno dei diritti a tua disposizione, inviaci un'email all'indirizzo {{ email }}. Puoi trovare gli altri nostri recapiti consultando i {{ contact_information_policy_link }}. {% if selling_to_europe %}Ai fini delle leggi sulla protezione dei dati applicabili, siamo i titolari del trattamento dei tuoi dati personali. {% endif %}</p>
+</div>",
