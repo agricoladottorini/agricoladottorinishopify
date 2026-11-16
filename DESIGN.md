@@ -412,3 +412,13 @@ Shopify only offers for translation the settings that are stored, not schema
 defaults, so every text setting of the header, footer, cart, cart drawer,
 product, collection and password sections is written out in its JSON
 (`config/settings_data.json` for the static cart drawer).
+
+English content was first machine translated with Translate & Adapt, then
+rewritten by hand and imported as a CSV (Settings > Languages > Import,
+"overwrite"): `brand/i18n/translations-en.csv`, built from Shopify's export by
+`brand/i18n/build-en.py`, which holds the English copy. The machine pass had
+translated technical fields too (`#collina` -> `#hill`, the museum photo
+prefixes, `/pages/museo`), which would have broken anchors and emptied the
+galleries in English; the script resets anchors, links, file prefixes, images
+and contact data to the Italian value. Re-run it on a fresh export after
+adding content. Museum name in English: "Small Museum of Rural Life".
