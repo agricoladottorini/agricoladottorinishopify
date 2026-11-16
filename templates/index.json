@@ -90,7 +90,7 @@
             "text": "L'ultimo passaggio è il più bello: assaggiarlo nei piatti di Convivia, il nostro home restaurant a Collazzone.",
             "tone": "d-variety--convivia",
             "link_label": "Prenota una cena",
-            "link": "https://www.conviviahomerestaurant.it/"
+            "link": "https://conviviarestaurant.it/"
           }
         }
       },
@@ -182,7 +182,7 @@
         "lede": "A casa nostra, a Collazzone, lo stesso olio diventa un'esperienza da vivere a tavola.",
         "text": "Un home restaurant dove i piatti raccontano il territorio. Il modo più vero per conoscere il nostro olio è assaggiarlo dove nasce.",
         "link_label": "Visita Convivia",
-        "link": "https://www.conviviahomerestaurant.it/",
+        "link": "https://conviviarestaurant.it/",
         "line_color": "#e0966f",
         "anchor": "convivia",
         "background": "d-bg--tint"
