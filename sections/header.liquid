@@ -63,6 +63,18 @@
           {% endif %}
         </a>
       </div>
+
+      {% if section.settings.shop_label != blank %}
+        <a
+          class="button button--small site-header__shop"
+          href="{{ section.settings.shop_href | default: routes.all_products_collection_url }}"
+          {% if request.path == '/collections/all' %}
+            aria-current="page"
+          {% endif %}
+        >
+          {{- section.settings.shop_label | escape -}}
+        </a>
+      {% endif %}
     </div>
   </header>
 
@@ -231,6 +243,18 @@
 
   .site-header__icons svg {
     width: 1.5rem;
+  }
+
+  /* Shop button, last in the bar on every screen size */
+  .site-header__shop {
+    min-height: 2.25rem;
+  }
+
+  @media (max-width: 420px) {
+    .site-header__shop {
+      padding: 0 0.875rem;
+      font-size: 0.8125rem;
+    }
   }
 
   .site-header__cart {
@@ -498,8 +522,8 @@
     // Underlines the menu link of the homepage section in view, so the bar
     // says where the visitor is. Links to an anchor on this page take part,
     // and so do links to another page that a section claims with
-    // data-nav-match (the oils panel claims the catalog, which "L'olio"
-    // opens). A section counts as "in view" when it crosses the middle of
+    // data-nav-match (the oils panel claims the catalog URL). The shop
+    // button is left out: it is a button, not a place in the page. A section counts as "in view" when it crosses the middle of
     // the screen.
     trackSections() {
       const groups = new Map();
@@ -507,7 +531,7 @@
       document.querySelectorAll('[data-nav-match]').forEach((element) => {
         claimed.set(element.dataset.navMatch, element);
       });
-      this.querySelectorAll('a[href]').forEach((link) => {
+      this.querySelectorAll('a[href]:not(.site-header__shop)').forEach((link) => {
         const url = new URL(link.href, location.href);
         let target = claimed.get(url.pathname);
         if (!target && url.pathname === location.pathname && url.hash.length > 1) {
@@ -619,8 +643,8 @@
       "type": "text",
       "id": "nav_2_href",
       "label": "Link 2 target",
-      "info": "Default: the product catalog.",
-      "default": "/collections/all"
+      "info": "Default: the Il metodo section on the homepage.",
+      "default": "/#metodo"
     },
     {
       "type": "text",
@@ -688,6 +712,23 @@
       "id": "cart_label",
       "label": "Cart",
       "default": "Carrello"
+    },
+    {
+      "type": "header",
+      "content": "Shop button"
+    },
+    {
+      "type": "text",
+      "id": "shop_label",
+      "label": "Button label",
+      "info": "Last item in the bar. Leave blank to hide it.",
+      "default": "Acquista"
+    },
+    {
+      "type": "text",
+      "id": "shop_href",
+      "label": "Button link",
+      "default": "/collections/all"
     }
   ]
 }
