@@ -19,10 +19,10 @@
     {% if product.featured_image %}
       {%- liquid
         comment
-          The focal point set in the admin lives on the media's preview
-          image; featured_image.presentation comes back empty for products
+          The focal point set in the admin lives on the product's media
+          (featured_media.presentation); featured_image.presentation is empty
         endcomment
-        assign focal = product.featured_media.preview_image.presentation.focal_point
+        assign focal = product.featured_media.presentation.focal_point
         if focal == blank
           assign focal = product.featured_image.presentation.focal_point | default: '50% 50%'
         endif

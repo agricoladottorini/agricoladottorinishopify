@@ -92,14 +92,14 @@
           -%}
           <li class="d-products__item">
             <article class="d-card">
-              <a class="d-card__media" href="{{ product.url }}" tabindex="-1" aria-hidden="true" data-fp-a="{{ product.featured_media.presentation.focal_point }}" data-fp-b="{{ product.featured_media.preview_image.presentation.focal_point }}" data-fp-c="{{ product.featured_image.presentation.focal_point }}" data-fp-d="{{ product.featured_media.presentation | json | escape }}" data-fp-e="{{ product.featured_image.presentation | json | escape }}" data-fp-f="{{ product.featured_media.preview_image.presentation.focal_point.x }}">
+              <a class="d-card__media" href="{{ product.url }}" tabindex="-1" aria-hidden="true">
                 {% if product.featured_image %}
                   {%- liquid
                     comment
-                      The focal point set in the admin lives on the media's preview
-                      image; featured_image.presentation comes back empty for products
+                      The focal point set in the admin lives on the product's media
+                      (featured_media.presentation); featured_image.presentation is empty
                     endcomment
-                    assign focal = product.featured_media.preview_image.presentation.focal_point
+                    assign focal = product.featured_media.presentation.focal_point
                     if focal == blank
                       assign focal = product.featured_image.presentation.focal_point | default: '50% 50%'
                     endif
