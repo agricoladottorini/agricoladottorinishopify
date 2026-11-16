@@ -87,13 +87,13 @@
           <p class="d-hero__text">{{ section.settings.text }}</p>
         {% endif %}
 
-        <div class="d-hero__actions">
-          {% if section.settings.primary_label != blank %}
+        {% if section.settings.primary_label != blank %}
+          <div class="d-hero__actions">
             <a class="button button--light" href="{{ section.settings.primary_link | default: '#oli' }}">
               {{- section.settings.primary_label -}}
             </a>
-          {% endif %}
-        </div>
+          </div>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -386,7 +386,8 @@
       "type": "text",
       "id": "primary_label",
       "label": "Button label",
-      "default": "Scopri gli oli"
+      "default": "Scopri gli oli",
+      "info": "Leave empty to hide the button."
     },
     {
       "type": "url",

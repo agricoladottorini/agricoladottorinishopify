@@ -17,7 +17,7 @@
         "line_color": "#c9a24a",
         "heading": "Olio extravergine, nato sulla nostra collina",
         "text": "100% Umbro, estratto a freddo, il nostro blend unico",
-        "primary_label": "Scopri gli oli",
+        "primary_label": "",
         "primary_link": ""
       }
     },
@@ -121,7 +121,7 @@
     "convivia": {
       "type": "dottorini-convivia",
       "settings": {
-        "image": "shopify://shop_images/convivia-pasta-ricotta.jpg",
+        "image": "shopify://shop_images/convivia-tavola-in-giardino.jpg",
         "label": "Convivia",
         "eyebrow": "Dalla collina alla tavola",
         "heading": "Convivia\nHome Restaurant",
