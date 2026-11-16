@@ -1,4 +1,4 @@
-{% doc %}
+{%- doc -%}
   Prints a link from a setting so it stays in the visitor's language.
   Settings hold root-relative links like /pages/museo or /#metodo; on the
   English site (/en) those would drop the visitor back to Italian, so the
@@ -10,7 +10,7 @@
 
   @example
   <a href="{% render 'localized-url', url: section.settings.link %}">...</a>
-{% enddoc %}
+{%- enddoc -%}
 
 {%- liquid
   assign root = request.locale.root_url
