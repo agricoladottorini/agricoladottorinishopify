@@ -50,6 +50,17 @@
           {% if block.settings.text != blank %}
             <p class="d-variety__text">{{ block.settings.text }}</p>
           {% endif %}
+          {% if block.settings.link_label != blank and block.settings.link != blank %}
+            <a
+              class="d-variety__link"
+              href="{{ block.settings.link }}"
+              {% if block.settings.link contains '://' %}
+                target="_blank" rel="noopener"
+              {% endif %}
+            >
+              {{- block.settings.link_label }} <span aria-hidden="true">&rarr;</span>
+            </a>
+          {% endif %}
         </article>
       </li>
     {% endfor %}
@@ -195,6 +206,37 @@
     color: var(--variety-muted);
   }
 
+  /* Terracotta card: the Convivia step, same colour as the Convivia promo */
+  .d-variety--convivia {
+    --variety-bg: #b05c3a;
+    --variety-fg: var(--color-on-photo);
+    --variety-accent: #f6d9c7;
+    --variety-muted: rgb(253 252 249 / 0.88);
+  }
+
+  .d-variety__link {
+    align-self: flex-start;
+    margin-top: 1.25rem;
+    padding-bottom: 0.15rem;
+    border-bottom: 1px solid currentColor;
+    font-weight: 500;
+    color: var(--variety-fg);
+    text-decoration: none;
+  }
+
+  .d-variety__link:hover {
+    color: var(--variety-accent);
+  }
+
+  .d-variety__link span {
+    display: inline-block;
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  .d-variety__link:hover span {
+    transform: translateX(0.25rem);
+  }
+
   /* From 900px: arrows appear and every second card drops for rhythm */
   @media (min-width: 900px) {
     .d-journey__controls {
@@ -258,7 +300,7 @@
       "type": "text",
       "id": "anchor",
       "label": "Anchor",
-      "info": "The header's \"Cultivar\" link points here (/#terra).",
+      "info": "Menu links point here as /#anchor. Cultivar uses terra, the method section metodo.",
       "default": "terra"
     },
     {
@@ -303,8 +345,20 @@
           "options": [
             { "value": "d-variety--dark", "label": "Dark" },
             { "value": "d-variety--olive", "label": "Olive" },
-            { "value": "d-variety--light", "label": "Light" }
+            { "value": "d-variety--light", "label": "Light" },
+            { "value": "d-variety--convivia", "label": "Terracotta (Convivia)" }
           ]
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Link label",
+          "info": "Optional. Shown with the link at the foot of the card."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
         }
       ]
     }

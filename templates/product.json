@@ -12,6 +12,15 @@
     "main": {
       "type": "product",
       "blocks": {
+        "convivia": {
+          "type": "convivia",
+          "settings": {
+            "eyebrow": "Assaggialo dove nasce",
+            "text": "Da Convivia, il nostro home restaurant a Collazzone, questo olio arriva a tavola nei piatti di stagione.",
+            "link_label": "Prenota una cena",
+            "link": "https://www.conviviahomerestaurant.it/"
+          }
+        },
         "shipping": {
           "type": "detail",
           "settings": {
@@ -34,7 +43,7 @@
           }
         }
       },
-      "block_order": ["shipping", "returns", "storage"],
+      "block_order": ["convivia", "shipping", "returns", "storage"],
       "settings": {}
     }
   },

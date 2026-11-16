@@ -174,9 +174,38 @@
       <p class="product__status" role="status" data-quick-add-status></p>
     </quick-add>
 
-    {% if section.blocks.size > 0 %}
+    {%- comment -%}
+      Convivia note: a visible card under the buy button (not a collapsed
+      row), so every product page points to the home restaurant.
+    {%- endcomment -%}
+    {% for block in section.blocks %}
+      {% if block.type == 'convivia' %}
+        <aside class="product__convivia" {{ block.shopify_attributes }}>
+          {% if block.settings.eyebrow != blank %}
+            <p class="product__convivia-eyebrow">{{ block.settings.eyebrow }}</p>
+          {% endif %}
+          {% if block.settings.text != blank %}
+            <p class="product__convivia-text">{{ block.settings.text }}</p>
+          {% endif %}
+          {% if block.settings.link_label != blank and block.settings.link != blank %}
+            <a
+              class="product__convivia-link"
+              href="{{ block.settings.link }}"
+              {% if block.settings.link contains '://' %}
+                target="_blank" rel="noopener"
+              {% endif %}
+            >
+              {{- block.settings.link_label }} <span aria-hidden="true">&rarr;</span>
+            </a>
+          {% endif %}
+        </aside>
+      {% endif %}
+    {% endfor %}
+
+    {% assign detail_blocks = section.blocks | where: 'type', 'detail' %}
+    {% if detail_blocks.size > 0 %}
       <div class="product__details">
-        {% for block in section.blocks %}
+        {% for block in detail_blocks %}
           <details class="product__detail" {{ block.shopify_attributes }}>
             <summary class="product__detail-summary">
               <span>{{ block.settings.title }}</span>
@@ -481,6 +510,44 @@
     color: var(--color-error);
   }
 
+  /* Convivia card, terracotta like the Convivia promo on the homepage */
+  .product__convivia {
+    margin-top: 2rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: var(--radius-media);
+    background-color: #b05c3a;
+    color: var(--color-on-photo);
+  }
+
+  .product__convivia-eyebrow {
+    font-family: var(--font-accent--family);
+    font-size: 1.25rem;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #f6d9c7;
+  }
+
+  .product__convivia-text {
+    margin-top: 0.4rem;
+    line-height: 1.55;
+    color: rgb(253 252 249 / 0.9);
+  }
+
+  .product__convivia-link {
+    display: inline-block;
+    margin-top: 0.85rem;
+    padding-bottom: 0.15rem;
+    border-bottom: 1px solid currentColor;
+    font-weight: 500;
+    color: var(--color-on-photo);
+    text-decoration: none;
+  }
+
+  .product__convivia-link:hover {
+    color: #f6d9c7;
+  }
+
   /* Expandable rows */
   .product__details {
     margin-top: 2.5rem;
@@ -767,6 +834,36 @@
     }
   ],
   "blocks": [
+    {
+      "type": "convivia",
+      "name": "Convivia",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Heading",
+          "default": "Assaggialo dove nasce"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Da Convivia, il nostro home restaurant a Collazzone, questo olio arriva a tavola nei piatti di stagione."
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Link label",
+          "default": "Prenota una cena"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    },
     {
       "type": "detail",
       "name": "Info row",
