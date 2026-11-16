@@ -1,0 +1,306 @@
+{% comment %}
+  Homepage teaser for the Museo page. Sits after Convivia, so it stays light
+  (no dark card): a large photo with three small object tiles under it on one
+  side, copy and a button to /pages/museo on the other. Phones stack photos
+  over copy. Every photo links to the Museo page.
+{% endcomment %}
+
+{%- liquid
+  assign museo_url = section.settings.link | default: '/pages/museo'
+  assign tiles = ''
+  if section.settings.tile_1
+    assign tiles = tiles | append: '1,'
+  endif
+  if section.settings.tile_2
+    assign tiles = tiles | append: '2,'
+  endif
+  if section.settings.tile_3
+    assign tiles = tiles | append: '3,'
+  endif
+  assign tile_list = tiles | split: ','
+-%}
+
+<div class="section-band full-width {{ section.settings.background }}">
+  <div class="section-band__inner section-space" id="{{ section.settings.anchor | default: 'museo' | handleize }}">
+    {% render 'section-label', label: section.settings.label %}
+    <div class="d-museo-teaser reveal">
+      <div class="d-museo-teaser__media">
+        <a class="d-museo-teaser__main" href="{{ museo_url }}" tabindex="-1" aria-hidden="true">
+          {% if section.settings.image %}
+            {% assign image_position = 'object-position: ' | append: section.settings.image.presentation.focal_point %}
+            {{
+              section.settings.image
+              | image_url: width: 1600
+              | image_tag:
+                widths: '600, 900, 1200, 1600',
+                sizes: '(min-width: 900px) 52vw, calc(100vw - 48px)',
+                loading: 'lazy',
+                alt: section.settings.image.alt,
+                style: image_position
+            }}
+          {% else %}
+            {{ 'image' | placeholder_svg_tag: 'd-museo-teaser__placeholder' }}
+          {% endif %}
+        </a>
+
+        {% if tile_list.size > 0 %}
+          <ul class="d-museo-teaser__tiles" role="list">
+            {% for n in tile_list %}
+              {% assign tile_key = 'tile_' | append: n %}
+              {% assign tile = section.settings[tile_key] %}
+              <li>
+                <a href="{{ museo_url }}" tabindex="-1" aria-hidden="true">
+                  {{
+                    tile
+                    | image_url: width: 480, height: 480, crop: 'center'
+                    | image_tag:
+                      widths: '240, 360, 480',
+                      sizes: '(min-width: 900px) 17vw, 30vw',
+                      loading: 'lazy',
+                      alt: tile.alt
+                  }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+
+      <div class="d-museo-teaser__body">
+        {% if section.settings.eyebrow != blank %}
+          <p class="d-museo-teaser__eyebrow">{{ section.settings.eyebrow }}</p>
+        {% endif %}
+        {% if section.settings.heading != blank %}
+          <h2 class="d-museo-teaser__heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <p class="d-museo-teaser__text">{{ section.settings.text }}</p>
+        {% endif %}
+        {% if section.settings.note != blank %}
+          <p class="d-museo-teaser__note">{{ section.settings.note }}</p>
+        {% endif %}
+        {% if section.settings.link_label != blank %}
+          <a class="button d-museo-teaser__cta" href="{{ museo_url }}">
+            {{- section.settings.link_label -}}
+            <span class="d-museo-teaser__cta-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .d-museo-teaser {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1.75rem, 4vw, 4rem);
+    align-items: center;
+  }
+
+  .d-museo-teaser__media {
+    display: grid;
+    gap: clamp(0.5rem, 1vw, 0.75rem);
+  }
+
+  .d-museo-teaser__main,
+  .d-museo-teaser__tiles a {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: var(--radius-media);
+    background-color: rgb(43 36 26 / 0.06);
+  }
+
+  .d-museo-teaser__main {
+    aspect-ratio: 3 / 2;
+  }
+
+  .d-museo-teaser__main img,
+  .d-museo-teaser__placeholder,
+  .d-museo-teaser__tiles img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s var(--ease-out);
+  }
+
+  .d-museo-teaser__main:hover img,
+  .d-museo-teaser__tiles a:hover img {
+    transform: scale(1.03);
+  }
+
+  .d-museo-teaser__tiles {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: inherit;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .d-museo-teaser__tiles a {
+    aspect-ratio: 1;
+  }
+
+  .d-museo-teaser__body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .d-museo-teaser__eyebrow {
+    margin-bottom: 1.25rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  .d-museo-teaser__heading {
+    max-width: 16ch;
+    font-size: clamp(2.125rem, 4.4vw, 3.5rem);
+    line-height: 1.05;
+  }
+
+  .d-museo-teaser__text {
+    max-width: 44ch;
+    margin-top: 1.5rem;
+  }
+
+  .d-museo-teaser__note {
+    max-width: 44ch;
+    margin-top: 1rem;
+    font-family: var(--font-accent--family);
+    font-size: 1.25rem;
+    font-style: italic;
+    line-height: 1.35;
+    opacity: 0.8;
+  }
+
+  .d-museo-teaser__cta {
+    margin-top: clamp(1.75rem, 3.5vw, 2.5rem);
+  }
+
+  .d-museo-teaser__cta-arrow {
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  .d-museo-teaser__cta:hover .d-museo-teaser__cta-arrow {
+    transform: translateX(3px);
+  }
+
+  /* From 900px: photos left, copy right */
+  @media (min-width: 900px) {
+    .d-museo-teaser {
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .d-museo-teaser__main img,
+    .d-museo-teaser__tiles img {
+      transition: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Dottorini Museo (home)",
+  "tag": "section",
+  "class": "d-museo-teaser-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Section name",
+      "info": "Small name at the top of the section. Leave blank to hide it.",
+      "default": "Museo"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Piccolo Museo della Civiltà Contadina"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "info": "Italic words read in the accent serif.",
+      "default": "Gli attrezzi di chi ha lavorato <em>questa terra</em>."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "info": "Under 35 words."
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Note (italic)",
+      "info": "For example the opening status."
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Button label",
+      "default": "Sfoglia la collezione"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Button link",
+      "info": "Default: the Museo page."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Main photo",
+      "info": "Landscape, cropped 3:2."
+    },
+    {
+      "type": "image_picker",
+      "id": "tile_1",
+      "label": "Small photo 1",
+      "info": "Small photos are cropped square."
+    },
+    {
+      "type": "image_picker",
+      "id": "tile_2",
+      "label": "Small photo 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "tile_3",
+      "label": "Small photo 3"
+    },
+    {
+      "type": "text",
+      "id": "anchor",
+      "label": "Anchor",
+      "default": "museo"
+    },
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Background",
+      "default": "d-bg--base",
+      "options": [
+        { "value": "d-bg--base", "label": "Default" },
+        { "value": "d-bg--tint", "label": "Tinted" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dottorini Museo (home)"
+    }
+  ]
+}
+{% endschema %}

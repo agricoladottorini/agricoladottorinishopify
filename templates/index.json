@@ -187,6 +187,24 @@
         "anchor": "convivia",
         "background": "d-bg--tint"
       }
+    },
+    "museo": {
+      "type": "dottorini-museo-teaser",
+      "settings": {
+        "label": "Museo",
+        "eyebrow": "Piccolo Museo della Civiltà Contadina",
+        "heading": "Gli attrezzi di chi ha lavorato <em>questa terra</em>.",
+        "text": "Da oltre vent'anni Giuseppe Belardi Dottorini raccoglie gli attrezzi dei campi e degli antichi mestieri: circa 400 pezzi, conservati con cura e ancora funzionanti.",
+        "note": "Per ora il museo è chiuso al pubblico, ma la collezione si sfoglia qui.",
+        "link_label": "Sfoglia la collezione",
+        "link": "/pages/museo",
+        "image": "shopify://shop_images/museo-contadino-copertina.jpg",
+        "tile_1": "shopify://shop_images/museo-contadino-ferro-01.jpg",
+        "tile_2": "shopify://shop_images/museo-contadino-legno-03.jpg",
+        "tile_3": "shopify://shop_images/museo-contadino-bilance-02.jpg",
+        "anchor": "museo",
+        "background": "d-bg--base"
+      }
     }
   },
   "order": [
@@ -195,6 +213,7 @@
     "statement",
     "metodo",
     "products",
-    "convivia"
+    "convivia",
+    "museo"
   ]
 }

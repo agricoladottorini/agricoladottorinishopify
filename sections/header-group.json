@@ -13,7 +13,10 @@
   "sections": {
     "header": {
       "type": "header",
-      "settings": {}
+      "settings": {
+        "nav_3_label": "",
+        "nav_3_href": ""
+      }
     }
   },
   "order": [
