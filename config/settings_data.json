@@ -20,6 +20,28 @@
     "surface_color": "#FBF6EC",
     "surface_strong_color": "#E2D6BD",
     "tint_color": "#FBF6EC",
-    "dark_color": "#211C14"
+    "dark_color": "#211C14",
+    "sections": {
+      "cart-drawer": {
+        "type": "cart-drawer",
+        "settings": {
+          "title": "Carrello",
+          "item_label": "articolo nel carrello",
+          "items_label": "articoli nel carrello",
+          "stock_error": "Non c'è altra disponibilità per questo prodotto.",
+          "generic_error": "Non ha funzionato, riprova.",
+          "subtotal_label": "Subtotale",
+          "note": "Spedizione e tasse calcolate al checkout.",
+          "checkout_label": "Vai al checkout",
+          "empty_title": "Il carrello è vuoto",
+          "empty_text": "Non hai ancora aggiunto niente.",
+          "empty_link_label": "Vedi i prodotti",
+          "close_label": "Chiudi il carrello",
+          "remove_label": "Rimuovi",
+          "decrease_label": "Diminuisci quantità",
+          "increase_label": "Aumenta quantità"
+        }
+      }
+    }
   }
 }

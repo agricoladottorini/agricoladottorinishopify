@@ -1,0 +1,38 @@
+{% doc %}
+  Prints a link from a setting so it stays in the visitor's language.
+  Settings hold root-relative links like /pages/museo or /#metodo; on the
+  English site (/en) those would drop the visitor back to Italian, so the
+  current language prefix is put in front. External links (https://, mailto:,
+  tel:), same-page anchors (#contatti) and links that already carry the
+  prefix are printed as they are.
+
+  @param {string} url - The link from a setting
+
+  @example
+  <a href="{% render 'localized-url', url: section.settings.link %}">...</a>
+{% enddoc %}
+
+{%- liquid
+  assign root = request.locale.root_url
+  assign first_char = url | slice: 0, 1
+  assign second_char = url | slice: 1, 1
+  if root == '/' or first_char != '/' or second_char == '/'
+    echo url
+  else
+    assign head = url | slice: 0, root.size
+    assign after = url | slice: root.size, 1
+    assign has_prefix = false
+    if head == root
+      if after == '' or after == '/' or after == '#' or after == '?'
+        assign has_prefix = true
+      endif
+    endif
+    if has_prefix
+      echo url
+    elsif url == '/'
+      echo root
+    else
+      echo root | append: url
+    endif
+  endif
+-%}

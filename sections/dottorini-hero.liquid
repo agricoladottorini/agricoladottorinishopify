@@ -89,7 +89,8 @@
 
         {% if section.settings.primary_label != blank %}
           <div class="d-hero__actions">
-            <a class="button button--light" href="{{ section.settings.primary_link | default: '#oli' }}">
+            {%- assign hero_link = section.settings.primary_link | default: '#oli' -%}
+            <a class="button button--light" href="{% render 'localized-url', url: hero_link %}">
               {{- section.settings.primary_label -}}
             </a>
           </div>

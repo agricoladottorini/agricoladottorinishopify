@@ -11,7 +11,17 @@
   "sections": {
     "main": {
       "type": "cart",
-      "settings": {}
+      "settings": {
+        "title": "Il tuo carrello",
+        "quantity_label": "Quantità",
+        "update_label": "Aggiorna carrello",
+        "remove_label": "Rimuovi",
+        "subtotal_label": "Subtotale",
+        "note": "Spedizione e tasse calcolate al checkout.",
+        "checkout_label": "Vai al checkout",
+        "empty_text": "Non hai ancora aggiunto niente.",
+        "empty_link_label": "Vedi i prodotti"
+      }
     }
   },
   "order": [

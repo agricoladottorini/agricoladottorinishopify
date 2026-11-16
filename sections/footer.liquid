@@ -121,9 +121,10 @@
             {%- liquid
               assign label_key = 'nav_' | append: i | append: '_label'
               assign href_key = 'nav_' | append: i | append: '_href'
+              assign footer_href = section.settings[href_key] | default: '#'
             -%}
             {%- if section.settings[label_key] != blank -%}
-              <a class="site-footer__link" href="{{ section.settings[href_key] | default: '#' }}">{{ section.settings[label_key] | escape }}</a>
+              <a class="site-footer__link" href="{% render 'localized-url', url: footer_href %}">{{ section.settings[label_key] | escape }}</a>
             {%- endif -%}
           {%- endfor -%}
         </nav>
@@ -134,9 +135,10 @@
           {% if section.settings.table_title != blank %}
             <h3 class="site-footer__column-title">{{ section.settings.table_title }}</h3>
           {% endif %}
+          {%- assign table_href = section.settings.table_href | default: '#' -%}
           <a
             class="site-footer__feature"
-            href="{{ section.settings.table_href | default: '#' }}"
+            href="{% render 'localized-url', url: table_href %}"
             {% if section.settings.table_href contains '://' %}
               target="_blank" rel="noopener"
             {% endif %}

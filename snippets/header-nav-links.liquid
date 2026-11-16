@@ -21,14 +21,15 @@
     assign label = settings[label_key]
     assign href = settings[href_key] | default: '#'
   -%}
+  {%- capture local_href -%}{% render 'localized-url', url: href %}{%- endcapture -%}
 
   {%- if label != blank -%}
     <a
-      href="{{ href }}"
+      href="{{ local_href }}"
       {% if stagger %}
         style="--i: {{ index }}"
       {% endif %}
-      {% if href == request.path %}
+      {% if local_href == request.path %}
         aria-current="page"
       {% endif %}
     >

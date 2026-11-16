@@ -21,6 +21,10 @@
     assign promo_url = section.settings.promo_product.url
   endif
 %}
+{%- unless section.settings.promo_product -%}
+  {%- capture promo_url -%}{% render 'localized-url', url: promo_url %}{%- endcapture -%}
+{%- endunless -%}
+{%- capture all_url -%}{% render 'localized-url', url: all_url %}{%- endcapture -%}
 
 <div class="section-band full-width {{ section.settings.background }}">
   <div class="section-band__inner section-space" id="{{ section.settings.anchor | default: 'oli' | handleize }}">

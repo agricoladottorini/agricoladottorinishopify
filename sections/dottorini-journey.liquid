@@ -53,7 +53,7 @@
           {% if block.settings.link_label != blank and block.settings.link != blank %}
             <a
               class="d-variety__link"
-              href="{{ block.settings.link }}"
+              href="{% render 'localized-url', url: block.settings.link %}"
               {% if block.settings.link contains '://' %}
                 target="_blank" rel="noopener"
               {% endif %}

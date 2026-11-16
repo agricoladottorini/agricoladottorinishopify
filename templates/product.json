@@ -43,8 +43,23 @@
           }
         }
       },
-      "block_order": ["convivia", "shipping", "returns", "storage"],
-      "settings": {}
+      "block_order": [
+        "convivia",
+        "shipping",
+        "returns",
+        "storage"
+      ],
+      "settings": {
+        "add_label": "Aggiungi al carrello",
+        "sold_out_label": "Esaurito",
+        "added_label": "Aggiunto al carrello.",
+        "error_label": "Non ha funzionato, riprova.",
+        "stock_error_label": "Non c'è altra disponibilità per questo prodotto.",
+        "quantity_label": "Quantità",
+        "decrease_label": "Diminuisci quantità",
+        "increase_label": "Aumenta quantità",
+        "image_label": "Immagine"
+      }
     }
   },
   "order": [

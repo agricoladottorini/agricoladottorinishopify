@@ -25,7 +25,7 @@
         {% if section.settings.link != blank and section.settings.link_label != blank %}
           <a
             class="button button--light d-convivia__cta"
-            href="{{ section.settings.link }}"
+            href="{% render 'localized-url', url: section.settings.link %}"
             {% if section.settings.link contains '://' %}
               target="_blank" rel="noopener"
             {% endif %}

@@ -24,7 +24,12 @@
         "sort_apply_label": "Applica",
         "products_per_page": 12,
         "image_fit": "cover",
-        "empty_text": "Non ci sono prodotti in questa collezione."
+        "empty_text": "Non ci sono prodotti in questa collezione.",
+        "sort_default_label": "Consigliati",
+        "sort_price_asc_label": "Prezzo crescente",
+        "sort_price_desc_label": "Prezzo decrescente",
+        "sort_title_asc_label": "Nome, A-Z",
+        "sort_title_desc_label": "Nome, Z-A"
       }
     }
   },

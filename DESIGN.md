@@ -401,3 +401,14 @@ one (served under `/en`). Two kinds of text, translated in two places:
 the other language: in the header from 900px (left of the Prodotti pill), at
 the foot of the phone menu, and in the footer's bottom row. It renders nothing
 while only one language is published.
+
+Links typed into settings (`/pages/museo`, `/#metodo`, `/collections/all`)
+go through `snippets/localized-url.liquid`, which puts the current language
+prefix in front (`/en/pages/museo`), so an English visitor stays in English.
+External links, `#anchors` and links already prefixed pass through untouched.
+Any new setting that holds a link must be printed through it.
+
+Shopify only offers for translation the settings that are stored, not schema
+defaults, so every text setting of the header, footer, cart, cart drawer,
+product, collection and password sections is written out in its JSON
+(`config/settings_data.json` for the static cart drawer).

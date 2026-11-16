@@ -6,7 +6,7 @@
 {% endcomment %}
 
 {%- liquid
-  assign museo_url = section.settings.link | default: '/pages/museo'
+  assign museo_url_raw = section.settings.link | default: '/pages/museo'
   assign tiles = ''
   if section.settings.tile_1
     assign tiles = tiles | append: '1,'
@@ -19,6 +19,7 @@
   endif
   assign tile_list = tiles | split: ','
 -%}
+{%- capture museo_url -%}{% render 'localized-url', url: museo_url_raw %}{%- endcapture -%}
 
 <div class="section-band full-width {{ section.settings.background }}">
   <div class="section-band__inner section-space" id="{{ section.settings.anchor | default: 'museo' | handleize }}">

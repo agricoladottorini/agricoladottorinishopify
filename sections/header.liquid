@@ -40,10 +40,11 @@
       {% render 'language-switcher', class_name: 'site-header__lang' %}
 
       {% if section.settings.shop_label != blank %}
+        {%- assign shop_href = section.settings.shop_href | default: routes.all_products_collection_url -%}
         <a
           class="button button--small site-header__shop"
-          href="{{ section.settings.shop_href | default: routes.all_products_collection_url }}"
-          {% if request.path == '/collections/all' %}
+          href="{% render 'localized-url', url: shop_href %}"
+          {% if request.path contains '/collections/all' %}
             aria-current="page"
           {% endif %}
         >

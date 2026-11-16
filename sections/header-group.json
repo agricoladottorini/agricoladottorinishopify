@@ -15,11 +15,27 @@
       "type": "header",
       "settings": {
         "nav_3_label": "",
-        "nav_3_href": ""
+        "nav_3_href": "",
+        "wordmark": "Agricola Dottorini",
+        "tagline": "L'olio di Collazzone",
+        "nav_1_label": "La collina",
+        "nav_1_href": "/#collina",
+        "nav_2_label": "L'olio",
+        "nav_2_href": "/#metodo",
+        "nav_4_label": "Museo",
+        "nav_4_href": "/pages/museo",
+        "nav_5_label": "Convivia",
+        "nav_5_href": "/#convivia",
+        "nav_6_label": "Contatti",
+        "nav_6_href": "#contatti",
+        "menu_label": "Menu",
+        "cart_label": "Carrello",
+        "shop_label": "Prodotti",
+        "shop_href": "/collections/all"
       }
     }
   },
   "order": [
     "header"
-  ],
+  ]
 }

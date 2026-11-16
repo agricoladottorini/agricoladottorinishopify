@@ -33,7 +33,20 @@
         "share_capital": "",
         "policies_label": "Note legali",
         "background": "d-bg--dark",
-        "show_payment_icons": true
+        "show_payment_icons": true,
+        "tagline": "L'olio di Collazzone",
+        "nav_title": "Naviga",
+        "nav_1_label": "La collina",
+        "nav_1_href": "/#collina",
+        "nav_2_label": "L'olio",
+        "nav_2_href": "/collections/all",
+        "nav_3_label": "Cultivar",
+        "nav_3_href": "/#terra",
+        "nav_4_label": "Contatti",
+        "nav_4_href": "#contatti",
+        "table_title": "In tavola",
+        "table_label": "Convivia Home Restaurant",
+        "table_href": "https://conviviarestaurant.it/"
       }
     }
   },
