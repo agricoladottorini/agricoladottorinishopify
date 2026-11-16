@@ -246,8 +246,11 @@
   }
 
   /* Shop button, last in the bar on every screen size */
-  .site-header__shop {
+  /* .site-header a paints every header link dark: give the pill its light text back */
+  .site-header a.site-header__shop,
+  .site-header a.site-header__shop:hover {
     min-height: 2.25rem;
+    color: var(--color-background);
   }
 
   @media (max-width: 420px) {
