@@ -91,7 +91,7 @@ of the band above shows. The padding itself stays symmetric (top and bottom)
 on purpose: moving it all to the bottom would glue headings to the top edge of
 the coloured bands for anyone scrolling normally. The footer drops its top margin when it follows a
 section band (`:has()` in `sections/footer.liquid`), otherwise a strip of page
-sand sat between the last band and the dark footer.
+sand sat between the last band and the dark footer. The last band keeps its full bottom padding too: a rule that halved it before the footer looked lopsided (much more air above the Museo card than below) and the owner asked for it back.
 
 **Type.** Three families, chosen by the client (September 2026), replacing
 the original Outfit-only system. All three are self-hosted woff2 files from
