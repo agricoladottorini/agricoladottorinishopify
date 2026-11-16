@@ -266,7 +266,9 @@
   /* Under 900px: the button runs full width and the frame stops short of the fold */
   @media (max-width: 899px) {
     .d-hero__frame {
-      min-height: clamp(32rem, calc(100svh - var(--header-height) - 1.5rem), 50rem);
+      /* About 14% shorter than the screen (the owner found the full-height
+         photo too long on phones); the frame still grows if the copy needs it */
+      min-height: clamp(30rem, calc((100svh - var(--header-height)) * 0.86), 44rem);
     }
 
     .d-hero__content {
