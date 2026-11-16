@@ -120,10 +120,41 @@
     },
     "products": {
       "type": "dottorini-featured-products",
+      "blocks": {
+        "variety-moraiolo": {
+          "type": "cultivar",
+          "settings": {
+            "title": "Moraiolo",
+            "tagline": "Il carattere umbro per eccellenza.",
+            "text": "Fruttato intenso, note d'erba, amaro e piccante decisi. Dà spina dorsale al blend."
+          }
+        },
+        "variety-frantoiano": {
+          "type": "cultivar",
+          "settings": {
+            "title": "Frantoiano",
+            "tagline": "Eleganza ed armonia.",
+            "text": "Fruttato medio, profumi floreali e di mandorla. Smussa e arrotonda, porta finezza al taglio."
+          }
+        },
+        "variety-leccino": {
+          "type": "cultivar",
+          "settings": {
+            "title": "Leccino",
+            "tagline": "Morbidezza e gentilezza.",
+            "text": "Fruttato delicato, sentori dolci e puliti. Bilancia l'insieme e lo rende accessibile."
+          }
+        }
+      },
+      "block_order": [
+        "variety-moraiolo",
+        "variety-frantoiano",
+        "variety-leccino"
+      ],
       "settings": {
         "label": "L'olio",
         "heading": "Il nostro extra vergine.",
-        "text": "Un blend equilibrato: la struttura del Moraiolo, la finezza del Frantoiano, la dolcezza del Leccino.",
+        "text": "Un solo blend, tre olive umbre: ognuna porta la sua parte.",
         "products": [
           "bottiglia-500ml",
           "latta-2l",
@@ -147,52 +178,8 @@
         "all_label": "Vai a tutti i prodotti",
         "all_link": "",
         "anchor": "oli",
-        "background": "d-bg--tint"
-      }
-    },
-    "journey": {
-      "type": "dottorini-blend",
-      "blocks": {
-        "variety-moraiolo": {
-          "type": "cultivar",
-          "settings": {
-            "title": "Moraiolo",
-            "tagline": "Il carattere umbro per eccellenza.",
-            "text": "Fruttato intenso, note d'erba, amaro e piccante decisi. Dà spina dorsale al blend.",
-            "color": "dark"
-          }
-        },
-        "variety-frantoiano": {
-          "type": "cultivar",
-          "settings": {
-            "title": "Frantoiano",
-            "tagline": "Eleganza ed armonia.",
-            "text": "Fruttato medio, profumi floreali e di mandorla. Smussa e arrotonda, porta finezza al taglio.",
-            "color": "olive"
-          }
-        },
-        "variety-leccino": {
-          "type": "cultivar",
-          "settings": {
-            "title": "Leccino",
-            "tagline": "Morbidezza e gentilezza.",
-            "text": "Fruttato delicato, sentori dolci e puliti. Bilancia l'insieme e lo rende accessibile.",
-            "color": "light"
-          }
-        }
-      },
-      "block_order": [
-        "variety-moraiolo",
-        "variety-frantoiano",
-        "variety-leccino"
-      ],
-      "settings": {
-        "label": "Cultivar",
-        "heading": "Tre olive, un solo blend d'equilibrio.",
-        "anchor": "terra",
         "background": "d-bg--base",
-        "start_label": "Più intenso",
-        "end_label": "Più delicato"
+        "cultivar_anchor": "terra"
       }
     },
     "convivia": {
@@ -218,7 +205,6 @@
     "statement",
     "metodo",
     "products",
-    "journey",
     "convivia"
   ]
 }

@@ -47,6 +47,28 @@
             <p class="d-products__text">{{ section.settings.text }}</p>
           {% endif %}
         </div>
+
+        {%- comment -%}
+          The olives of the blend, as the oil's identity card right where it
+          is bought: three columns split by hairlines, no cards and no
+          scale (both tried and turned down by the owner). Carries the
+          #terra anchor, so the header's "Cultivar" link lands here.
+        {%- endcomment -%}
+        {% if section.blocks.size > 0 %}
+          <ul class="d-blend-row" id="{{ section.settings.cultivar_anchor | default: 'terra' | handleize }}" role="list">
+            {% for block in section.blocks %}
+              <li class="d-blend-row__item" {{ block.shopify_attributes }}>
+                <h3 class="d-blend-row__name">{{ block.settings.title }}</h3>
+                {% if block.settings.tagline != blank %}
+                  <p class="d-blend-row__tagline">{{ block.settings.tagline }}</p>
+                {% endif %}
+                {% if block.settings.text != blank %}
+                  <p class="d-blend-row__text">{{ block.settings.text }}</p>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
       </div>
 
       <ul
@@ -301,6 +323,67 @@
   .d-products__intro {
     display: grid;
     gap: 1.25rem;
+  }
+
+  /* The blend: three columns between hairlines, phones stack them */
+  .d-blend-row {
+    display: grid;
+    margin: clamp(2rem, 4vw, 3.5rem) 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid rgb(253 252 249 / 0.18);
+    scroll-margin-top: calc(var(--header-height) + 2rem);
+  }
+
+  .d-blend-row__item {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid rgb(253 252 249 / 0.12);
+  }
+
+  .d-blend-row__item:last-child {
+    border-bottom: 0;
+  }
+
+  .d-blend-row__name {
+    font-size: clamp(1.5rem, 2.2vw, 2rem);
+    line-height: 1.1;
+    color: var(--color-on-photo);
+  }
+
+  .d-blend-row__tagline {
+    margin-top: 0.3rem;
+    font-family: var(--font-accent--family);
+    font-size: clamp(1.125rem, 1.4vw, 1.3rem);
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--color-logo);
+  }
+
+  .d-blend-row__text {
+    max-width: 34ch;
+    margin-top: 0.6rem;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: rgb(253 252 249 / 0.72);
+  }
+
+  @media (min-width: 700px) {
+    .d-blend-row {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      padding-top: clamp(1.5rem, 2.5vw, 2rem);
+    }
+
+    .d-blend-row__item {
+      padding: 0 clamp(1rem, 2.5vw, 2.25rem);
+      border-bottom: 0;
+      border-left: 1px solid rgb(253 252 249 / 0.18);
+    }
+
+    .d-blend-row__item:first-child {
+      padding-left: 0;
+      border-left: 0;
+    }
   }
 
   .d-products__heading {
@@ -680,6 +763,18 @@
   "name": "Dottorini products",
   "tag": "section",
   "class": "d-products-section",
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "cultivar",
+      "name": "Cultivar",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Name", "default": "Cultivar" },
+        { "type": "text", "id": "tagline", "label": "Tagline", "info": "A few words, in italic under the name." },
+        { "type": "textarea", "id": "text", "label": "Text", "info": "Under 20 words." }
+      ]
+    }
+  ],
   "settings": [
     {
       "type": "text",
@@ -699,6 +794,13 @@
       "id": "text",
       "label": "Note beside the heading",
       "default": "Un blend equilibrato: la struttura del Moraiolo, la finezza del Frantoiano, la dolcezza del Leccino."
+    },
+    {
+      "type": "text",
+      "id": "cultivar_anchor",
+      "label": "Cultivar anchor",
+      "info": "The header's \"Cultivar\" link points here (/#terra). The cultivars are this section's blocks, shown under the heading.",
+      "default": "terra"
     },
     {
       "type": "product_list",
