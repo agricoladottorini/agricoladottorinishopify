@@ -253,9 +253,22 @@
     color: var(--color-background);
   }
 
-  @media (max-width: 420px) {
-    .site-header__shop {
-      padding: 0 0.875rem;
+  /* Phones: logo mark + name + menu + cart + Acquista do not fit in one row,
+     the name ran into the menu icon. Below 520px the mark steps out (the
+     footer still carries it), the right cluster tightens and the pill shrinks. */
+  @media (max-width: 519px) {
+    .site-header__mark {
+      display: none;
+    }
+
+    .site-header__end,
+    .site-header__icons {
+      gap: 0.75rem;
+    }
+
+    .site-header a.site-header__shop {
+      min-height: 2.125rem;
+      padding: 0 0.8125rem;
       font-size: 0.8125rem;
     }
   }
