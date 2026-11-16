@@ -49,7 +49,9 @@
         for i in (1..count)
           assign num = i | prepend: '0' | slice: -2, 2
           assign file_name = block.settings.prefix | append: num | append: '.jpg'
-          if images[file_name]
+          # images[] hands back an object for any name, uploaded or not: only a
+          # real file has a size
+          if images[file_name].width > 0
             assign found = found | plus: 1
           endif
         endfor
@@ -74,7 +76,7 @@
                 assign file_name = block.settings.prefix | append: num | append: '.jpg'
                 assign photo = images[file_name]
               -%}
-              {% if photo %}
+              {% if photo.width > 0 %}
                 {%- liquid
                   assign shown = shown | plus: 1
                   assign alt = photo.alt
