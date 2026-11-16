@@ -72,6 +72,7 @@
             <article class="d-card">
               <a class="d-card__media" href="{{ product.url }}" tabindex="-1" aria-hidden="true">
                 {% if product.featured_image %}
+                  {% assign card_position = 'object-position: ' | append: product.featured_image.presentation.focal_point %}
                   {{
                     product.featured_image
                     | image_url: width: 1200
@@ -80,7 +81,8 @@
                       sizes: '(min-width: 1000px) 30vw, (min-width: 700px) 45vw, 90vw',
                       loading: 'lazy',
                       class: section.settings.image_fit,
-                      alt: product.featured_image.alt
+                      alt: product.featured_image.alt,
+                      style: card_position
                   }}
                 {% else %}
                   {{ 'image' | placeholder_svg_tag: 'd-card__placeholder' }}
@@ -439,7 +441,10 @@
   .d-card__media {
     position: relative;
     display: block;
-    aspect-ratio: 6 / 5;
+    /* Portrait, like the packshots (2:3): a 6:5 box cut the tins off top
+       and bottom, 4:5 keeps the whole tin and the cards stay short enough
+       for the rail */
+    aspect-ratio: 4 / 5;
     overflow: hidden;
     background-color: color-mix(in srgb, var(--color-tint) 93%, var(--color-foreground));
   }

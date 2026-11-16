@@ -84,8 +84,8 @@ Section anchors (`#oli`, `#collina`, `#terra`, `#convivia`) sit on each band's
 padded inner box. `.section-band > [id]` gives them a negative
 `scroll-margin-top` that skips most of the section's top padding, so a menu
 jump puts the heading `--anchor-gap` (2rem) under the header instead of up to
-6rem further down. The offset is derived from `--section-space`
-(`clamp(3rem, 7vw, 6rem)`), so changing the spacing keeps menu jumps correct, and the band's top edge scrolls out of view, so no strip
+4rem further down. The offset is derived from `--section-space`
+(`clamp(2.25rem, 4.5vw, 4rem)`, trimmed from `3rem, 7vw, 6rem` at the owner's request: too much air between sections), so changing the spacing keeps menu jumps correct, and the band's top edge scrolls out of view, so no strip
 of the band above shows. The padding itself stays symmetric (top and bottom)
 on purpose: moving it all to the bottom would glue headings to the top edge of
 the coloured bands for anyone scrolling normally. The footer drops its top margin when it follows a
@@ -221,7 +221,7 @@ Catalogo, product and Museo are standalone pages (not homepage sections), so
 each opens directly under the sticky header with nothing above it. They share
 one heading (`<h1>`, one per page) and one top spacing value, the
 `.section-space--flush-top` utility in `assets/critical.css`
-(`padding-top: clamp(1.5rem, 4vw, 2.5rem)`, versus the `3-6rem` rhythm between
+(`padding-top: clamp(1.5rem, 4vw, 2.5rem)`, versus the `2.25-4rem` rhythm between
 homepage sections) so the gap from the header to the page's first heading
 stays identical across all three. Apply it alongside `section-space` on the
 page's outer wrapper; do not duplicate the value locally.

@@ -17,6 +17,7 @@
 <article class="product-card product-card--{{ fit }}">
   <a class="product-card__media" href="{{ product.url }}" tabindex="-1" aria-hidden="true">
     {% if product.featured_image %}
+      {% assign card_position = 'object-position: ' | append: product.featured_image.presentation.focal_point %}
       {{
         product.featured_image
         | image_url: width: 1600
@@ -24,7 +25,8 @@
           widths: '400, 600, 800, 1200, 1600',
           sizes: image_sizes,
           loading: 'lazy',
-          alt: product.featured_image.alt
+          alt: product.featured_image.alt,
+          style: card_position
       }}
     {% else %}
       {{ 'image' | placeholder_svg_tag: 'product-card__placeholder' }}

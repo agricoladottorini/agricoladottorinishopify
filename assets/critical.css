@@ -127,7 +127,7 @@ body {
   --radius-media: 14px;
   --radius-pill: 999px;
   --header-height: 68px;
-  --section-space: clamp(3rem, 7vw, 6rem);
+  --section-space: clamp(2.25rem, 4.5vw, 4rem);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --icon-stroke-width: 1.5;
   --color-error: #9b2c1f;
