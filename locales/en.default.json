@@ -38,5 +38,34 @@
     "submit": "Search",
     "no_results_html": "No results found for {{ terms }}",
     "results_for_html": "{{ count }} results found for {{ terms }}"
+  },
+  "dottorini": {
+    "general": {
+      "previous": "Previous",
+      "next": "Next",
+      "close": "Close",
+      "page": "Page {{ page }}",
+      "language": "Language"
+    },
+    "museo": {
+      "photo": "Photo",
+      "photo_of": "Photo {{ index }} of {{ total }}",
+      "of": "of",
+      "photo_count": "{{ count }} photos",
+      "open_photo": "Open photo {{ index }} of {{ total }}: {{ title }}",
+      "previous_photo": "Previous photo",
+      "next_photo": "Next photo",
+      "alt": "{{ title }}, photo {{ index }} of {{ total }} – Small Museum of Rural Life, Collazzone"
+    },
+    "products": {
+      "empty": "No products to show.",
+      "empty_hint": "Choose two products in this section's settings."
+    },
+    "footer": {
+      "pec": "Certified email (PEC)",
+      "vat": "VAT no.",
+      "fiscal_code": "Tax code",
+      "share_capital": "Share capital"
+    }
   }
 }

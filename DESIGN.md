@@ -382,3 +382,22 @@ page fades out lifting 8px in 0.22s, the new one fades in rising from 14px in
 while the page changes under it. Browsers without support change page as
 before; reduced motion turns it off. Anchor links on the same page keep the
 smooth scroll.
+
+## Languages
+
+Italian is the store's primary language; English is being added as a second
+one (served under `/en`). Two kinds of text, translated in two places:
+
+- **Store content** (section settings in `templates/*.json` and the header and
+  footer groups, products, pages, SEO fields, menu labels, file alt text) is
+  translated in Shopify (Settings > Languages, or the Translate & Adapt app,
+  or a translations CSV import), not in this repo.
+- **Fixed theme strings** (arrow and close labels, the museum viewer's
+  "n di N", photo counts and generated alt text, the footer's legal labels,
+  "Pagina n" in titles) live under `dottorini.*` in `locales/it.json` and
+  `locales/en.default.json`; every new hardcoded string goes there in both.
+
+`snippets/language-switcher.liquid` prints "IT · EN" links to the same page in
+the other language: in the header from 900px (left of the Prodotti pill), at
+the foot of the phone menu, and in the footer's bottom row. It renders nothing
+while only one language is published.

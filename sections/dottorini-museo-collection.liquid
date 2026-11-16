@@ -16,7 +16,7 @@
 {% endcomment %}
 
 <div class="section-band full-width {{ section.settings.background }}">
-<museo-collection class="d-mcoll" id="{{ section.settings.anchor | default: 'collezione' | handleize }}">
+<museo-collection class="d-mcoll" data-of="{{ 'dottorini.museo.of' | t | escape }}" id="{{ section.settings.anchor | default: 'collezione' | handleize }}">
   {% if section.blocks.size > 1 %}
     <nav class="d-mcoll__nav" aria-label="{{ section.settings.nav_label | escape }}">
       <ul class="d-mcoll__nav-list section-band__inner" role="list" data-mcoll-nav>
@@ -60,7 +60,7 @@
         <header class="d-mcoll__group-head">
           <h3 class="d-mcoll__group-title" id="{{ group_id }}-title">{{ group_title }}</h3>
           {% if found > 0 %}
-            <p class="d-mcoll__group-count">{{ found }} foto</p>
+            <p class="d-mcoll__group-count">{{ 'dottorini.museo.photo_count' | t: count: found }}</p>
           {% endif %}
           {% if block.settings.intro != blank %}
             <p class="d-mcoll__group-intro">{{ block.settings.intro }}</p>
@@ -82,7 +82,7 @@
                   assign alt = photo.alt
                   if alt == blank
                     capture alt
-                      echo group_title | append: ', foto ' | append: shown | append: ' di ' | append: found | append: ' – Piccolo Museo della Civiltà Contadina, Collazzone'
+                      echo 'dottorini.museo.alt' | t: title: group_title, index: shown, total: found
                     endcapture
                   endif
                 -%}
@@ -97,7 +97,7 @@
                     data-group="{{ group_title | escape }}"
                     data-pos="{{ shown }}"
                     data-total="{{ found }}"
-                    aria-label="Apri la foto {{ shown }} di {{ found }}: {{ group_title | escape }}"
+                    aria-label="{{ 'dottorini.museo.open_photo' | t: index: shown, total: found, title: group_title | escape }}"
                   >
                     {{
                       photo
@@ -128,18 +128,18 @@
 
     <button type="button" class="d-mcoll__close" data-mcoll-close>
       <span class="d-mcoll__close-mark" aria-hidden="true"></span>
-      <span class="visually-hidden">Chiudi</span>
+      <span class="visually-hidden">{{ 'dottorini.general.close' | t }}</span>
     </button>
 
     <div class="d-mcoll__bar">
-      <button type="button" class="d-mcoll__step" data-mcoll-step="-1" aria-label="Foto precedente">
+      <button type="button" class="d-mcoll__step" data-mcoll-step="-1" aria-label="{{ 'dottorini.museo.previous_photo' | t }}">
         <span aria-hidden="true">&larr;</span>
       </button>
       <p class="d-mcoll__caption" aria-live="polite">
         <span class="d-mcoll__caption-group" data-mcoll-group-name></span>
         <span class="d-mcoll__caption-count" data-mcoll-count></span>
       </p>
-      <button type="button" class="d-mcoll__step" data-mcoll-step="1" aria-label="Foto successiva">
+      <button type="button" class="d-mcoll__step" data-mcoll-step="1" aria-label="{{ 'dottorini.museo.next_photo' | t }}">
         <span aria-hidden="true">&rarr;</span>
       </button>
     </div>
@@ -526,7 +526,7 @@
       }
       this.image.alt = tile.dataset.alt || '';
       if (this.groupName) this.groupName.textContent = tile.dataset.group || '';
-      if (this.count) this.count.textContent = `${tile.dataset.pos} di ${tile.dataset.total}`;
+      if (this.count) this.count.textContent = `${tile.dataset.pos} ${this.dataset.of || 'di'} ${tile.dataset.total}`;
 
       // Warm the neighbours so stepping feels instant
       [1, -1].forEach((offset) => {

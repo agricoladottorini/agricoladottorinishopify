@@ -37,6 +37,8 @@
     </nav>
 
     <div class="site-header__end">
+      {% render 'language-switcher', class_name: 'site-header__lang' %}
+
       {% if section.settings.shop_label != blank %}
         <a
           class="button button--small site-header__shop"
@@ -57,6 +59,7 @@
 
         <nav class="site-header__drawer-panel" aria-label="{{ section.settings.menu_label | escape }}">
           {% render 'header-nav-links', settings: section.settings, stagger: true %}
+          {% render 'language-switcher', class_name: 'site-header__drawer-lang' %}
         </nav>
       </details>
 
@@ -243,6 +246,25 @@
 
   .site-header__icons svg {
     width: 1.5rem;
+  }
+
+  /* Language links: in the bar from 900px, at the foot of the phone menu below */
+  .site-header__lang {
+    display: none;
+  }
+
+  .site-header__drawer-lang {
+    align-self: flex-start;
+    margin-top: 1.5rem;
+    margin-left: -0.375rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.06em;
+  }
+
+  /* The drawer's entrance animation ends at full opacity, which would make
+     both language links look current: the language row stays out of it */
+  .site-header__drawer[open] .site-header__drawer-panel .site-header__drawer-lang a {
+    animation: none;
   }
 
   /* Shop button, first in the right cluster (left of the phone menu), on every screen size */
@@ -438,6 +460,10 @@
 
     .site-header__drawer {
       display: none;
+    }
+
+    .site-header__lang {
+      display: inline-flex;
     }
   }
 

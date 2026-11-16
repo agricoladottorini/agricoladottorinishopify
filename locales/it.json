@@ -38,5 +38,34 @@
     "submit": "Cerca",
     "no_results_html": "Nessun risultato per {{ terms }}",
     "results_for_html": "{{ count }} risultati per {{ terms }}"
+  },
+  "dottorini": {
+    "general": {
+      "previous": "Precedente",
+      "next": "Successivo",
+      "close": "Chiudi",
+      "page": "Pagina {{ page }}",
+      "language": "Lingua"
+    },
+    "museo": {
+      "photo": "Foto",
+      "photo_of": "Foto {{ index }} di {{ total }}",
+      "of": "di",
+      "photo_count": "{{ count }} foto",
+      "open_photo": "Apri la foto {{ index }} di {{ total }}: {{ title }}",
+      "previous_photo": "Foto precedente",
+      "next_photo": "Foto successiva",
+      "alt": "{{ title }}, foto {{ index }} di {{ total }} – Piccolo Museo della Civiltà Contadina, Collazzone"
+    },
+    "products": {
+      "empty": "Nessun prodotto da mostrare.",
+      "empty_hint": "Scegli due prodotti nelle impostazioni di questa sezione."
+    },
+    "footer": {
+      "pec": "PEC",
+      "vat": "P. IVA",
+      "fiscal_code": "Codice fiscale",
+      "share_capital": "Capitale sociale"
+    }
   }
 }

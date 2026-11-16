@@ -64,13 +64,13 @@
       </div>
 
       {% if slide_keys.size > 1 %}
-        <div class="d-mintro__dots" role="group" aria-label="Foto">
+        <div class="d-mintro__dots" role="group" aria-label="{{ 'dottorini.museo.photo' | t }}">
           {% for key in slide_keys %}
             <button
               type="button"
               class="d-mintro__dot"
               data-slide-dot="{{ forloop.index0 }}"
-              aria-label="Foto {{ forloop.index }} di {{ slide_keys.size }}"
+              aria-label="{{ 'dottorini.museo.photo_of' | t: index: forloop.index, total: slide_keys.size }}"
               {% if forloop.first %}aria-current="true"{% endif %}
             ></button>
           {% endfor %}

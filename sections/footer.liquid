@@ -159,7 +159,7 @@
             <a href="tel:{{ phone_href }}">{{ section.settings.phone }}</a>
           {% endif %}
           {% if section.settings.pec != blank %}
-            <a href="mailto:{{ section.settings.pec }}">PEC {{ section.settings.pec }}</a>
+            <a href="mailto:{{ section.settings.pec }}">{{ 'dottorini.footer.pec' | t }} {{ section.settings.pec }}</a>
           {% endif %}
         </div>
       {% endif %}
@@ -181,19 +181,19 @@
         {% endif %}
         {% if section.settings.vat != blank %}
           <div class="site-footer__legal-item">
-            <dt>P. IVA</dt>
+            <dt>{{ 'dottorini.footer.vat' | t }}</dt>
             <dd>{{ section.settings.vat }}</dd>
           </div>
         {% endif %}
         {% if section.settings.fiscal_code != blank %}
           <div class="site-footer__legal-item">
-            <dt>Codice fiscale</dt>
+            <dt>{{ 'dottorini.footer.fiscal_code' | t }}</dt>
             <dd>{{ section.settings.fiscal_code }}</dd>
           </div>
         {% endif %}
         {% if section.settings.share_capital != blank %}
           <div class="site-footer__legal-item">
-            <dt>Capitale sociale</dt>
+            <dt>{{ 'dottorini.footer.share_capital' | t }}</dt>
             <dd>{{ section.settings.share_capital }}</dd>
           </div>
         {% endif %}
@@ -204,6 +204,8 @@
       <p class="site-footer__copyright">
         &copy; {{ 'now' | date: '%Y' }} {{ shop.name | link_to: routes.root_url }}
       </p>
+
+      {% render 'language-switcher', class_name: 'site-footer__lang' %}
 
       {% if shop.policies.size > 0 %}
         <nav class="site-footer__policies" aria-label="{{ section.settings.policies_label | escape }}">

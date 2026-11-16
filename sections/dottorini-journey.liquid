@@ -29,10 +29,10 @@
 
     {% if section.blocks.size > 1 %}
       <div class="d-journey__controls">
-        <button type="button" class="d-journey__arrow" data-gallery-arrow data-direction="-1" aria-label="Precedente" disabled>
+        <button type="button" class="d-journey__arrow" data-gallery-arrow data-direction="-1" aria-label="{{ 'dottorini.general.previous' | t }}" disabled>
           <span aria-hidden="true">&larr;</span>
         </button>
-        <button type="button" class="d-journey__arrow" data-gallery-arrow data-direction="1" aria-label="Successivo">
+        <button type="button" class="d-journey__arrow" data-gallery-arrow data-direction="1" aria-label="{{ 'dottorini.general.next' | t }}">
           <span aria-hidden="true">&rarr;</span>
         </button>
       </div>

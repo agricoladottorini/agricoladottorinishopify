@@ -31,10 +31,10 @@
         <div class="d-products__top">
           {% render 'section-label', label: section.settings.label %}
           <div class="d-products__controls">
-            <button type="button" class="d-products__arrow" data-gallery-arrow data-direction="-1" aria-label="Precedente" disabled>
+            <button type="button" class="d-products__arrow" data-gallery-arrow data-direction="-1" aria-label="{{ 'dottorini.general.previous' | t }}" disabled>
               <span aria-hidden="true">&larr;</span>
             </button>
-            <button type="button" class="d-products__arrow" data-gallery-arrow data-direction="1" aria-label="Successivo">
+            <button type="button" class="d-products__arrow" data-gallery-arrow data-direction="1" aria-label="{{ 'dottorini.general.next' | t }}">
               <span aria-hidden="true">&rarr;</span>
             </button>
           </div>
@@ -178,8 +178,8 @@
           </li>
         {% else %}
           <li class="d-products__empty">
-            <p>Nessun prodotto da mostrare.</p>
-            <p>Scegli due prodotti nelle impostazioni di questa sezione.</p>
+            <p>{{ 'dottorini.products.empty' | t }}</p>
+            <p>{{ 'dottorini.products.empty_hint' | t }}</p>
           </li>
         {% endfor %}
 

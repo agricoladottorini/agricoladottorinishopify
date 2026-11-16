@@ -1,0 +1,82 @@
+{% doc %}
+  Links to the same page in the store's other published languages ("IT · EN").
+  Renders nothing while the store has a single language, so it can ship
+  before English is published. Plain links, not a form: they work without
+  JavaScript and search engines can follow them (Shopify adds the hreflang
+  tags itself).
+
+  The current path is stripped of the current language prefix (/en) and the
+  other language's prefix is put in front, so /en/pages/museo <-> /pages/museo.
+
+  @param {string} [class_name] - Extra class for placement (header, drawer, footer)
+
+  @example
+  {% render 'language-switcher', class_name: 'language-switcher--footer' %}
+{% enddoc %}
+
+{%- if localization.available_languages.size > 1 -%}
+  {%- liquid
+    assign current_root = request.locale.root_url
+    assign base_path = request.path
+    if current_root != '/'
+      assign base_path = base_path | remove_first: current_root
+    endif
+    if base_path == blank
+      assign base_path = '/'
+    endif
+  -%}
+  <nav class="language-switcher {{ class_name }}" aria-label="{{ 'dottorini.general.language' | t | escape }}">
+    {%- for language in localization.available_languages -%}
+      {%- liquid
+        if language.root_url == '/'
+          assign href = base_path
+        elsif base_path == '/'
+          assign href = language.root_url
+        else
+          assign href = language.root_url | append: base_path
+        endif
+      -%}
+      <a
+        href="{{ href }}"
+        hreflang="{{ language.iso_code }}"
+        lang="{{ language.iso_code }}"
+        title="{{ language.endonym_name | capitalize | escape }}"
+        {% if language.iso_code == request.locale.iso_code %}
+          aria-current="true"
+        {% endif %}
+      >
+        {{- language.iso_code | upcase -}}
+      </a>
+    {%- endfor -%}
+  </nav>
+{%- endif -%}
+
+{% stylesheet %}
+  .language-switcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.125rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+
+  .language-switcher a {
+    padding: 0.25rem 0.375rem;
+    color: inherit;
+    text-decoration: none;
+    opacity: 0.55;
+    transition: opacity 0.2s var(--ease-out);
+  }
+
+  .language-switcher a:hover,
+  .language-switcher a[aria-current='true'] {
+    opacity: 1;
+  }
+
+  .language-switcher a[aria-current='true'] {
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+    text-decoration-thickness: 1px;
+  }
+{% endstylesheet %}
