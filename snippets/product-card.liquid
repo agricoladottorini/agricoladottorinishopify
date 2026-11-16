@@ -17,7 +17,17 @@
 <article class="product-card product-card--{{ fit }}">
   <a class="product-card__media" href="{{ product.url }}" tabindex="-1" aria-hidden="true">
     {% if product.featured_image %}
-      {% assign card_position = 'object-position: ' | append: product.featured_image.presentation.focal_point %}
+      {%- liquid
+        comment
+          The focal point set in the admin lives on the media's preview
+          image; featured_image.presentation comes back empty for products
+        endcomment
+        assign focal = product.featured_media.preview_image.presentation.focal_point
+        if focal == blank
+          assign focal = product.featured_image.presentation.focal_point | default: '50% 50%'
+        endif
+        assign card_position = 'object-position: ' | append: focal
+      -%}
       {{
         product.featured_image
         | image_url: width: 1600
