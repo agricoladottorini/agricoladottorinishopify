@@ -1,7 +1,7 @@
 {% comment %}
   Museo opening: the page title and Giuseppe's own "Chi sono", beside two
   portraits of him among the olive trees, a tall one and a smaller one
-  overlapping its lower corner. The portraits carry the opening because the
+  overlapping its upper left corner. The portraits carry the opening because the
   old site's cover (the orange cart) is only 1260px wide, too soft for a
   full-bleed plate; the cart moves to the visit section, where it sits small.
   Three figures under the story (years, pieces, sections) and a link down to
@@ -117,12 +117,14 @@
     color: var(--color-accent);
   }
 
-  /* The portraits: a tall one, and a smaller one overlapping its lower left
-     corner with a ring of the band colour, so the pair reads as one piece */
+  /* The portraits: a tall one at its own 2:3 (Giuseppe stands low in the
+     frame, a crop would cut him), and a smaller one overlapping its upper
+     left corner, over the foliage, with a ring of the band colour so the
+     pair reads as one piece */
   .d-mintro__media {
     grid-area: media;
     position: relative;
-    padding: 0 0 clamp(3rem, 10vw, 5rem) clamp(2.5rem, 14vw, 6rem);
+    padding-left: clamp(2.5rem, 14vw, 6rem);
   }
 
   .d-mintro__photo {
@@ -140,12 +142,12 @@
   }
 
   .d-mintro__photo--main {
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 2 / 3;
   }
 
   .d-mintro__photo--second {
     position: absolute;
-    bottom: 0;
+    top: 14%;
     left: 0;
     width: 46%;
     aspect-ratio: 2 / 3;
@@ -240,11 +242,7 @@
       align-self: start;
       position: sticky;
       top: calc(var(--header-height) + 1.5rem);
-      padding: 0 0 clamp(3rem, 6vw, 5.5rem) clamp(3rem, 7vw, 6.5rem);
-    }
-
-    .d-mintro__photo--main {
-      aspect-ratio: 3 / 4;
+      padding-left: clamp(3rem, 7vw, 6.5rem);
     }
   }
 {% endstylesheet %}
@@ -259,8 +257,8 @@
     { "type": "text", "id": "label", "label": "Section name", "default": "Museo" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Piccolo Museo della Civiltà Contadina" },
     { "type": "text", "id": "lede", "label": "Line under the heading", "default": "La raccolta di Giuseppe Belardi Dottorini, a Collazzone." },
-    { "type": "image_picker", "id": "image_main", "label": "Portrait, large", "info": "Tall photo, shown 4:5 on phones and 3:4 beside the text." },
-    { "type": "image_picker", "id": "image_second", "label": "Portrait, small", "info": "Overlaps the lower left corner of the large one." },
+    { "type": "image_picker", "id": "image_main", "label": "Portrait, large", "info": "Tall photo, shown at 2:3." },
+    { "type": "image_picker", "id": "image_second", "label": "Portrait, small", "info": "Overlaps the upper left corner of the large one." },
     { "type": "text", "id": "story_label", "label": "Story heading", "default": "Chi sono" },
     { "type": "richtext", "id": "story", "label": "Story" },
     { "type": "text", "id": "signature", "label": "Signature", "default": "Giuseppe Belardi Dottorini" },
