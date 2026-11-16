@@ -48,6 +48,18 @@
         </nav>
       </details>
 
+      {% if section.settings.shop_label != blank %}
+        <a
+          class="button button--small site-header__shop"
+          href="{{ section.settings.shop_href | default: routes.all_products_collection_url }}"
+          {% if request.path == '/collections/all' %}
+            aria-current="page"
+          {% endif %}
+        >
+          {{- section.settings.shop_label | escape -}}
+        </a>
+      {% endif %}
+
       <div class="site-header__icons">
         {% if shop.customer_accounts_enabled %}
           <shopify-account menu="{{ section.settings.customer_account_menu }}">
@@ -63,18 +75,6 @@
           {% endif %}
         </a>
       </div>
-
-      {% if section.settings.shop_label != blank %}
-        <a
-          class="button button--small site-header__shop"
-          href="{{ section.settings.shop_href | default: routes.all_products_collection_url }}"
-          {% if request.path == '/collections/all' %}
-            aria-current="page"
-          {% endif %}
-        >
-          {{- section.settings.shop_label | escape -}}
-        </a>
-      {% endif %}
     </div>
   </header>
 
@@ -245,7 +245,7 @@
     width: 1.5rem;
   }
 
-  /* Shop button, last in the bar on every screen size */
+  /* Shop button, just before the account and cart icons, on every screen size */
   /* .site-header a paints every header link dark: give the pill its light text back */
   .site-header a.site-header__shop,
   .site-header a.site-header__shop:hover {
@@ -737,7 +737,7 @@
       "type": "text",
       "id": "shop_label",
       "label": "Button label",
-      "info": "Last item in the bar. Leave blank to hide it.",
+      "info": "Sits just before the cart. Leave blank to hide it.",
       "default": "Acquista"
     },
     {
