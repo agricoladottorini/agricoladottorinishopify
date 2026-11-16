@@ -1,8 +1,8 @@
 {% comment %}
-  Homepage teaser for the Museo page. Sits after Convivia, so it stays light
-  (no dark card): a large photo with three small object tiles under it on one
-  side, copy and a button to /pages/museo on the other. Phones stack photos
-  over copy. Every photo links to the Museo page.
+  Homepage teaser for the Museo page, after Convivia. One olive card: a large
+  photo with three small object tiles under it on one side, copy and a button
+  to /pages/museo on the other. Phones stack photos over copy. Every photo
+  links to the Museo page.
 {% endcomment %}
 
 {%- liquid
@@ -33,7 +33,7 @@
               | image_url: width: 1600
               | image_tag:
                 widths: '600, 900, 1200, 1600',
-                sizes: '(min-width: 900px) 52vw, calc(100vw - 48px)',
+                sizes: '(min-width: 1616px) 820px, (min-width: 900px) 52vw, calc(100vw - 68px)',
                 loading: 'lazy',
                 alt: section.settings.image.alt,
                 style: image_position
@@ -55,7 +55,7 @@
                     | image_url: width: 480, height: 480, crop: 'center'
                     | image_tag:
                       widths: '240, 360, 480',
-                      sizes: '(min-width: 900px) 17vw, 30vw',
+                      sizes: '(min-width: 1616px) 270px, (min-width: 900px) 17vw, 30vw',
                       loading: 'lazy',
                       alt: tile.alt
                   }}
@@ -80,7 +80,7 @@
           <p class="d-museo-teaser__note">{{ section.settings.note }}</p>
         {% endif %}
         {% if section.settings.link_label != blank %}
-          <a class="button d-museo-teaser__cta" href="{{ museo_url }}">
+          <a class="button button--light d-museo-teaser__cta" href="{{ museo_url }}">
             {{- section.settings.link_label -}}
             <span class="d-museo-teaser__cta-arrow" aria-hidden="true">&rarr;</span>
           </a>
@@ -91,16 +91,28 @@
 </div>
 
 {% stylesheet %}
+  /* One olive card in the page column, like the Convivia card above it but
+     in the logo olive, photos left and copy right (Convivia is the mirror).
+     The photos sit inside the card's inner padding on one grid: the main
+     photo stretches to the card height, the three tiles share its edges. */
   .d-museo-teaser {
+    --museo-pad: clamp(0.625rem, 1.2vw, 1rem);
+    --museo-ink: var(--color-background);
     display: grid;
     grid-template-columns: 1fr;
-    gap: clamp(1.75rem, 4vw, 4rem);
-    align-items: center;
+    gap: var(--museo-pad);
+    padding: var(--museo-pad);
+    overflow: hidden;
+    border-radius: var(--radius-media);
+    background-color: var(--color-accent);
+    color: var(--museo-ink);
   }
 
   .d-museo-teaser__media {
-    display: grid;
-    gap: clamp(0.5rem, 1vw, 0.75rem);
+    display: flex;
+    flex-direction: column;
+    gap: var(--museo-pad);
+    min-width: 0;
   }
 
   .d-museo-teaser__main,
@@ -108,8 +120,8 @@
     position: relative;
     display: block;
     overflow: hidden;
-    border-radius: var(--radius-media);
-    background-color: rgb(43 36 26 / 0.06);
+    border-radius: calc(var(--radius-media) - 4px);
+    background-color: rgb(251 246 236 / 0.08);
   }
 
   .d-museo-teaser__main {
@@ -127,6 +139,10 @@
     transition: transform 0.8s var(--ease-out);
   }
 
+  .d-museo-teaser__placeholder {
+    fill: rgb(251 246 236 / 0.2);
+  }
+
   .d-museo-teaser__main:hover img,
   .d-museo-teaser__tiles a:hover img {
     transform: scale(1.03);
@@ -135,7 +151,7 @@
   .d-museo-teaser__tiles {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: inherit;
+    gap: var(--museo-pad);
     margin: 0;
     padding: 0;
     list-style: none;
@@ -149,6 +165,8 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: center;
+    padding: clamp(1.25rem, 4vw, 3.5rem) clamp(0.875rem, 3.5vw, 3.5rem);
   }
 
   .d-museo-teaser__eyebrow {
@@ -157,28 +175,31 @@
     font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--color-accent);
+    color: var(--color-accent-light);
   }
 
   .d-museo-teaser__heading {
     max-width: 16ch;
     font-size: clamp(2.125rem, 4.4vw, 3.5rem);
     line-height: 1.05;
+    color: var(--museo-ink);
   }
 
   .d-museo-teaser__text {
     max-width: 44ch;
     margin-top: 1.5rem;
+    color: rgb(251 246 236 / 0.82);
   }
 
   .d-museo-teaser__note {
-    max-width: 44ch;
+    max-width: 40ch;
     margin-top: 1rem;
     font-family: var(--font-accent--family);
     font-size: 1.25rem;
     font-style: italic;
+    font-weight: 500;
     line-height: 1.35;
-    opacity: 0.8;
+    color: var(--color-accent-light);
   }
 
   .d-museo-teaser__cta {
@@ -193,10 +214,17 @@
     transform: translateX(3px);
   }
 
-  /* From 900px: photos left, copy right */
+  /* From 900px: photos left at full card height, copy right */
   @media (min-width: 900px) {
     .d-museo-teaser {
-      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      min-height: clamp(34rem, 46vw, 40rem);
+    }
+
+    .d-museo-teaser__main {
+      flex: 1 1 auto;
+      aspect-ratio: auto;
+      min-height: 16rem;
     }
   }
 
